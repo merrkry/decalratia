@@ -100,7 +100,7 @@ in
           wantedBy = [ "default.target" ];
           serviceConfig = {
             Type = "oneshot";
-            ExecStart = pkgs.writeShellScriptBin "update-system-flatpaks" ''
+            ExecStart = pkgs.writeShellScript "update-system-flatpaks" ''
               ${pkgs.flatpak}/bin/flatpak update --assumeyes --noninteractive --system
               ${pkgs.flatpak}/bin/flatpak uninstall --unused --assumeyes --noninteractive --system
             '';
