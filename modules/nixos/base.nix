@@ -8,6 +8,11 @@ let
   cfg = config.presets.base;
 in
 {
+  imports = [
+    ./rootfs-cleanup.nix
+    ./zswap.nix
+  ];
+
   options.presets.base = {
     enable = lib.mkEnableOption "base" // {
       default = true;

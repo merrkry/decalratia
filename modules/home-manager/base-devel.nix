@@ -51,10 +51,12 @@ in
       };
     };
 
+    services.ssh-agent.enable = true;
+
     home.packages = with pkgs; [
-      just
-      yq
-      jq
+      lazygit
+      nixd
+      nixfmt-rfc-style
     ];
 
   };

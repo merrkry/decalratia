@@ -12,6 +12,10 @@ in
     enable = lib.mkEnableOption "base-devel" // {
       default = true;
     };
+    enableHardwareUtils = lib.mkEnableOption "hardware utilities" // {
+      # TODO: detect headless physical machine
+      default = config.hardware.graphics.enable;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -25,43 +29,47 @@ in
 
     programs.yazi.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      fastfetch
+    environment.systemPackages =
+      with pkgs;
+      (
+        [
+          fastfetch
 
-      vim
-      micro
-      nano
+          tree
+          gdu
+          just
+          yq
+          jq
+          rclone
+          dos2unix
+          tlrc
+          ripgrep
 
-      wget
-      curl
+          nodejs # npm will NOT install this
+          python3
+          gcc
 
-      tree
+          age
+          sops
+        ]
+        ++ lib.optionals cfg.enableHardwareUtils [
+          exfatprogs
+          e2fsprogs
+          usbutils
+          pciutils
+          lm_sensors
+        ]
+      );
 
-      git
-      lazygit
-
-      gdu
-
-      just
-
-      yq
-      jq
-
-      nixd
-      nixfmt-rfc-style
-
-      rsync
-      rclone
-
-      lm_sensors
-
-      # npm will NOT install this
-      nodejs
-
-      python3
-      gcc
-
-      ripgrep
-    ];
+    # may migrate to pnpm
+    programs.npm = {
+      enable = true;
+      npmrc = ''
+        prefix=''${XDG_DATA_HOME}/npm
+        cache=''${XDG_CACHE_HOME}/npm
+        init-module=''${XDG_CONFIG_HOME}/npm/config/npm-init.js
+        tmp=''${XDG_RUNTIME_DIR}/npm
+      '';
+    };
   };
 }

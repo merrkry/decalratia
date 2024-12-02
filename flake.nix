@@ -63,6 +63,11 @@
 
       nixosConfigurations = {
 
+        "akahi" = nixpkgs-unstable.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/akahi ];
+        };
+
         "perimadeia" = nixpkgs-stable.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/perimadeia ];
