@@ -10,7 +10,6 @@
   imports = [
     outputs.nixosModules.base
     outputs.nixosModules.base-devel
-    outputs.nixosModules.rootfs-cleanup
 
     inputs.home-manager-stable.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
