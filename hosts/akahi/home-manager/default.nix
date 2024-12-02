@@ -74,6 +74,7 @@ in
         jdk17
       ];
     })
+    looking-glass-client-git
   ];
 
   # TODO: move to dev.nix
