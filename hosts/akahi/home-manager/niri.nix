@@ -140,7 +140,7 @@ in
             refresh = 165.003;
           };
           scale = 1.6;
-          variable-refresh-rate = true; # "on-demand"; # may cause flickering
+          variable-refresh-rate = "on-demand"; # may cause flickering
         };
       };
 
