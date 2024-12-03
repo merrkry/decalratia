@@ -16,19 +16,9 @@ let
   };
 in
 {
-  rootfs-cleanup = {
-    enable = true;
-    uuid = "ba21d45a-15fc-4af8-8793-b06ddb4407c5";
-    rootfsSubvol = "@nixos/@rootfs";
-    backupSubvol = "@nixos/@rootfs-old";
-  };
-
   fileSystems."/btrfs-root" = mkBtrfsMount "/";
-  fileSystems."/" = mkBtrfsMount "@nixos/@rootfs";
+  fileSystems."/" = mkBtrfsMount "@nixos/@persist";
   fileSystems."/nix" = mkBtrfsMount "@nixos/@nix";
-  fileSystems."/persist" = (mkBtrfsMount "@nixos/@persist") // {
-    neededForBoot = true;
-  };
 
   fileSystems."/var/lib/libvirt/images" = mkBtrfsMount "@nixos/@images";
 
@@ -46,31 +36,11 @@ in
     { device = "/dev/disk/by-uuid/6b2a6972-1f3c-45f3-a28a-ad2f215f9881"; }
   ];
 
-  environment.persistence."/persist" = {
-    hideMounts = true;
-    directories = [
-      "/var"
-      "/etc/NetworkManager/system-connections"
-      "/root"
-      "/home"
-      "/etc/asusd"
-      "/etc/sing-box"
-      "/etc/libvirt"
-    ];
-    files = [
-      "/etc/machine-id"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-    ];
-  };
-
   services.snapper = {
     persistentTimer = true;
     configs = {
       "persist" = {
-        SUBVOLUME = "/persist";
+        SUBVOLUME = "/";
 
         ALLOW_GROUPS = [ "wheel" ];
 
