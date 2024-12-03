@@ -55,7 +55,8 @@ in
           "Mod+Shift+F".action = fullscreen-window;
           "Mod+F".action = maximize-column;
           "Mod+V".action = spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
-          "Mod+Shift+V".action = spawn "sh" "-c" "cliphist wipe";
+          # `cliphist wipe` doesnt reset the index, see https://github.com/sentriz/cliphist/issues/39
+          "Mod+Shift+V".action = spawn "sh" "-c" "rm ${config.xdg.cacheHome}/cliphist/db";
           "Print".action = screenshot;
 
           # Window management
