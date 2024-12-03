@@ -31,17 +31,16 @@
           args:
           prev.rustPlatform.buildRustPackage (
             args
-            // rec {
-              version = "6.0.11";
+            // {
               src = prev.fetchFromGitLab {
                 owner = "asus-linux";
                 repo = "asusctl";
-                rev = version;
-                hash = "sha256-eQee4IvOo+OoPw0Ejeog0+djT6AACEfQhEYeQPqNTCw=";
+                rev = "e7c4619ee9bc241d155b2f948aaa3968c515c217";
+                hash = "sha256-U2e7Qw+X56P1yjtvM4JPxd8t8a4S2pB0aUPO9W8CZb0=";
               };
               cargoLock = null;
               useFetchCargoVendor = true;
-              cargoHash = "sha256-HfA+iJFchEUZldHwkUUSBuhwCWpGx8v9zBjQzNG4nsU=";
+              cargoHash = "sha256-khb3QpRz0tTD+ISx8P8yeLPyyO+av2yV92ZxTc9o5kw=";
             }
           );
       };
