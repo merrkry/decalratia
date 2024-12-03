@@ -73,6 +73,10 @@ in
     '';
 
     users.mutableUsers = false;
+    services.userborn = {
+      enable = true;
+      passwordFilesLocation = "/var/lib/nixos";
+    };
 
     services.timesyncd.enable = false;
     services.chrony = {
