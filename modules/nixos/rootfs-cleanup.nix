@@ -24,7 +24,7 @@ in
   };
 
   config =
-    {
+    lib.mkIf cfg.enable {
       assertions = [
         {
           assertion = config.fileSystems."/".fsType == "btrfs";
