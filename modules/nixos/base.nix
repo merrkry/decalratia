@@ -87,6 +87,8 @@ in
 
     boot.initrd.systemd.enable = true;
 
+    boot.tmp.cleanOnBoot = true;
+
     documentation.nixos.enable = false;
     # introduced by fish, making rebuild extremely slow
     documentation.man.generateCaches = lib.mkForce false;
