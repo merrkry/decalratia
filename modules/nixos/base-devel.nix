@@ -44,6 +44,8 @@ in
           dos2unix
           tlrc
           ripgrep
+          fd
+          _7zz
 
           nodejs # npm will NOT install this
           python3
