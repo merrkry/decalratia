@@ -18,7 +18,7 @@
         "wifi.wake-on-wlan" = "ignore";
         "wifi.powersave" = lib.mkForce "3";
       };
-      # wifi.backend = "iwd";
+      wifi.backend = "iwd";
     };
   };
   services.resolved = {
