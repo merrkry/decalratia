@@ -45,6 +45,32 @@
   services.asusd = {
     enable = true;
     enableUserService = true;
+
+    # charge_control_end_threshold is modified by the daemon according to current value in the system
+    # should be fine with TLP
+    asusdConfig = ''
+      (
+          charge_control_end_threshold: 100,
+          panel_od: false,
+          boot_sound: false,
+          mini_led_mode: false,
+          disable_nvidia_powerd_on_battery: true,
+          ac_command: "${lib.getExe pkgs.brightnessctl} set 100%",
+          bat_command: "${lib.getExe pkgs.brightnessctl} set 25%",
+          throttle_policy_linked_epp: false,
+          throttle_policy_on_battery: Quiet,
+          change_throttle_policy_on_battery: false,
+          throttle_policy_on_ac: Performance,
+          change_throttle_policy_on_ac: false,
+          throttle_quiet_epp: Power,
+          throttle_balanced_epp: BalancePower,
+          throttle_performance_epp: Performance,
+          ppt_pl1_spl: Some(45),
+          ppt_pl2_sppt: Some(65),
+          nv_dynamic_boost: Some(25),
+          nv_temp_target: Some(87),
+      )
+    '';
   };
   services.supergfxd.enable = false;
 
