@@ -18,6 +18,7 @@
         "wifi.wake-on-wlan" = "ignore";
         "wifi.powersave" = lib.mkForce "3";
       };
+      # idk how to connect eduroam with iwd
       # wifi.backend = "iwd";
     };
   };
