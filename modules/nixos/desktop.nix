@@ -243,6 +243,18 @@ in
           fontconfig = {
             enable = true;
 
+            # https://catcat.cc/post/2021-03-07/
+            localConf = ''
+              <match target="pattern">
+                <test name="family">
+                  <string>system-ui</string>
+                </test>
+                <edit name="family" mode="prepend" binding="strong">
+                  <string>sans-serif</string>
+                </edit>
+              </match>
+            '';
+
             defaultFonts = {
               sansSerif = [
                 "IBM Plex Sans"
