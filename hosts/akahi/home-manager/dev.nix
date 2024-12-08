@@ -46,6 +46,16 @@
         diagnostics = false;
         metrics = false;
       };
+      features = {
+        inline_completion_provider = "copilot";
+      };
+      assistant = {
+        default_model = {
+          provider = "copilot_chat";
+          model = "o1-mini";
+        };
+        version = "2";
+      };
       languages = {
         "Nix" = {
           tab_size = 2;
