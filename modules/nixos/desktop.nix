@@ -236,6 +236,8 @@ in
 
             jetbrains-mono
             nerd-fonts.symbols-only
+
+            ibm-plex
           ];
 
           fontconfig = {
@@ -243,7 +245,7 @@ in
 
             defaultFonts = {
               sansSerif = [
-                "Noto Sans"
+                "IBM Plex Sans"
                 "Noto Sans CJK SC"
                 "Noto Sans CJK TC"
                 "Noto Sans CJK JP"
@@ -255,8 +257,6 @@ in
               serif = [
                 "Bookerly"
                 "LXGW WenKai"
-                "Noto Serif"
-                "Noto Color Emoji"
                 "Noto Serif CJK SC"
                 "Noto Serif CJK TC"
                 "Noto Serif CJK JP"
@@ -267,7 +267,6 @@ in
 
               monospace = [
                 "JetBrains Mono"
-                "Noto Sans Mono"
                 "Noto Sans Mono CJK SC"
                 "Noto Sans Mono CJK TC"
                 "Noto Sans Mono CJK JP"
