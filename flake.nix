@@ -26,6 +26,7 @@
 
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    stylix.inputs.home-manager.follows = "home-manager-unstable";
 
     # server-oriented, stable branch
 
