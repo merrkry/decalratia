@@ -6,6 +6,8 @@
   ...
 }:
 {
+  home.packages = with pkgs; [ lunarvim ];
+
   programs.starship = {
     enable = true;
     settings = {
