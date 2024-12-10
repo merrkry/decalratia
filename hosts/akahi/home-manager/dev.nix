@@ -71,6 +71,9 @@
           hard_tabs = false;
           language_servers = [ "nixd" ];
         };
+        "Java" = {
+          format_on_save = "off";
+        };
       };
       lsp = {
         jdtls = {
