@@ -27,7 +27,7 @@
       enable = true;
       defaultApplications = lib.mkMerge [
         {
-          "application/pdf" = browser;
+          "application/pdf" = [ "org.gnome.Evince.desktop" ];
           "x-scheme-handler/http" = browser;
           "x-scheme-handler/https" = browser;
 

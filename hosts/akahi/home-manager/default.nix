@@ -75,6 +75,7 @@ in
       ];
     })
     looking-glass-client-git
+    evince
   ];
 
   # TODO: move to dev.nix
