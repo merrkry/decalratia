@@ -117,7 +117,7 @@
           format = "{volume}%  {icon}";
           format-muted = "";
           on-click = "playerctl play-pause";
-          on-click-right = "foot ncpamixer";
+          on-click-right = "pavucontrol";
           format-icons = [
             ""
             ""

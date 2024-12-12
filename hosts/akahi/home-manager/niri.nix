@@ -162,6 +162,7 @@ in
             { app-id = "^foot$"; }
             { app-id = "^Thunar$"; }
             { app-id = "^org\.kde\.ark$"; }
+            { app-id = "^org\.pulseaudio\.pavucontrol$"; }
           ];
           default-column-width.proportion = 0.5;
         }

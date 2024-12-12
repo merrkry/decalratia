@@ -65,7 +65,6 @@ in
     zip
     kdePackages.ark
     kdePackages.qtsvg
-    ncpamixer
     mangohud
     starsector
     (prismlauncher.override {
@@ -76,6 +75,7 @@ in
     })
     looking-glass-client-git
     evince
+    pavucontrol
   ];
 
   # TODO: move to dev.nix
