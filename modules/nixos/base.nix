@@ -73,6 +73,8 @@ in
     '';
 
     users.mutableUsers = false;
+    # currently breaks rootless podman due to lack of subuid and subgid support,
+    # see https://github.com/nikstur/userborn/issues/7
     services.userborn = {
       enable = true;
       passwordFilesLocation = "/var/lib/nixos";
