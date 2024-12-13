@@ -72,7 +72,14 @@
           language_servers = [ "nixd" ];
         };
         "Java" = {
-          format_on_save = "off";
+          format_on_save = "on";
+          formatter.external = {
+            command = "${lib.getExe pkgs.google-java-format}";
+            arguments = [
+              "--aosp"
+              "-" # read from stdin
+            ];
+          };
         };
       };
       lsp = {
