@@ -45,6 +45,11 @@ in
       ];
 
       binds =
+        # Window management
+        # Mod: focus
+        # +Ctrl: window/column
+        # +Alt: workspace
+        # +Shift: monitor
         with config.lib.niri.actions;
         {
           "Mod+D".action = spawn "rofi" "-show" "drun";
@@ -58,31 +63,38 @@ in
           # `cliphist wipe` doesnt reset the index, see https://github.com/sentriz/cliphist/issues/39
           "Mod+Shift+V".action = spawn "sh" "-c" "rm ${config.xdg.cacheHome}/cliphist/db";
           "Print".action = screenshot;
-
-          # Window management
-          # Mod: focus
-          # +Ctrl: window/column
-          # +Alt: workspace
-          # +Shift: monitor
+          "Mod+Shift+E".action = quit;
 
           "Mod+Left".action = focus-column-left;
           "Mod+Right".action = focus-column-right;
           "Mod+Up".action = focus-window-or-workspace-up;
           "Mod+Down".action = focus-window-or-workspace-down;
 
+          "Mod+H".action = focus-column-left;
+          "Mod+L".action = focus-column-right;
+          "Mod+K".action = focus-window-or-workspace-up;
+          "Mod+J".action = focus-window-or-workspace-down;
+
           "Mod+Ctrl+Left".action = move-column-left;
           "Mod+Ctrl+Right".action = move-column-right;
+
+          "Mod+Ctrl+H".action = move-column-left;
+          "Mod+Ctrl+L".action = move-column-right;
 
           "Mod+Alt+Up".action = move-workspace-up;
           "Mod+Alt+Down".action = move-workspace-down;
 
+          "Mod+Alt+K".action = move-workspace-up;
+          "Mod+Alt+J".action = move-workspace-down;
+
           "Mod+Ctrl+Up".action = move-window-up-or-to-workspace-up;
           "Mod+Ctrl+Down".action = move-window-down-or-to-workspace-down;
 
+          "Mod+Ctrl+K".action = move-window-up-or-to-workspace-up;
+          "Mod+Ctrl+J".action = move-window-down-or-to-workspace-down;
+
           "Mod+Minus".action = set-column-width "-10%";
           "Mod+Equal".action = set-column-width "+10%";
-
-          "Mod+Shift+E".action = quit;
         }
         // (
           let
