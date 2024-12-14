@@ -31,6 +31,12 @@ in
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
 
       GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
+
+      PYTHONSTARTUP =
+        (pkgs.writeText "start.py" ''
+          import readline
+          readline.write_history_file = lambda *args: None
+        '').outPath;
     };
 
     home.shellAliases = {
