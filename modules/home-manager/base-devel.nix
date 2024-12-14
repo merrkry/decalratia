@@ -32,7 +32,14 @@ in
 
     programs.atuin.enable = true;
     programs.btop.enable = true;
-    programs.tmux.enable = true;
+    programs.tmux = {
+      enable = true;
+      baseIndex = 1;
+      extraConfig = ''
+        set -g mouse on
+        set -g renumber-windows on
+      '';
+    };
     programs.zoxide.enable = true;
     programs.fzf.enable = true;
     programs.yazi.enable = true;
