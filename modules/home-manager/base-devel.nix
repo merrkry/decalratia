@@ -42,7 +42,18 @@ in
     };
     programs.zoxide.enable = true;
     programs.fzf.enable = true;
-    programs.yazi.enable = true;
+    programs.yazi = {
+      enable = true;
+      settings = {
+        manager = {
+          ratio = [
+            0
+            4
+            6
+          ];
+        };
+      };
+    };
 
     programs.git = {
       enable = true;
