@@ -79,6 +79,8 @@ in
           };
         };
 
+        programs.cfs-zen-tweaks.enable = true;
+
         boot.kernelParams = [
           # "nowatchdog"
 
