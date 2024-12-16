@@ -72,6 +72,8 @@ in
   config = lib.mkIf cfg.enable {
 
     # can also be set with kernel boot parameters
+    # TODO: migrate to systemd-tmpfiles
+    # https://github.com/oxalica/nixos-config/blob/706adc07354eb4a1a50408739c0f24a709c9fe20/nixos/modules/zswap-enable.nix#L2-L5
     systemd.services."zswap-configure" = {
       description = "Configure zswap";
       wantedBy = [ "default.target" ];
