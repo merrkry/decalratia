@@ -19,7 +19,6 @@ in
     ./dev.nix
     ./mpv.nix
     ./niri.nix
-    ./rclone.nix
     ./themes.nix
     ./waybar.nix
     ./xdg.nix
