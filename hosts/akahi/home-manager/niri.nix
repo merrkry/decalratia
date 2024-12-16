@@ -55,7 +55,7 @@ in
           "Mod+D".action = spawn "rofi" "-show" "drun";
           "Mod+T".action = spawn "foot";
           "Mod+Alt+L".action = spawn "swaylock";
-          "Alt+T".action = spawn "foot";
+          "Mod+E".action = spawn "foot" "yazi";
           "Mod+Q".action = close-window;
           "Mod+Shift+F".action = fullscreen-window;
           "Mod+F".action = maximize-column;
