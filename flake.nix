@@ -73,6 +73,11 @@
           modules = [ ./hosts/akahi ];
         };
 
+        "karanohako" = nixpkgs-stable.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/karanohako ];
+        };
+
         "perimadeia" = nixpkgs-stable.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/perimadeia ];
