@@ -196,12 +196,18 @@ in
             type = "fcitx5";
             fcitx5 = {
               addons = with pkgs; [
+                libsForQt5.fcitx5-qt
+                fcitx5-gtk
+                fcitx5-configtool
                 fcitx5-chinese-addons
-                fcitx5-pinyin-zhwiki
-                fcitx5-pinyin-moegirl
-                fcitx5-pinyin-minecraft
-
-                fcitx5-pinyin-custompinyindict
+                (fcitx5-rime.override {
+                  rimeDataPkgs = [
+                    rime-data
+                    nur.repos.xddxdd.rime-ice
+                    nur.repos.xddxdd.rime-zhwiki
+                    nur.repos.xddxdd.rime-moegirl
+                  ];
+                })
               ];
               waylandFrontend = true;
             };

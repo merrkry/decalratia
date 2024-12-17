@@ -28,6 +28,9 @@
     stylix.inputs.nixpkgs.follows = "nixpkgs-unstable";
     stylix.inputs.home-manager.follows = "home-manager-unstable";
 
+    nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     # server-oriented, stable branch
 
     nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
@@ -51,6 +54,7 @@
       sops-nix,
       niri-flake,
       stylix,
+      nur,
       nixos-mailserver,
       ...
     }@inputs:
