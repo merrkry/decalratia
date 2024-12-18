@@ -17,6 +17,7 @@
     inputs.sops-nix.nixosModules.sops
     inputs.niri-flake.nixosModules.niri
     inputs.stylix.nixosModules.stylix
+    inputs.chaotic.nixosModules.default
 
     ./nixos
   ];

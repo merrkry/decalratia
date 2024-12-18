@@ -79,7 +79,10 @@ in
           };
         };
 
-        programs.cfs-zen-tweaks.enable = true;
+        services.scx = {
+          enable = true;
+          scheduler = "scx_lavd";
+        };
 
         boot.kernelParams = [
           # "nowatchdog"

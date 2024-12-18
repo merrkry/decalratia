@@ -24,7 +24,7 @@
   boot.loader.systemd-boot.consoleMode = "auto";
   boot.loader.systemd-boot.editor = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"

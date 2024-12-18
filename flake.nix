@@ -31,6 +31,10 @@
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    chaotic.inputs.home-manager.follows = "home-manager-unstable";
+
     # server-oriented, stable branch
 
     nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
@@ -55,6 +59,7 @@
       niri-flake,
       stylix,
       nur,
+      chaotic,
       nixos-mailserver,
       ...
     }@inputs:
