@@ -20,12 +20,6 @@
     "${inputs.secrets}/perimadeia/nixos.nix"
   ];
 
-  nixpkgs.overlays = [
-    outputs.overlays.additions
-    outputs.overlays.modifications
-    outputs.overlays.unstable-packages
-  ];
-
   users.users = {
     "merrkry" = {
       hashedPassword = "$y$j9T$Sgcp0Wdv00yqYcNv2QYeZ0$AsMUpgwygZW1UXDgmIcpi.QrbFVkBpdG25c5xTQckI2";
@@ -55,6 +49,4 @@
   sops.age.keyFile = "/persist/var/lib/sops-nix/key.txt";
 
   time.timeZone = "Europe/Berlin";
-
-  system.stateVersion = "24.05";
 }

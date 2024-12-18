@@ -22,13 +22,7 @@
     ./nixos
   ];
 
-  nixpkgs.overlays = [
-    outputs.overlays.additions
-    outputs.overlays.modifications
-    outputs.overlays.stable-packages
-
-    inputs.nur.overlays.default
-  ];
+  nixpkgs.overlays = [ inputs.nur.overlays.default ];
 
   users.users = {
     "merrkry" = {
@@ -88,5 +82,4 @@
   };
 
   time.timeZone = "Europe/Berlin";
-  system.stateVersion = "24.05";
 }

@@ -47,22 +47,7 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs-unstable,
-      home-manager-unstable,
-      nixpkgs-stable,
-      home-manager-stable,
-      impermanence,
-      nixos-hardware,
-      sops-nix,
-      niri-flake,
-      stylix,
-      nur,
-      chaotic,
-      nixos-mailserver,
-      ...
-    }@inputs:
+    { self, ... }@inputs:
     let
       inherit (self) outputs;
     in
@@ -71,23 +56,65 @@
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
 
-      nixosConfigurations = {
+      nixosConfigurations =
+        builtins.mapAttrs
+          (
+            hostName:
+            {
+              channel,
+              hostPlatform,
+              stateVersion,
+            }:
+            let
+              channelInput = inputs."nixpkgs-${channel}";
+            in
+            channelInput.lib.nixosSystem {
+              specialArgs =
+                let
+                  lib = channelInput.lib.extend self.overlays.extraLibs;
+                in
+                {
+                  inherit inputs outputs lib;
+                };
+              modules = [
+                ./hosts/${hostName}
+                {
+                  nixpkgs = {
+                    overlays = [
+                      self.overlays.extraPackages
+                      self.overlays.modifications
+                      (
+                        if channelInput == inputs.nixpkgs-unstable then
+                          self.overlays.stablePackages
+                        else
+                          self.overlays.unstablePackages
+                      )
+                    ];
+                    inherit hostPlatform;
+                  };
+                  system = { inherit stateVersion; };
+                }
+              ];
+            }
+          )
+          {
+            "akahi" = {
+              channel = "unstable";
+              hostPlatform = "x86_64-linux";
+              stateVersion = "24.05";
+            };
 
-        "akahi" = nixpkgs-unstable.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/akahi ];
-        };
+            "karanohako" = {
+              channel = "stable";
+              hostPlatform = "x86_64-linux";
+              stateVersion = "24.05";
+            };
 
-        "karanohako" = nixpkgs-stable.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/karanohako ];
-        };
-
-        "perimadeia" = nixpkgs-stable.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/perimadeia ];
-        };
-
-      };
+            "perimadeia" = {
+              channel = "stable";
+              hostPlatform = "x86_64-linux";
+              stateVersion = "24.05";
+            };
+          };
     };
 }

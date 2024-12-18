@@ -17,12 +17,6 @@
     ./nixos
   ];
 
-  nixpkgs.overlays = [
-    outputs.overlays.additions
-    outputs.overlays.modifications
-    outputs.overlays.unstable-packages
-  ];
-
   users.users = {
     "merrkry" = {
       extraGroups = [ "wheel" ];
@@ -53,6 +47,4 @@
   sops.age.keyFile = "/var/lib/sops-nix/key.txt";
 
   time.timeZone = "Europe/Berlin";
-
-  system.stateVersion = "24.05";
 }
