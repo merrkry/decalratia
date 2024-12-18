@@ -22,6 +22,8 @@
     ./nixos
   ];
 
+  chaotic.nyx.cache.enable = false;
+
   nixpkgs.overlays = [ inputs.nur.overlays.default ];
 
   users.users = {
