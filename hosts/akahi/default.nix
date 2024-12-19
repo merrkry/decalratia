@@ -8,23 +8,16 @@
 }:
 {
   imports = [
-    outputs.nixosModules.base
-    outputs.nixosModules.base-devel
-    outputs.nixosModules.desktop
-
-    inputs.home-manager-unstable.nixosModules.home-manager
     inputs.nixos-hardware.nixosModules.common-gpu-intel
-    inputs.sops-nix.nixosModules.sops
-    inputs.niri-flake.nixosModules.niri
-    inputs.stylix.nixosModules.stylix
-    inputs.chaotic.nixosModules.default
 
     ./nixos
   ];
 
-  chaotic.nyx.cache.enable = false;
-
-  nixpkgs.overlays = [ inputs.nur.overlays.default ];
+  profiles = {
+    base.enable = true;
+    base-devel.enable = true;
+    desktop.enable = true;
+  };
 
   users.users = {
     "merrkry" = {
@@ -42,12 +35,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users."merrkry" = {
-      imports = [
-        ./home-manager
-        outputs.homeManagerModules.base
-        outputs.homeManagerModules.base-devel
-        outputs.homeManagerModules.desktop
-      ];
+      imports = [ ./home-manager ];
     };
     useUserPackages = true;
     useGlobalPkgs = true;

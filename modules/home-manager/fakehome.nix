@@ -1,8 +1,8 @@
+# TODO: migrate a standalone package
 {
   config,
   lib,
   pkgs,
-  osConfig,
   ...
 }:
 let

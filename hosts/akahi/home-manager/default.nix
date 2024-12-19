@@ -75,6 +75,8 @@ in
     looking-glass-client-git
     evince
     pavucontrol
+    nixd
+    nixfmt-rfc-style
   ];
 
   # TODO: move to dev.nix

@@ -31,7 +31,7 @@
     options = [ "subvol=root" ];
   };
 
-  rootfs-cleanup = {
+  services.rootfs-cleanup = {
     enable = true;
     uuid = "df9cc6a2-5479-4ce8-a857-29e4aa67ca8d";
     rootfsSubvol = "root";

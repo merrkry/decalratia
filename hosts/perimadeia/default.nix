@@ -8,17 +8,15 @@
 }:
 {
   imports = [
-    outputs.nixosModules.base
-    outputs.nixosModules.base-devel
-
-    inputs.home-manager-stable.nixosModules.home-manager
-    inputs.impermanence.nixosModules.impermanence
-    inputs.sops-nix.nixosModules.sops
-
     ./nixos
 
     "${inputs.secrets}/perimadeia/nixos.nix"
   ];
+
+  profiles = {
+    base.enable = true;
+    base-devel.enable = true;
+  };
 
   users.users = {
     "merrkry" = {
@@ -35,11 +33,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users."merrkry" = {
-      imports = [
-        ./home-manager
-        outputs.homeManagerModules.base
-        outputs.homeManagerModules.base-devel
-      ];
+      imports = [ ./home-manager ];
     };
     useUserPackages = true;
     useGlobalPkgs = true;

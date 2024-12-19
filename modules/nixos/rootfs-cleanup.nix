@@ -1,14 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
-  cfg = config.rootfs-cleanup;
+  cfg = config.services.rootfs-cleanup;
 in
 {
-  options.rootfs-cleanup = {
+  options.services.rootfs-cleanup = {
     enable = lib.mkEnableOption "clean and backup rootfs BTRFS subvolume";
     uuid = lib.mkOption { type = lib.types.str; };
     mountPoint = lib.mkOption {

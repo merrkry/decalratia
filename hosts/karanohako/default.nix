@@ -7,15 +7,12 @@
   ...
 }:
 {
-  imports = [
-    outputs.nixosModules.base
-    outputs.nixosModules.base-devel
+  imports = [ ./nixos ];
 
-    inputs.home-manager-stable.nixosModules.home-manager
-    inputs.sops-nix.nixosModules.sops
-
-    ./nixos
-  ];
+  profiles = {
+    base.enable = true;
+    base-devel.enable = true;
+  };
 
   users.users = {
     "merrkry" = {
@@ -32,12 +29,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users."merrkry" = {
-      imports = [
-        outputs.homeManagerModules.base
-        outputs.homeManagerModules.base-devel
-
-        ./home-manager
-      ];
+      imports = [ ./home-manager ];
     };
     useUserPackages = true;
     useGlobalPkgs = true;

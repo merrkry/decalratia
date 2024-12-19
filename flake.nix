@@ -53,8 +53,6 @@
     in
     {
       overlays = import ./overlays { inherit inputs; };
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations =
         builtins.mapAttrs
@@ -64,25 +62,37 @@
               channel,
               hostPlatform,
               stateVersion,
+              mainUser ? "merrkry",
             }:
             let
               channelInput = inputs."nixpkgs-${channel}";
+              hmInput = inputs."home-manager-${channel}";
             in
             channelInput.lib.nixosSystem {
               specialArgs =
                 let
                   lib = channelInput.lib.extend self.overlays.extraLibs;
+                  # calls flake inputs directly, otherwise causes infinite recursion
+                  # TODO: add flake registry
+                  inputs = self.inputs // {
+                    nixpkgs = channelInput;
+                  };
+                  user = mainUser;
                 in
                 {
-                  inherit inputs outputs lib;
+                  inherit
+                    inputs
+                    lib
+                    outputs
+                    user
+                    ;
                 };
               modules = [
                 ./hosts/${hostName}
                 {
+                  networking = { inherit hostName; };
                   nixpkgs = {
                     overlays = [
-                      self.overlays.extraPackages
-                      self.overlays.modifications
                       (
                         if channelInput == inputs.nixpkgs-unstable then
                           self.overlays.stablePackages
@@ -94,6 +104,8 @@
                   };
                   system = { inherit stateVersion; };
                 }
+                hmInput.nixosModules.home-manager
+                ./profiles
               ];
             }
           )

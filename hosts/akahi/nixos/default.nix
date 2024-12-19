@@ -26,6 +26,15 @@
 
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
+  services.scx = {
+    enable = true;
+    scheduler = "scx_lavd";
+  };
+
+  boot.kernelParams = [
+    "rcutree.enable_rcu_lazy=1" # https://wiki.cachyos.org/configuration/general_system_tweaks
+  ];
+
   boot.kernel.sysctl = {
     "vm.page-cluster" = 1;
   };
