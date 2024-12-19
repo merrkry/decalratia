@@ -26,6 +26,10 @@
 
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
+  boot.kernel.sysctl = {
+    "vm.page-cluster" = 1;
+  };
+
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "thunderbolt"
