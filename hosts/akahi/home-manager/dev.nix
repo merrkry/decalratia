@@ -59,6 +59,9 @@
         version = "2";
       };
       languages = {
+        "Markdown" = {
+          soft_wrap = "editor_width";
+        };
         "Nix" = {
           tab_size = 2;
           # formatter = "language_server"; # seems no way to pass any args to nixd
