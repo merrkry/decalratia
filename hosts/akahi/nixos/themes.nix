@@ -17,41 +17,10 @@
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
 
-    fonts =
-      let
-        fontPlaceholder = pkgs.noto-fonts;
-      in
-      {
-        serif = {
-          package = fontPlaceholder;
-          name = "serif";
-        };
-        sansSerif = {
-          package = fontPlaceholder;
-          name = "sans-serif";
-        };
-        monospace = {
-          package = fontPlaceholder;
-          name = "monospace";
-        };
-        emoji = {
-          package = fontPlaceholder;
-          name = "emoji";
-        };
-
-        sizes = {
-          applications = 10;
-          terminal = 10;
-        };
-      };
-
     cursor = {
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
       size = 24;
     };
-
-    # ugly
-    targets.plymouth.enable = false;
   };
 }

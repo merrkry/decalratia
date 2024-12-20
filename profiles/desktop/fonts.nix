@@ -97,6 +97,34 @@ in
       };
     };
 
+    stylix.fonts =
+      let
+        fontPlaceholder = pkgs.noto-fonts;
+      in
+      {
+        serif = {
+          package = fontPlaceholder;
+          name = "serif";
+        };
+        sansSerif = {
+          package = fontPlaceholder;
+          name = "sans-serif";
+        };
+        monospace = {
+          package = fontPlaceholder;
+          name = "monospace";
+        };
+        emoji = {
+          package = fontPlaceholder;
+          name = "emoji";
+        };
+
+        sizes = {
+          applications = 10;
+          terminal = 10;
+        };
+      };
+
     home-manager.users.${user} = {
 
       # TODO: generate this symlink via script

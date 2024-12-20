@@ -31,5 +31,7 @@ in
       loader.timeout = 0;
     };
 
+    stylix.targets.plymouth.enable = false;
+
   };
 }
