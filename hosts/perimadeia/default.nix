@@ -30,14 +30,8 @@
     };
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users."merrkry" = {
-      imports = [ ./home-manager ];
-    };
-    useUserPackages = true;
-    useGlobalPkgs = true;
-    backupFileExtension = "backup";
+  home-manager.users."merrkry" = {
+    imports = [ ./home-manager ];
   };
 
   sops.age.keyFile = "/persist/var/lib/sops-nix/key.txt";

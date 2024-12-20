@@ -33,8 +33,14 @@
       outputs.overlays.modifications
     ];
 
-    home-manager.users.${user} = {
-      imports = [ ../modules/home-manager ];
+    home-manager = {
+      backupFileExtension = "backup";
+      extraSpecialArgs = { inherit inputs outputs; };
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      users.${user} = {
+        imports = [ ../modules/home-manager ];
+      };
     };
 
   };
