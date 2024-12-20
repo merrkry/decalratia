@@ -1,4 +1,9 @@
-{ inputs, modulesPath, ... }:
+{
+  inputs,
+  lib,
+  modulesPath,
+  ...
+}:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-amd
@@ -17,7 +22,7 @@
       kernelModules = [ ];
     };
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
     };
     kernelModules = [ "kvm-amd" ];
@@ -87,5 +92,10 @@
         };
       };
     };
+  };
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
   };
 }
