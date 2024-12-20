@@ -11,7 +11,6 @@
 
     ./desktop.nix
     ./graphics.nix
-    ./network.nix
     ./power.nix
     ./storage.nix
     ./themes.nix

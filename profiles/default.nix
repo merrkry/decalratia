@@ -8,6 +8,7 @@
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.sops-nix.nixosModules.sops
+    inputs.disko.nixosModules.disko
     inputs.niri-flake.nixosModules.niri
     inputs.stylix.nixosModules.stylix
     inputs.chaotic.nixosModules.default
@@ -32,6 +33,13 @@
       outputs.overlays.extraPackages
       outputs.overlays.modifications
     ];
+
+    users.users = {
+      ${user} = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" ];
+      };
+    };
 
     home-manager = {
       backupFileExtension = "backup";

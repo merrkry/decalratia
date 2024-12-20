@@ -10,6 +10,11 @@ in
 {
   options.profiles.base.ssh = {
     enable = lib.mkEnableOption' { default = config.profiles.base.enable; };
+    hostKeysDirectory = lib.mkOption {
+      type = lib.types.str;
+      default = "/var/lib/ssh";
+      description = "Base directory where the host keys are generated and stored.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -22,6 +27,17 @@ in
       fail2ban.enable = true;
       openssh = {
         enable = true;
+        hostKeys = lib.mkForce [
+          {
+            bits = 4096;
+            path = "${cfg.hostKeysDirectory}/ssh/ssh_host_rsa_key";
+            type = "rsa";
+          }
+          {
+            path = "${cfg.hostKeysDirectory}/ssh/ssh_host_ed25519_key";
+            type = "ed25519";
+          }
+        ];
         settings = {
           PermitRootLogin = "no";
           PasswordAuthentication = false;

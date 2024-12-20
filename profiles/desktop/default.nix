@@ -20,11 +20,18 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    # required by home-manager xdg.portal.enable
-    environment.pathsToLink = [
-      "/share/xdg-desktop-portal"
-      "/share/applications"
-    ];
+    environment = {
+      # `q /srv 0755 - - -` removed to prevent /srv becreated as subvol
+      etc."tmpfiles.d/home.conf".text = ''
+        Q /home 0755 - - -
+      '';
+
+      # required by home-manager xdg.portal.enable
+      pathsToLink = [
+        "/share/xdg-desktop-portal"
+        "/share/applications"
+      ];
+    };
 
     hardware.graphics = {
       enable = true;

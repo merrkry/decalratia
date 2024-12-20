@@ -19,7 +19,10 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    # client-oriented, unstable branch
+    disko.url = "github:nix-community/disko/latest";
+    disko.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    # desktop-oriented, unstable branch
 
     niri-flake.url = "github:sodiboo/niri-flake";
     niri-flake.inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -114,6 +117,12 @@
               channel = "unstable";
               hostPlatform = "x86_64-linux";
               stateVersion = "24.05";
+            };
+
+            "cryolite" = {
+              channel = "unstable";
+              hostPlatform = "x86_64-linux";
+              stateVersion = "24.11";
             };
 
             "karanohako" = {
