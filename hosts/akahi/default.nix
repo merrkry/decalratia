@@ -44,7 +44,7 @@
     # q /srv 0755 - - -
   '';
 
-  system.etc.overlay.enable = true;
+  system.etc.overlay.enable = false;
   services.openssh.hostKeys = lib.mkForce [
     {
       bits = 4096;

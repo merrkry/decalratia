@@ -46,6 +46,18 @@ in
 
     home-manager.users.${user} = {
 
+      home.sessionVariables = lib.mkMerge [
+        {
+          LANG = "zh_CN.UTF-8";
+          XMODIFIERS = "@im=fcitx";
+        }
+        (lib.optionalAttrs (!config.services.desktopManager.plasma6.enable) {
+          GTK_IM_MODULE = "fcitx";
+          QT_IM_MODULE = "fcitx";
+          QT_IM_MODULES = "wayland;fcitx;ibus";
+        })
+      ];
+
       # TODO: refactor
       # https://github.com/xddxdd/nixos-config/blob/a2b7311f03e9dc121f0b3fc844b31068fa076066/nixos/client-apps/fcitx/rime-lantian-custom.nix
 

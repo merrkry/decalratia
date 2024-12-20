@@ -28,4 +28,12 @@ rec {
       type = lib.types.bool;
       visible = false;
     };
+
+  ChromiumArgs = builtins.foldl' (x: y: x + " " + y) "" [
+    "--ozone-platform-hint=auto"
+    "--enable-features=WaylandWindowDecorations"
+    "--enable-wayland-ime"
+    "--wayland-text-input-version=3"
+    "--password-store=gnome-libsecret"
+  ];
 }

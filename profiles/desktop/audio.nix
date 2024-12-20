@@ -1,4 +1,10 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 let
   cfg = config.profiles.desktop.audio;
 in
@@ -46,6 +52,14 @@ in
           };
         };
       };
+    };
+
+    home-manager.users.${user} = {
+
+      services.playerctld.enable = true;
+
+      home.packages = with pkgs; [ pavucontrol ];
+
     };
 
   };

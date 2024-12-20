@@ -5,33 +5,7 @@
   ...
 }:
 {
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri;
-  };
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session.command = "${lib.getExe pkgs.greetd.tuigreet} --cmd niri-session";
-    };
-  };
-
-  services.gnome.gnome-keyring.enable = true;
-  programs.seahorse.enable = true;
-  security.pam = {
-    services."greetd".enableGnomeKeyring = true;
-  };
-
   services.gvfs.enable = true;
-
-  programs.firefox = {
-    enable = true;
-    languagePacks = [
-      "en-US"
-      "zh-CN"
-    ];
-  };
 
   programs.thunderbird.enable = true;
 

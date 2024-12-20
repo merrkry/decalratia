@@ -2,6 +2,7 @@
   inputs,
   lib,
   modulesPath,
+  pkgs,
   ...
 }:
 {
@@ -21,11 +22,16 @@
       ];
       kernelModules = [ ];
     };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
     loader = {
       systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
     };
     kernelModules = [ "kvm-amd" ];
+    kernelParams = [ ];
   };
 
   disko.devices = {
@@ -94,8 +100,10 @@
     };
   };
 
-  boot.lanzaboote = {
+  services.tlp = {
     enable = true;
-    pkiBundle = "/var/lib/sbctl";
+    settings = {
+      PCIE_ASPM_ON_BAT = "powersupersave";
+    };
   };
 }

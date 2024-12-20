@@ -3,6 +3,4 @@
   imports = lib.mkModulesList ./.;
 
   services.userborn.enable = lib.mkForce false;
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 }

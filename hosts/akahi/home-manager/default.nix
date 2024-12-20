@@ -6,13 +6,7 @@
   ...
 }:
 let
-  ChromiumArgs = builtins.foldl' (x: y: x + " " + y) "" [
-    "--ozone-platform-hint=auto"
-    "--enable-features=WaylandWindowDecorations"
-    "--enable-wayland-ime"
-    "--wayland-text-input-version=3"
-    "--password-store=gnome-libsecret"
-  ];
+
 in
 {
   imports = [
@@ -20,22 +14,10 @@ in
     ./mpv.nix
     ./niri.nix
     ./themes.nix
-    ./waybar.nix
     ./xdg.nix
   ];
 
-  home = {
-    username = "merrkry";
-    homeDirectory = "/home/merrkry";
-  };
-
   home.sessionVariables = {
-    LANG = "zh_CN.UTF-8";
-    XMODIFIERS = "@im=fcitx";
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    QT_IM_MODULES = "wayland;fcitx;ibus";
-
     DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock";
   };
 
@@ -51,14 +33,10 @@ in
     jetbrains-toolbox
     tsukimi
     eog
-    (ungoogled-chromium.override {
-      commandLineArgs = ChromiumArgs;
-      enableWideVine = true;
-    })
     jdk17 # FIXME: move to shell.nix
     podman-compose
     distrobox
-    (obsidian.override { commandLineArgs = ChromiumArgs; })
+    (obsidian.override { commandLineArgs = lib.ChromiumArgs; })
     neovim
     rar
     zip
@@ -74,7 +52,6 @@ in
     })
     looking-glass-client-git
     evince
-    pavucontrol
     nixd
     nixfmt-rfc-style
   ];
@@ -84,22 +61,6 @@ in
     enable = true;
     # this will let home-manager manage ~/.config/Code/User/settings.json
     enableUpdateCheck = lib.mkForce false;
-    package = pkgs.vscode.override { commandLineArgs = ChromiumArgs; };
+    package = pkgs.vscode.override { commandLineArgs = lib.ChromiumArgs; };
   };
-
-  systemd.user.services."swaybg" = {
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-    Unit = {
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${lib.getExe pkgs.swaybg} -i ${osConfig.stylix.image} -m fill";
-      Restart = "on-failure";
-    };
-  };
-
-  services.playerctld.enable = true;
 }

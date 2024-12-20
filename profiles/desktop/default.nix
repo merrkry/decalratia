@@ -38,14 +38,24 @@ in
       enable32Bit = cfg.enable32Bit;
     };
 
-    programs.appimage = {
-      enable = true;
-      binfmt = true;
+    profiles.gui = {
+      chromium.enable = true;
+      firefox.enable = true;
+      rofi.enable = true;
+      swaync.enable = true;
+    };
+
+    programs = {
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
+      seahorse.enable = true;
     };
 
     services = {
       flatpak.enable = true;
-
+      gnome.gnome-keyring.enable = true;
       xserver.excludePackages = with pkgs; [ xterm ];
     };
 
@@ -54,6 +64,10 @@ in
       home.sessionVariables = {
         # Workaround for https://bugs.kde.org/show_bug.cgi?id=479891
         QT_SCALE_FACTOR_ROUNDING_POLICY = "RoundPreferFloor";
+      };
+
+      programs = {
+        foot.enable = true;
       };
 
       services.gnome-keyring.enable = lib.mkDefault config.services.gnome.gnome-keyring.enable;

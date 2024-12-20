@@ -54,7 +54,15 @@
       useGlobalPkgs = true;
       useUserPackages = true;
       users.${user} = {
-        imports = [ ../modules/home-manager ];
+        imports = [
+          ../modules/home-manager
+          {
+            home = {
+              username = user;
+              homeDirectory = config.users.users.${user}.home;
+            };
+          }
+        ];
       };
     };
 

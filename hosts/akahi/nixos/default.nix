@@ -13,7 +13,6 @@
     ./graphics.nix
     ./power.nix
     ./storage.nix
-    ./themes.nix
     ./virtualisation.nix
   ];
 
@@ -77,23 +76,12 @@
           throttle_performance_epp: Performance,
           ppt_pl1_spl: Some(45),
           ppt_pl2_sppt: Some(65),
-          nv_dynamic_boost: Some(25),
+          nv_dynamic_boost: Some(0),
           nv_temp_target: Some(87),
       )
     '';
   };
   services.supergfxd.enable = false;
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-
-    settings = {
-      General = {
-        Experimental = true;
-      };
-    };
-  };
 
   hardware.logitech.wireless = {
     enable = true;
