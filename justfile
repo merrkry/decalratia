@@ -1,8 +1,8 @@
 switch:
-    nixos-rebuild switch --flake .#$HOSTNAME --use-remote-sudo
+    nixos-rebuild switch --flake .#$HOSTNAME --sudo
 
 switch-boot:
-    nixos-rebuild boot --flake .#$HOSTNAME --use-remote-sudo
+    nixos-rebuild boot --flake .#$HOSTNAME --sudo
 
 localHostName := '$HOSTNAME'
 evalTarget := 'system.build.toplevel'
