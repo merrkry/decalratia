@@ -1,5 +1,7 @@
 {
+  config,
   inputs,
+  lib,
   outputs,
   user,
   ...
@@ -41,6 +43,10 @@
         extraGroups = [ "wheel" ];
       };
     };
+
+    services.fwupd.enable = lib.mkDefault (
+      config.hardware.cpu.intel.updateMicrocode || config.hardware.cpu.amd.updateMicrocode
+    );
 
     home-manager = {
       backupFileExtension = "backup";
