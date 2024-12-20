@@ -38,14 +38,17 @@ in
       enable32Bit = cfg.enable32Bit;
     };
 
-    programs.appimage = {
-      enable = true;
-      binfmt = true;
+    programs = {
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
+      seahorse.enable = true;
     };
 
     services = {
       flatpak.enable = true;
-
+      gnome.gnome-keyring.enable = true;
       xserver.excludePackages = with pkgs; [ xterm ];
     };
 

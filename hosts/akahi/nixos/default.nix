@@ -13,7 +13,6 @@
     ./graphics.nix
     ./power.nix
     ./storage.nix
-    ./themes.nix
     ./virtualisation.nix
   ];
 

@@ -86,20 +86,4 @@ in
     enableUpdateCheck = lib.mkForce false;
     package = pkgs.vscode.override { commandLineArgs = ChromiumArgs; };
   };
-
-  systemd.user.services."swaybg" = {
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-    Unit = {
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${lib.getExe pkgs.swaybg} -i ${osConfig.stylix.image} -m fill";
-      Restart = "on-failure";
-    };
-  };
-
-  services.playerctld.enable = true;
 }

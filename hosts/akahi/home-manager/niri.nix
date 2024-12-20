@@ -229,8 +229,6 @@ in
 
   programs.foot.enable = true;
 
-  programs.swaylock.enable = true;
-
   services.swaync = {
     enable = true;
     # https://man.archlinux.org/man/swaync.5.en
@@ -251,11 +249,6 @@ in
     networkmanagerapplet # nmtui/nmcli can't detect gnome-keyring
     brightnessctl
   ];
-
-  # not working
-  xresources.properties = {
-    "Xft.dpi" = 96;
-  };
 
   systemd.user.services = {
     "xwayland-satellite" = genDaemonUnit "${lib.getExe pkgs.xwayland-satellite} :${toString xDisplay}";

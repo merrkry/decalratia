@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  user,
+  ...
+}:
 let
   cfg = config.profiles.desktop.audio;
 in
@@ -46,6 +51,12 @@ in
           };
         };
       };
+    };
+
+    home-manager.users.${user} = {
+
+      services.playerctld.enable = true;
+
     };
 
   };
