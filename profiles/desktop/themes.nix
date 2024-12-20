@@ -30,6 +30,9 @@ in
         }
       );
       polarity = "dark";
+      targets = {
+        nixos-icons.enable = false; # completely desktroys the design
+      };
     };
 
     home-manager.users.${user} =
