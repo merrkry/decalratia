@@ -200,6 +200,7 @@ in
                 layout = {
                   gaps = 6;
                   default-column-width.proportion = 1.0;
+                  always-center-single-column = true;
                 };
 
                 window-rules = [
