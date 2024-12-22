@@ -45,6 +45,9 @@
     services.fwupd.enable = lib.mkDefault (
       config.hardware.cpu.intel.updateMicrocode || config.hardware.cpu.amd.updateMicrocode
     );
+    # useless and fails on some network conditions
+    systemd.services."fwupd-refresh".enable = false;
+    systemd.timers."fwupd-refresh".enable = false;
 
     home-manager = {
       backupFileExtension = "backup";
