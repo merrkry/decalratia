@@ -13,7 +13,6 @@
     inputs.disko.nixosModules.disko
     inputs.niri-flake.nixosModules.niri
     inputs.stylix.nixosModules.stylix
-    inputs.chaotic.nixosModules.default
     inputs.lanzaboote.nixosModules.lanzaboote
     inputs.nixos-mailserver.nixosModules.mailserver
 
@@ -28,7 +27,6 @@
 
   config = {
 
-    chaotic.nyx.cache.enable = false;
     niri-flake.cache.enable = false;
 
     nixpkgs.overlays = [
