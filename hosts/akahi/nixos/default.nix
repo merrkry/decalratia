@@ -22,21 +22,6 @@
   boot.loader.systemd-boot.consoleMode = "auto";
   boot.loader.systemd-boot.editor = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-
-  services.scx = {
-    enable = true;
-    scheduler = "scx_lavd";
-  };
-
-  boot.kernelParams = [
-    "rcutree.enable_rcu_lazy=1" # https://wiki.cachyos.org/configuration/general_system_tweaks
-  ];
-
-  boot.kernel.sysctl = {
-    "vm.page-cluster" = 1;
-  };
-
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "thunderbolt"
