@@ -110,6 +110,16 @@ in
                       "Mod+BracketLeft".action = set-column-width "-25%";
                       "Mod+Equal".action = set-column-width "+5%";
                       "Mod+BracketRight".action = set-column-width "+25%";
+                      "XF86MonBrightnessDown".action.spawn = [
+                        "${lib.getExe pkgs.brightnessctl}"
+                        "set"
+                        "5%-"
+                      ];
+                      "XF86MonBrightnessUp".action.spawn = [
+                        "${lib.getExe pkgs.brightnessctl}"
+                        "set"
+                        "+5%"
+                      ];
                     }
                     (
                       let
