@@ -22,7 +22,7 @@
   boot.loader.systemd-boot.consoleMode = "auto";
   boot.loader.systemd-boot.editor = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   services.scx = {
     enable = true;
