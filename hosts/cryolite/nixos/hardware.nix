@@ -32,6 +32,7 @@
     };
     kernelModules = [ "kvm-amd" ];
     kernelParams = [ ];
+    kernelPackages = pkgs.linuxPackages_testing; # suspension breaks on 6.12
   };
 
   disko.devices = {
@@ -103,6 +104,10 @@
   services.tlp = {
     enable = true;
     settings = {
+      PLATFORM_PROFILE_ON_AC = "balanced";
+      PLATFORM_PROFILE_ON_BAT = "low-power";
+      CPU_BOOST_ON_BAT = 0;
+      CPU_SCALING_MIN_FREQ_ON_BAT = 400000;
       PCIE_ASPM_ON_BAT = "powersupersave";
     };
   };
