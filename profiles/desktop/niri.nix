@@ -135,6 +135,12 @@ in
                           "${sharedKeys}+Right".action = hmConfig.lib.niri.actions.${mkAction "right"};
                           "${sharedKeys}+L".action = hmConfig.lib.niri.actions.${mkAction "right"};
                         };
+                        mkDirectedBindsList =
+                          sharedKeys: mkAction:
+                          (lib.mkMerge [
+                            (mkVerticalBindsList sharedKeys mkAction)
+                            (mkHorizontalBindsList sharedKeys mkAction)
+                          ]);
                       in
                       lib.mkMerge [
                         (mkHorizontalBindsList "Mod" (d: "focus-column-${d}"))
@@ -142,6 +148,7 @@ in
                         (mkHorizontalBindsList "Mod+Ctrl" (d: "move-column-${d}"))
                         (mkHorizontalBindsList "Mod+Alt" (d: "consume-or-expel-window-${d}"))
                         (mkVerticalBindsList "Mod+Ctrl+Alt" (d: "move-workspace-${d}"))
+                        (mkDirectedBindsList "Mod+Ctrl+Alt+Shift" (d: "move-workspace-to-monitor-${d}"))
                         (mkVerticalBindsList "Mod+Ctrl" (d: "move-window-${d}-or-to-workspace-${d}"))
                       ]
                     )

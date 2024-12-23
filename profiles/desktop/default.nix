@@ -50,6 +50,13 @@ in
         enable = true;
         binfmt = true;
       };
+      nix-ld = {
+        enable = true;
+        libraries =
+          (pkgs.appimageTools.defaultFhsEnvArgs.targetPkgs pkgs)
+          ++ (pkgs.appimageTools.defaultFhsEnvArgs.multiPkgs pkgs)
+          ++ (with pkgs; [ webkitgtk_6_0 ]);
+      };
       seahorse.enable = true;
     };
 

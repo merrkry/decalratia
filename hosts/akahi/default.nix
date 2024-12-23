@@ -17,6 +17,14 @@
     base.enable = true;
     base-devel.enable = true;
     desktop.enable = true;
+    cli = {
+      helix.enable = true;
+      lunarvim.enable = true;
+    };
+    gui = {
+      vscode.enable = true;
+      zed.enable = true;
+    };
   };
 
   users.users = {
@@ -56,14 +64,6 @@
       type = "ed25519";
     }
   ];
-
-  programs.nix-ld = {
-    enable = true;
-    libraries =
-      (pkgs.appimageTools.defaultFhsEnvArgs.targetPkgs pkgs)
-      ++ (pkgs.appimageTools.defaultFhsEnvArgs.multiPkgs pkgs)
-      ++ (with pkgs; [ webkitgtk_6_0 ]);
-  };
 
   time.timeZone = "Europe/Berlin";
 }

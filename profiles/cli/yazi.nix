@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   user,
   ...
 }:
@@ -10,11 +11,32 @@ in
 {
   options.profiles.cli.yazi = {
     enable = lib.mkEnableOption' { };
+    enableDesktopUtils = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
   };
 
   config = lib.mkIf cfg.enable {
 
     home-manager.users.${user} = {
+
+      # https://yazi-rs.github.io/docs/installation
+      home.packages =
+        with pkgs;
+        (
+          [
+            p7zip-rar
+            jq
+            fd
+            ripgrep
+            fzf
+            zoxide
+          ]
+          ++ (lib.optionals cfg.enableDesktopUtils [
+            ffmpeg
+            poppler
+            imagemagick
+            wl-clipboard
+          ])
+        );
 
       programs.yazi = {
         enable = true;

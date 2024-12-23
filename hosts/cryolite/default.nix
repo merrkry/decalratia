@@ -18,6 +18,12 @@
     base.enable = true;
     base-devel.enable = true;
     desktop.enable = true;
+    cli = {
+      lunarvim.enable = true;
+    };
+    gui = {
+      zed.enable = true;
+    };
   };
 
   users.users = {
