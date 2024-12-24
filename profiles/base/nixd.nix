@@ -20,9 +20,10 @@ in
         nix =
           let
             flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+            unstable = if builtins.hasAttr "unstable" pkgs then pkgs.unstable else pkgs;
           in
           {
-            package = pkgs.nixVersions.latest;
+            package = unstable.nixVersions.latest;
             settings = {
               download-buffer-size = 268435456;
               experimental-features = [
