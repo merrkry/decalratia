@@ -40,24 +40,7 @@
   };
 
   virtualisation = {
-    containers = {
-      enable = true;
-      storage.settings = {
-        storage = {
-          driver = "btrfs";
-          graphroot = "/var/lib/containers/storage";
-          runroot = "/run/containers/storage";
-        };
-      };
-    };
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      dockerSocket.enable = true;
-      defaultNetwork.settings.dns_enabled = true;
-      # Runs `podman system prune -f` periodically, will delete stopped distrobox container
-      autoPrune.enable = false;
-    };
+    podman.autoPrune.enable = false; # prevent distrobox images from being deleted
 
     libvirtd = {
       enable = true;

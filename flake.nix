@@ -124,6 +124,12 @@
               stateVersion = "24.11";
             };
 
+            "hoshinouta" = {
+              channel = "stable";
+              hostPlatform = "x86_64-linux";
+              stateVersion = "24.05";
+            };
+
             "karanohako" = {
               channel = "stable";
               hostPlatform = "x86_64-linux";

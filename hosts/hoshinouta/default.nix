@@ -1,0 +1,47 @@
+{
+  inputs,
+  lib,
+  user,
+  ...
+}:
+{
+  imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/hoshinouta/nixos.nix" ];
+
+  home-manager.users.${user} = {
+    imports = [ ./home.nix ];
+  };
+
+  profiles = {
+    base.enable = true;
+    base-devel.enable = true;
+  };
+
+  users.users = {
+    ${user} = {
+      hashedPassword = "$2b$05$osXmrqxL1gCYfTPfQW9N3eHVygTjjC8T5yWlYuiyHTiOPhZ/eWinC";
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFFvfIUnhsW4vVl/SKxT3Nf1WG4YEVbrM9IlmB4GDp/t merrkry@akahi"
+      ];
+    };
+  };
+
+  sops = {
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+    defaultSopsFile = "${inputs.secrets}/hoshinouta/secrets.yaml";
+  };
+
+  time.timeZone = "Europe/Vienna";
+
+  services.nginx.enable = true;
+
+  lib.ports = {
+    memos = 5230;
+    miniflux = 10001;
+    rsshub = 10002;
+    matrix-synapse = 10003;
+    mautrix-telegram = 29317; # This should match the app service registration file, which is in secrets
+    vaultwarden = 10005;
+    mastodon = 10007;
+    qbittorrent = 10008;
+  };
+}

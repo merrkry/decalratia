@@ -22,13 +22,37 @@ in
 
     networking.firewall.enable = true;
 
-    services.bpftune.enable = true;
+    security.acme = {
+      acceptTerms = true;
+      defaults.email = "security@tsubasa.moe";
+    };
 
-    services.timesyncd.enable = false;
-    services.chrony = {
-      enable = true;
-      enableNTS = true;
-      servers = [ "time.cloudflare.com" ];
+    services = {
+      bpftune.enable = true;
+
+      chrony = {
+        enable = true;
+        enableNTS = true;
+        servers = [ "time.cloudflare.com" ];
+      };
+
+      nginx = {
+        recommendedProxySettings = true;
+        recommendedTlsSettings = true;
+        virtualHosts = {
+          "_" = {
+            default = true;
+            extraConfig = ''
+              listen 443 ssl default_server;
+              ssl_reject_handshake on;
+              error_page 497 =444 /;
+              return 444;
+            '';
+          };
+        };
+      };
+
+      timesyncd.enable = false;
     };
 
   };

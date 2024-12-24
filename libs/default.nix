@@ -8,7 +8,15 @@ rec {
         name: value:
         (
           if
-            (value == "regular" && lib.hasSuffix ".nix" name && name != "default.nix") || (value == "directory")
+            (
+              value == "regular"
+              && lib.hasSuffix ".nix" name
+              && !(builtins.elem name [
+                "default.nix"
+                "home.nix"
+              ])
+            )
+            || (value == "directory")
           then
             name
           else
