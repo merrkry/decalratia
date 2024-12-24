@@ -3,47 +3,69 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager-unstable.url = "github:nix-community/home-manager/master";
-    home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
-    home-manager-stable.url = "github:nix-community/home-manager/release-24.11";
-    home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
 
     # general purpose
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
-    disko.url = "github:nix-community/disko/latest";
-    disko.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     # desktop-oriented, unstable branch
 
-    niri-flake.url = "github:sodiboo/niri-flake";
-    niri-flake.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    };
 
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    stylix.inputs.home-manager.follows = "home-manager-unstable";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.home-manager.follows = "home-manager-unstable";
+    };
 
-    nur.url = "github:nix-community/NUR";
-    nur.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
-    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.1";
-    lanzaboote.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     # server-oriented, stable branch
 
-    nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
-    nixos-mailserver.inputs.nixpkgs.follows = "nixpkgs-stable";
+    nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs-24_11.follows = "nixpkgs-stable";
+    };
 
     # secrets
 
-    secrets.url = "github:merrkry/declaratia-secrets";
-    secrets.flake = false;
+    secrets = {
+      url = "github:merrkry/declaratia-secrets";
+      flake = false;
+    };
   };
 
   outputs =
