@@ -4,7 +4,7 @@ let
 in
 {
   options.services.rootfs-cleanup = {
-    enable = lib.mkEnableOption "clean and backup rootfs BTRFS subvolume";
+    enable = lib.mkEnableOption "clean and backup rootfs BTRFS subvolume (used with impermanence, deprecated)";
     uuid = lib.mkOption { type = lib.types.str; };
     mountPoint = lib.mkOption {
       default = "/impermanence";

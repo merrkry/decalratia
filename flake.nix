@@ -12,8 +12,6 @@
 
     # general purpose
 
-    impermanence.url = "github:nix-community/impermanence";
-
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     sops-nix.url = "github:Mic92/sops-nix";
