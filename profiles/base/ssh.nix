@@ -30,11 +30,11 @@ in
         hostKeys = lib.mkForce [
           {
             bits = 4096;
-            path = "${cfg.hostKeysDirectory}/ssh/ssh_host_rsa_key";
+            path = "${cfg.hostKeysDirectory}/ssh_host_rsa_key";
             type = "rsa";
           }
           {
-            path = "${cfg.hostKeysDirectory}/ssh/ssh_host_ed25519_key";
+            path = "${cfg.hostKeysDirectory}/ssh_host_ed25519_key";
             type = "ed25519";
           }
         ];
