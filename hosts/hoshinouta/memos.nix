@@ -3,7 +3,7 @@ let
   dataDir = "/var/lib/memos";
 in
 {
-  sops.secrets."memogram/bot-token" = { };
+  sops.secrets."memogram" = { };
 
   # nixpkgs version is extremely out of date
   # https://github.com/NixOS/nixpkgs/pull/304264
@@ -54,11 +54,11 @@ in
   systemd.services."memogram" = {
     after = [
       "network.target"
-      # "memos.service"
+      # "memos.service"/"podman-memos.service"
     ];
     requires = [
       "network-online.target"
-      # "memos.service"
+      # "memos.service"/"podman-memos.service"
     ];
     environment = {
       SERVER_ADDR = "dns:localhost:${toString config.lib.ports.memos}";
@@ -72,7 +72,7 @@ in
       WorkingDirectory = "/var/lib/memogram";
       StateDirectory = "memogram";
       ExecStart = "${pkgs.memogram}/bin/memogram";
-      EnvironmentFile = config.sops.secrets."memogram/bot-token".path;
+      EnvironmentFile = config.sops.secrets."memogram".path;
     };
 
     wantedBy = [ "multi-user.target" ];
