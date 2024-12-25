@@ -4,7 +4,7 @@ let
 in
 {
   sops.secrets = {
-    "mailserver/users/mastodon".owner = config.services.mastodon.user;
+    "mailserver/users/mastodon/raw".owner = config.services.mastodon.user;
     "mastodon-s3".owner = config.services.mastodon.user;
   };
 
@@ -27,7 +27,7 @@ in
       host = "mail.tsubasa.moe";
       port = 587;
       user = "mastodon@tsubasa.moe";
-      passwordFile = config.sops.secrets."mailserver/users/mastodon".path;
+      passwordFile = config.sops.secrets."mailserver/users/mastodon/raw".path;
       fromAddress = "mastodon@tsubasa.moe";
     };
 

@@ -1,5 +1,10 @@
-{ ... }:
+{ config, ... }:
 {
+  sops.secrets = {
+    "mailserver/users/merrkry/hashed" = { };
+    "mailserver/users/mastodon/hashed" = { };
+  };
+
   mailserver = {
     enable = true;
     fqdn = "mail.tsubasa.moe";
@@ -8,11 +13,16 @@
     # mkpasswd -sm bcrypt
     loginAccounts = {
       "merrkry@tsubasa.moe" = {
-        hashedPassword = "$2b$05$w7dW24iaph5PvpNgIG0tI.5G/5hqscPILrQIp.OvFgJfGi1pEMJDG";
-        aliases = [ "postmaster@tsubasa.moe" ];
+        hashedPasswordFile = config.sops.secrets."mailserver/users/merrkry/hashed".path;
+        aliases = [
+          "abuse@tsubasa.moe"
+          "admin@tsubasa.moe"
+          "postmaster@tsubasa.moe"
+          "security@tsubasa.moe"
+        ];
       };
       "mastodon@tsubasa.moe" = {
-        hashedPassword = "$2b$05$VI0eltHq8l6dOSCJt2QQP.eRa2o8VXSlsAOIqFYm0InKwUz/lHGn6";
+        hashedPasswordFile = config.sops.secrets."mailserver/users/mastodon/hashed".path;
       };
     };
 
