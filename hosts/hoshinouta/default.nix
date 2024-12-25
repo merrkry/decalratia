@@ -42,6 +42,5 @@
     mautrix-telegram = 29317; # This should match the app service registration file, which is in secrets
     vaultwarden = 10005;
     mastodon = 10007;
-    qbittorrent = 10008;
   };
 }
