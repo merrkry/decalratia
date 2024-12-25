@@ -14,7 +14,12 @@
   ];
 
   profiles = {
-    base.enable = true;
+    base = {
+      enable = true;
+      backup.snapperConfigs = {
+        "persist" = "/";
+      };
+    };
     base-devel.enable = true;
     desktop.enable = true;
     cli = {

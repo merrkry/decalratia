@@ -35,25 +35,4 @@ in
     { device = "/dev/disk/by-uuid/60005c5c-54dc-4ead-b28f-021d2f84c177"; }
     { device = "/dev/disk/by-uuid/6b2a6972-1f3c-45f3-a28a-ad2f215f9881"; }
   ];
-
-  services.snapper = {
-    persistentTimer = true;
-    configs = {
-      "persist" = {
-        SUBVOLUME = "/";
-
-        ALLOW_GROUPS = [ "wheel" ];
-
-        TIMELINE_CREATE = true;
-        TIMELINE_CLEANUP = true;
-
-        TIMELINE_LIMIT_HOURLY = 12;
-        TIMELINE_LIMIT_DAILY = 7;
-        TIMELINE_LIMIT_WEEKLY = 2;
-        TIMELINE_LIMIT_MONTHLY = 0;
-        TIMELINE_LIMIT_QUARTERLY = 0;
-        TIMELINE_LIMIT_YEARLY = 0;
-      };
-    };
-  };
 }
