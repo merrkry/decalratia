@@ -12,7 +12,10 @@
   };
 
   profiles = {
-    base.enable = true;
+    base = {
+      enable = true;
+      network.tailscale = "server";
+    };
     base-devel.enable = true;
   };
 
