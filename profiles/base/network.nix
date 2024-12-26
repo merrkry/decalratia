@@ -72,23 +72,23 @@ in
         };
       }
       (lib.mkIf (cfg.tailscale != null) {
-        services = {
-          # udp performance tuning, see https://wiki.nixos.org/wiki/Tailscale
-          networkd-dispatcher = {
-            enable = true;
-            rules."50-tailscale" = {
-              onState = [ "routable" ];
-              script = ''
-                ${lib.getExe pkgs.ethtool} -K eth0 rx-udp-gro-forwarding on rx-gro-list off
-              '';
-            };
-          };
+        services.tailscale = {
+          enable = true;
+          openFirewall = true;
+          useRoutingFeatures = cfg.tailscale;
+        };
 
-          tailscale = {
-            enable = true;
-            openFirewall = true;
-            useRoutingFeatures = cfg.tailscale;
+        # https://tailscale.com/kb/1320/performance-best-practices#linux-optimizations-for-subnet-routers-and-exit-nodes
+        systemd.services."tailscale-tuning" = {
+          wantedBy = [ "multi-user.target" ];
+          serviceConfig = {
+            Type = "oneshot";
           };
+          enableStrictShellChecks = true;
+          script = ''
+            NETDEV=$(${lib.getExe' pkgs.iproute2 "ip"} -o route get 1.1.1.1 | ${lib.getExe' pkgs.coreutils "cut"} -f 5 -d " ")
+            ${lib.getExe pkgs.ethtool} -K "$NETDEV" rx-udp-gro-forwarding on rx-gro-list off
+          '';
         };
       })
     ]
