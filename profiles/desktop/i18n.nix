@@ -26,10 +26,6 @@ in
         type = "fcitx5";
         fcitx5 = {
           addons = with pkgs; [
-            libsForQt5.fcitx5-qt
-            fcitx5-gtk
-            fcitx5-configtool
-            fcitx5-chinese-addons
             (fcitx5-rime.override {
               rimeDataPkgs = [
                 rime-data
@@ -39,6 +35,7 @@ in
               ];
             })
           ];
+          plasma6Support = true;
           waylandFrontend = true;
         };
       };

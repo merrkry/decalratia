@@ -5,24 +5,6 @@
   ...
 }:
 {
-  services.gvfs.enable = true;
-
-  programs.thunderbird.enable = true;
-
-  programs.localsend = {
-    enable = true;
-    openFirewall = true;
-  };
-
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
-  };
-  programs.xfconf.enable = true;
-
   programs.steam = {
     enable = true;
     protontricks.enable = true;

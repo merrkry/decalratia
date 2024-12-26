@@ -5,9 +5,6 @@
   osConfig,
   ...
 }:
-let
-
-in
 {
   imports = [
     ./mpv.nix
@@ -39,7 +36,6 @@ in
         jdk17
       ];
     })
-    looking-glass-client-git
     jetbrains.idea-ultimate
     materialgram
   ];

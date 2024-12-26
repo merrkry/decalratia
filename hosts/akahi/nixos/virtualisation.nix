@@ -20,6 +20,8 @@
         kernelParams = [ "intel_iommu=on" ];
       };
 
+      environment.systemPackages = with pkgs; [ looking-glass-client-git ];
+
       # systemd.tmpfiles.rules = [
       #   "f /dev/shm/looking-glass 0660 root kvm -"
       # ];
