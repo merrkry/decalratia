@@ -19,6 +19,7 @@
       backup.snapperConfigs = {
         "persist" = "/";
       };
+      network.tailscale = "client";
     };
     base-devel.enable = true;
     desktop.enable = true;

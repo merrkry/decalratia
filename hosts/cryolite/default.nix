@@ -15,7 +15,10 @@
   };
 
   profiles = {
-    base.enable = true;
+    base = {
+      enable = true;
+      network.tailscale = "client";
+    };
     base-devel.enable = true;
     desktop.enable = true;
     cli = {
