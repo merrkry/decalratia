@@ -1,4 +1,9 @@
-{ lib, user, ... }:
+{
+  inputs,
+  lib,
+  user,
+  ...
+}:
 {
   imports = (lib.mkModulesList ./.);
 
@@ -21,7 +26,10 @@
     };
   };
 
-  time.timeZone = "Europe/Berlin";
+  sops = {
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+    defaultSopsFile = "${inputs.secrets}/karanohako/secrets.yaml";
+  };
 
-  services.nginx.enable = true;
+  time.timeZone = "Europe/Berlin";
 }
