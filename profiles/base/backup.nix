@@ -46,5 +46,10 @@ in
         ) cfg.snapperConfigs;
       };
 
+    # Snapper requires `.snapshots` subvol to exist under target subvol.
+    # Normally this would be done by `snapper create-config`, which the NixOS module doesn't use.
+    systemd.tmpfiles.rules = lib.mapAttrsToList (
+      configName: subvolPath: "Q ${subvolPath}/.snapshots 0755 root root -"
+    ) cfg.snapperConfigs;
   };
 }
