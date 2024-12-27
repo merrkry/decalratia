@@ -197,7 +197,7 @@ in
                     natural-scroll = false;
                   };
                   # comma separated, see xkeyboard-config(7)
-                  keyboard.xkb.options = "caps:swapescape";
+                  # keyboard.xkb.options = "caps:swapescape"; # replaced by xremap, which also works on xwayland
                   warp-mouse-to-focus = true;
                   focus-follows-mouse.enable = true;
                   workspace-auto-back-and-forth = true;

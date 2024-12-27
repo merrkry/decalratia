@@ -52,6 +52,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    xremap = {
+      url = "github:xremap/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # server-oriented, stable branch
 
     nixos-mailserver = {
