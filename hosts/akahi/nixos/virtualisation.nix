@@ -105,6 +105,8 @@
             ''
           );
       };
+
+      onShutdown = "shutdown";
     };
     spiceUSBRedirection.enable = true;
   };
