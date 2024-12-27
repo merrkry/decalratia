@@ -80,6 +80,8 @@ in
 
         # https://tailscale.com/kb/1320/performance-best-practices#linux-optimizations-for-subnet-routers-and-exit-nodes
         systemd.services."tailscale-tuning" = {
+          wants = [ "network-online.target" ];
+          after = [ "network-online.target" ];
           wantedBy = [ "multi-user.target" ];
           serviceConfig = {
             Type = "oneshot";
