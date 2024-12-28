@@ -52,6 +52,7 @@ in
         enable = true;
         binfmt = true;
       };
+      dconf.enable = true;
       nix-ld = {
         enable = true;
         libraries =

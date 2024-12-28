@@ -22,6 +22,7 @@ in
         enable = true;
         # this will let home-manager manage ~/.config/Code/User/settings.json
         # enableUpdateCheck = lib.mkForce false;
+        # TODO: figure out how to override vscode-fhs
         package = pkgs.vscode.override { commandLineArgs = lib.ChromiumArgs; };
       };
 

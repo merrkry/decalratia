@@ -216,29 +216,11 @@ in
 
                 layout = {
                   gaps = 6;
-                  default-column-width.proportion = 1.0;
+                  default-column-width.proportion = 0.5;
                   always-center-single-column = true;
                 };
 
                 window-rules = [
-                  {
-                    matches = [
-                      { app-id = "^foot$"; }
-                      { app-id = "^Thunar$"; }
-                      { app-id = "^org\.kde\.ark$"; }
-                      { app-id = "^org\.pulseaudio\.pavucontrol$"; }
-                      { app-id = "^thunar$"; }
-                      { app-id = "^evince$"; }
-                    ];
-                    default-column-width.proportion = 0.5;
-                  }
-                  {
-                    matches = [
-                      # minial width will exceed 0.5 after theming, weired
-                      { app-id = "^org\.prismlauncher\.PrismLauncher$"; }
-                    ];
-                    default-column-width.proportion = 0.6;
-                  }
                   {
                     matches = [
                       {
@@ -255,6 +237,7 @@ in
                       { app-id = "^chromium-browser$"; }
                       { app-id = "^firefox$"; }
                     ];
+                    default-column-width.proportion = 1.0;
                     open-on-workspace = "browser";
                   }
                   {

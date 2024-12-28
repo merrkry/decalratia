@@ -22,6 +22,7 @@
     base-devel.enable = true;
     desktop.enable = true;
     cli = {
+      helix.enable = true;
       lunarvim.enable = true;
     };
     gui = {

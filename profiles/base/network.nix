@@ -70,6 +70,10 @@ in
 
           timesyncd.enable = false;
         };
+
+        # until #368791 synced to nixos-unstable
+        systemd.services.NetworkManager.wantedBy = lib.mkForce [ "multi-user.target" ];
+        systemd.services.NetworkManager-dispatcher.wantedBy = lib.mkForce [ "multi-user.target" ];
       }
       (lib.mkIf (cfg.tailscale != null) {
         services.tailscale = {
@@ -80,9 +84,8 @@ in
 
         # https://tailscale.com/kb/1320/performance-best-practices#linux-optimizations-for-subnet-routers-and-exit-nodes
         systemd.services."tailscale-tuning" = {
-          wants = [ "network-online.target" ];
-          after = [ "network-online.target" ];
-          wantedBy = [ "multi-user.target" ];
+          # NetworkManager will not trigger this. This is ideal, because it's very trick to manage the (re)start of it, and it mainly benefits routing devices.
+          wantedBy = [ "network-online.target" ];
           serviceConfig = {
             Type = "oneshot";
           };

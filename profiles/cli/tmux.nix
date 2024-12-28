@@ -19,7 +19,9 @@ in
       programs.tmux = {
         enable = true;
         baseIndex = 1;
+        # about -g/-s, see https://github.com/tmux/tmux/wiki/Getting-Started#changing-options
         extraConfig = ''
+          set -g escape-time 10
           set -g mouse on
           set -g renumber-windows on
         '';

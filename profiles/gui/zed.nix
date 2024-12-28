@@ -37,6 +37,16 @@ in
               "C++" = {
                 format_on_save = "on";
               };
+              "Java" = {
+                format_on_save = "on";
+                formatter.external = {
+                  command = "${lib.getExe pkgs.google-java-format}";
+                  arguments = [
+                    "--aosp"
+                    "-" # read from stdin
+                  ];
+                };
+              };
               "Markdown" = {
                 soft_wrap = "editor_width";
               };
@@ -52,13 +62,13 @@ in
                 hard_tabs = false;
                 language_servers = [ "nixd" ];
               };
-              "Java" = {
+              "Python" = {
                 format_on_save = "on";
                 formatter.external = {
-                  command = "${lib.getExe pkgs.google-java-format}";
+                  command = "${lib.getExe pkgs.ruff}";
                   arguments = [
-                    "--aosp"
-                    "-" # read from stdin
+                    "format"
+                    "-"
                   ];
                 };
               };
@@ -67,12 +77,12 @@ in
               "clangd" = {
                 binary.path = "${lib.getExe' pkgs.clang-tools "clangd"}";
               };
-              "nixd" = {
-                binary.path = "${lib.getExe pkgs.nixd}";
-              };
               "jdtls" = {
                 binary.path = "${lib.getExe pkgs.jdt-language-server}";
                 initialization_options.settings.java.jdt.ls.lombokSupport.enabled = true;
+              };
+              "nixd" = {
+                binary.path = "${lib.getExe pkgs.nixd}";
               };
             };
             notification_panel = {
