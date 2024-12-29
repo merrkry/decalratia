@@ -23,6 +23,7 @@ in
         in
         {
           enable = true;
+          defaultEditor = true;
 
           ignores = [
             "!.github/"
@@ -31,36 +32,57 @@ in
           ];
 
           languages = {
-            language = [
-              {
-                name = "cpp";
-                auto-format = true;
-              }
-              {
-                name = "nix";
-                auto-format = true;
-                formatter = {
-                  command = lib.getExe pkgs.nixfmt-rfc-style;
-                  args = [
-                    "--strict"
-                    "-"
-                  ];
-                };
-                language-servers = [ "nixd" ];
-              }
-              {
-                name = "python";
-                auto-format = true;
-                formatter = {
-                  command = lib.getExe pkgs.ruff;
-                  args = [
-                    "format"
-                    "-"
-                  ];
-                };
-                language-servers = [ "pyright" ];
-              }
-            ];
+            language =
+              let
+                mkPrettierList =
+                  languageList:
+                  (map (lang: {
+                    name = lang;
+                    auto-format = true;
+                    formatter = {
+                      command = lib.getExe pkgs.nodePackages.prettier;
+                      args = [
+                        "--parser"
+                        lang
+                      ];
+                    };
+                  }) languageList);
+              in
+              [
+                {
+                  name = "cpp";
+                  auto-format = true;
+                }
+                {
+                  name = "nix";
+                  auto-format = true;
+                  formatter = {
+                    command = lib.getExe pkgs.nixfmt-rfc-style;
+                    args = [
+                      "--strict"
+                      "-"
+                    ];
+                  };
+                  language-servers = [ "nixd" ];
+                }
+                {
+                  name = "python";
+                  auto-format = true;
+                  formatter = {
+                    command = lib.getExe pkgs.ruff;
+                    args = [
+                      "format"
+                      "-"
+                    ];
+                  };
+                  language-servers = [ "pyright" ];
+                }
+              ]
+              ++ mkPrettierList [
+                "json"
+                "markdown"
+                "yaml"
+              ];
             # https://github.com/helix-editor/helix/blob/master/languages.toml
             language-server = {
               "clangd" = {
