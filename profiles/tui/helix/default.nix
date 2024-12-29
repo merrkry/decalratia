@@ -6,10 +6,10 @@
   ...
 }:
 let
-  cfg = config.profiles.cli.helix;
+  cfg = config.profiles.tui.helix;
 in
 {
-  options.profiles.cli.helix = {
+  options.profiles.tui.helix = {
     enable = lib.mkEnableOption' { };
   };
 

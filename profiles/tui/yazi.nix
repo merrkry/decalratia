@@ -6,10 +6,10 @@
   ...
 }:
 let
-  cfg = config.profiles.cli.yazi;
+  cfg = config.profiles.tui.yazi;
 in
 {
-  options.profiles.cli.yazi = {
+  options.profiles.tui.yazi = {
     enable = lib.mkEnableOption' { };
     enableDesktopUtils = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
   };

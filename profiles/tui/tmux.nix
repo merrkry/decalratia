@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.profiles.cli.tmux;
+  cfg = config.profiles.tui.tmux;
 in
 {
-  options.profiles.cli.tmux = {
+  options.profiles.tui.tmux = {
     enable = lib.mkEnableOption' { };
   };
 

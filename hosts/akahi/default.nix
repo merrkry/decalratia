@@ -23,7 +23,7 @@
     };
     base-devel.enable = true;
     desktop.enable = true;
-    cli = {
+    tui = {
       helix.enable = true;
       lunarvim.enable = true;
     };

@@ -42,11 +42,15 @@ in
       trash-cli
     ];
 
-    profiles.cli = {
-      git.enable = true;
-      starship.enable = true;
-      tmux.enable = true;
-      yazi.enable = true;
+    profiles = {
+      cli = {
+        git.enable = true;
+        starship.enable = true;
+      };
+      tui = {
+        tmux.enable = true;
+        yazi.enable = true;
+      };
     };
 
     home-manager.users.${user} = {

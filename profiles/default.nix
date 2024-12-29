@@ -22,6 +22,7 @@
     ./cli
     ./desktop
     ./gui
+    ./tui
   ];
 
   config = {

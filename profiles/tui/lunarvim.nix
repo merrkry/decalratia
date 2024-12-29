@@ -6,10 +6,10 @@
   ...
 }:
 let
-  cfg = config.profiles.cli.lunarvim;
+  cfg = config.profiles.tui.lunarvim;
 in
 {
-  options.profiles.cli.lunarvim = {
+  options.profiles.tui.lunarvim = {
     enable = lib.mkEnableOption' { };
   };
 
