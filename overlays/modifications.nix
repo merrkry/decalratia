@@ -55,7 +55,8 @@
         hash = "sha256-DBmCJRlB7KzbWXZqKA0X4VTpe+DhhYG5uoxsblPXVzg=";
         fetchSubmodules = true;
       };
-      patches = [ ];
+      nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.nanosvg ];
+      patches = [ ./nanosvg-unvendor.diff ];
     }
   );
 
