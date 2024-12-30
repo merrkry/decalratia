@@ -70,10 +70,6 @@ in
 
           timesyncd.enable = false;
         };
-
-        # until #368791 synced to nixos-unstable
-        systemd.services.NetworkManager.wantedBy = lib.mkForce [ "multi-user.target" ];
-        systemd.services.NetworkManager-dispatcher.wantedBy = lib.mkForce [ "multi-user.target" ];
       }
       (lib.mkIf (cfg.tailscale != null) {
         services.tailscale = {
