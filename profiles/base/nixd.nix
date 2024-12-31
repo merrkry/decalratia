@@ -17,6 +17,10 @@ in
     lib.mkMerge [
       {
 
+        documentation.nixos.enable = false;
+        # will be enabled by fish, making rebuild extremely slow
+        documentation.man.generateCaches = lib.mkForce false;
+
         nix =
           let
             flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
@@ -41,6 +45,7 @@ in
                 "root"
                 # dangerous, see https://github.com/NixOS/nix/issues/9649#issuecomment-1868001568
                 # "@wheel"
+                "remote-deployer"
               ];
               substituters = [
                 "https://nix-community.cachix.org"
@@ -63,6 +68,10 @@ in
             };
           };
 
+        nixpkgs = {
+          config.allowUnfree = true;
+        };
+
         # keep flakes inputs not garbage collected
         # https://github.com/oxalica/nixos-config/blob/706adc07354eb4a1a50408739c0f24a709c9fe20/nixos/modules/nix-keep-flake-inputs.nix#L3-L7
         system.extraDependencies =
@@ -79,14 +88,21 @@ in
           MemorySwapMax = 0;
         };
 
-        nixpkgs = {
-          config.allowUnfree = true;
+        users.groups."remote-deployer" = { };
+
+        users.users."remote-deployer" = {
+          isNormalUser = true;
+          createHome = false;
+          group = "remote-deployer";
+          extraGroups = [ "wheel" ];
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFFvfIUnhsW4vVl/SKxT3Nf1WG4YEVbrM9IlmB4GDp/t merrkry@akahi"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHylx0U1U4NlR9RIadf1vGlKf/C+dJN9GC9oGhwQlMZd merrkry@hoshinouta"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIAg9BDaX6NeZmA3ux+Zr5Dd6zhBCu4Ohs0iORgojXN4 merrkry@karanohako"
+          ];
         };
 
-        documentation.nixos.enable = false;
-        # will be enabled by fish, making rebuild extremely slow
-        documentation.man.generateCaches = lib.mkForce false;
-
+        users.groups.remotebuild = { };
       }
       (lib.optionalAttrs (lib.versionAtLeast lib.version "25.05pre") { system.rebuild.enableNg = true; })
     ]
