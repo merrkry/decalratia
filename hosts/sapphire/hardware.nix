@@ -16,39 +16,39 @@
     kernelModules = [ "kvm-intel" ];
   };
 
-  disko.devices = {
-    disk = {
-      main = {
-        device = "/dev/vda";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            grub = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-            };
-            boot = {
-              size = "512M";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/boot";
+  disko.devices =
+    let
+      mountOptions = [
+        "compress=zstd"
+        "noatime"
+      ];
+    in
+    {
+      disk = {
+        main = {
+          device = "/dev/vda";
+          type = "disk";
+          content = {
+            type = "gpt";
+            partitions = {
+              grub = {
+                size = "1M";
+                type = "EF02"; # for grub MBR
               };
-            };
-            root = {
-              size = "100%";
-              content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ];
-                subvolumes =
-                  let
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  in
-                  {
+              boot = {
+                size = "512M";
+                content = {
+                  type = "filesystem";
+                  format = "ext4";
+                  mountpoint = "/boot";
+                };
+              };
+              root = {
+                size = "100%";
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ];
+                  subvolumes = {
                     "/@rootfs" = {
                       inherit mountOptions;
                       mountpoint = "/";
@@ -66,13 +66,35 @@
                       swap.swapfile.size = "2G";
                     };
                   };
+                };
+              };
+            };
+          };
+        };
+        data = {
+          "device" = "/dev/sda";
+          "type" = "disk";
+          content = {
+            type = "gpt";
+            partitions = {
+              root = {
+                size = "100%";
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ];
+                  subvolumes = {
+                    "/@qbit" = {
+                      inherit mountOptions;
+                      mountpoint = "/var/lib/qbittorrent";
+                    };
+                  };
+                };
               };
             };
           };
         };
       };
     };
-  };
 
   services.qemuGuest.enable = true;
 

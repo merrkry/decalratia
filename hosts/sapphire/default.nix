@@ -11,6 +11,7 @@
 
   users.users = {
     ${user} = {
+      extraGroups = [ "qbittorrent" ];
       hashedPassword = "$y$j9T$xLHLqiVYRqwaJ7NjWcKgE0$.TGv4WGPvGguZ62GN7coV0xo8l6l4Rm7XDwkyFdoKX6";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFFvfIUnhsW4vVl/SKxT3Nf1WG4YEVbrM9IlmB4GDp/t merrkry@akahi"

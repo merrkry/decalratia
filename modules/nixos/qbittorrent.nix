@@ -83,9 +83,7 @@ in
             --webui-port=${toString cfg.webuiPort} \
             --torrenting-port=${toString cfg.torrentingPort}
         '';
-        # To prevent "Quit & shutdown daemon" from working; we want systemd to
-        # manage it!
-        Restart = "on-success";
+        TimeoutStopSec = 1800; # copied from Archlinux package
         User = cfg.user;
         Group = cfg.group;
       };
