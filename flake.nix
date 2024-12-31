@@ -166,6 +166,12 @@
               hostPlatform = "x86_64-linux";
               stateVersion = "24.05";
             };
+
+            "sapphire" = {
+              channel = "stable";
+              hostPlatform = "x86_64-linux";
+              stateVersion = "24.11";
+            };
           };
     };
 }
