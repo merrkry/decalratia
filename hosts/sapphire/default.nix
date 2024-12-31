@@ -21,6 +21,4 @@
   };
 
   time.timeZone = "Europe/Luxembourg";
-
-  services.userborn.enable = lib.mkForce false;
 }
