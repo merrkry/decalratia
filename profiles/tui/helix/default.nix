@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   user,
@@ -15,6 +16,12 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    # TODO: drop this and go back to helix in nixpkgs after helix 25.01 release
+    nix.settings = {
+      substituters = [ "https://helix.cachix.org" ];
+      trusted-public-keys = [ "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs=" ];
+    };
+
     home-manager.users.${user} = {
 
       programs.helix =
@@ -24,6 +31,7 @@ in
         {
           enable = true;
           defaultEditor = true;
+          package = inputs.helix.packages.${config.nixpkgs.hostPlatform.system}.helix;
 
           ignores = [
             "!.github/"
@@ -109,7 +117,12 @@ in
               cursor-shape = {
                 insert = "bar";
               };
+              end-of-line-diagnostics = "hint";
               idle-timeout = 10;
+              inline-diagnostics = {
+                cursor-line = "warning";
+                other-lines = "error";
+              };
               indent-guides = {
                 render = true;
                 skip-levels = 1;

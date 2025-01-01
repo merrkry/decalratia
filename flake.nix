@@ -62,6 +62,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    helix = {
+      url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # server-oriented, stable branch
 
     nixos-mailserver = {
