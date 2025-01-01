@@ -24,7 +24,12 @@ in
       sshAgentAuth.enable = true;
     };
     services = {
-      fail2ban.enable = true;
+      fail2ban = {
+        enable = true;
+        ignoreIP = [
+          "100.64.0.0/10" # CGNAT, used by tailscale
+        ];
+      };
       openssh = {
         enable = true;
         hostKeys = lib.mkForce [
