@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  user,
-  ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.profiles.base-devel.containers;
 in

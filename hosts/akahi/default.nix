@@ -1,17 +1,7 @@
+{ lib, user, ... }:
 {
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
-{
-  imports = [
-    inputs.nixos-hardware.nixosModules.common-gpu-intel
-
-    ./nixos
-  ];
+  imports = lib.mkModulesList ./.;
+  home-manager.users.${user}.imports = [ ./home.nix ];
 
   profiles = {
     base = {
@@ -46,30 +36,7 @@
     };
   };
 
-  home-manager.users."merrkry" = {
-    imports = [ ./home-manager ];
-  };
-
   sops.age.keyFile = "/var/lib/sops-nix/key.txt";
-
-  # to prevent /srv subvolume from being created
-  environment.etc."tmpfiles.d/home.conf".text = ''
-    Q /home 0755 - - -
-    # q /srv 0755 - - -
-  '';
-
-  system.etc.overlay.enable = false;
-  services.openssh.hostKeys = lib.mkForce [
-    {
-      bits = 4096;
-      path = "/var/lib/ssh/ssh_host_rsa_key";
-      type = "rsa";
-    }
-    {
-      path = "/var/lib/ssh/ssh_host_ed25519_key";
-      type = "ed25519";
-    }
-  ];
 
   time.timeZone = "Europe/Berlin";
 }

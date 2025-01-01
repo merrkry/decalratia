@@ -42,6 +42,7 @@ in
       chromium.enable = true;
       firefox.enable = true;
       localsend.enable = true;
+      mpv.enable = true;
       rofi.enable = true;
       swaync.enable = true;
       thunderbird.enable = true;

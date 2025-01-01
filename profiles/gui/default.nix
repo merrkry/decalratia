@@ -1,10 +1,4 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.profiles.gui;
 in

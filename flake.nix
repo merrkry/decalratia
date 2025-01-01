@@ -100,9 +100,9 @@
                 let
                   lib = channelInput.lib.extend self.overlays.extraLibs;
                   # calls flake inputs directly, otherwise causes infinite recursion
-                  # TODO: add flake registry
                   inputs = self.inputs // {
                     nixpkgs = channelInput;
+                    home-manager = hmInput;
                   };
                   user = mainUser;
                 in

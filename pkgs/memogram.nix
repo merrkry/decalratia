@@ -1,9 +1,4 @@
-{
-  lib,
-  stdenv,
-  buildGoModule,
-  fetchFromGitHub,
-}:
+{ buildGoModule, fetchFromGitHub }:
 buildGoModule rec {
   pname = "memogram";
   version = "0.1.7";

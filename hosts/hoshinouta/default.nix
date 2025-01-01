@@ -7,10 +7,6 @@
 {
   imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/hoshinouta/nixos.nix" ];
 
-  home-manager.users.${user} = {
-    imports = [ ./home.nix ];
-  };
-
   profiles = {
     base = {
       enable = true;

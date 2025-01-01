@@ -1,17 +1,9 @@
+{ lib, user, ... }:
 {
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  user,
-  ...
-}:
-{
-  imports = [ ./nixos ];
+  imports = lib.mkModulesList ./.;
 
   home-manager.users.${user} = {
-    imports = [ ./home-manager ];
+    imports = [ ./home.nix ];
   };
 
   profiles = {

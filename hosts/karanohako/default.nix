@@ -5,11 +5,7 @@
   ...
 }:
 {
-  imports = (lib.mkModulesList ./.);
-
-  home-manager.users.${user} = {
-    imports = [ ./home.nix ];
-  };
+  imports = lib.mkModulesList ./.;
 
   profiles = {
     base = {

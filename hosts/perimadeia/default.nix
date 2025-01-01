@@ -1,17 +1,6 @@
+{ inputs, lib, ... }:
 {
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
-{
-  imports = [
-    ./nixos
-
-    "${inputs.secrets}/perimadeia/nixos.nix"
-  ];
+  imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/perimadeia/nixos.nix" ];
 
   profiles = {
     base = {
@@ -31,10 +20,6 @@
       extraGroups = [ "wheel" ];
       linger = true;
     };
-  };
-
-  home-manager.users."merrkry" = {
-    imports = [ ./home-manager ];
   };
 
   sops.age.keyFile = "/persist/var/lib/sops-nix/key.txt";

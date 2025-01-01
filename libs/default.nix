@@ -1,5 +1,5 @@
 { lib, ... }:
-rec {
+{
   mkModulesList =
     path:
     (lib.pipe path [

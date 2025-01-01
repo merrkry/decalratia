@@ -1,8 +1,4 @@
-{
-  lib,
-  stdenvNoCC,
-  fetchzip,
-}:
+{ stdenvNoCC, fetchzip }:
 stdenvNoCC.mkDerivation {
   pname = "bookerly";
   version = "2020.03";
