@@ -40,14 +40,6 @@ in
         hmConfig = config.home-manager.users.${user};
       in
       {
-
-        programs = {
-          swaybg = {
-            enable = true;
-            image = lib.mkDefault config.stylix.image;
-          };
-        };
-
         gtk =
           let
             shareConfig = {
@@ -85,6 +77,36 @@ in
             gtk4.extraConfig = { } // shareConfig;
           };
 
+        programs = {
+          swaybg = {
+            enable = true;
+            image = lib.mkDefault config.stylix.image;
+          };
+        };
+
+        # https://discourse.nixos.org/t/guide-to-installing-qt-theme/35523/3
+        qt = {
+          enable = true;
+          platformTheme.name = "qtct";
+          style.name = "kvantum"; # "adwaita-dark";
+          # style.package = pkgs.adwaita-qt;
+        };
+
+        stylix.targets = {
+          kde.enable = false;
+        };
+
+        xdg.configFile =
+          let
+            themeName = "KvLibadwaita";
+          in
+          {
+            "Kvantum/kvantum.kvconfig".text = ''
+              [General]
+              theme=${themeName}Dark
+            '';
+            "Kvantum/${themeName}".source = "${pkgs.kvlibadwaita-kvantum}/share/Kvantum/${themeName}";
+          };
       };
 
   };
