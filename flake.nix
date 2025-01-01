@@ -28,6 +28,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # desktop-oriented, unstable branch
 
     niri-flake = {
@@ -77,101 +82,126 @@
     { self, ... }@inputs:
     let
       inherit (self) outputs;
+      machines = {
+        "akahi" = {
+          channel = "unstable";
+          hostPlatform = "x86_64-linux";
+          stateVersion = "24.05";
+        };
+
+        "cryolite" = {
+          channel = "unstable";
+          hostPlatform = "x86_64-linux";
+          stateVersion = "24.11";
+        };
+
+        "hoshinouta" = {
+          channel = "stable";
+          hostPlatform = "x86_64-linux";
+          stateVersion = "24.05";
+        };
+
+        "karanohako" = {
+          channel = "stable";
+          hostPlatform = "x86_64-linux";
+          stateVersion = "24.05";
+        };
+
+        "perimadeia" = {
+          channel = "stable";
+          hostPlatform = "x86_64-linux";
+          stateVersion = "24.05";
+        };
+
+        "sapphire" = {
+          channel = "stable";
+          hostPlatform = "x86_64-linux";
+          stateVersion = "24.11";
+          remoteBuild = false;
+        };
+      };
     in
     {
       overlays = import ./overlays { inherit inputs; };
 
-      nixosConfigurations =
-        builtins.mapAttrs
-          (
-            hostName:
-            {
-              channel,
-              hostPlatform,
-              stateVersion,
-              mainUser ? "merrkry",
-            }:
+      nixosConfigurations = builtins.mapAttrs (
+        hostName:
+        {
+          channel,
+          hostPlatform,
+          stateVersion,
+          mainUser ? "merrkry",
+          ...
+        }:
+        let
+          channelInput = inputs."nixpkgs-${channel}";
+          hmInput = inputs."home-manager-${channel}";
+        in
+        channelInput.lib.nixosSystem {
+          specialArgs =
             let
-              channelInput = inputs."nixpkgs-${channel}";
-              hmInput = inputs."home-manager-${channel}";
+              lib = channelInput.lib.extend self.overlays.extraLibs;
+              # calls flake inputs directly, otherwise causes infinite recursion
+              inputs = self.inputs // {
+                nixpkgs = channelInput;
+                home-manager = hmInput;
+              };
+              user = mainUser;
             in
-            channelInput.lib.nixosSystem {
-              specialArgs =
-                let
-                  lib = channelInput.lib.extend self.overlays.extraLibs;
-                  # calls flake inputs directly, otherwise causes infinite recursion
-                  inputs = self.inputs // {
-                    nixpkgs = channelInput;
-                    home-manager = hmInput;
-                  };
-                  user = mainUser;
-                in
-                {
-                  inherit
-                    inputs
-                    lib
-                    outputs
-                    user
-                    ;
-                };
-              modules = [
-                ./hosts/${hostName}
-                {
-                  networking = { inherit hostName; };
-                  nixpkgs = {
-                    overlays = [
-                      (
-                        if channelInput == inputs.nixpkgs-unstable then
-                          self.overlays.stablePackages
-                        else
-                          self.overlays.unstablePackages
-                      )
-                    ];
-                    inherit hostPlatform;
-                  };
-                  system = { inherit stateVersion; };
-                }
-                hmInput.nixosModules.home-manager
-                ./profiles
-              ];
+            {
+              inherit
+                inputs
+                lib
+                outputs
+                user
+                ;
+            };
+          modules = [
+            ./hosts/${hostName}
+            {
+              networking = { inherit hostName; };
+              nixpkgs = {
+                overlays = [
+                  (
+                    if channelInput == inputs.nixpkgs-unstable then
+                      self.overlays.stablePackages
+                    else
+                      self.overlays.unstablePackages
+                  )
+                ];
+                inherit hostPlatform;
+              };
+              system = { inherit stateVersion; };
             }
-          )
+            hmInput.nixosModules.home-manager
+            ./profiles
+          ];
+        }
+      ) machines;
+
+      deploy = {
+        sshUser = "remote-deployer";
+        nodes = builtins.mapAttrs (
+          hostName:
           {
-            "akahi" = {
-              channel = "unstable";
-              hostPlatform = "x86_64-linux";
-              stateVersion = "24.05";
+            hostPlatform,
+            remoteBuild ? true,
+            ...
+          }:
+          {
+            hostname = hostName;
+            profiles.system = {
+              user = "root";
+              path = inputs.deploy-rs.lib.${hostPlatform}.activate.nixos self.nixosConfigurations.${hostName};
             };
+            inherit remoteBuild;
+          }
+        ) machines;
+      };
 
-            "cryolite" = {
-              channel = "unstable";
-              hostPlatform = "x86_64-linux";
-              stateVersion = "24.11";
-            };
+      checks = builtins.mapAttrs (
+        system: deployLib: deployLib.deployChecks self.deploy
+      ) inputs.deploy-rs.lib;
 
-            "hoshinouta" = {
-              channel = "stable";
-              hostPlatform = "x86_64-linux";
-              stateVersion = "24.05";
-            };
-
-            "karanohako" = {
-              channel = "stable";
-              hostPlatform = "x86_64-linux";
-              stateVersion = "24.05";
-            };
-
-            "perimadeia" = {
-              channel = "stable";
-              hostPlatform = "x86_64-linux";
-              stateVersion = "24.05";
-            };
-
-            "sapphire" = {
-              channel = "stable";
-              hostPlatform = "x86_64-linux";
-              stateVersion = "24.11";
-            };
-          };
     };
 }
