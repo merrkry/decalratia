@@ -33,6 +33,7 @@ in
               diagnostics = false;
               metrics = false;
             };
+            vim_mode = true;
             languages = {
               "C++" = {
                 format_on_save = "on";
@@ -116,7 +117,7 @@ in
                 assistant = {
                   enabled = false;
                   dock = "left";
-                  version = 2;
+                  version = "2";
                 };
                 assistant_v2.enabled = false;
                 chat_panel = {

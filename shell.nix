@@ -4,9 +4,8 @@
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     deploy-rs
+    nixd
+    nixfmt-rfc-style
     nh
   ];
-  shellHook = ''
-    fish
-  '';
 }

@@ -62,6 +62,21 @@ in
                   auto-format = true;
                 }
                 {
+                  name = "java";
+                  auto-format = true;
+                  formatter = {
+                    command = lib.getExe pkgs.google-java-format;
+                    args = [
+                      "--aosp"
+                      "-"
+                    ];
+                  };
+                  indent = {
+                    tab-width = 4;
+                    unit = "    ";
+                  };
+                }
+                {
                   name = "nix";
                   auto-format = true;
                   formatter = {
@@ -96,6 +111,10 @@ in
               "clangd" = {
                 command = lib.getExe' pkgs.clang-tools "clangd";
               };
+              "jdtls" = {
+                command = lib.getExe pkgs.jdt-language-server;
+                # TODO: add java.jdt.ls.lombokSupport
+              };
               "nixd" = {
                 command = lib.getExe pkgs.nixd;
               };
@@ -113,6 +132,7 @@ in
                 after-delay.enable = true;
               };
               color-modes = true;
+              completion-timeout = 5;
               cursorline = true;
               cursor-shape = {
                 insert = "bar";
