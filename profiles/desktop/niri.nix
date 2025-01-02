@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   user,
@@ -9,11 +10,15 @@ let
   cfg = config.profiles.desktop.niri;
 in
 {
+  imports = [ inputs.niri-flake.nixosModules.niri ];
+
   options.profiles.desktop.niri = {
     enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
   };
 
   config = lib.mkIf cfg.enable {
+
+    niri-flake.cache.enable = false;
 
     programs.niri = {
       enable = true;
@@ -91,8 +96,9 @@ in
                         "${lib.getExe hmConfig.programs.yazi.package}"
                       ];
                       "Mod+Q".action = close-window;
-                      "Mod+Shift+F".action = fullscreen-window;
-                      "Mod+F".action = maximize-column;
+                      "Mod+Shift+M".action = fullscreen-window;
+                      "Mod+M".action = maximize-column;
+                      "Mod+C".action = center-column;
                       "Mod+V".action.spawn = [
                         "sh"
                         "-c"
@@ -262,5 +268,6 @@ in
         ];
 
       };
+
   };
 }
