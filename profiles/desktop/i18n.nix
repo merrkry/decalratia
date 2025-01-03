@@ -55,6 +55,25 @@ in
         })
       ];
 
+      systemd.user.services = {
+        "fcitx5" = {
+          Install = {
+            WantedBy = [ "graphical-session.target" ];
+          };
+          Unit = {
+            PartOf = [ "graphical-session.target" ];
+            After = [
+              "graphical-session.target"
+              "xwayland-satellite.service"
+            ];
+          };
+          Service = {
+            ExecStart = "${lib.getExe' config.i18n.inputMethod.package "fcitx5"} --replace";
+            Restart = "on-failure";
+          };
+        };
+      };
+
       # TODO: refactor
       # https://github.com/xddxdd/nixos-config/blob/a2b7311f03e9dc121f0b3fc844b31068fa076066/nixos/client-apps/fcitx/rime-lantian-custom.nix
 
