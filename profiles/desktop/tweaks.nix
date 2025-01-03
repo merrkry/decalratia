@@ -11,6 +11,13 @@ in
   options.profiles.desktop.tweaks = {
     enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
     powersave = lib.mkEnableOption' { default = config.services.tlp.enable; };
+    scheduler = lib.mkOption {
+      type = lib.types.enum [
+        "eevdf"
+        "scx_lavd"
+      ];
+      default = "eevdf";
+    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -40,10 +47,16 @@ in
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
         '';
       }
-      (lib.mkIf (cfg.powersave && (lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.12")) {
+      (lib.mkIf (cfg.scheduler != "eevdf") {
+        assertions = [
+          {
+            assertion = lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.12";
+            message = "Kernel version 6.12+ is required for scx scheduler";
+          }
+        ];
         services.scx = {
           enable = true;
-          scheduler = "scx_lavd";
+          scheduler = cfg.scheduler;
         };
       })
     ]
