@@ -1,7 +1,7 @@
 builds:
   - include:
       - nixosConfigurations.*
-    branch: cache
+    branch: master
   - include:
       - nixosConfigurations.*
     branch: update_flake_lock_action
