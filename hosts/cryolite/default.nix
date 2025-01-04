@@ -12,7 +12,10 @@
       network.tailscale = "client";
     };
     base-devel.enable = true;
-    desktop.enable = true;
+    desktop = {
+      enable = true;
+      tweaks.scheduler = "scx_lavd";
+    };
     tui = {
       helix.enable = true;
       lunarvim.enable = true;
