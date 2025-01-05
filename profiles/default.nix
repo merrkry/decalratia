@@ -32,10 +32,20 @@
       outputs.overlays.modifications
     ];
 
-    users.users = {
-      ${user} = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" ];
+    users = {
+      # https://github.com/NixOS/nixpkgs/pull/199705
+      groups = {
+        ${user} = {
+          gid = 1000;
+        };
+      };
+      users = {
+        ${user} = {
+          isNormalUser = true;
+          extraGroups = [ "wheel" ];
+          group = user;
+          uid = 1000;
+        };
       };
     };
 
