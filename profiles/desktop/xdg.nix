@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  user,
   ...
 }:
 let
@@ -22,6 +23,15 @@ in
         default = [ "gtk" ];
         "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
       };
+    };
+
+    home-manager.users.${user} = {
+
+      xdg.userDirs = {
+        enable = true;
+        createDirectories = true;
+      };
+
     };
 
   };
