@@ -18,9 +18,7 @@
   users.users = {
     ${user} = {
       hashedPassword = "$2b$05$osXmrqxL1gCYfTPfQW9N3eHVygTjjC8T5yWlYuiyHTiOPhZ/eWinC";
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFFvfIUnhsW4vVl/SKxT3Nf1WG4YEVbrM9IlmB4GDp/t merrkry@akahi"
-      ];
+      openssh.authorizedKeys.keys = lib.sshKeys.trusted;
     };
   };
 

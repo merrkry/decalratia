@@ -44,4 +44,18 @@
     "--wayland-text-input-version=3"
     "--password-store=gnome-libsecret"
   ];
+
+  sshKeys =
+    let
+      akahi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFFvfIUnhsW4vVl/SKxT3Nf1WG4YEVbrM9IlmB4GDp/t merrkry@akahi";
+      cryolite = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA+3CQaKRYPGk6yLS6eXhmZk6igB8itkTbkvgfQUvJPW merrkry@cryolite";
+      karanohako = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIAg9BDaX6NeZmA3ux+Zr5Dd6zhBCu4Ohs0iORgojXN4 merrkry@karanohako";
+    in
+    {
+      trusted = [
+        akahi
+        cryolite
+        karanohako
+      ];
+    };
 }

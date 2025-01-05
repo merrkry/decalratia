@@ -27,7 +27,7 @@
     "merrkry" = {
       hashedPassword = "$y$j9T$0RaEe1vqgRkZZPv9t9p6b0$RgZyFgbLwUkFwT7TmLcvn5aTfix7.K3x/hz/FPQP71D";
       isNormalUser = true;
-      openssh.authorizedKeys.keys = [ ];
+      openssh.authorizedKeys.keys = lib.sshKeys.trusted;
       extraGroups = [
         "wheel"
         "libvirtd"
