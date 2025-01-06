@@ -42,6 +42,12 @@ in
       hostName = domainName;
       https = true;
       maxUploadSize = "16G";
+      # https://docs.nextcloud.com/server/30/admin_manual/installation/server_tuning.html
+      phpOptions = {
+        "opcache.jit" = "1255";
+        "opcache.jit_buffer_size" = "8M";
+        "opcache.interned_strings_buffer" = "16";
+      };
     };
     nginx.virtualHosts.${domainName} = {
       forceSSL = true;
