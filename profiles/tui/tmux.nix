@@ -24,6 +24,8 @@ in
           set -g escape-time 10
           set -g mouse on
           set -g renumber-windows on
+          set -g default-terminal "tmux-256color"
+          set-option -as terminal-overrides ",foot:Tc"
         '';
       };
 
