@@ -2,7 +2,6 @@
 {
   programs.steam = {
     enable = true;
-    protontricks.enable = true;
     extraCompatPackages = [ pkgs.proton-ge-bin ];
     localNetworkGameTransfers.openFirewall = true;
     dedicatedServer.openFirewall = true;
