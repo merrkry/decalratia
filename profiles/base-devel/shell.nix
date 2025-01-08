@@ -24,8 +24,9 @@ in
 
     home-manager.users.${user} = {
 
-      home.shellAliases = {
-
+      home = {
+        packages = [ pkgs.foot.terminfo ];
+        shellAliases = { };
       };
 
       programs = {
