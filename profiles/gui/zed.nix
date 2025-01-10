@@ -22,13 +22,6 @@ in
         enable = true;
         userSettings = lib.mkMerge [
           {
-            ui_font_size = 16;
-            buffer_font_size = 14;
-            theme = {
-              mode = "system";
-              light = "Gruvbox Light Soft";
-              dark = "Gruvbox Dark Soft";
-            };
             telemetry = {
               diagnostics = false;
               metrics = false;

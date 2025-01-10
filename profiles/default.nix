@@ -70,14 +70,6 @@
               homeDirectory = config.users.users.${user}.home;
             };
           }
-          (
-            { lib, ... }:
-            {
-              options.programs = lib.optionalAttrs (lib.versionOlder lib.version "25.05pre") {
-                ghostty = lib.mkSinkUndeclaredOptions { };
-              };
-            }
-          )
         ];
       };
     };
