@@ -27,13 +27,13 @@
   linuxPackages_zen = pkgs.linuxPackagesFor (
     pkgs.linuxKernel.kernels.linux_zen.override {
       argsOverride = rec {
-        version = "6.12.8";
+        version = "6.12.9";
         modDirVersion = "${version}-zen1";
         src = pkgs.fetchFromGitHub {
           owner = "zen-kernel";
           repo = "zen-kernel";
           rev = "v${version}-zen1";
-          hash = "sha256-NitUBOdt4cpjGeHSx5jstw9IzO8PN0rwVzajLJ72imY=";
+          hash = "sha256-GC6xD5pIN8pO2wMythctIBh+DL70nD3iIegtrvxUccU=";
         };
       };
     }
