@@ -91,6 +91,8 @@ in
           wantedBy = [ "network-online.target" ];
           serviceConfig = {
             Type = "oneshot";
+            Restart = "on-failure";
+            RestartSec = "60s";
           };
           enableStrictShellChecks = true;
           script = ''

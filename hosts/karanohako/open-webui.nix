@@ -58,8 +58,19 @@ in
     };
   };
 
-  systemd.services.${serviceName} = {
-    after = [ "postgresql.service" ];
-    requires = [ "postgresql.service" ];
+  systemd.services = {
+    # In case open-webui user not created by systemd yet
+    "redis-${serviceName}" = {
+      after = [ "${serviceName}.service" ];
+      requires = [ "${serviceName}.service" ];
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = "60s";
+      };
+    };
+    ${serviceName} = {
+      after = [ "postgresql.service" ];
+      requires = [ "postgresql.service" ];
+    };
   };
 }
