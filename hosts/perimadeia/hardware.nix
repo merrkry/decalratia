@@ -19,28 +19,61 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems =
+  disko.devices =
     let
-      mkBtrfsMountPoint = subvol: {
-        device = "/dev/disk/by-uuid/df9cc6a2-5479-4ce8-a857-29e4aa67ca8d";
-        fsType = "btrfs";
-        options = [
-          "subvol=${subvol}"
-          "noatime"
-          "compress=zstd"
-        ];
-      };
+      mountOptions = [
+        "compress=zstd"
+        "noatime"
+      ];
     in
     {
-      "/" = mkBtrfsMountPoint "persist";
-      "/boot" = {
-        device = "/dev/disk/by-uuid/f72516c4-a39f-4330-a877-1d73ad6aaa66";
-        fsType = "ext4";
+      disk = {
+        main = {
+          device = "/dev/sda";
+          type = "disk";
+          content = {
+            type = "gpt";
+            partitions = {
+              grub = {
+                size = "1M";
+                type = "EF02"; # for grub MBR
+              };
+              boot = {
+                size = "512M";
+                content = {
+                  type = "filesystem";
+                  format = "ext4";
+                  mountpoint = "/boot";
+                };
+              };
+              root = {
+                size = "100%";
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ];
+                  subvolumes = {
+                    "/@rootfs" = {
+                      inherit mountOptions;
+                      mountpoint = "/";
+                    };
+                    "/@home" = {
+                      inherit mountOptions;
+                      mountpoint = "/home";
+                    };
+                    "/@nix" = {
+                      inherit mountOptions;
+                      mountpoint = "/nix";
+                    };
+                    "/@swap" = {
+                      mountpoint = "/.swapvol";
+                      swap.swapfile.size = "32G";
+                    };
+                  };
+                };
+              };
+            };
+          };
+        };
       };
-      "home" = mkBtrfsMountPoint "home";
-      "/nix" = mkBtrfsMountPoint "nix";
     };
-
-  # TODO: switch to swapfile
-  zramSwap.enable = true;
 }
