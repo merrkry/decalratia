@@ -47,6 +47,14 @@ in
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
         '';
       }
+      # use if-then-else here will cause infinite recursion
+      (lib.mkIf (cfg.scheduler == "eevdf") {
+        services.ananicy = {
+          enable = true;
+          package = pkgs.ananicy-cpp;
+          rulesProvider = pkgs.ananicy-rules-cachyos;
+        };
+      })
       (lib.mkIf (cfg.scheduler != "eevdf") {
         assertions = [
           {
