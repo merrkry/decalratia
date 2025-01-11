@@ -1,8 +1,0 @@
-builds:
-  - include:
-      - nixosConfigurations.*
-    branch: master
-  - include:
-      - nixosConfigurations.*
-    branch: update_flake_lock_action
-  - include: []
