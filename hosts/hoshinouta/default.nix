@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/hoshinouta/nixos.nix" ];
+  imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/hoshinouta" ];
 
   profiles = {
     base = {

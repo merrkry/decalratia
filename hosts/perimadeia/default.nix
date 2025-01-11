@@ -1,6 +1,6 @@
 { inputs, lib, ... }:
 {
-  imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/perimadeia/nixos.nix" ];
+  imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/perimadeia" ];
 
   profiles = {
     base = {
@@ -18,6 +18,11 @@
       extraGroups = [ "wheel" ];
       linger = true;
     };
+  };
+
+  sops = {
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+    defaultSopsFile = "${inputs.secrets}/perimadeia/secrets.yaml";
   };
 
   time.timeZone = "Europe/Berlin";

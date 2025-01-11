@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/sapphire/nixos.nix" ];
+  imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/sapphire" ];
 
   profiles = {
     base = {
