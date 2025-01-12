@@ -30,12 +30,6 @@ in
         listen = "[::]:${toString port}";
         api-endpoint = "https://nix-cache.merrkry.com/";
         database.url = "postgres:///${serviceName}?host=/run/postgresql";
-        storage = {
-          type = "s3";
-          region = "eu-central-003";
-          bucket = "nix-cache-merrkry-com";
-          endpoint = "https://s3.eu-central-003.backblazeb2.com";
-        };
         chunking = {
           nar-size-threshold = 64 * 1024; # 64 KiB
           min-size = 16 * 1024; # 16 KiB

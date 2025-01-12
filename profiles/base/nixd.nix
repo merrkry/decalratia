@@ -47,8 +47,8 @@ in
                 # "@wheel"
                 "remote-deployer"
               ];
-              substituters = [ "https://nix-cache.merrkry.com/s3" ];
-              trusted-public-keys = [ "s3:nWGYPAetx+CSk8VZCxb7mXQpK1ue6com52oMSPFxUN0=" ];
+              substituters = [ "https://nix-cache.merrkry.com/local" ];
+              trusted-public-keys = [ "local:/LodgQCkIp8Acygs/V5XSqhxchExvXnzf1BXDwuAqNk=" ];
               flake-registry = "";
               nix-path = config.nix.nixPath;
             };
