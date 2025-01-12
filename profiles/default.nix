@@ -10,6 +10,7 @@
   imports = [
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
+    inputs.niri-flake.nixosModules.niri
     inputs.stylix.nixosModules.stylix
     inputs.lanzaboote.nixosModules.lanzaboote
     inputs.nixos-mailserver.nixosModules.mailserver
@@ -48,6 +49,8 @@
         };
       };
     };
+
+    niri-flake.cache.enable = false;
 
     services.fwupd.enable = lib.mkDefault (
       config.hardware.cpu.intel.updateMicrocode || config.hardware.cpu.amd.updateMicrocode

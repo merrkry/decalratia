@@ -10,15 +10,11 @@ let
   cfg = config.profiles.desktop.niri;
 in
 {
-  imports = [ inputs.niri-flake.nixosModules.niri ];
-
   options.profiles.desktop.niri = {
     enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
   };
 
   config = lib.mkIf cfg.enable {
-
-    niri-flake.cache.enable = false;
 
     programs.niri = {
       enable = true;
