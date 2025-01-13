@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  user,
+  ...
+}:
 let
   cfg = config.profiles.base-devel.containers;
 in
@@ -31,6 +36,14 @@ in
     };
 
     virtualisation.oci-containers.backend = "podman";
+
+    home-manager.users.${user} = {
+
+      home.sessionVariables = {
+        DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock";
+      };
+
+    };
 
   };
 }
