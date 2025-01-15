@@ -78,7 +78,11 @@ in
                     "Mod+Q".action = close-window;
                     "Mod+Shift+M".action = fullscreen-window;
                     "Mod+M".action = maximize-column;
+                    "Mod+F".action = switch-focus-between-floating-and-tiling;
+                    "Mod+Shift+f".action = toggle-window-floating;
                     "Mod+C".action = center-column;
+                    "Mod+BracketLeft".action = consume-or-expel-window-left;
+                    "Mod+BracketRight".action = consume-or-expel-window-right;
                     "Mod+V".action.spawn = [
                       "sh"
                       "-c"
@@ -92,10 +96,12 @@ in
                     ];
                     "Print".action = screenshot;
                     "Mod+Shift+E".action = quit;
-                    "Mod+Minus".action = set-column-width "-5%";
-                    "Mod+BracketLeft".action = set-column-width "-25%";
-                    "Mod+Equal".action = set-column-width "+5%";
-                    "Mod+BracketRight".action = set-column-width "+25%";
+                    "Mod+Minus".action = set-column-width "-10%";
+                    "Mod+Shift+Minus".action = set-window-height "-10%";
+                    "Mod+Equal".action = set-column-width "+10%";
+                    "Mod+Shift+Equal".action = set-window-height "+10%";
+                    "Mod+R".action = switch-preset-column-width;
+                    "Mod+Shift+R".action = reset-window-height;
                     "XF86MonBrightnessDown".action.spawn = [
                       "${lib.getExe pkgs.brightnessctl}"
                       "set"
@@ -115,6 +121,12 @@ in
                         "${sharedKeys}+Down".action = hmConfig.lib.niri.actions.${mkAction "down"};
                         "${sharedKeys}+J".action = hmConfig.lib.niri.actions.${mkAction "down"};
                       };
+                      mkVerticalBindsList' = sharedKeys: mkAction: {
+                        "${sharedKeys}+Page_Up".action = hmConfig.lib.niri.actions.${mkAction "up"};
+                        "${sharedKeys}+I".action = hmConfig.lib.niri.actions.${mkAction "up"};
+                        "${sharedKeys}+Page_Down".action = hmConfig.lib.niri.actions.${mkAction "down"};
+                        "${sharedKeys}+U".action = hmConfig.lib.niri.actions.${mkAction "down"};
+                      };
                       mkHorizontalBindsList = sharedKeys: mkAction: {
                         "${sharedKeys}+Left".action = hmConfig.lib.niri.actions.${mkAction "left"};
                         "${sharedKeys}+H".action = hmConfig.lib.niri.actions.${mkAction "left"};
@@ -127,15 +139,34 @@ in
                           (mkVerticalBindsList sharedKeys mkAction)
                           (mkHorizontalBindsList sharedKeys mkAction)
                         ]);
+                      mkVerticalScrollBindsList = sharedKeys: mkAction: {
+                        "${sharedKeys}+WheelScrollUp" = {
+                          cooldown-ms = 150;
+                          action = hmConfig.lib.niri.actions.${mkAction "up"};
+                        };
+                        "${sharedKeys}+WheelScrollDown" = {
+                          cooldown-ms = 150;
+                          action = hmConfig.lib.niri.actions.${mkAction "down"};
+                        };
+                      };
+                      # there seems to be natural scroll
+                      mkHorizontalScrollBindsList = sharedKeys: mkAction: {
+                        "${sharedKeys}+WheelScrollLeft".action = hmConfig.lib.niri.actions.${mkAction "right"};
+                        "${sharedKeys}+WheelScrollRight".action = hmConfig.lib.niri.actions.${mkAction "left"};
+                      };
                     in
                     lib.mkMerge [
                       (mkHorizontalBindsList "Mod" (d: "focus-column-${d}"))
-                      (mkVerticalBindsList "Mod" (d: "focus-window-or-workspace-${d}"))
+                      (mkVerticalBindsList "Mod" (d: "focus-window-${d}"))
                       (mkHorizontalBindsList "Mod+Ctrl" (d: "move-column-${d}"))
-                      (mkHorizontalBindsList "Mod+Alt" (d: "consume-or-expel-window-${d}"))
-                      (mkVerticalBindsList "Mod+Ctrl+Alt" (d: "move-workspace-${d}"))
-                      (mkDirectedBindsList "Mod+Ctrl+Alt+Shift" (d: "move-workspace-to-monitor-${d}"))
-                      (mkVerticalBindsList "Mod+Ctrl" (d: "move-window-${d}-or-to-workspace-${d}"))
+                      (mkVerticalBindsList "Mod+Ctrl" (d: "move-window-${d}"))
+                      (mkDirectedBindsList "Mod+Shift" (d: "focus-monitor-${d}"))
+                      (mkDirectedBindsList "Mod+Shift+Ctrl" (d: "move-column-to-monitor-${d}"))
+                      (mkVerticalBindsList' "Mod" (d: "focus-workspace-${d}"))
+                      (mkVerticalBindsList' "Mod+Ctrl" (d: "move-column-to-workspace-${d}"))
+                      (mkVerticalBindsList' "Mod+Shift" (d: "move-workspace-${d}"))
+                      (mkVerticalScrollBindsList "Mod" (d: "focus-workspace-${d}"))
+                      (mkHorizontalScrollBindsList "Mod" (d: "focus-column-${d}"))
                     ]
                   )
                   (
@@ -236,6 +267,36 @@ in
                     { app-id = "^thunderbird$"; }
                   ];
                   open-on-workspace = "communication";
+                }
+                # Somehow doesn't work as well
+                # {
+                #   matches = [
+                #     {
+                #       app-id = "^io\.github\.kukuruzka165\.materialgram$";
+                #       title = "^媒体查看器$"; # `Media viewer`
+                #     }
+                #   ];
+                #   open-floating = true;
+                # }
+                {
+                  matches = [
+                    {
+                      app-id = "^firefox$";
+                      title = "^画中画$"; # `Picture-in-Picture`
+                    }
+                  ];
+                  open-floating = true;
+                  default-floating-position = {
+                    x = 32;
+                    y = 32;
+                    relative-to = "bottom-right";
+                  };
+                  default-column-width.proportion = 0.125;
+                  default-window-height.proportion = 0.125;
+                }
+                {
+                  matches = [ { app-id = "^xdg-desktop-portal-gtk$"; } ];
+                  open-floating = true;
                 }
               ];
 
