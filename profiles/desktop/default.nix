@@ -45,7 +45,6 @@ in
       mpv.enable = true;
       rofi.enable = true;
       swaync.enable = true;
-      thunderbird.enable = true;
     };
 
     programs = {
