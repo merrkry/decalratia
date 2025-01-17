@@ -40,6 +40,8 @@ in
       sops
 
       trash-cli
+
+      neovim
     ];
 
     profiles = {
