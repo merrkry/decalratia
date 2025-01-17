@@ -1,0 +1,22 @@
+{
+    "linux-zen": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "linux-zen",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "zen-kernel",
+            "repo": "zen-kernel",
+            "rev": "v6.12.10-zen1",
+            "sha256": "sha256-ODSBD2e2znYIiuoAg+rBTYqZclkt14PozTYrCi1bo80=",
+            "type": "github"
+        },
+        "version": "v6.12.10-zen1"
+    }
+}

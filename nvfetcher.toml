@@ -1,0 +1,4 @@
+[linux-zen]
+src.github = "zen-kernel/zen-kernel"
+src.include_regex = "-zen1$"
+fetch.github = "zen-kernel/zen-kernel"

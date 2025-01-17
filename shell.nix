@@ -7,5 +7,6 @@ pkgs.mkShell {
     nixd
     nixfmt-rfc-style
     nh
+    nvfetcher
   ];
 }

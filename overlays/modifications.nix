@@ -26,16 +26,20 @@
 
   linuxPackages_zen = pkgs.linuxPackagesFor (
     pkgs.linuxKernel.kernels.linux_zen.override {
-      argsOverride = rec {
-        version = "6.12.9";
-        modDirVersion = "${version}-zen1";
-        src = pkgs.fetchFromGitHub {
-          owner = "zen-kernel";
-          repo = "zen-kernel";
-          rev = "v${version}-zen1";
-          hash = "sha256-GC6xD5pIN8pO2wMythctIBh+DL70nD3iIegtrvxUccU=";
+      argsOverride =
+        let
+          nvfetcher = (builtins.fromJSON (builtins.readFile ../versions/generated.json)).linux-zen;
+        in
+        rec {
+          version = builtins.elemAt (builtins.match "^v?([0-9]+\.[0-9]+\.[0-9]+)-zen1$" nvfetcher.version) 0;
+          modDirVersion = "${version}-zen1";
+          src = pkgs.fetchFromGitHub {
+            owner = "zen-kernel";
+            repo = "zen-kernel";
+            rev = "v${version}-zen1";
+            hash = nvfetcher.src.sha256;
+          };
         };
-      };
     }
   );
 
