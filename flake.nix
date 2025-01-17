@@ -110,7 +110,7 @@
         "perimadeia" = {
           channel = "stable";
           hostPlatform = "x86_64-linux";
-          stateVersion = "24.05";
+          stateVersion = "24.11";
         };
 
         "sapphire" = {
