@@ -31,16 +31,6 @@ in
               "C++" = {
                 format_on_save = "on";
               };
-              "Java" = {
-                format_on_save = "on";
-                formatter.external = {
-                  command = "${lib.getExe pkgs.google-java-format}";
-                  arguments = [
-                    "--aosp"
-                    "-" # read from stdin
-                  ];
-                };
-              };
               "Markdown" = {
                 soft_wrap = "editor_width";
               };
@@ -70,10 +60,6 @@ in
             lsp = {
               "clangd" = {
                 binary.path = "${lib.getExe' pkgs.clang-tools "clangd"}";
-              };
-              "jdtls" = {
-                binary.path = "${lib.getExe pkgs.jdt-language-server}";
-                initialization_options.settings.java.jdt.ls.lombokSupport.enabled = true;
               };
               "nixd" = {
                 binary.path = "${lib.getExe pkgs.nixd}";
