@@ -82,6 +82,7 @@
     { self, ... }@inputs:
     let
       inherit (self) outputs;
+      lib = inputs.nixpkgs-unstable.lib;
       machines = {
         "akahi" = {
           channel = "unstable";
@@ -203,5 +204,14 @@
         system: deployLib: deployLib.deployChecks self.deploy
       ) inputs.deploy-rs.lib;
 
+      build = lib.pipe machines [
+        (lib.mapAttrsToList (
+          hostName: properties: {
+            ${properties.hostPlatform}.${hostName} =
+              self.nixosConfigurations.${hostName}.config.system.build.toplevel;
+          }
+        ))
+        (lib.foldAttrs (lib.recursiveUpdate) { })
+      ];
     };
 }
