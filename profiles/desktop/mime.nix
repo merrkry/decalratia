@@ -18,6 +18,7 @@ in
     home-manager.users.${user} = {
 
       home.packages = with pkgs; [
+        foliate
         evince
         eog
       ];
@@ -34,6 +35,7 @@ in
           defaultApplications = lib.mkMerge [
             {
               "application/pdf" = [ "org.gnome.Evince.desktop" ];
+              "application/epub+zip" = [ "com.github.johnfactotum.Foliate.desktop" ];
               "x-scheme-handler/http" = browser;
               "x-scheme-handler/https" = browser;
 
