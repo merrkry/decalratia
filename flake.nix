@@ -180,25 +180,48 @@
         }
       ) machines;
 
-      deploy = {
-        sshUser = "remote-deployer";
-        nodes = builtins.mapAttrs (
-          hostName:
-          {
-            hostPlatform,
-            remoteBuild ? true,
-            ...
-          }:
-          {
-            hostname = hostName;
-            profiles.system = {
-              user = "root";
-              path = inputs.deploy-rs.lib.${hostPlatform}.activate.nixos self.nixosConfigurations.${hostName};
-            };
-            inherit remoteBuild;
-          }
-        ) machines;
-      };
+      deploy =
+        # Overlay to use deploy-rs from nixpkgs for deployment
+        # Seems too heavy to import nixpkgs twice. Looking for a fix.
+        let
+          deployPkgs =
+            system:
+            (import inputs.nixpkgs-unstable {
+              inherit system;
+              overlays = [
+                inputs.deploy-rs.overlays.default
+                (final: prev: {
+                  deploy-rs =
+                    let
+                      pkgs = import inputs.nixpkgs-unstable { inherit system; };
+                    in
+                    {
+                      inherit (pkgs) deploy-rs; # use prev instead of pkgs will cause error
+                      lib = prev.deploy-rs.lib;
+                    };
+                })
+              ];
+            });
+        in
+        {
+          sshUser = "remote-deployer";
+          nodes = builtins.mapAttrs (
+            hostName:
+            {
+              hostPlatform,
+              remoteBuild ? true,
+              ...
+            }:
+            {
+              hostname = hostName;
+              profiles.system = {
+                user = "root";
+                path = (deployPkgs hostPlatform).deploy-rs.lib.activate.nixos self.nixosConfigurations.${hostName};
+              };
+              inherit remoteBuild;
+            }
+          ) machines;
+        };
 
       checks = builtins.mapAttrs (
         system: deployLib: deployLib.deployChecks self.deploy
