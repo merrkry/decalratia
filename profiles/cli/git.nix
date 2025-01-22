@@ -24,6 +24,7 @@ in
 
         userName = "merrkry";
         userEmail = "merrkry@tsubasa.moe";
+        ignores = [ ".direnv" ];
 
         extraConfig = {
           safe.directory = "*";

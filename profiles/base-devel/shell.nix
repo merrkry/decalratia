@@ -37,6 +37,13 @@ in
             exec ${lib.getExe' pkgs.fish "fish"} $LOGIN_OPTION
           fi
         '';
+        direnv = {
+          enable = true;
+          config = {
+            global.hide_env_diff = true; # only hide unreadable part instead of completely disable logging
+          };
+          nix-direnv.enable = true;
+        };
         fish.enable = true;
       };
 
