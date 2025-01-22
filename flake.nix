@@ -83,6 +83,11 @@
     let
       inherit (self) outputs;
       lib = inputs.nixpkgs-unstable.lib;
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+      forAllSystems = inputs.nixpkgs-unstable.lib.genAttrs systems;
       machines = {
         "akahi" = {
           channel = "unstable";
@@ -179,6 +184,26 @@
           ];
         }
       ) machines;
+
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = import inputs.nixpkgs-unstable { inherit system; };
+        in
+        {
+          default =
+            with pkgs;
+            mkShell {
+              nativeBuildInputs = [
+                deploy-rs
+                nixd
+                nixfmt-rfc-style
+                nh
+                nvfetcher
+              ];
+            };
+        }
+      );
 
       deploy =
         # Overlay to use deploy-rs from nixpkgs for deployment
