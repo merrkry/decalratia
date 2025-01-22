@@ -23,6 +23,7 @@
       })
       jetbrains.idea-ultimate
       materialgram
+      xournalpp
     ];
   };
 

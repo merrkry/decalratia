@@ -4,5 +4,6 @@
     jetbrains.idea-ultimate
     materialgram
     (obsidian.override { commandLineArgs = lib.ChromiumArgs; })
+    xournalpp
   ];
 }
