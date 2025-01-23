@@ -13,11 +13,10 @@
             "name": null,
             "owner": "zen-kernel",
             "repo": "zen-kernel",
-            "rev": "v6.13-zen1",
-            "sha256": "sha256-SK9NhJZTYKUxPcl4jt0NFKqIBir4B0cwSJ3+a/Zaayc=",
-            "sparseCheckout": [],
+            "rev": "v6.12.10-zen1",
+            "sha256": "sha256-ODSBD2e2znYIiuoAg+rBTYqZclkt14PozTYrCi1bo80=",
             "type": "github"
         },
-        "version": "v6.13-zen1"
+        "version": "v6.12.10-zen1"
     }
 }
