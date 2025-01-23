@@ -23,10 +23,5 @@
     };
   };
 
-  sops = {
-    age.keyFile = "/var/lib/sops-nix/key.txt";
-    defaultSopsFile = "${inputs.secrets}/karanohako/secrets.yaml";
-  };
-
   time.timeZone = "Europe/Berlin";
 }

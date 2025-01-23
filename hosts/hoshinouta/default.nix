@@ -22,11 +22,6 @@
     };
   };
 
-  sops = {
-    age.keyFile = "/var/lib/sops-nix/key.txt";
-    defaultSopsFile = "${inputs.secrets}/hoshinouta/secrets.yaml";
-  };
-
   time.timeZone = "Europe/Vienna";
 
   services.nginx.enable = true;
