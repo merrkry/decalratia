@@ -5,7 +5,7 @@ in
 {
   sops.secrets = {
     "mailserver/users/mastodon/raw".owner = config.services.mastodon.user;
-    "mastodon-s3".owner = config.services.mastodon.user;
+    "mastodon".owner = config.services.mastodon.user;
   };
 
   services.opensearch.enable = true;
@@ -40,7 +40,7 @@ in
       AUTHORIZED_FETCH = "true";
     };
 
-    extraEnvFiles = [ config.sops.secrets."mastodon-s3".path ];
+    extraEnvFiles = [ config.sops.secrets."mastodon".path ];
   };
 
   # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/web-apps/mastodon.nix
