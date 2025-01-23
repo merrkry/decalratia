@@ -31,8 +31,12 @@
           nvfetcher = (builtins.fromJSON (builtins.readFile ../versions/generated.json)).linux-zen;
         in
         rec {
-          version = builtins.elemAt (builtins.match "^v?([0-9]+\.[0-9]+\.[0-9]+)-zen1$" nvfetcher.version) 0;
-          modDirVersion = "${version}-zen1";
+          version = builtins.elemAt (builtins.match "^v?([0-9]+\.[0-9]+\.[0-9]+|[0-9]+\.[0-9]+)-zen1$" nvfetcher.version) 0;
+          modDirVersion =
+            if (builtins.match "^[0-9]+\.[0-9]+$" version != null) then
+              "${version}.0-zen1"
+            else
+              "${version}-zen1";
           src = pkgs.fetchFromGitHub {
             owner = "zen-kernel";
             repo = "zen-kernel";
