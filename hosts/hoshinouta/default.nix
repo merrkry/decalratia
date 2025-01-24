@@ -34,5 +34,7 @@
     mautrix-telegram = 29317; # This should match the app service registration file, which is in secrets
     vaultwarden = 10005;
     mastodon = 10007;
+    grafana = 10008;
+    prometheus = 10009;
   };
 }
