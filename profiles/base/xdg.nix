@@ -15,15 +15,6 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    programs.npm = lib.mkIf config.npm.enable {
-      npmrc = ''
-        prefix=''${XDG_DATA_HOME}/npm
-        cache=''${XDG_CACHE_HOME}/npm
-        init-module=''${XDG_CONFIG_HOME}/npm/config/npm-init.js
-        tmp=''${XDG_RUNTIME_DIR}/npm
-      '';
-    };
-
     home-manager.users.${user} =
       let
         hmConfig = config.home-manager.users.${user};
@@ -31,30 +22,40 @@ in
       {
 
         home = {
-          sessionVariables = {
-            XDG_DATA_HOME = hmConfig.xdg.dataHome;
-            XDG_CONFIG_HOME = hmConfig.xdg.configHome;
-            XDG_STATE_HOME = hmConfig.xdg.stateHome;
-            XDG_CACHE_HOME = hmConfig.xdg.cacheHome;
+          sessionVariables =
+            let
+              # might need a better way to ref XDG_RUNTIME_DIR
+              runtimeDir = "/run/user/${toString config.users.users.${user}.uid}";
+            in
+            {
+              XDG_DATA_HOME = hmConfig.xdg.dataHome;
+              XDG_CONFIG_HOME = hmConfig.xdg.configHome;
+              XDG_STATE_HOME = hmConfig.xdg.stateHome;
+              XDG_CACHE_HOME = hmConfig.xdg.cacheHome;
 
-            # data
-            CARGO_HOME = "${hmConfig.xdg.dataHome}/cargo";
-            GRADLE_USER_HOME = "${hmConfig.xdg.dataHome}/gradle";
+              # data
+              CARGO_HOME = "${hmConfig.xdg.dataHome}/cargo";
+              GRADLE_USER_HOME = "${hmConfig.xdg.dataHome}/gradle";
 
-            # config
+              # config
+              NPM_CONFIG_INIT_MODULE = "${hmConfig.xdg.configHome}/npm/config/npm-init.js";
 
-            # state
+              # state
 
-            # cache
-            CUDA_CACHE_PATH = "${hmConfig.xdg.cacheHome}/nv";
+              # cache
+              CUDA_CACHE_PATH = "${hmConfig.xdg.cacheHome}/nv";
+              NPM_CONFIG_CACHE = "${hmConfig.xdg.cacheHome}/npm";
 
-            # disable
-            PYTHONSTARTUP =
-              (pkgs.writeText "start.py" ''
-                import readline
-                readline.write_history_file = lambda *args: None
-              '').outPath;
-          };
+              # runtime
+              NPM_CONFIG_TMP = "${runtimeDir}/npm";
+
+              # disable
+              PYTHONSTARTUP =
+                (pkgs.writeText "start.py" ''
+                  import readline
+                  readline.write_history_file = lambda *args: None
+                '').outPath;
+            };
 
           shellAliases = {
             "rm" = "rm -i";

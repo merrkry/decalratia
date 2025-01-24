@@ -32,9 +32,9 @@ in
       fd
       _7zz
 
-      nodejs # npm will NOT install this
-      python3
       gcc
+      python3
+      nodejs
 
       age
       sops

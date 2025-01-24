@@ -1,9 +1,4 @@
-{
-  inputs,
-  lib,
-  user,
-  ...
-}:
+{ lib, user, ... }:
 {
   imports = lib.mkModulesList ./.;
 
