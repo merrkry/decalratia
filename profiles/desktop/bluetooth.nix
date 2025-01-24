@@ -22,6 +22,7 @@ in
       settings = {
         General = {
           Experimental = true;
+          FastConnectable = true;
         };
       };
     };
