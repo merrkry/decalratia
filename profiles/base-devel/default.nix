@@ -39,8 +39,6 @@ in
       age
       sops
 
-      trash-cli
-
       neovim
     ];
 
@@ -48,6 +46,7 @@ in
       cli = {
         git.enable = true;
         starship.enable = true;
+        trash-cli.enable = true;
       };
       tui = {
         tmux.enable = true;
