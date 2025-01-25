@@ -42,7 +42,7 @@ in
             Service = {
               Type = "notify";
               ExecStartPre = ''
-                -${pkgs.coreutils-full}/bin/mkdir -p ${path}
+                -${lib.getExe' pkgs.coreutils-full "mkdir"} -p ${path}
               '';
               ExecStart = ''
                 ${lib.getExe' pkgs.rclone "rclone"} mount \
@@ -54,10 +54,11 @@ in
                   --transfers 1024 \
                   --checkers 1024 \
                   --drive-chunk-size 128M \
+                  --allow-non-empty \
                   ${name}: ${path}
               '';
-              ExecStop = ''
-                ${pkgs.fuse}/bin/fusermount -u ${path}
+              ExecStopPost = ''
+                -${lib.getExe' pkgs.fuse3 "fusermount3"} -uz ${path}
               '';
               Restart = "on-failure";
               RestartSec = 60;
