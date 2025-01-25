@@ -12,7 +12,10 @@
       network.tailscale = "client";
     };
     base-devel.enable = true;
-    desktop.enable = true;
+    desktop = {
+      enable = true;
+      waybar.backlightDevice = "intel_backlight";
+    };
     tui = {
       helix.enable = true;
       lunarvim.enable = true;

@@ -28,8 +28,35 @@ in
 
     home-manager.users.${user} = {
 
-      programs.swaylock.enable = true;
+      programs = {
+        swaylock.enable = true;
+      };
 
+      services = {
+        swayidle = {
+          enable = true;
+          events = [
+            {
+              event = "lock";
+              command = lib.getExe pkgs.swaylock;
+            }
+            {
+              event = "before-sleep";
+              command = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
+            }
+          ];
+          timeouts = [
+            {
+              timeout = 300;
+              command = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
+            }
+            # {
+            #   timeout = 1800;
+            #   command = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
+            # }
+          ];
+        };
+      };
     };
 
   };

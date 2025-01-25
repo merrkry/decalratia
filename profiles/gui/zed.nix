@@ -101,7 +101,7 @@ in
                 assistant_v2.enabled = false;
                 chat_panel = {
                   dock = "left";
-                  button = false;
+                  button = "never";
                 };
               }
           )

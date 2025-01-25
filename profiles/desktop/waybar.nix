@@ -14,7 +14,7 @@ in
     # TODO: accept a list of devices
     backlightDevice = lib.mkOption {
       type = lib.types.str;
-      default = "intel_backlight";
+      default = null;
       description = "The backlight device to control";
     };
   };
@@ -43,20 +43,28 @@ in
               modules-center = [ "clock" ];
               modules-right = [
                 "systemd-failed-units"
-                "tray"
                 "privacy"
                 # "mpris"
                 "backlight"
                 "wireplumber"
                 "battery"
-                "custom/notification"
+                "idle_inhibitor"
+                "group/minimized"
               ];
               "backlight" = {
                 device = cfg.backlightDevice;
                 format = "{percent}%  {icon}";
                 format-icons = [
-                  ""
-                  # ""
+                  "󱩎"
+                  "󱩏"
+                  "󱩐"
+                  "󱩑"
+                  "󱩒"
+                  "󱩓"
+                  "󱩔"
+                  "󱩕"
+                  "󱩖"
+                  "󰛨"
                 ];
                 # too sensitive :(
                 on-scroll-up = "${lib.getExe pkgs.brightnessctl} set +1%";
@@ -96,6 +104,23 @@ in
                 on-click = "${lib.getExe' hmConfig.services.swaync.package "swaync-client"} -t -sw";
                 on-click-right = "${lib.getExe' hmConfig.services.swaync.package "swaync-client"} -d -sw";
                 escape = true;
+              };
+              "group/minimized" = {
+                orientation = "horizontal";
+                modules = [
+                  "custom/notification"
+                  "tray"
+                ];
+                drawer = {
+                  transition-duration = 500;
+                };
+              };
+              "idle_inhibitor" = {
+                format = "{icon}";
+                format-icons = {
+                  activated = "";
+                  deactivated = "";
+                };
               };
               # "mpris" = {
               #   format = "{player_icon} {dynamic}";
