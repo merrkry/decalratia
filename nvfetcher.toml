@@ -1,4 +1,5 @@
 [linux-zen]
-src.github = "zen-kernel/zen-kernel"
-src.include_regex = "-zen1$"
+src.github_tag = "zen-kernel/zen-kernel"
+src.include_regex = "^.*zen1$"
+#src.sort_version_key = "vercmp"
 fetch.github = "zen-kernel/zen-kernel"
