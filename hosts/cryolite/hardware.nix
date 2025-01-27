@@ -2,7 +2,6 @@
   inputs,
   lib,
   modulesPath,
-  pkgs,
   ...
 }:
 {
@@ -32,7 +31,6 @@
     };
     kernelModules = [ "kvm-amd" ];
     kernelParams = [ ];
-    kernelPackages = pkgs.linuxPackages_testing; # suspension breaks on 6.12
   };
 
   disko.devices = {
