@@ -47,9 +47,6 @@
     }
   );
 
-  # Directly overriding looking-glass-git will cause the deriviation of kvmfr module to be changed.
-  # This will require the patches in kvmfr also be removed.
-  # As the kernel modules are a bit tricky to overlay, generating a new package seems to be the best option.
   looking-glass-client-git = pkgs.looking-glass-client.overrideAttrs (
     finalAttrs: oldAttrs: {
       src = pkgs.fetchFromGitHub {
