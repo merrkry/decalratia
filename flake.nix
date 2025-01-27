@@ -198,6 +198,7 @@
                 deploy-rs
                 nixd
                 nixfmt-rfc-style
+                nix-tree
                 nh
                 nvfetcher
               ];
