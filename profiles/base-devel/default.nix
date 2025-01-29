@@ -31,6 +31,7 @@ in
       ripgrep
       fd
       _7zz
+      bat
 
       gcc
       python3
