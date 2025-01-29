@@ -215,7 +215,7 @@ in
                 # comma separated, see xkeyboard-config(7)
                 # keyboard.xkb.options = "caps:swapescape"; # replaced by xremap, which also works on xwayland
                 warp-mouse-to-focus = true;
-                focus-follows-mouse.enable = true;
+                focus-follows-mouse.enable = false;
                 workspace-auto-back-and-forth = true;
               };
 
@@ -231,9 +231,9 @@ in
               };
 
               layout = {
-                gaps = 6;
-                default-column-width.proportion = 0.5;
                 always-center-single-column = true;
+                center-focused-column = "on-overflow";
+                default-column-width.proportion = 0.5;
               };
 
               window-rules = [
