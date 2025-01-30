@@ -47,9 +47,17 @@ in
       passwordFilesLocation = "/var/lib/nixos";
     };
 
-    systemd.user.extraConfig = ''
-      DefaultLimitNOFILE=524288
-    '';
+    systemd = {
+      extraConfig = ''
+        DefaultLimitNOFILE=2048:2097152
+      '';
+
+      tmpfiles.rules = [ "w! /sys/kernel/mm/ksm/run - - - - 1" ];
+
+      user.extraConfig = ''
+        DefaultLimitNOFILE=1024:1048576
+      '';
+    };
 
     users.mutableUsers = false;
 
