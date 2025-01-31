@@ -12,7 +12,6 @@
       podman-compose
       distrobox
       (obsidian.override { commandLineArgs = lib.ChromiumArgs; })
-      neovim
       mangohud
       starsector
       (prismlauncher.override {
@@ -24,6 +23,7 @@
       jetbrains.idea-ultimate
       materialgram
       xournalpp
+      kdePackages.kdenlive
     ];
   };
 

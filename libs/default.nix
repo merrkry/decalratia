@@ -37,7 +37,7 @@
       visible = false;
     };
 
-  ChromiumArgs = builtins.foldl' (x: y: x + " " + y) "" [
+  ChromiumArgs = [
     "--ozone-platform-hint=auto"
     "--enable-features=WaylandWindowDecorations"
     "--enable-wayland-ime"

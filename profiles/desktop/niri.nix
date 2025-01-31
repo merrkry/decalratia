@@ -303,8 +303,9 @@ in
           };
 
         home.packages = with pkgs; [
-          xwayland-run
           cage
+          xorg.xrandr
+          xwayland-run
         ];
 
         systemd.user.services = {

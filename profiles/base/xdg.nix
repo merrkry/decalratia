@@ -68,6 +68,17 @@ in
           historyFile = "${hmConfig.xdg.stateHome}/bash/history";
         };
 
+        xdg = {
+          enable = true;
+
+          configFile = {
+            "go/env".text = ''
+              GOPATH=${hmConfig.xdg.cacheHome}/go
+              GOBIN=${hmConfig.xdg.stateHome}/go/bin
+            '';
+          };
+        };
+
       };
 
   };

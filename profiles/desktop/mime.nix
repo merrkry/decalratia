@@ -26,8 +26,8 @@ in
       xdg.mimeApps =
         let
           browser = [
-            "firefox.desktop"
             "chromium-browser.desktop"
+            "firefox.desktop"
           ];
         in
         {
