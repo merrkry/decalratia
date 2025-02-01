@@ -15,21 +15,29 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    xdg.portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-      config.common = {
-        default = [ "gtk" ];
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-      };
-    };
-
     home-manager.users.${user} = {
 
-      xdg.userDirs = {
-        enable = true;
-        createDirectories = true;
+      xdg = {
+        portal = {
+          enable = true;
+          xdgOpenUsePortal = true;
+          configPackages = [ config.programs.niri.package ];
+          extraPortals = with pkgs; [
+            gnome-keyring
+            xdg-desktop-portal-gnome
+            xdg-desktop-portal-gtk
+          ];
+          config.common = {
+            default = [ "gtk" ];
+            "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+            "org.freedesktop.portal.Secret" = [ "gnome-keyring" ];
+          };
+        };
+
+        userDirs = {
+          enable = true;
+          createDirectories = true;
+        };
       };
 
     };

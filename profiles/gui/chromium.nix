@@ -17,12 +17,17 @@ in
 
     home-manager.users.${user} = {
 
-      home.packages = with pkgs; [
-        (ungoogled-chromium.override {
-          commandLineArgs = lib.ChromiumArgs;
-          enableWideVine = true;
-        })
-      ];
+      programs.chromium = {
+        enable = true;
+        package = pkgs.ungoogled-chromium.override { enableWideVine = true; };
+        commandLineArgs = lib.chromiumArgs ++ [ "--password-store=gnome-libsecret" ];
+        extensions = [
+          {
+            id = "ocaahdebbfolfmndjeplogmgcagdmblk";
+            updateUrl = "https://raw.githubusercontent.com/NeverDecaf/chromium-web-store/refs/heads/master/updates.xml";
+          }
+        ];
+      };
 
     };
 

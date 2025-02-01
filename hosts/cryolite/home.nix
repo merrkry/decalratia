@@ -4,7 +4,7 @@
     distrobox
     jetbrains.idea-ultimate
     materialgram
-    (obsidian.override { commandLineArgs = lib.ChromiumArgs; })
+    (obsidian.override { commandLineArgs = lib.chromiumArgs; })
     xournalpp
   ];
 }

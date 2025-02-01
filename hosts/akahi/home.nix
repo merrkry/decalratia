@@ -11,7 +11,7 @@
       tsukimi
       podman-compose
       distrobox
-      (obsidian.override { commandLineArgs = lib.ChromiumArgs; })
+      (obsidian.override { commandLineArgs = lib.chromiumArgs; })
       mangohud
       starsector
       (prismlauncher.override {

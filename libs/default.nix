@@ -37,12 +37,11 @@
       visible = false;
     };
 
-  ChromiumArgs = [
+  chromiumArgs = [
     "--ozone-platform-hint=auto"
     "--enable-features=WaylandWindowDecorations"
     "--enable-wayland-ime"
     "--wayland-text-input-version=3"
-    "--password-store=gnome-libsecret"
   ];
 
   sshKeys =

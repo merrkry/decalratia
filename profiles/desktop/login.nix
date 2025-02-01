@@ -23,6 +23,7 @@ in
     };
 
     security.pam = {
+      # greetd cannot be configured by `login` provided by services.gnome.gnome-keyring
       services."greetd".enableGnomeKeyring = true;
     };
 
