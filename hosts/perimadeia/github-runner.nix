@@ -6,6 +6,7 @@
     extraPackages = with pkgs; [
       attic-client
       nix-fast-build
+      nvfetcher
     ];
     replace = true;
     tokenFile = config.sops.secrets."github-runner/pat".path;
