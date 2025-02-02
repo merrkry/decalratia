@@ -60,8 +60,9 @@ in
       programs = {
         atuin.enable = true;
         btop.enable = true;
-        zoxide.enable = true;
         fzf.enable = true;
+        tmux-sessionizer.enable = true;
+        zoxide.enable = true;
       };
 
     };
