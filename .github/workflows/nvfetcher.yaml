@@ -18,7 +18,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m 'nvfetcher: bump'
+          git commit -m 'nvfetcher: bump' || echo "Nothing to commit."
       - name: connect to attic
         run: |
           attic login --set-default atticd http://localhost:8080/ ${{ secrets.ATTIC_TOKEN }}
