@@ -11,7 +11,6 @@ in
 {
   options.profiles.desktop.waybar = {
     enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
-    # TODO: accept a list of devices
     backlightDevice = lib.mkOption {
       type = lib.types.str;
       default = null;
