@@ -2,28 +2,20 @@
 {
   home = {
     packages = with pkgs; [
-      imagemagick
-      ghostscript_headless
-      nali
-      q
-      gparted
       anki
-      tsukimi
-      podman-compose
+      fractal
       distrobox
-      (obsidian.override { commandLineArgs = lib.chromiumArgs; })
-      mangohud
-      starsector
-      (prismlauncher.override {
-        jdks = [
-          # TODO: package graalvm-ee
-          jdk17
-        ];
-      })
+      gparted
+      imagemagick
       jetbrains.idea-ultimate
-      materialgram
-      xournalpp
       kdePackages.kdenlive
+      materialgram
+      nali
+      (obsidian.override { commandLineArgs = lib.chromiumArgs; })
+      podman-compose
+      q
+      tsukimi
+      xournalpp
     ];
   };
 
