@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   user,
@@ -15,9 +16,11 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
+
     programs.niri = {
       enable = true;
-      package = pkgs.niri;
+      package = pkgs.niri-unstable;
     };
 
     home-manager.users.${user} =

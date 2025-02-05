@@ -15,6 +15,7 @@
             "repo": "zen-kernel",
             "rev": "v6.13.1-zen1",
             "sha256": "sha256-ZW6pRKDz9dgH6WJHG+P3h7M1xzc+OU608AufQ6WGQtg=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v6.13.1-zen1"
