@@ -25,7 +25,7 @@ in
         noto-fonts
         dejavu_fonts
 
-        noto-fonts-color-emoji
+        apple-color-emoji
 
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
@@ -47,17 +47,7 @@ in
         enable = true;
         useEmbeddedBitmaps = true;
 
-        # https://catcat.cc/post/2021-03-07/
-        localConf = ''
-          <match target="pattern">
-            <test name="family">
-              <string>system-ui</string>
-            </test>
-            <edit name="family" mode="prepend" binding="strong">
-              <string>sans-serif</string>
-            </edit>
-          </match>
-        '';
+        localConf = (builtins.readFile ./fontconfig.xml);
 
         defaultFonts = {
           sansSerif = [
@@ -66,7 +56,7 @@ in
             "Noto Sans CJK TC"
             "Noto Sans CJK JP"
             "Noto Sans CJK KR"
-            "Noto Color Emoji"
+            "Apple Color Emoji"
             "Symbols Nerd Font"
           ];
 
@@ -77,7 +67,7 @@ in
             "Noto Serif CJK TC"
             "Noto Serif CJK JP"
             "Noto Serif CJK KR"
-            "Noto Color Emoji"
+            "Apple Color Emoji"
             "Symbols Nerd Font"
           ];
 
@@ -87,11 +77,12 @@ in
             "Noto Sans Mono CJK TC"
             "Noto Sans Mono CJK JP"
             "Noto Sans Mono CJK KR"
-            "Noto Color Emoji"
+            "Apple Color Emoji"
             "Symbols Nerd Font Mono"
           ];
 
-          emoji = [ "Noto Color Emoji" ];
+          emoji = [ "Apple Color Emoji" ];
+
         };
 
         subpixel.rgba = "rgb";
