@@ -19,7 +19,6 @@
     };
     tui = {
       helix.enable = true;
-      lunarvim.enable = true;
     };
     gui = {
       zed.enable = true;

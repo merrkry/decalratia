@@ -18,7 +18,6 @@
     };
     tui = {
       helix.enable = true;
-      lunarvim.enable = true;
     };
     gui = {
       vscode.enable = true;

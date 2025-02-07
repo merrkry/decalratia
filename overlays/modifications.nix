@@ -1,29 +1,6 @@
 { pkgs, ... }:
 {
 
-  # https://gitlab.com/asus-linux/asusctl/-/issues/550
-  # https://discourse.nixos.org/t/is-it-possible-to-override-cargosha256-in-buildrustpackage/4393/4
-  asusctl = pkgs.callPackage pkgs.asusctl.override {
-    rustPlatform = pkgs.rustPlatform // {
-      buildRustPackage =
-        args:
-        pkgs.rustPlatform.buildRustPackage (
-          args
-          // {
-            src = pkgs.fetchFromGitLab {
-              owner = "asus-linux";
-              repo = "asusctl";
-              rev = "e7c4619ee9bc241d155b2f948aaa3968c515c217";
-              hash = "sha256-U2e7Qw+X56P1yjtvM4JPxd8t8a4S2pB0aUPO9W8CZb0=";
-            };
-            cargoLock = null;
-            useFetchCargoVendor = true;
-            cargoHash = "sha256-khb3QpRz0tTD+ISx8P8yeLPyyO+av2yV92ZxTc9o5kw=";
-          }
-        );
-    };
-  };
-
   linuxPackages_zen = pkgs.linuxPackagesFor (
     pkgs.linuxKernel.kernels.linux_zen.override {
       argsOverride =
