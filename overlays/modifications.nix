@@ -6,18 +6,21 @@
       argsOverride =
         let
           nvfetcher = (builtins.fromJSON (builtins.readFile ../versions/generated.json)).linux-zen;
+          versions = builtins.match "^v?([0-9]+\.[0-9]+\.[0-9]+|[0-9]+\.[0-9]+)-zen?([0-9]+)$" nvfetcher.version;
+          kernelVer = builtins.elemAt versions 0;
+          patchVer = builtins.elemAt versions 1;
         in
         rec {
-          version = builtins.elemAt (builtins.match "^v?([0-9]+\.[0-9]+\.[0-9]+|[0-9]+\.[0-9]+)-zen1$" nvfetcher.version) 0;
+          version = kernelVer;
           modDirVersion =
             if (builtins.match "^[0-9]+\.[0-9]+$" version != null) then
-              "${version}.0-zen1"
+              "${version}.0-zen${patchVer}"
             else
-              "${version}-zen1";
+              "${version}-zen${patchVer}";
           src = pkgs.fetchFromGitHub {
             owner = "zen-kernel";
             repo = "zen-kernel";
-            rev = "v${version}-zen1";
+            rev = "v${version}-zen${patchVer}";
             hash = nvfetcher.src.sha256;
           };
         };
