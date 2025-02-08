@@ -2,34 +2,6 @@
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <!-- https://jsonformatter.org/xml-formatter -->
 <fontconfig>
-	<!-- Always prefer emojis even if the original font would provide a glyph -->
-	<alias binding="weak">
-		<family>monospace</family>
-		<prefer>
-			<family>emoji</family>
-		</prefer>
-	</alias>
-	<alias binding="weak">
-		<family>sans-serif</family>
-		<prefer>
-			<family>emoji</family>
-		</prefer>
-	</alias>
-	<alias binding="weak">
-		<family>serif</family>
-		<prefer>
-			<family>emoji</family>
-		</prefer>
-	</alias>
-	<!-- Add Symbols Nerd Font as a global fallback -->
-	<match target="pattern">
-		<test name="family" compare="not_eq">
-			<string>Symbols Nerd Font</string>
-		</test>
-		<edit name="family" mode="append">
-			<string>Symbols Nerd Font</string>
-		</edit>
-	</match>
 	<!-- Set default system-ui font -->
 	<match target="pattern">
 		<test name="family">
