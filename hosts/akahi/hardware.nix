@@ -70,6 +70,45 @@
     power-profiles-daemon.enable = false;
     supergfxd.enable = false;
     thermald.enable = true;
+    tlp = {
+      enable = true;
+      settings = {
+        START_CHARGE_THRESH_BAT = "60";
+        STOP_CHARGE_THRESH_BAT1 = "80";
+
+        PLATFORM_PROFILE_ON_AC = "performance";
+        PLATFORM_PROFILE_ON_BAT = "quiet";
+
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
+
+        CPU_MIN_PERF_ON_AC = "0";
+        CPU_MAX_PERF_ON_AC = "100";
+        CPU_MIN_PERF_ON_BAT = "0";
+        CPU_MAX_PERF_ON_BAT = "40";
+
+        CPU_BOOST_ON_AC = "1";
+        CPU_BOOST_ON_BAT = "0";
+
+        CPU_HWP_DYN_BOOST_ON_AC = "1";
+        CPU_HWP_DYN_BOOST_ON_BAT = "0";
+
+        RUNTIME_PM_ON_AC = "auto";
+
+        PCIE_ASPM_ON_AC = "default";
+        PCIE_ASPM_ON_BAT = "powersupersave";
+      };
+    };
+  };
+
+  systemd = {
+    tmpfiles.rules = [
+      "w- /sys/devices/platform/asus-nb-wmi/nv_dynamic_boost - - - - 25"
+      "w- /sys/devices/platform/asus-nb-wmi/nv_temp_target - - - - 87"
+      "w- /sys/devices/platform/asus-nb-wmi/panel_od - - - - 0"
+      "w- /sys/devices/platform/asus-nb-wmi/ppt_pl1_spl - - - - 45"
+      "w- /sys/devices/platform/asus-nb-wmi/ppt_pl2_sppt - - - - 65"
+    ];
   };
 
   swapDevices = [
@@ -77,33 +116,4 @@
     { device = "/dev/disk/by-uuid/6b2a6972-1f3c-45f3-a28a-ad2f215f9881"; }
   ];
 
-  services.tlp = {
-    enable = true;
-    settings = {
-      START_CHARGE_THRESH_BAT = "60";
-      STOP_CHARGE_THRESH_BAT1 = "80";
-
-      PLATFORM_PROFILE_ON_AC = "performance";
-      PLATFORM_PROFILE_ON_BAT = "quiet";
-
-      CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
-
-      CPU_MIN_PERF_ON_AC = "0";
-      CPU_MAX_PERF_ON_AC = "100";
-      CPU_MIN_PERF_ON_BAT = "0";
-      CPU_MAX_PERF_ON_BAT = "40";
-
-      CPU_BOOST_ON_AC = "1";
-      CPU_BOOST_ON_BAT = "0";
-
-      CPU_HWP_DYN_BOOST_ON_AC = "1";
-      CPU_HWP_DYN_BOOST_ON_BAT = "0";
-
-      RUNTIME_PM_ON_AC = "auto";
-
-      PCIE_ASPM_ON_AC = "default";
-      PCIE_ASPM_ON_BAT = "powersupersave";
-    };
-  };
 }
