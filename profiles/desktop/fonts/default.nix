@@ -26,6 +26,7 @@ in
         dejavu_fonts
 
         apple-color-emoji
+        apple-system-fonts
 
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif

@@ -2,7 +2,6 @@
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <!-- https://jsonformatter.org/xml-formatter -->
 <fontconfig>
-	<!-- Set default system-ui font -->
 	<match target="pattern">
 		<test name="family">
 			<string>system-ui</string>
@@ -11,10 +10,25 @@
 			<string>sans-serif</string>
 		</edit>
 	</match>
-	<!-- Workaround silly frontend code with the existence of apple-color-emoji -->
 	<match target="pattern">
 		<test name="family">
-			<string>BlinkMacSystemFont</string>
+			<string>ui-sans-serif</string>
+		</test>
+		<edit name="family" mode="prepend" binding="strong">
+			<string>sans-serif</string>
+		</edit>
+	</match>
+	<match target="pattern">
+		<test name="family">
+			<string>ui-monospace</string>
+		</test>
+		<edit name="family" mode="prepend" binding="strong">
+			<string>monospace</string>
+		</edit>
+	</match>
+	<match target="pattern">
+		<test name="family">
+			<string>-apple-system</string>
 		</test>
 		<edit name="family" mode="prepend" binding="strong">
 			<string>sans-serif</string>
