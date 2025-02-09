@@ -60,6 +60,7 @@
     xremap = {
       url = "github:xremap/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.home-manager.follows = "home-manager-unstable";
     };
 
     # server-oriented, stable branch
