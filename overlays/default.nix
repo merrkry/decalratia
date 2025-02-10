@@ -8,14 +8,14 @@
   unstablePackages = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
       system = final.system;
-      config.allowUnfree = true;
+      inherit (final) config;
     };
   };
 
   stablePackages = final: prev: {
     stable = import inputs.nixpkgs-stable {
       system = final.system;
-      config.allowUnfree = true;
+      inherit (final) config;
     };
   };
 }
