@@ -63,7 +63,23 @@ in
           };
 
         nixpkgs = {
-          config.allowUnfree = true;
+          config.allowUnfreePredicate =
+            pkg:
+            builtins.elem (lib.getName pkg) [
+              "code"
+              "idea-ultimate"
+              "nvidia-persistenced"
+              "nvidia-x11"
+              "obsidian"
+              "p7zip"
+              "starsector"
+              "steam"
+              "steam-unwrapped"
+              "ungoogled-chromium"
+              "ungoogled-chromium-unwrapped"
+              "vscode"
+              "widevine-cdm"
+            ];
         };
 
         # keep flakes inputs not garbage collected
