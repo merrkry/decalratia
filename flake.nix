@@ -129,6 +129,7 @@
       };
     in
     {
+      packages = forAllSystems (system: import ./pkgs inputs.nixpkgs-unstable.legacyPackages.${system});
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = builtins.mapAttrs (
