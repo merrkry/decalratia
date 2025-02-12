@@ -62,8 +62,29 @@ in
             };
           };
 
-        nixpkgs = {
-          config.allowUnfreePredicate =
+        nixpkgs.config = rec {
+          allowNonSource = false;
+          allowNonSourcePredicate =
+            pkg:
+            (
+              (builtins.elem (lib.getName pkg) [
+                "ant"
+                "cargo-bootstrap"
+                "dart"
+                "electron"
+                "github-runner"
+                "go"
+                "proton-ge-bin"
+                "rustc-bootstrap"
+                "rustc-bootstrap-wrapper"
+                "opensearch"
+                "sof-firmware"
+                "temurin-bin"
+              ])
+              || (allowUnfreePredicate pkg)
+            );
+
+          allowUnfreePredicate =
             pkg:
             builtins.elem (lib.getName pkg) [
               "code"
