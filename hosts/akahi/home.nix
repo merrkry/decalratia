@@ -11,6 +11,7 @@
       kdePackages.kdenlive
       materialgram
       nali
+      nodejs
       (obsidian.override { commandLineArgs = lib.chromiumArgs; })
       podman-compose
       q

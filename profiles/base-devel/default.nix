@@ -18,29 +18,22 @@ in
   config = lib.mkIf cfg.enable {
 
     environment.systemPackages = with pkgs; [
-      fastfetch
-
-      tree
-      gdu
-      just
-      yq
-      jq
-      rclone
-      dos2unix
-      tlrc
-      ripgrep
-      fd
-      _7zz
-      bat
-
-      gcc
-      python3
-      nodejs
-
       age
-      sops
-
+      bat
+      fastfetch
+      fd
+      gcc
+      gdu
+      jq
+      just
       neovim
+      python3
+      ripgrep
+      rclone
+      sops
+      tlrc
+      tree
+      yq
     ];
 
     profiles = {
@@ -53,6 +46,11 @@ in
         tmux.enable = true;
         yazi.enable = true;
       };
+    };
+
+    programs = {
+      mtr.enable = true;
+      nexttrace.enable = true;
     };
 
     home-manager.users.${user} = {
