@@ -266,6 +266,7 @@ in
                 {
                   matches = [
                     { app-id = "^io\.github\.kukuruzka165\.materialgram$"; }
+                    { app-id = "^QQ$"; }
                     { app-id = "^thunderbird$"; }
                   ];
                   open-on-workspace = "communication";
