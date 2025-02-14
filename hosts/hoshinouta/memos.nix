@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   dataDir = "/var/lib/memos";
 in
@@ -71,7 +76,7 @@ in
       Group = "memogram";
       WorkingDirectory = "/var/lib/memogram";
       StateDirectory = "memogram";
-      ExecStart = "${pkgs.memogram}/bin/memogram";
+      ExecStart = lib.getExe pkgs.unstable.memogram;
       EnvironmentFile = config.sops.secrets."memogram".path;
     };
 

@@ -76,8 +76,13 @@
           (
             { lib, ... }:
             {
-              options.programs = lib.optionalAttrs (lib.versionOlder lib.version "25.05pre") {
-                cavalier = lib.mkSinkUndeclaredOptions { };
+              options = {
+                programs = lib.optionalAttrs (lib.versionOlder lib.version "25.05pre") {
+                  cavalier = lib.mkSinkUndeclaredOptions { };
+                };
+                wayland.windowManager = lib.optionalAttrs (lib.versionOlder lib.version "25.05pre") {
+                  wayfire = lib.mkSinkUndeclaredOptions { };
+                };
               };
             }
           )
