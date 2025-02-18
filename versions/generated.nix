@@ -3,13 +3,13 @@
 {
   linux-zen = {
     pname = "linux-zen";
-    version = "v6.13.2-zen1";
+    version = "v6.13.3-zen1";
     src = fetchFromGitHub {
       owner = "zen-kernel";
       repo = "zen-kernel";
-      rev = "v6.13.2-zen1";
+      rev = "v6.13.3-zen1";
       fetchSubmodules = false;
-      sha256 = "sha256-JAVu75QATw+hhMiG732KUwuTY41HS2F4L9tylhVwdFA=";
+      sha256 = "sha256-AOeQ7pNIbzCY5r9G2cWnplRNs3bIMWqM/efQdu+u//w=";
     };
   };
 }
