@@ -205,6 +205,7 @@ in
                 };
               };
 
+              # TODO: auto cleanup
               screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
 
               hotkey-overlay.skip-at-startup = true;
@@ -241,15 +242,8 @@ in
 
               window-rules = [
                 {
-                  matches = [
-                    {
-                      app-id = "^chrome-nngceckbapebfimnlniiiahkandclblb-Default$";
-                      # won't work with title rule
-                      # guess it's not the original title at startup
-                      # title = "^Bitwarden$";
-                    }
-                  ];
-                  default-column-width.proportion = 0.2;
+                  matches = [ { title = "^_crx_nngceckbapebfimnlniiiahkandclblb$"; } ]; # Bitwarden
+                  open-floating = true;
                 }
                 {
                   matches = [
@@ -265,19 +259,21 @@ in
                 }
                 {
                   matches = [
+                    { title = "^Cinny$"; }
+                    { title = "^Element$"; }
                     { app-id = "^io\.github\.kukuruzka165\.materialgram$"; }
                     { app-id = "^QQ$"; }
                     { app-id = "^thunderbird$"; }
+                    { title = "^Mail - Nextcloud$"; }
                   ];
                   open-on-workspace = "communication";
                 }
-                # Somehow doesn't work as well
                 # {
+                #   # Somehow doesn't work as well
                 #   matches = [
-                #     {
-                #       app-id = "^io\.github\.kukuruzka165\.materialgram$";
-                #       title = "^媒体查看器$"; # `Media viewer`
-                #     }
+                #     # app-id = "^io\.github\.kukuruzka165\.materialgram$";
+                #     { title = "^媒体查看器$"; }
+                #     { title = "^Media viewer$"; }
                 #   ];
                 #   open-floating = true;
                 # }
@@ -285,7 +281,11 @@ in
                   matches = [
                     {
                       app-id = "^firefox$";
-                      title = "^画中画$"; # `Picture-in-Picture`
+                      title = "^画中画$";
+                    }
+                    {
+                      app-id = "^firefox$";
+                      title = "^Picture-in-Picture$";
                     }
                   ];
                   open-floating = true;
