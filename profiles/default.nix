@@ -8,6 +8,7 @@
 }:
 {
   imports = [
+    inputs.lix.nixosModules.default
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     inputs.niri-flake.nixosModules.niri

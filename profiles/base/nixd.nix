@@ -2,7 +2,6 @@
   config,
   inputs,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -24,12 +23,10 @@ in
         nix =
           let
             flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-            unstable = if builtins.hasAttr "unstable" pkgs then pkgs.unstable else pkgs;
           in
           {
-            package = unstable.nixVersions.latest;
             settings = {
-              download-buffer-size = 268435456;
+              # download-buffer-size = 268435456; # not available in lix
               experimental-features = [
                 "nix-command"
                 "flakes"

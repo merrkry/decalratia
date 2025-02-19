@@ -25,6 +25,15 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    lix = {
+      # 2.92 regression https://github.com/NixOS/nixpkgs/pull/375030
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-unstable";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     # general purpose
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
