@@ -20,7 +20,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     environment = {
       # `q /srv 0755 - - -` removed to prevent /srv becreated as subvol
       etc."tmpfiles.d/home.conf".text = ''
@@ -70,12 +69,6 @@ in
     };
 
     home-manager.users.${user} = {
-
-      home.sessionVariables = {
-        # Workaround for https://bugs.kde.org/show_bug.cgi?id=479891
-        QT_SCALE_FACTOR_ROUNDING_POLICY = "RoundPreferFloor";
-      };
-
       programs = {
         foot.enable = true;
       };
@@ -83,8 +76,6 @@ in
       services.gnome-keyring.enable = lib.mkDefault config.services.gnome.gnome-keyring.enable;
 
       systemd.user.tmpfiles.rules = [ "D ${hmConfig.xdg.userDirs.download} - - - 14d -" ];
-
     };
-
   };
 }
