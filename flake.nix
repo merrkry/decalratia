@@ -94,6 +94,8 @@
       };
     };
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.6.0";
+
     # server-oriented, stable branch
 
     nixos-mailserver = {

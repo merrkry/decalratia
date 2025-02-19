@@ -64,7 +64,6 @@ in
     };
 
     services = {
-      flatpak.enable = true;
       gnome.gnome-keyring.enable = true;
       xserver.excludePackages = with pkgs; [ xterm ];
     };

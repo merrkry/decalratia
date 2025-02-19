@@ -67,6 +67,7 @@
       users.${user} = {
         imports = [
           ../modules/home-manager
+          inputs.nix-flatpak.homeManagerModules.nix-flatpak
           {
             home = {
               username = user;

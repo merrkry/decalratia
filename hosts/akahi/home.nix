@@ -43,4 +43,13 @@
       variable-refresh-rate = "on-demand";
     };
   };
+
+  services = {
+    flatpak.packages = [
+      "com.baidu.NetDisk"
+      "com.qq.QQ"
+      "com.tencent.WeChat"
+      "com.usebottles.bottles"
+    ];
+  };
 }
