@@ -8,6 +8,8 @@
 }:
 let
   cfg = config.profiles.desktop.niri;
+  hmConfig = config.home-manager.users.${user};
+  screenshotsPath = "${hmConfig.xdg.userDirs.pictures}/Screenshots";
 in
 {
   options.profiles.desktop.niri = {
@@ -25,7 +27,6 @@ in
 
     home-manager.users.${user} =
       let
-        hmConfig = config.home-manager.users.${user};
         xDisplay = 42;
       in
       {
@@ -205,8 +206,7 @@ in
                 };
               };
 
-              # TODO: auto cleanup
-              screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+              screenshot-path = "${screenshotsPath}/Screenshot from %Y-%m-%d %H-%M-%S.png";
 
               hotkey-overlay.skip-at-startup = true;
 
@@ -312,20 +312,28 @@ in
           xwayland-run
         ];
 
-        systemd.user.services = {
-          "xwayland-satellite" = {
-            Install = {
-              WantedBy = [ "graphical-session.target" ];
-            };
-            Unit = {
-              PartOf = [ "graphical-session.target" ];
-              After = [ "graphical-session.target" ];
-            };
-            Service = {
-              ExecStart = "${lib.getExe pkgs.xwayland-satellite} :${toString xDisplay}";
-              Restart = "on-failure";
+        systemd.user = {
+          services = {
+            "xwayland-satellite" = {
+              Install = {
+                WantedBy = [ "graphical-session.target" ];
+              };
+              Unit = {
+                PartOf = [ "graphical-session.target" ];
+                After = [ "graphical-session.target" ];
+              };
+              Service = {
+                ExecStart = "${lib.getExe pkgs.xwayland-satellite} :${toString xDisplay}";
+                Restart = "on-failure";
+              };
             };
           };
+
+          tmpfiles.rules = [
+            "D ${screenshotsPath} - - - 14d -"
+            "D ${hmConfig.xdg.userDirs.pictures}/Steam - - - 14d -"
+
+          ];
         };
 
       };

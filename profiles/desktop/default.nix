@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.profiles.desktop;
+  hmConfig = config.home-manager.users.${user};
 in
 {
   imports = lib.mkModulesList ./.;
@@ -80,6 +81,8 @@ in
       };
 
       services.gnome-keyring.enable = lib.mkDefault config.services.gnome.gnome-keyring.enable;
+
+      systemd.user.tmpfiles.rules = [ "D ${hmConfig.xdg.userDirs.download} - - - 14d -" ];
 
     };
 
