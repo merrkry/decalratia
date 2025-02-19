@@ -83,6 +83,10 @@ in
           };
         };
       };
+
+      systemd.user.tmpfiles.rules = [
+        "L+ ${hmConfig.xdg.dataHome}/fonts/system - - - - /run/current-system/sw/share/X11/fonts"
+      ];
     };
   };
 }
