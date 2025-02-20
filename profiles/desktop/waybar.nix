@@ -81,7 +81,9 @@ in
                 on-click = "${terminal} ${lib.getExe hmConfig.programs.btop.package}";
               };
               "clock" = {
-                tooltip = false;
+                tooltip = true;
+                format = "{:%H:%M}";
+                tooltip-format = "{:%F, %a, %R}";
               };
               # https://github.com/ErikReider/SwayNotificationCenter?tab=readme-ov-file#waybar-example
               "custom/notification" = {

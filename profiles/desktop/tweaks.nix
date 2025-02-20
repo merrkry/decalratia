@@ -14,6 +14,7 @@ in
     scheduler = lib.mkOption {
       type = lib.types.enum [
         "eevdf"
+        "scx_bpfland"
         "scx_lavd"
       ];
       default = "eevdf";
@@ -33,6 +34,8 @@ in
             "vm.page-cluster" = if config.zramSwap.enable then 0 else 1;
           };
 
+          kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+
           kernelParams = [
             "preempt=full"
             "split_lock_detect=off"
@@ -47,11 +50,14 @@ in
       }
       # use if-then-else here will cause infinite recursion
       (lib.mkIf (cfg.scheduler == "eevdf") {
-        boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
         services.ananicy = {
           enable = true;
           package = pkgs.ananicy-cpp;
           rulesProvider = pkgs.ananicy-rules-cachyos;
+          settings = {
+            # may introduce issues, for example with polkit, according to https://github.com/CachyOS/ananicy-rules/blob/master/ananicy.conf
+            cgroup_realtime_workaround = lib.mkForce false;
+          };
         };
       })
       (lib.mkIf (cfg.scheduler != "eevdf") {
@@ -61,7 +67,6 @@ in
             message = "Kernel version 6.12+ is required for scx scheduler";
           }
         ];
-        boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
         services.scx = {
           enable = true;
           scheduler = cfg.scheduler;

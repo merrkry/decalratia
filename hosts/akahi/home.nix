@@ -3,7 +3,6 @@
   home = {
     packages = with pkgs; [
       anki
-      fractal
       distrobox
       gparted
       imagemagick

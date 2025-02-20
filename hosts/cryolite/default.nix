@@ -14,7 +14,6 @@
     base-devel.enable = true;
     desktop = {
       enable = true;
-      tweaks.scheduler = "scx_lavd";
       waybar.backlightDevice = "amdgpu_bl1";
     };
     tui = {
