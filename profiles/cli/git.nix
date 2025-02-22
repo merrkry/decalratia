@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.profiles.cli.git;
+  hmConfig = config.home-manager.users.${user};
 in
 {
   options.profiles.cli.git = {
@@ -27,10 +28,14 @@ in
         ignores = [ ".direnv" ];
 
         extraConfig = {
-          safe.directory = "*";
-          pull.rebase = true;
-          init.defaultBranch = "master";
+          commit.gpgsign = true;
           credential.helper = "cache";
+          gpg.format = "ssh";
+          init.defaultBranch = "master";
+          pull.rebase = true;
+          safe.directory = "*";
+          tag.gpgSign = true;
+          user.signingkey = "${hmConfig.home.homeDirectory}/.ssh/id_ed25519.pub";
         };
       };
 
