@@ -36,10 +36,15 @@ in
 
           kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
-          kernelParams = [
-            "preempt=full"
-            "split_lock_detect=off"
-          ] ++ (lib.optionals cfg.powersave [ "rcutree.enable_rcu_lazy=1" ]); # https://wiki.cachyos.org/configuration/general_system_tweaks;
+          kernelParams =
+            [ "split_lock_detect=off" ]
+            ++ (
+              if (lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.13") then
+                [ "preempt=lazy" ]
+              else
+                [ "preempt=full" ]
+            )
+            ++ (lib.optionals cfg.powersave [ "rcutree.enable_rcu_lazy=1" ]); # https://wiki.cachyos.org/configuration/general_system_tweaks
         };
 
         services.udev.extraRules = ''
