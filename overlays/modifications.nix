@@ -1,32 +1,5 @@
 { pkgs, ... }:
 {
-
-  linuxPackages_zen = pkgs.linuxPackagesFor (
-    pkgs.linuxKernel.kernels.linux_zen.override {
-      argsOverride =
-        let
-          nvfetcher = (builtins.fromJSON (builtins.readFile ../versions/generated.json)).linux-zen;
-          versions = builtins.match "^v?([0-9]+\.[0-9]+\.[0-9]+|[0-9]+\.[0-9]+)-zen?([0-9]+)$" nvfetcher.version;
-          kernelVer = builtins.elemAt versions 0;
-          patchVer = builtins.elemAt versions 1;
-        in
-        rec {
-          version = kernelVer;
-          modDirVersion =
-            if (builtins.match "^[0-9]+\.[0-9]+$" version != null) then
-              "${version}.0-zen${patchVer}"
-            else
-              "${version}-zen${patchVer}";
-          src = pkgs.fetchFromGitHub {
-            owner = "zen-kernel";
-            repo = "zen-kernel";
-            rev = "v${version}-zen${patchVer}";
-            hash = nvfetcher.src.sha256;
-          };
-        };
-    }
-  );
-
   looking-glass-client-git = pkgs.looking-glass-client.overrideAttrs (
     finalAttrs: oldAttrs: {
       src = pkgs.fetchFromGitHub {
@@ -59,5 +32,4 @@
       '';
     }
   );
-
 }

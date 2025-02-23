@@ -72,6 +72,7 @@
         home-manager.follows = "home-manager-unstable";
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
+        nur.follows = "nur";
       };
     };
 
