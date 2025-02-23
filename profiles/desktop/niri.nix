@@ -330,9 +330,8 @@ in
           };
 
           tmpfiles.rules = [
-            "D ${screenshotsPath} - - - 14d -"
-            "D ${hmConfig.xdg.userDirs.pictures}/Steam - - - 14d -"
-
+            "d ${screenshotsPath} - - - 14d -"
+            "d ${hmConfig.xdg.userDirs.pictures}/Steam - - - 14d -"
           ];
         };
 

@@ -75,7 +75,7 @@ in
 
       services.gnome-keyring.enable = lib.mkDefault config.services.gnome.gnome-keyring.enable;
 
-      systemd.user.tmpfiles.rules = [ "D ${hmConfig.xdg.userDirs.download} - - - 14d -" ];
+      systemd.user.tmpfiles.rules = [ "d ${hmConfig.xdg.userDirs.download} - - - 14d -" ];
     };
   };
 }
