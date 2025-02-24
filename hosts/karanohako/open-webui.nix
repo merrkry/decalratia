@@ -31,7 +31,7 @@ in
     };
     open-webui = {
       enable = true;
-      package = pkgs.unstable.open-webui;
+      package = pkgs.open-webui;
       environment = rec {
         DATABASE_URL = "postgres:///${serviceName}?host=/run/postgresql";
         ENABLE_WEBSOCKET_SUPPORT = "True";

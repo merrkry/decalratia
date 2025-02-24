@@ -76,7 +76,7 @@ in
       Group = "memogram";
       WorkingDirectory = "/var/lib/memogram";
       StateDirectory = "memogram";
-      ExecStart = lib.getExe pkgs.unstable.memogram;
+      ExecStart = lib.getExe pkgs.memogram;
       EnvironmentFile = config.sops.secrets."memogram".path;
     };
 

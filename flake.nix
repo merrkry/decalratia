@@ -2,34 +2,30 @@
   description = "Yet another NixOS flake";
 
   inputs = {
-    nixpkgs-unstable.url = "github:merrkry/nixpkgs/nixos-unstable";
-    home-manager-unstable = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
+    nixpkgs.url = "github:merrkry/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
-    home-manager-stable = {
-      url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs-unstable";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lix = {
       # 2.92 regression https://github.com/NixOS/nixpkgs/pull/375030
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
       inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
+        nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
       };
     };
@@ -40,18 +36,18 @@
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
       url = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
+        nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
         utils.follows = "flake-utils";
       };
@@ -61,15 +57,15 @@
 
     niri-flake = {
       url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
 
     stylix = {
-      url = "github:danth/stylix/master";
+      url = "github:merrkry/stylix/master";
       inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
-        home-manager.follows = "home-manager-unstable";
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
         nur.follows = "nur";
@@ -79,7 +75,7 @@
     nur = {
       url = "github:nix-community/NUR";
       inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
+        nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
         treefmt-nix.follows = "treefmt-nix";
       };
@@ -88,7 +84,7 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
+        nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
       };
@@ -97,8 +93,8 @@
     xremap = {
       url = "github:xremap/nix-flake";
       inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
-        home-manager.follows = "home-manager-unstable";
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
         flake-parts.follows = "flake-parts";
         treefmt-nix.follows = "treefmt-nix";
       };
@@ -111,7 +107,7 @@
     nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
       inputs = {
-        nixpkgs.follows = "nixpkgs-stable";
+        nixpkgs.follows = "nixpkgs";
         nixpkgs-24_11.follows = "nixpkgs-stable";
         flake-compat.follows = "flake-compat";
       };
@@ -129,45 +125,39 @@
     { self, ... }@inputs:
     let
       inherit (self) outputs;
-      lib = inputs.nixpkgs-unstable.lib;
+      lib = inputs.nixpkgs.lib;
       systems = [
         "aarch64-linux"
         "x86_64-linux"
       ];
-      forAllSystems = inputs.nixpkgs-unstable.lib.genAttrs systems;
+      forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
       machines = {
         "akahi" = {
-          channel = "unstable";
           hostPlatform = "x86_64-linux";
           stateVersion = "24.05";
         };
 
         "cryolite" = {
-          channel = "unstable";
           hostPlatform = "x86_64-linux";
           stateVersion = "24.11";
         };
 
         "hoshinouta" = {
-          channel = "stable";
           hostPlatform = "x86_64-linux";
           stateVersion = "24.05";
         };
 
         "karanohako" = {
-          channel = "stable";
           hostPlatform = "x86_64-linux";
           stateVersion = "24.05";
         };
 
         "perimadeia" = {
-          channel = "stable";
           hostPlatform = "x86_64-linux";
           stateVersion = "24.11";
         };
 
         "sapphire" = {
-          channel = "stable";
           hostPlatform = "x86_64-linux";
           stateVersion = "24.11";
           remoteBuild = false;
@@ -175,31 +165,21 @@
       };
     in
     {
-      packages = forAllSystems (system: import ./pkgs inputs.nixpkgs-unstable.legacyPackages.${system});
+      packages = forAllSystems (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = builtins.mapAttrs (
         hostName:
         {
-          channel,
           hostPlatform,
           stateVersion,
           mainUser ? "merrkry",
           ...
         }:
-        let
-          channelInput = inputs."nixpkgs-${channel}";
-          hmInput = inputs."home-manager-${channel}";
-        in
-        channelInput.lib.nixosSystem {
+        inputs.nixpkgs.lib.nixosSystem {
           specialArgs =
             let
-              lib = channelInput.lib.extend self.overlays.extraLibs;
-              # calls flake inputs directly, otherwise causes infinite recursion
-              inputs = self.inputs // {
-                nixpkgs = channelInput;
-                home-manager = hmInput;
-              };
+              lib = inputs.nixpkgs.lib.extend self.overlays.extraLibs;
               user = mainUser;
             in
             {
@@ -215,19 +195,12 @@
             {
               networking = { inherit hostName; };
               nixpkgs = {
-                overlays = [
-                  (
-                    if channelInput == inputs.nixpkgs-unstable then
-                      self.overlays.stablePackages
-                    else
-                      self.overlays.unstablePackages
-                  )
-                ];
+                overlays = [ self.overlays.stablePackages ];
                 inherit hostPlatform;
               };
               system = { inherit stateVersion; };
             }
-            hmInput.nixosModules.home-manager
+            inputs.home-manager.nixosModules.home-manager
             ./profiles
           ];
         }
@@ -236,7 +209,7 @@
       devShells = forAllSystems (
         system:
         let
-          pkgs = import inputs.nixpkgs-unstable { inherit system; };
+          pkgs = import inputs.nixpkgs { inherit system; };
         in
         {
           default =
@@ -260,14 +233,14 @@
         let
           deployPkgs =
             system:
-            (import inputs.nixpkgs-unstable {
+            (import inputs.nixpkgs {
               inherit system;
               overlays = [
                 inputs.deploy-rs.overlays.default
                 (final: prev: {
                   deploy-rs =
                     let
-                      pkgs = import inputs.nixpkgs-unstable { inherit system; };
+                      pkgs = import inputs.nixpkgs { inherit system; };
                     in
                     {
                       inherit (pkgs) deploy-rs; # use prev instead of pkgs will cause error

@@ -82,7 +82,7 @@
       '';
     };
     locations."/" = {
-      root = pkgs.unstable.cinny;
+      root = pkgs.cinny;
       # https://github.com/cinnyapp/cinny/blob/dev/contrib/nginx/cinny.domain.tld.conf
       extraConfig =
         ''

@@ -14,6 +14,7 @@ in
 {
   options.profiles.desktop.niri = {
     enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
+    useUpstreamPackage = lib.mkEnableOption { };
   };
 
   config = lib.mkIf cfg.enable {
@@ -22,7 +23,7 @@ in
 
     programs.niri = {
       enable = true;
-      package = pkgs.niri-unstable;
+      package = if cfg.useUpstreamPackage then pkgs.niri-unstable else pkgs.niri;
     };
 
     home-manager.users.${user} =
