@@ -25,6 +25,10 @@ in
             flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
           in
           {
+            # nix.conf is required during build time, add ! to let it fail silently
+            extraOptions = ''
+              !include ${config.sops.secrets."nix".path}
+            '';
             settings = {
               # download-buffer-size = 268435456; # not available in lix
               experimental-features = [
@@ -98,6 +102,12 @@ in
               "vscode"
               "widevine-cdm"
             ];
+        };
+
+        sops.secrets = {
+          "nix" = {
+            sopsFile = "${inputs.secrets}/secrets.yaml";
+          };
         };
 
         # keep flakes inputs not garbage collected
