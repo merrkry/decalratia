@@ -21,6 +21,7 @@ in
       "${dataDir}:/var/opt/memos"
     ];
     ports = [ "127.0.0.1:${toString config.lib.ports.memos}:5230" ];
+    extraOptions = [ "--pull=newer" ];
   };
 
   # systemd.services."memos" = {

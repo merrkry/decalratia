@@ -20,6 +20,7 @@
       CACHE_TYPE = "redis";
       REDIS_URL = "unix:///var/run/redis.sock";
     };
+    extraOptions = [ "--pull=newer" ];
   };
 
   services.redis.servers."rsshub" = {
