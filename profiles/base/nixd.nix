@@ -48,7 +48,9 @@ in
                 # "@wheel"
                 "remote-deployer"
               ];
-              substituters = [ "https://nix-cache.merrkry.com/local" ];
+              substituters = lib.optionals (config.profiles.base.network.tailscale != null) [
+                "https://nix-cache.merrkry.com/local"
+              ];
               trusted-public-keys = [ "local:/LodgQCkIp8Acygs/V5XSqhxchExvXnzf1BXDwuAqNk=" ];
               flake-registry = "";
               nix-path = config.nix.nixPath;
