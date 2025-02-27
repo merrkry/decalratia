@@ -55,11 +55,14 @@ in
       }
       # use if-then-else here will cause infinite recursion
       (lib.mkIf (cfg.scheduler == "eevdf") {
+        # Disabled as apply_latnice requires a kernel patch that's even not included in cachyos's latest kernel patchset.
+        # Perhaps it's a packaging issue in chaotic-nyx side but it is certain that the rules cannot work as they are on CachyOS.
         services.ananicy = {
-          enable = true;
+          enable = false;
           package = pkgs.ananicy-cpp;
           rulesProvider = pkgs.ananicy-rules-cachyos;
           settings = {
+            apply_latnice = true;
             # may introduce issues, for example with polkit, according to https://github.com/CachyOS/ananicy-rules/blob/master/ananicy.conf
             cgroup_realtime_workaround = lib.mkForce false;
           };

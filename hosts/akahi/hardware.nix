@@ -73,6 +73,9 @@
     tlp = {
       enable = true;
       settings = {
+        SOUND_POWER_SAVE_ON_AC = 0;
+        SOUND_POWER_SAVE_ON_BAT = 10;
+
         START_CHARGE_THRESH_BAT = "60";
         STOP_CHARGE_THRESH_BAT1 = "80";
 
