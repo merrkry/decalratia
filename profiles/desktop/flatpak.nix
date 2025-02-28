@@ -7,6 +7,16 @@
 let
   cfg = config.profiles.desktop.flatpak;
   hmConfig = config.home-manager.users.${user};
+  untrustedFilesystemsOverride = [
+    "xdg-public-share"
+    "!xdg-desktop"
+    "!xdg-documents"
+    "!xdg-download"
+    "!xdg-music"
+    "!xdg-pictures"
+    "!xdg-templates"
+    "!xdg-videos"
+  ];
 in
 {
   options.profiles.desktop.flatpak = {
@@ -32,17 +42,6 @@ in
                 "xdg-data/fonts:ro"
                 "xdg-data/icons:ro"
                 "/run/current-system/sw/share/X11/fonts:ro;"
-                "${hmConfig.home.homeDirectory}/.themes/adw-gtk3:ro"
-
-                hmConfig.xdg.userDirs.publicShare
-
-                "!xdg-desktop"
-                "!xdg-documents"
-                "!xdg-download"
-                "!xdg-music"
-                "!xdg-pictures"
-                "!xdg-templates"
-                "!xdg-videos"
               ];
 
               unset-environment = [
@@ -50,29 +49,44 @@ in
                 "__EGL_VENDOR_LIBRARY_FILENAMES"
               ];
             };
+          };
 
-            Environment = {
-              GTK_THEME = "adw-gtk3";
+          "com.baidu.NetDisk" = {
+            Context = {
+              filesystems = untrustedFilesystemsOverride;
             };
           };
 
           "com.qq.QQ" = {
+            Context = {
+              filesystems = untrustedFilesystemsOverride;
+              sockets = [ "!wayland" ];
+            };
             Environment = {
               GTK_IM_MODULE = "fcitx";
             };
           };
 
           "com.tencent.WeChat" = {
-            Context.unset-environment = [ "QT_AUTO_SCREEN_SCALE_FACTOR" ];
+            Context = {
+              filesystems = untrustedFilesystemsOverride;
+              unset-environment = [ "QT_AUTO_SCREEN_SCALE_FACTOR" ];
+            };
             Environment = {
               "QT_SCALE_FACTOR=" = "1.0";
+            };
+          };
+
+          "com.valvesoftware.Steam" = {
+            Environment = {
+              PATH = "/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/gamescope/bin";
             };
           };
         };
 
         packages = [ "com.github.tchx84.Flatseal" ];
 
-        uninstallUnmanaged = false;
+        uninstallUnmanaged = true;
         uninstallUnused = true;
 
         update = {
