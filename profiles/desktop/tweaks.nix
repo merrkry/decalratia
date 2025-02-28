@@ -25,14 +25,32 @@ in
     lib.mkMerge [
       {
         boot = {
-          kernel.sysctl = {
-            "kernel.panic" = 10;
-            "kernel.sched_cfs_bandwidth_slice_us" = 3000;
-            "kernel.split_lock_mitigate" = 0;
-            "kernel.sysrq" = 1;
-            "vm.max_map_count" = 2147483642;
-            "vm.page-cluster" = if config.zramSwap.enable then 0 else 1;
-          };
+          kernel.sysctl =
+            {
+              "kernel.panic" = 10;
+              "kernel.sched_cfs_bandwidth_slice_us" = 3000;
+              "kernel.split_lock_mitigate" = 0;
+              "kernel.sysrq" = 1;
+              "vm.max_map_count" = 2147483642;
+              "vm.vfs_cache_pressure" = 50;
+              "vm.dirty_bytes" = 268435456;
+              "vm.dirty_background_bytes" = 67108864;
+              "vm.dirty_writeback_centisecs" = 1500;
+            }
+            // (
+              if config.zramSwap.enable then
+                {
+                  "vm.swappiness" = 180;
+                  "vm.page-cluster" = 0;
+                  "vm.watermark_scale_factor" = 125;
+                  "vm.watermark_boost_factor" = 0;
+                }
+              else
+                {
+                  "vm.swappiness" = 10;
+                  "vm.page-cluster" = 1;
+                }
+            );
 
           kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
@@ -52,17 +70,20 @@ in
           ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
         '';
+
+        systemd.tmpfiles.rules = [ "d /var/lib/systemd/coredump 0755 root root 7d" ];
       }
       # use if-then-else here will cause infinite recursion
       (lib.mkIf (cfg.scheduler == "eevdf") {
-        # Disabled as apply_latnice requires a kernel patch that's even not included in cachyos's latest kernel patchset.
-        # Perhaps it's a packaging issue in chaotic-nyx side but it is certain that the rules cannot work as they are on CachyOS.
         services.ananicy = {
-          enable = false;
+          enable = true;
           package = pkgs.ananicy-cpp;
           rulesProvider = pkgs.ananicy-rules-cachyos;
           settings = {
-            apply_latnice = true;
+            # apply_latnice requires a kernel patch that's even not included in cachyos's latest kernel patchset.
+            # Perhaps it's a packaging issue in chaotic-nyx side but it is certain that the rules cannot work as expected as they are on CachyOS.
+            # apply_latnice = true;
+            check_freq = 15;
             # may introduce issues, for example with polkit, according to https://github.com/CachyOS/ananicy-rules/blob/master/ananicy.conf
             cgroup_realtime_workaround = lib.mkForce false;
           };

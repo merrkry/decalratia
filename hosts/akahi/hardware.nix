@@ -106,11 +106,11 @@
 
   systemd = {
     tmpfiles.rules = [
-      "w- /sys/devices/platform/asus-nb-wmi/nv_dynamic_boost - - - - 25"
+      "w- /sys/devices/platform/asus-nb-wmi/nv_dynamic_boost - - - - 5"
       "w- /sys/devices/platform/asus-nb-wmi/nv_temp_target - - - - 87"
       "w- /sys/devices/platform/asus-nb-wmi/panel_od - - - - 0"
       "w- /sys/devices/platform/asus-nb-wmi/ppt_pl1_spl - - - - 45"
-      "w- /sys/devices/platform/asus-nb-wmi/ppt_pl2_sppt - - - - 65"
+      "w- /sys/devices/platform/asus-nb-wmi/ppt_pl2_sppt - - - - 45"
     ];
   };
 
