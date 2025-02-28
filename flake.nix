@@ -30,8 +30,6 @@
       };
     };
 
-    # general purpose
-
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     sops-nix = {
@@ -52,8 +50,6 @@
         utils.follows = "flake-utils";
       };
     };
-
-    # desktop-oriented, unstable branch
 
     niri-flake = {
       url = "github:sodiboo/niri-flake";
@@ -102,8 +98,6 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/v0.6.0";
 
-    # server-oriented, stable branch
-
     nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
       inputs = {
@@ -112,8 +106,6 @@
         flake-compat.follows = "flake-compat";
       };
     };
-
-    # secrets
 
     secrets = {
       url = "github:merrkry/declaratia-secrets";
