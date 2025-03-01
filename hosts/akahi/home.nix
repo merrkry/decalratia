@@ -7,6 +7,7 @@
       gparted
       imagemagick
       jetbrains.idea-ultimate
+      joystickwake
       kdePackages.kdenlive
       materialgram
       nali

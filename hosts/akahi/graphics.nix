@@ -15,6 +15,8 @@
         # Intel GPU Vulkan decode, see https://github.com/mpv-player/mpv/discussions/13909
         ANV_VIDEO_DECODE = "1";
       };
+
+      programs.gamescope.enable = true;
     }
     (lib.mkIf (config.specialisation != { }) {
       boot.extraModprobeConfig = ''
