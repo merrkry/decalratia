@@ -16,8 +16,6 @@ in
   # Archlinux realtime-privileges / CachyOS-Settings
   # https://cmm.github.io/soapbox/the-year-of-linux-on-the-desktop.html
   config = lib.mkIf cfg.enable {
-    boot.kernelParams = [ "threadirqs" ];
-
     environment.etc."wireplumber/main.lua.d/99-alsa-config.lua".text = ''
       -- prepend, otherwise the change-nothing stock config will match first:
       table.insert(alsa_monitor.rules, 1, {
