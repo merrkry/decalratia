@@ -19,6 +19,11 @@
       starsector
       tsukimi
       xournalpp
+
+      go
+      golangci-lint
+      gopls
+      gotools
     ];
   };
 
