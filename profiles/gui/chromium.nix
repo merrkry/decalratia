@@ -19,7 +19,8 @@ in
 
       programs.chromium = {
         enable = true;
-        package = pkgs.ungoogled-chromium.override { enableWideVine = true; };
+        # https://github.com/ungoogled-software/ungoogled-chromium/issues/3226
+        package = pkgs.chromium.override { enableWideVine = true; };
         commandLineArgs = lib.chromiumArgs ++ [ "--password-store=gnome-libsecret" ];
         extensions = [
           {

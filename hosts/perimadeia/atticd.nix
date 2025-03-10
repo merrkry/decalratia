@@ -16,9 +16,6 @@ in
     ];
   };
 
-  # github-runner introduces loads of Microsoft crap, making the predicate list difficult to maintain
-  nixpkgs.config.allowNonSource = true;
-
   security = {
     # Required for atticd-atticadm to work
     polkit.enable = true;

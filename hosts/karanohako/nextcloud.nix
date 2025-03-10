@@ -21,7 +21,7 @@ in
   services = {
     nextcloud = {
       enable = true;
-      package = pkgs.nextcloud30;
+      package = pkgs.nextcloud31;
       config = {
         adminpassFile = config.sops.secrets."nextcloud/adminPass".path;
         dbtype = "pgsql";

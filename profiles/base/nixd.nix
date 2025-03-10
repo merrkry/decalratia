@@ -65,28 +65,7 @@ in
             };
           };
 
-        nixpkgs.config = rec {
-          allowNonSource = false;
-          allowNonSourcePredicate =
-            pkg:
-            (
-              (builtins.elem (lib.getName pkg) [
-                "ant"
-                "cargo-bootstrap"
-                "dart"
-                "electron"
-                "github-runner"
-                "go"
-                "proton-ge-bin"
-                "rustc-bootstrap"
-                "rustc-bootstrap-wrapper"
-                "opensearch"
-                "sof-firmware"
-                "temurin-bin"
-              ])
-              || (allowUnfreePredicate pkg)
-            );
-
+        nixpkgs.config = {
           allowUnfreePredicate =
             pkg:
             builtins.elem (lib.getName pkg) [
@@ -99,6 +78,8 @@ in
               "starsector"
               "steam"
               "steam-unwrapped"
+              "chromium"
+              "chromium-unwrapped"
               "ungoogled-chromium"
               "ungoogled-chromium-unwrapped"
               "vscode"
