@@ -38,8 +38,8 @@ in
 
     profiles = {
       cli = {
+        tide.enable = true;
         git.enable = true;
-        starship.enable = true;
         trash-cli.enable = true;
       };
       tui = {
