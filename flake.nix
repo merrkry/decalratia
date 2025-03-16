@@ -23,7 +23,7 @@
 
     lix = {
       # 2.92 regression https://github.com/NixOS/nixpkgs/pull/375030
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.91.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
@@ -98,8 +98,10 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/v0.6.0";
 
+    # https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/merge_requests/370
     nixos-mailserver = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
+      # url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
+      url = "gitlab:yu-re-ka/nixos-mailserver/a45385de413941dc6aab2fd7c7a34b96b2bc4fc8";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-24_11.follows = "nixpkgs-stable";

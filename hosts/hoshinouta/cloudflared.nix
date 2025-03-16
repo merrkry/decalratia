@@ -1,8 +1,8 @@
 { config, ... }:
 {
   sops.secrets = {
-    "cloudflared/hoshinouta0".owner = config.services.cloudflared.user;
-    "cloudflared/hoshinouta1".owner = config.services.cloudflared.user;
+    "cloudflared/hoshinouta0" = { };
+    "cloudflared/hoshinouta1" = { };
   };
 
   services.cloudflared = {
