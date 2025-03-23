@@ -39,8 +39,8 @@ in
                 "/nix/store:ro"
 
                 "xdg-config/fontconfig:ro;"
-                "xdg-data/fonts:ro"
-                "xdg-data/icons:ro"
+                # "xdg-data/fonts:ro"
+                # "xdg-data/icons:ro"
                 "/run/current-system/sw/share/X11/fonts:ro;"
               ];
 

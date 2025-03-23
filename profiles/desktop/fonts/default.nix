@@ -16,7 +16,10 @@ in
   config = lib.mkIf cfg.enable {
 
     fonts = {
-      fontDir.enable = true;
+      fontDir = {
+        enable = true;
+        decompressFonts = true;
+      };
 
       # https://github.com/NixOS/nixpkgs/blob/fa42b5a5f401aab8a32bd33c9a4de0738180dc59/nixos/modules/config/fonts/packages.nix#L34C1-L41C8
       enableDefaultPackages = true;
@@ -30,10 +33,9 @@ in
 
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
-
         # for compatibility with old app that doesn't support variable fonts
-        noto-fonts-cjk-sans-static
-        noto-fonts-cjk-serif-static
+        nur.repos.wrvsrx.noto-fonts-cjk-sans-fix-weight
+        nur.repos.wrvsrx.noto-fonts-cjk-serif-fix-weight
 
         bookerly
         lxgw-wenkai
