@@ -98,10 +98,8 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/v0.6.0";
 
-    # https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/merge_requests/370
     nixos-mailserver = {
-      # url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
-      url = "gitlab:yu-re-ka/nixos-mailserver/a45385de413941dc6aab2fd7c7a34b96b2bc4fc8";
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-24_11.follows = "nixpkgs-stable";
