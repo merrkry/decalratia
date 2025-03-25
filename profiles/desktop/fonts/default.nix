@@ -34,14 +34,13 @@ in
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
         # for compatibility with old app that doesn't support variable fonts
-        source-han-sans
-        source-han-serif
-        source-han-mono
+        nur.repos.wrvsrx.noto-fonts-cjk-sans-fix-weight
+        nur.repos.wrvsrx.noto-fonts-cjk-serif-fix-weight
 
         bookerly
         lxgw-wenkai
 
-        maple-mono.NF-CN-unhinted
+        jetbrains-mono
         nerd-fonts.symbols-only
 
         ibm-plex
@@ -60,7 +59,8 @@ in
             "Noto Sans CJK TC"
             "Noto Sans CJK JP"
             "Noto Sans CJK KR"
-            "DejaVu Sans"
+            "Apple Color Emoji"
+            "Symbols Nerd Font"
           ];
 
           serif = [
@@ -70,16 +70,17 @@ in
             "Noto Serif CJK TC"
             "Noto Serif CJK JP"
             "Noto Serif CJK KR"
-            "DejaVu Serif"
+            "Apple Color Emoji"
+            "Symbols Nerd Font"
           ];
 
           monospace = [
-            "Maple Mono NF CN"
+            "JetBrains Mono"
             "Noto Sans Mono CJK SC"
             "Noto Sans Mono CJK TC"
             "Noto Sans Mono CJK JP"
             "Noto Sans Mono CJK KR"
-            "DejaVu Sans Mono"
+            "Apple Color Emoji"
             "Symbols Nerd Font Mono"
           ];
 
