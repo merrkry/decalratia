@@ -28,7 +28,10 @@ in
             xdg-desktop-portal-gtk
           ];
           config.common = {
-            default = [ "gtk" ];
+            default = [
+              "gnome"
+              "gtk"
+            ];
             "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
             "org.freedesktop.portal.Secret" = [ "gnome-keyring" ];
           };

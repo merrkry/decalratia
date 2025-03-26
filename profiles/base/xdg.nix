@@ -7,6 +7,9 @@
 }:
 let
   cfg = config.profiles.base.xdg;
+  hmConfig = config.home-manager.users.${user};
+  # might need a better way to ref XDG_RUNTIME_DIR
+  runtimeDir = "/run/user/${toString config.users.users.${user}.uid}";
 in
 {
   options.profiles.base.xdg = {
@@ -14,72 +17,59 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home-manager.users.${user} = {
+      home = {
+        sessionVariables = {
+          XDG_DATA_HOME = hmConfig.xdg.dataHome;
+          XDG_CONFIG_HOME = hmConfig.xdg.configHome;
+          XDG_STATE_HOME = hmConfig.xdg.stateHome;
+          XDG_CACHE_HOME = hmConfig.xdg.cacheHome;
 
-    home-manager.users.${user} =
-      let
-        hmConfig = config.home-manager.users.${user};
-      in
-      {
+          # data
+          CARGO_HOME = "${hmConfig.xdg.dataHome}/cargo";
+          GRADLE_USER_HOME = "${hmConfig.xdg.dataHome}/gradle";
 
-        home = {
-          sessionVariables =
-            let
-              # might need a better way to ref XDG_RUNTIME_DIR
-              runtimeDir = "/run/user/${toString config.users.users.${user}.uid}";
-            in
-            {
-              XDG_DATA_HOME = hmConfig.xdg.dataHome;
-              XDG_CONFIG_HOME = hmConfig.xdg.configHome;
-              XDG_STATE_HOME = hmConfig.xdg.stateHome;
-              XDG_CACHE_HOME = hmConfig.xdg.cacheHome;
+          # config
+          NPM_CONFIG_INIT_MODULE = "${hmConfig.xdg.configHome}/npm/config/npm-init.js";
 
-              # data
-              CARGO_HOME = "${hmConfig.xdg.dataHome}/cargo";
-              GRADLE_USER_HOME = "${hmConfig.xdg.dataHome}/gradle";
+          # state
 
-              # config
-              NPM_CONFIG_INIT_MODULE = "${hmConfig.xdg.configHome}/npm/config/npm-init.js";
+          # cache
+          CUDA_CACHE_PATH = "${hmConfig.xdg.cacheHome}/nv";
+          NPM_CONFIG_CACHE = "${hmConfig.xdg.cacheHome}/npm";
 
-              # state
+          # runtime
+          NPM_CONFIG_TMP = "${runtimeDir}/npm";
 
-              # cache
-              CUDA_CACHE_PATH = "${hmConfig.xdg.cacheHome}/nv";
-              NPM_CONFIG_CACHE = "${hmConfig.xdg.cacheHome}/npm";
-
-              # runtime
-              NPM_CONFIG_TMP = "${runtimeDir}/npm";
-
-              # disable
-              PYTHONSTARTUP =
-                (pkgs.writeText "start.py" ''
-                  import readline
-                  readline.write_history_file = lambda *args: None
-                '').outPath;
-            };
-
-          shellAliases = {
-            "rm" = "rm -i";
-            "wget" = "wget --hsts-file=\"${hmConfig.xdg.dataHome}/wget-hsts\"";
-          };
+          # disable
+          PYTHONSTARTUP =
+            (pkgs.writeText "start.py" ''
+              import readline
+              readline.write_history_file = lambda *args: None
+            '').outPath;
         };
 
-        programs.bash = {
-          enable = true;
-          historyFile = "${hmConfig.xdg.stateHome}/bash/history";
+        shellAliases = {
+          "rm" = "rm -i";
+          "wget" = "wget --hsts-file=\"${hmConfig.xdg.dataHome}/wget-hsts\"";
         };
-
-        xdg = {
-          enable = true;
-
-          configFile = {
-            "go/env".text = ''
-              GOPATH=${hmConfig.xdg.cacheHome}/go
-              GOBIN=${hmConfig.xdg.stateHome}/go/bin
-            '';
-          };
-        };
-
       };
 
+      programs.bash = {
+        enable = true;
+        historyFile = "${hmConfig.xdg.stateHome}/bash/history";
+      };
+
+      xdg = {
+        enable = true;
+
+        configFile = {
+          "go/env".text = ''
+            GOPATH=${hmConfig.xdg.cacheHome}/go
+            GOBIN=${hmConfig.xdg.stateHome}/go/bin
+          '';
+        };
+      };
+    };
   };
 }

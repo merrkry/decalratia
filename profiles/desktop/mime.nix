@@ -18,9 +18,11 @@ in
     home-manager.users.${user} = {
 
       home.packages = with pkgs; [
-        foliate
-        evince
-        eog
+        evince # pdf
+        eog # image
+        foliate # epub
+        kdePackages.dolphin # file
+        nautilus # file
       ];
 
       xdg.mimeApps =
@@ -36,6 +38,10 @@ in
             {
               "application/pdf" = [ "org.gnome.Evince.desktop" ];
               "application/epub+zip" = [ "com.github.johnfactotum.Foliate.desktop" ];
+              "inode/directory" = [
+                "org.gnome.Nautilus"
+                "org.kde.dolphin"
+              ];
               "x-scheme-handler/http" = browser;
               "x-scheme-handler/https" = browser;
 
