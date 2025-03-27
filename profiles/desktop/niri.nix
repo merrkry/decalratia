@@ -238,7 +238,6 @@ in
               layout = {
                 always-center-single-column = true;
                 center-focused-column = "on-overflow";
-                default-column-width.proportion = 0.5;
               };
 
               window-rules = [
