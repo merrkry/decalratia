@@ -3,7 +3,6 @@
   inputs,
   lib,
   outputs,
-  pkgs,
   user,
   ...
 }:
@@ -69,13 +68,20 @@
       users.${user} = {
         imports = [
           ../modules/home-manager
+
           inputs.nix-flatpak.homeManagerModules.nix-flatpak
+
           {
             home = {
               username = user;
               homeDirectory = config.users.users.${user}.home;
             };
           }
+        ];
+
+        disabledModules = [
+          # https://github.com/danth/stylix/issues/865#issuecomment-2661394921
+          "${inputs.stylix}/modules/gnome-text-editor/hm.nix"
         ];
       };
     };
