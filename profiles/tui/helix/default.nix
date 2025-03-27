@@ -110,10 +110,14 @@ in
               cursor-shape = {
                 insert = "bar";
               };
+              end-of-line-diagnostics = "hint";
               idle-timeout = 10;
               indent-guides = {
                 render = true;
                 skip-levels = 1;
+              };
+              inline-diagnostics = {
+                cursor-line = "warning";
               };
               line-number = "relative";
               lsp = {
