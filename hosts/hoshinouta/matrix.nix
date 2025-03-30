@@ -123,6 +123,8 @@
       };
       bridge = {
         displayname_template = "{displayname}";
+        delivery_error_reports = true;
+        incoming_bridge_error_reports = true;
         relay_user_distinguishers = [ ];
         animated_sticker = {
           target = "webp";
@@ -137,7 +139,14 @@
           "*" = "relaybot";
           "@merrkry:tsubasa.moe" = "admin";
         };
+        relaybot = {
+          authless_portals = false;
+        };
       };
+      telegram.force_refresh_interval_seconds = 300;
     };
+    registerToSynapse = false; # handle registration file manually
   };
+
+  systemd.services.mautrix-telegram.serviceConfig.RuntimeMaxSec = 900;
 }
