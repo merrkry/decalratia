@@ -36,5 +36,6 @@
     mastodon = 10007;
     grafana = 10008;
     prometheus = 10009;
+    kanidm = 10010;
   };
 }
