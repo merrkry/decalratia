@@ -38,6 +38,20 @@ in
     extraConfig = {
       WEB_DOMAIN = domain;
       AUTHORIZED_FETCH = "true";
+
+      OIDC_ENABLED = "true";
+      OIDC_DISPLAY_NAME = "id.tsubasa.moe";
+      OIDC_ISSUER = "https://id.tsubasa.moe/oauth2/openid/mastodon";
+      OIDC_DISCOVERY = "true";
+      OIDC_SCOPE = "openid,profile,email";
+      OIDC_UID_FIELD = "preferred_username";
+      OIDC_REDIRECT_URI = "https://${domain}/auth/auth/openid_connect/callback";
+      OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED = "true";
+      OIDC_CLIENT_ID = "mastodon";
+      OIDC_USE_PKCE = "true";
+      # https://github.com/mastodon/mastodon/issues/20144
+      # https://github.com/mastodon/mastodon/pull/16221#issuecomment-2440825500
+      ALLOW_UNSAFE_AUTH_PROVIDER_REATTACH = "true";
     };
 
     extraEnvFiles = [ config.sops.secrets."mastodon".path ];
