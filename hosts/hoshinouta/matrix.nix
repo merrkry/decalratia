@@ -11,6 +11,8 @@
     "matrix-synapse/extra-config".owner = config.systemd.services.matrix-synapse.serviceConfig.User;
     "matrix-synapse/signing-key".owner = config.systemd.services.matrix-synapse.serviceConfig.User;
     "matrix-synapse/mautrix-telegram".owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+    "matrix-synapse/oidc-client-secret".owner =
+      config.systemd.services.matrix-synapse.serviceConfig.User;
     "mautrix-telegram" = { };
   };
 
@@ -55,6 +57,29 @@
         remote_media_lifetime = "14d";
       };
       forgotten_room_retention_period = "28d";
+
+      oidc_providers = [
+        {
+          idp_id = "kanidm";
+          idp_name = "id.tsubasa.moe";
+          issuer = "https://id.tsubasa.moe/oauth2/openid/synapse";
+          client_id = "synapse";
+          client_secret_path = config.sops.secrets."matrix-synapse/oidc-client-secret".path;
+          scopes = [
+            "email"
+            "openid"
+            "profile"
+          ];
+          allow_existing_users = true;
+          backchannel_logout_enabled = true; # not sure if supported by kanidm
+          user_mapping_provider.config = {
+            confirm_localpart = true;
+            localpart_template = "{{ user.preferred_username }}";
+            display_name_template = "{{ user.name }}";
+            email_template = "{{ user.email }}";
+          };
+        }
+      ];
     };
 
     extraConfigFiles = [ config.sops.secrets."matrix-synapse/extra-config".path ];
@@ -70,10 +95,12 @@
       }
     ];
     locations."~ ^(/_matrix|/_synapse/client)" = {
+      recommendedProxySettings = false; # handle manually
       proxyPass = "http://127.0.0.1:${toString config.lib.ports.matrix-synapse}";
       extraConfig = ''
-        proxy_set_header X-Forwarded-For $remote_addr;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        # pass the headers from cloudflared directly
+        # proxy_set_header X-Forwarded-For $remote_addr;
+        # proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Host $host;
 
         client_max_body_size 50M;
