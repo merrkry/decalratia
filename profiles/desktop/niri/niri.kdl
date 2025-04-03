@@ -1,0 +1,196 @@
+input {
+    touchpad {
+        tap
+        dwt
+        dwtp
+    }
+    warp-mouse-to-focus
+    workspace-auto-back-and-forth
+}
+
+output "Beihai Century Joint Innovation Technology Co.,Ltd P2710V 0000000000000" {
+    scale 1.5
+    position x=0 y=0
+    mode "3840x2160@143.998000"
+    variable-refresh-rate on-demand=true
+}
+output "Chimei Innolux Corporation 0x1540 Unknown" {
+    scale 1.6
+    position x=2560 y=540
+    variable-refresh-rate on-demand=true
+}
+
+binds {
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+BracketLeft { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+C { center-column; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    Mod+Ctrl+Down { move-window-down; }
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+I { move-column-to-workspace-up; }
+    Mod+Ctrl+J { move-window-down; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+L { move-column-right; }
+    Mod+Ctrl+Left { move-column-left; }
+    "Mod+Ctrl+Page_Down" { move-column-to-workspace-down; }
+    "Mod+Ctrl+Page_Up" { move-column-to-workspace-up; }
+    Mod+Ctrl+Right { move-column-right; }
+    Mod+Ctrl+U { move-column-to-workspace-down; }
+    Mod+Ctrl+Up { move-window-up; }
+    Mod+D { spawn "rofi" "-show" "drun"; }
+    Mod+Down { focus-window-down; }
+    Mod+E { spawn "foot" "yazi"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+F { switch-focus-between-floating-and-tiling; }
+    Mod+H { focus-column-left; }
+    Mod+I { focus-workspace-up; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+    Mod+Left { focus-column-left; }
+    Mod+M { maximize-column; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+O { spawn "swaylock"; }
+    "Mod+Page_Down" { focus-workspace-down; }
+    "Mod+Page_Up" { focus-workspace-up; }
+    Mod+Q { close-window; }
+    Mod+R { switch-preset-column-width; }
+    Mod+Right { focus-column-right; }
+    Mod+Shift+Ctrl+Down { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+J { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+K { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+Left { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+Up { move-column-to-monitor-up; }
+    Mod+Shift+Down { focus-monitor-down; }
+    Mod+Shift+E { quit; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Shift+H { focus-monitor-left; }
+    Mod+Shift+I { move-workspace-up; }
+    Mod+Shift+J { focus-monitor-down; }
+    Mod+Shift+K { focus-monitor-up; }
+    Mod+Shift+L { focus-monitor-right; }
+    Mod+Shift+Left { focus-monitor-left; }
+    Mod+Shift+M { fullscreen-window; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    "Mod+Shift+Page_Down" { move-workspace-down; }
+    "Mod+Shift+Page_Up" { move-workspace-up; }
+    Mod+Shift+R { reset-window-height; }
+    Mod+Shift+Right { focus-monitor-right; }
+    Mod+Shift+U { move-workspace-down; }
+    Mod+Shift+Up { focus-monitor-up; }
+    Mod+Shift+V { spawn "sh" "-c" "rm /home/merrkry/.cache/cliphist/db"; }
+    Mod+Shift+f { toggle-window-floating; }
+    Mod+T { spawn "foot"; }
+    Mod+U { focus-workspace-down; }
+    Mod+Up { focus-window-up; }
+    Mod+V { spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollLeft { focus-column-right; }
+    Mod+WheelScrollRight { focus-column-left; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+    Print { screenshot; }
+    XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
+    XF86MonBrightnessUp { spawn "brightnessctl" "set" "+5%"; }
+}
+
+layout {
+    gaps 8
+    focus-ring {
+        off
+    }
+    border {
+        width 2
+        inactive-color "#665c54"
+        active-gradient from="#E5989B" to="#FFB4A2" angle=45 relative-to="workspace-view" in="oklch longer hue"
+    }
+    shadow {
+        on
+    }
+    insert-hint {
+        color "#ffc87f80"
+        gradient from="#f38ba880" to="#f9e2af80" angle=45 relative-to="workspace-view"
+    }
+    default-column-width { proportion 0.33333; }
+    center-focused-column "on-overflow"
+    always-center-single-column
+}
+cursor {
+    xcursor-theme "default"
+    xcursor-size 24
+    hide-when-typing
+    hide-after-inactive-ms 10000
+}
+hotkey-overlay { skip-at-startup; }
+screenshot-path "/home/merrkry/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+prefer-no-csd
+environment {
+    DISPLAY ":42"
+}
+workspace "terminal"
+workspace "browser"
+workspace "notes"
+workspace "communication"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+window-rule {
+    match title="^_crx_nngceckbapebfimnlniiiahkandclblb$"
+    open-floating true
+}
+window-rule {
+    match app-id="^chromium-browser$"
+    match app-id="^firefox$"
+    default-column-width { proportion 1.0; }
+    open-on-workspace "browser"
+}
+window-rule {
+    match app-id="^obsidian$"
+    default-column-width { proportion 1.0; }
+    open-on-workspace "notes"
+}
+window-rule {
+    match title="^Cinny$"
+    match title="^Element$"
+    match app-id="^io.github.kukuruzka165.materialgram$"
+    match app-id="^QQ$"
+    match app-id="^thunderbird$"
+    match title="^Mail - Nextcloud$"
+    default-column-width { proportion 0.5; }
+    open-on-workspace "communication"
+}
+window-rule {
+    match app-id="^firefox$" title="^画中画$"
+    match app-id="^firefox$" title="^Picture-in-Picture$"
+    default-column-width { proportion 0.125; }
+    default-window-height { proportion 0.125; }
+    open-floating true
+    default-floating-position relative-to="bottom-right" x=32 y=32
+}
+window-rule {
+    match app-id="^xdg-desktop-portal-gtk$"
+    open-floating true
+}
+window-rule {
+    match app-id="^jetbrains" title="^$"
+    match app-id="^jetbrains" title="^ $"
+    open-floating true
+    open-focused false
+}

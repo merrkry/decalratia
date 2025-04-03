@@ -190,6 +190,8 @@ in
         '';
       };
 
+      services.network-manager-applet.enable = true;
+
       stylix.targets.waybar = {
         enable = true;
         addCss = true;

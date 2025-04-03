@@ -64,7 +64,6 @@ in
     };
 
     services = {
-      gnome.gnome-keyring.enable = true;
       xserver.excludePackages = with pkgs; [ xterm ];
     };
 
@@ -73,7 +72,8 @@ in
         foot.enable = true;
       };
 
-      services.gnome-keyring.enable = lib.mkDefault config.services.gnome.gnome-keyring.enable;
+      # executes the same binary as nixos module, might be conflicting
+      # services.gnome-keyring.enable = lib.mkDefault config.services.gnome.gnome-keyring.enable;
 
       systemd.user.tmpfiles.rules = [ "d ${hmConfig.xdg.userDirs.download} - - - 14d -" ];
     };

@@ -19,6 +19,8 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
       home = {
+        packages = with pkgs; [ xdg-utils ];
+
         sessionVariables = {
           XDG_DATA_HOME = hmConfig.xdg.dataHome;
           XDG_CONFIG_HOME = hmConfig.xdg.configHome;
