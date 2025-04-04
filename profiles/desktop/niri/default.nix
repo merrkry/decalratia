@@ -23,6 +23,7 @@ in
           brightnessctl
           cliphist
           niri
+          xwayland-run
         ];
         sessionVariables = {
           QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;

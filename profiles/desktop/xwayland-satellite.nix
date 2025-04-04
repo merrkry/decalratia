@@ -7,7 +7,6 @@
 }:
 let
   cfg = config.profiles.desktop.xwayland-satellite;
-  hmConfig = config.home-manager.users.${user};
 in
 {
   options.profiles.desktop.xwayland-satellite = {

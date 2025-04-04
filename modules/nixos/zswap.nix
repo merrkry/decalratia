@@ -65,26 +65,16 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
-    # can also be set with kernel boot parameters
-    # TODO: rewrite with systemd-tmpfiles
-    # https://github.com/oxalica/nixos-config/blob/706adc07354eb4a1a50408739c0f24a709c9fe20/nixos/modules/zswap-enable.nix#L2-L5
-    systemd.services."zswap-configure" = {
-      description = "Configure zswap";
-      wantedBy = [ "default.target" ];
-      serviceConfig.Type = "oneshot";
-      enableStrictShellChecks = true;
-      script = ''
-        echo 1 > /sys/module/zswap/parameters/enabled
-        ${lib.optionalString (lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.8") "echo ${
-          if cfg.shrinker then "Y" else "N"
-        } > /sys/module/zswap/parameters/shrinker_enabled"}
-        echo ${toString cfg.max-pool-percent} > /sys/module/zswap/parameters/max_pool_percent
-        echo ${cfg.compressor} > /sys/module/zswap/parameters/compressor
-        echo ${cfg.zpool} > /sys/module/zswap/parameters/zpool
-        echo ${toString cfg.accept-threshold-percent} > /sys/module/zswap/parameters/accept_threshold_percent
-      '';
-    };
-
+    systemd.tmpfiles.rules =
+      [
+        "w- /sys/module/zswap/parameters/enabled - - - - 1"
+        "w- /sys/module/zswap/parameters/max_pool_percent - - - - ${toString cfg.max-pool-percent}"
+        "w- /sys/module/zswap/parameters/compressor - - - - ${cfg.compressor}"
+        "w- /sys/module/zswap/parameters/zpool - - - - ${cfg.zpool}"
+        "w- /sys/module/zswap/parameters/accept_threshold_percent - - - - ${toString cfg.accept-threshold-percent}"
+      ]
+      ++ (lib.optional (lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.8") "w- /sys/module/zswap/parameters/shrinker_enabled - - - - ${
+        if cfg.shrinker then "Y" else "N"
+      }");
   };
 }

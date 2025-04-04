@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  user,
   ...
 }:
 let
@@ -14,7 +13,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     fonts = {
       fontDir = {
         enable = true;
@@ -119,13 +117,5 @@ in
           terminal = 10;
         };
       };
-
-    home-manager.users.${user} = {
-
-      # TODO: generate this symlink via script
-      # .local/share/fonts/system -> /run/current-system/sw/share/X11/fonts
-
-    };
-
   };
 }

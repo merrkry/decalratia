@@ -36,6 +36,7 @@ in
       services = {
         swayidle = {
           enable = true;
+          extraArgs = lib.mkForce [ ]; # remove `-w` to avoid double lock bug
           events = [
             {
               event = "lock";
