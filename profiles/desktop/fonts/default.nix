@@ -42,6 +42,8 @@ in
         nerd-fonts.symbols-only
 
         ibm-plex
+
+        stix-two
       ];
 
       fontconfig = {
