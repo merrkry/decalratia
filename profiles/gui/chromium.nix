@@ -19,15 +19,14 @@ in
 
       programs.chromium = {
         enable = true;
-        # https://github.com/ungoogled-software/ungoogled-chromium/issues/3226
-        package = pkgs.chromium.override { enableWideVine = true; };
+        package = pkgs.ungoogled-chromium.override { enableWideVine = true; };
         commandLineArgs = lib.chromiumArgs ++ [
           "--password-store=gnome-libsecret"
           "--enable-features=AcceleratedVideoDecodeLinuxGL"
           "--ignore-gpu-blocklist"
           "--enable-zero-copy"
         ];
-        # doesn't work for ungoogled-chromium
+        # doesn't work for ungoogled-chromium, https://github.com/nix-community/home-manager/pull/4174
         # extensions = [
         #   {
         #     id = "ocaahdebbfolfmndjeplogmgcagdmblk";
