@@ -1,4 +1,9 @@
-{ inputs, modulesPath, ... }:
+{
+  inputs,
+  lib,
+  modulesPath,
+  ...
+}:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.common-gpu-intel
@@ -30,11 +35,7 @@
       mkBtrfsMount = subvol: {
         device = "/dev/disk/by-uuid/ba21d45a-15fc-4af8-8793-b06ddb4407c5";
         fsType = "btrfs";
-        options = [
-          (if subvol != "" then "subvol=" + subvol else null)
-          "noatime"
-          "compress=zstd"
-        ];
+        options = [ (if subvol != "" then "subvol=" + subvol else null) ] ++ lib.recommendedBtrfsArgs;
       };
     in
     {

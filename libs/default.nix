@@ -57,4 +57,9 @@
         karanohako
       ];
     };
+
+  recommendedBtrfsArgs = [
+    "noatime"
+    "compress-force=zstd:1"
+  ];
 }

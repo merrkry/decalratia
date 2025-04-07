@@ -123,11 +123,6 @@
           stateVersion = "24.05";
         };
 
-        "corundum" = {
-          hostPlatform = "aarch64-linux";
-          stateVersion = "25.05";
-        };
-
         "cryolite" = {
           hostPlatform = "x86_64-linux";
           stateVersion = "24.11";

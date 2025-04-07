@@ -1,4 +1,4 @@
-{ modulesPath, ... }:
+{ lib, modulesPath, ... }:
 {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
@@ -19,10 +19,7 @@
 
   disko.devices =
     let
-      mountOptions = [
-        "compress=zstd"
-        "noatime"
-      ];
+      mountOptions = lib.recommendedBtrfsArgs;
     in
     {
       disk = {

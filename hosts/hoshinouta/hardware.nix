@@ -1,4 +1,4 @@
-{ modulesPath, ... }:
+{ lib, modulesPath, ... }:
 {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
@@ -24,11 +24,7 @@
       mkBtrfsMountPoint = subvol: {
         device = "/dev/disk/by-uuid/1c6dc525-c4d7-4f77-8d11-d5b7cd765ad1";
         fsType = "btrfs";
-        options = [
-          "subvol=${subvol}"
-          "noatime"
-          "compress=zstd"
-        ];
+        options = [ "subvol=${subvol}" ] ++ lib.recommendedBtrfsArgs;
       };
     in
     {

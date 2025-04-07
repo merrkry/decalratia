@@ -66,24 +66,15 @@
                   subvolumes = {
                     "/@rootfs" = {
                       mountpoint = "/";
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = lib.recommendedBtrfsArgs;
                     };
                     "/@home" = {
                       mountpoint = "/home";
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = lib.recommendedBtrfsArgs;
                     };
                     "/@nix" = {
                       mountpoint = "/nix";
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = lib.recommendedBtrfsArgs;
                     };
                     "/@swap" = {
                       mountpoint = "/.swapvol";
