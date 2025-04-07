@@ -36,14 +36,14 @@ in
               "vm.dirty_bytes" = 268435456;
               "vm.dirty_background_bytes" = 67108864;
               "vm.dirty_writeback_centisecs" = 1500;
+              "vm.watermark_boost_factor" = 0;
+              "vm.watermark_scale_factor" = 125;
             }
             // (
               if config.zramSwap.enable then
                 {
                   "vm.swappiness" = 180;
                   "vm.page-cluster" = 0;
-                  "vm.watermark_scale_factor" = 125;
-                  "vm.watermark_boost_factor" = 0;
                 }
               else
                 {

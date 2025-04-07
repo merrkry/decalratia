@@ -31,7 +31,7 @@ in
     };
 
     compressor = lib.mkOption {
-      default = "zstd";
+      default = "lz4";
       type =
         with lib.types;
         either (enum [
