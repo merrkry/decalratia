@@ -1,10 +1,8 @@
 # Configs not managed by Nix
 
-## fcitx5
+## chezmoi
 
-Current module only provides an INI converter (`i18n.inputMethod.fcitx5.settings.globalOptions`).
-
-Currently copies `~/.config/fcitx5/` manually.
+Configs barely documented or frequently edited by software are now managed by chezmoi.
 
 ## jetbrains IDEs
 

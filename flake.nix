@@ -207,6 +207,7 @@
             with pkgs;
             mkShell {
               nativeBuildInputs = [
+                chezmoi
                 deploy-rs
                 nixd
                 nixfmt-rfc-style
