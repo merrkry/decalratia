@@ -22,6 +22,8 @@ in
       '';
     };
 
+    stylix.targets.fish.enable = true;
+
     home-manager.users.${user} = {
 
       home = {

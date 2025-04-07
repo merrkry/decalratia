@@ -19,7 +19,6 @@ in
 
     environment.systemPackages = with pkgs; [
       age
-      bat
       fastfetch
       fd
       gcc
@@ -38,11 +37,14 @@ in
 
     profiles = {
       cli = {
+        bat.enable = true;
         tide.enable = true;
         git.enable = true;
         trash-cli.enable = true;
       };
       tui = {
+        btop.enable = true;
+        fzf.enable = true;
         tmux.enable = true;
         yazi.enable = true;
       };
@@ -57,8 +59,6 @@ in
 
       programs = {
         atuin.enable = true;
-        btop.enable = true;
-        fzf.enable = true;
         tmux-sessionizer.enable = true;
         zoxide.enable = true;
       };

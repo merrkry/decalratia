@@ -13,9 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     home-manager.users.${user} = {
-
       programs.starship = {
         enable = true;
         settings = {
@@ -30,8 +28,7 @@ in
         };
       };
 
+      stylix.targets.starship.enable = true;
     };
-
   };
-
 }

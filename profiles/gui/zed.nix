@@ -15,9 +15,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     home-manager.users.${user} = {
-
       programs.zed-editor = {
         enable = true;
         userSettings = lib.mkMerge [
@@ -108,8 +106,7 @@ in
         ];
       };
 
+      stylix.targets.zed.enable = true;
     };
-
   };
-
 }

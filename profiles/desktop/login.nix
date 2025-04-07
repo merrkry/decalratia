@@ -14,7 +14,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     services.greetd = {
       enable = true;
       settings = {
@@ -28,7 +27,6 @@ in
     };
 
     home-manager.users.${user} = {
-
       programs = {
         swaylock.enable = true;
       };
@@ -59,7 +57,8 @@ in
           ];
         };
       };
-    };
 
+      stylix.targets.swaylock.enable = true;
+    };
   };
 }

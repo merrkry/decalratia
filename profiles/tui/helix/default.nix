@@ -19,7 +19,7 @@ in
 
       programs.helix =
         let
-          themeName = "gruvbox_material_dark_medium";
+          themeName = "edge_default";
         in
         {
           enable = true;
@@ -146,11 +146,9 @@ in
 
           # https://github.com/CptPotato/helix-themes
           themes = {
-            ${themeName} = lib.importTOML ./themes.toml;
+            ${themeName} = lib.importTOML ./theme.toml;
           };
         };
-
-      stylix.targets.helix.enable = false;
     };
 
   };

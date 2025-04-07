@@ -99,6 +99,7 @@ in
       };
 
       # themes mounted under ~/.themes will cause steam unable to launch
+      # see https://github.com/danth/stylix/issues/1093
       stylix.targets.gtk.flatpakSupport.enable = false;
 
       systemd.user.tmpfiles.rules = [

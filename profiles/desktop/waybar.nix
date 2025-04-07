@@ -28,6 +28,7 @@ in
         systemd.enable = true;
         settings = [
           {
+            reload_style_on_change = true;
             layer = "top";
             spacing = 8;
             modules-left = [ "niri/workspaces" ];

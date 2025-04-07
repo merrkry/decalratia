@@ -75,11 +75,6 @@
             };
           }
         ];
-
-        disabledModules = [
-          # https://github.com/danth/stylix/issues/865#issuecomment-2661394921
-          "${inputs.stylix}/modules/gnome-text-editor/hm.nix"
-        ];
       };
     };
 

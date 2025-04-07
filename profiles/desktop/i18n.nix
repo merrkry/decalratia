@@ -55,6 +55,8 @@ in
         })
       ];
 
+      stylix.targets.fcitx5.enable = true;
+
       systemd.user.services = {
         "fcitx5" = {
           Install = {

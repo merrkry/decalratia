@@ -14,9 +14,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    stylix.targets.chromium.enable = true;
 
     home-manager.users.${user} = {
-
       programs.chromium = {
         enable = true;
         package = pkgs.ungoogled-chromium.override { enableWideVine = true; };
@@ -34,8 +34,6 @@ in
         #   }
         # ];
       };
-
     };
-
   };
 }

@@ -41,6 +41,7 @@ in
     profiles.gui = {
       chromium.enable = true;
       firefox.enable = true;
+      foot.enable = true;
       localsend.enable = true;
       mpv.enable = true;
       rofi.enable = true;
@@ -68,10 +69,6 @@ in
     };
 
     home-manager.users.${user} = {
-      programs = {
-        foot.enable = true;
-      };
-
       # executes the same binary as nixos module, might be conflicting
       # services.gnome-keyring.enable = lib.mkDefault config.services.gnome.gnome-keyring.enable;
 

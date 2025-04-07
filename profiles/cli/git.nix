@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   user,
   ...
 }:
@@ -15,11 +14,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    profiles.tui.lazygit.enable = true;
 
     home-manager.users.${user} = {
-
-      home.packages = with pkgs; [ lazygit ];
-
       programs.git = {
         enable = true;
 
@@ -38,8 +35,6 @@ in
           user.signingkey = "${hmConfig.home.homeDirectory}/.ssh/id_ed25519.pub";
         };
       };
-
     };
-
   };
 }

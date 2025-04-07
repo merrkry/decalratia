@@ -13,9 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     home-manager.users.${user} = {
-
       services.swaync = {
         enable = true;
         # https://man.archlinux.org/man/swaync.5.en
@@ -26,7 +24,7 @@ in
         };
       };
 
+      stylix.targets.swaync.enable = true;
     };
-
   };
 }

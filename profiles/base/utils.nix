@@ -13,6 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    profiles.tui.micro.enable = true;
 
     environment = {
       sessionVariables = {
@@ -23,11 +24,9 @@ in
         wget
         curl
         vim
-        micro
         git
         rsync
       ];
     };
-
   };
 }

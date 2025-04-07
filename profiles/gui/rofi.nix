@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.profiles.gui.rofi;
+  hmConfig = config.home-manager.users.${user};
 in
 {
   options.profiles.gui.rofi = {
@@ -14,20 +15,14 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
-    home-manager.users.${user} =
-      let
-        hmConfig = config.home-manager.users.${user};
-      in
-      {
-
-        programs.rofi = {
-          enable = true;
-          package = pkgs.rofi-wayland;
-          terminal = "${lib.getExe hmConfig.programs.foot.package}";
-        };
-
+    home-manager.users.${user} = {
+      programs.rofi = {
+        enable = true;
+        package = pkgs.rofi-wayland;
+        terminal = "${lib.getExe hmConfig.programs.foot.package}";
       };
 
+      stylix.targets.rofi.enable = true;
+    };
   };
 }

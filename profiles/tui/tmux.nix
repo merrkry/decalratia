@@ -13,9 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     home-manager.users.${user} = {
-
       programs.tmux = {
         enable = true;
         baseIndex = 1;
@@ -30,7 +28,7 @@ in
         '';
       };
 
+      stylix.targets.tmux.enable = true;
     };
-
   };
 }

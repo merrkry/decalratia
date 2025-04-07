@@ -15,13 +15,15 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    profiles.gui = {
+      eog.enable = true;
+    };
+
     home-manager.users.${user} = {
 
       home.packages = with pkgs; [
         evince # pdf
-        eog # image
         foliate # epub
-        kdePackages.dolphin # file
         nautilus # file
       ];
 
@@ -38,10 +40,7 @@ in
             {
               "application/pdf" = [ "org.gnome.Evince.desktop" ];
               "application/epub+zip" = [ "com.github.johnfactotum.Foliate.desktop" ];
-              "inode/directory" = [
-                "org.gnome.Nautilus"
-                "org.kde.dolphin"
-              ];
+              "inode/directory" = [ "org.gnome.Nautilus" ];
               "x-scheme-handler/http" = browser;
               "x-scheme-handler/https" = browser;
 

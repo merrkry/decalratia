@@ -16,7 +16,6 @@
       podman-compose
       (prismlauncher.override { jdks = [ jdk17 ]; })
       q
-      starsector
       tsukimi
       xournalpp
 
