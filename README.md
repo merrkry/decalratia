@@ -12,3 +12,11 @@ All configuration in one place, powered by Nix.
 - `karanohako`: Beelink EQ12 Mini PC, NAS
 - `perimadeia`: compile VPS
 - `sapphire`: storage VPS
+
+## Updates
+
+To update a package, run:
+
+```
+nix run nixpkgs#nix-update -- <package_name> -F
+```
