@@ -1,10 +1,7 @@
 { config, pkgs, ... }:
 {
   nixpkgs = {
-    config.permittedInsecurePackages = [
-      "cinny-unwrapped-4.2.3"
-      "olm-3.2.16"
-    ];
+    config.permittedInsecurePackages = [ "olm-3.2.16" ];
   };
 
   sops.secrets = {

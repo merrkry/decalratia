@@ -14,13 +14,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     profiles.gui = {
       eog.enable = true;
     };
 
-    home-manager.users.${user} = {
+    services.gvfs.enable = true;
 
+    home-manager.users.${user} = {
       home.packages = with pkgs; [
         evince # pdf
         foliate # epub
@@ -38,14 +38,16 @@ in
           enable = true;
           defaultApplications = lib.mkMerge [
             {
-              "application/pdf" = [ "org.gnome.Evince.desktop" ];
-              "application/epub+zip" = [ "com.github.johnfactotum.Foliate.desktop" ];
-              "inode/directory" = [ "org.gnome.Nautilus" ];
+              "application/pdf" = "org.gnome.Evince.desktop";
+              "application/epub+zip" = "com.github.johnfactotum.Foliate.desktop";
+              "inode/directory" = "org.gnome.Nautilus";
               "x-scheme-handler/http" = browser;
               "x-scheme-handler/https" = browser;
 
-              "x-scheme-handler/obsidian" = [ "md.obsidian.Obsidian.desktop" ];
-              "x-scheme-handler/tg" = [ "io.github.kukuruzka165.materialgram.desktop" ];
+              "x-scheme-handler/obsidian" = "md.obsidian.Obsidian.desktop";
+              "x-scheme-handler/steam" = "steam.desktop";
+              "x-scheme-handler/steamlink" = "steam.desktop";
+              "x-scheme-handler/tg" = "io.github.kukuruzka165.materialgram.desktop";
 
               # wildcard is not supported
               # https://gitlab.freedesktop.org/xdg/xdgmime/-/issues/16
@@ -95,12 +97,10 @@ in
                   "x-icns"
                 ];
               in
-              (genMimeList "image" imageTypeList [ "org.gnome.eog.desktop" ])
+              (genMimeList "image" imageTypeList "org.gnome.eog.desktop")
             )
           ];
         };
-
     };
-
   };
 }

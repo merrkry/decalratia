@@ -111,7 +111,7 @@
       "w- /sys/devices/platform/asus-nb-wmi/nv_temp_target - - - - 87"
       "w- /sys/devices/platform/asus-nb-wmi/panel_od - - - - 0"
       "w- /sys/devices/platform/asus-nb-wmi/ppt_pl1_spl - - - - 40"
-      "w- /sys/devices/platform/asus-nb-wmi/ppt_pl2_sppt - - - - 60"
+      "w- /sys/devices/platform/asus-nb-wmi/ppt_pl2_sppt - - - - 40"
     ];
   };
 
