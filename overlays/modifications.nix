@@ -5,8 +5,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "mautrix";
         repo = "telegram";
-        rev = "caefda582b0ba43f53cb66e5c0dffc65ab22b890";
-        hash = "sha256-j8l8ziJCYK4NlimDJeVxQORPT/X91pwBHN6K0S1tAXQ=";
+        rev = "6480e7925e3353200b894ddc86e2880409b01ba3";
+        hash = "sha256-P9/rgq7cHZXQ6doP4aiWAQYwoNxkg5VyAC5kFnZbNPM=";
       };
     }
   );
