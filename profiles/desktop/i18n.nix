@@ -14,6 +14,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # to use svg themes
+    programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
     i18n = {
       defaultLocale = "en_US.UTF-8";
@@ -26,6 +28,7 @@ in
         type = "fcitx5";
         fcitx5 = {
           addons = with pkgs; [
+            fcitx5-mellow-themes
             (fcitx5-rime.override {
               rimeDataPkgs = [
                 rime-data
@@ -42,7 +45,6 @@ in
     };
 
     home-manager.users.${user} = {
-
       home.sessionVariables = lib.mkMerge [
         {
           LANG = "zh_CN.UTF-8";
@@ -115,8 +117,6 @@ in
           ...
         '';
       };
-
     };
-
   };
 }
