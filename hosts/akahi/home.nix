@@ -12,6 +12,7 @@
       materialgram
       nali
       nodejs
+      numbat
       (obsidian.override { commandLineArgs = lib.chromiumArgs; })
       podman-compose
       (prismlauncher.override { jdks = [ jdk17 ]; })
@@ -30,7 +31,6 @@
     flatpak.packages = [
       "com.baidu.NetDisk"
       "com.qq.QQ"
-      "com.tencent.WeChat"
       "com.usebottles.bottles"
       "com.valvesoftware.Steam"
       "runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08" # need to match the version that steam is built on

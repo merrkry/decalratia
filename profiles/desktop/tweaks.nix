@@ -87,6 +87,12 @@ in
             # may introduce issues, for example with polkit, according to https://github.com/CachyOS/ananicy-rules/blob/master/ananicy.conf
             cgroup_realtime_workaround = lib.mkForce false;
           };
+          extraRules = [
+            {
+              name = "AI-LIMIT.exe";
+              type = "Game";
+            }
+          ];
         };
       })
       (lib.mkIf (cfg.scheduler != "eevdf") {

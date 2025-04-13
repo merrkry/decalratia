@@ -17,6 +17,8 @@ EnumerateGroupForwardKeys=
 EnumerateGroupBackwardKeys=
 # 激活输入法
 ActivateKeys=
+# 触发修饰键快捷键的时限 (毫秒)
+ModifierOnlyKeyTimeout=250
 
 [Hotkey/DeactivateKeys]
 0=Shift_L

@@ -29,4 +29,25 @@
       '';
     }
   );
+
+  xwayland-satellite = pkgs.callPackage pkgs.xwayland-satellite.override {
+    rustPlatform = pkgs.rustPlatform // {
+      buildRustPackage =
+        args:
+        pkgs.rustPlatform.buildRustPackage (
+          args
+          // {
+            src = pkgs.fetchFromGitHub {
+              owner = "Supreeeme";
+              repo = "xwayland-satellite";
+              rev = "0cd5059c42f410986056f6f892cfa5ef4d35d3c3";
+              hash = "sha256-XghA6JtaEOSVMpD5n+E6u+qCbdEbFgesnBBGz596hGc=";
+            };
+            cargoLock = null;
+            useFetchCargoVendor = true;
+            cargoHash = "sha256-QsU960aRU+ErU7vwoNyuOf2YmKjEWW3yCnQoikLaYeA";
+          }
+        );
+    };
+  };
 }

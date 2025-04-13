@@ -38,6 +38,8 @@ in
       enable32Bit = cfg.enable32Bit;
     };
 
+    nix.daemonCPUSchedPolicy = "idle";
+
     profiles.gui = {
       chromium.enable = true;
       firefox.enable = true;

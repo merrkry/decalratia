@@ -43,7 +43,6 @@ in
               auto-optimise-store = true;
               use-xdg-base-directories = true;
               trusted-users = [
-                "root"
                 # dangerous, see https://github.com/NixOS/nix/issues/9649#issuecomment-1868001568
                 # "@wheel"
                 "remote-deployer"

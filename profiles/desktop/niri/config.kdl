@@ -22,7 +22,6 @@ output "Chimei Innolux Corporation 0x1540 Unknown" {
 
 binds {
     Mod+E { spawn "nautilus" "--new-window"; }
-    // Mod+Shift+V { spawn "sh" "-c" "rm /home/merrkry/.cache/cliphist/db"; }
 
     // new
 
@@ -206,6 +205,7 @@ binds {
     Mod+C { center-column; }
     
     Mod+Shift+C { spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
+    Mod+Shift+Ctrl+C { spawn "sh" "-c" "rm /home/merrkry/.cache/cliphist/db"; }
 
     // Finer width adjustments.
     // This command can also:
@@ -337,6 +337,7 @@ window-rule {
 window-rule {
     match app-id="^firefox$" title="^画中画$"
     match app-id="^firefox$" title="^Picture-in-Picture$"
+    match app-id=r#"^XEyes$"# title=r#"^xeyes$"#
     default-column-width { proportion 0.125; }
     default-window-height { proportion 0.125; }
     open-floating true
@@ -351,4 +352,21 @@ window-rule {
     match app-id="^jetbrains" title="^ $"
     open-floating true
     open-focused false
+}
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=8 y=8 relative-to="bottom-right"
+}
+window-rule {
+    match app-id=r#"^QQ$"# title=r#"^图片查看器$"#
+    // FIXME: cannot match media viewer even only with app-id rule
+    match app-id=r#"^io.github.kukuruzka165.materialgram$"# title=r#"^Media viewer$"#
+    match app-id=r#"^io.github.kukuruzka165.materialgram$"# title=r#"^媒体查看器$"#
+    open-floating true
+}
+window-rule {
+    match app-id=r#"^mpv$"#
+    match app-id=r#"^gamescope$"#
+    match app-id=r#"^steam_app_\d+$"#
+    variable-refresh-rate true
 }
