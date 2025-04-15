@@ -49,7 +49,14 @@ in
           chrony = {
             enable = true;
             enableNTS = true;
-            servers = [ "time.cloudflare.com" ];
+            # https://github.com/jauderho/nts-servers
+            servers = [
+              "nts.teambelgium.net"
+              "ptbtime1.ptb.de"
+              "ntppool1.time.nl"
+              "nts.netnod.se"
+              "time.cloudflare.com"
+            ];
           };
 
           nginx = {
