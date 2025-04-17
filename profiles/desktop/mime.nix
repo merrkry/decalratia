@@ -22,7 +22,7 @@ in
 
     home-manager.users.${user} = {
       home.packages = with pkgs; [
-        evince # pdf
+        papers # pdf
         foliate # epub
         nautilus # file
       ];
@@ -38,7 +38,7 @@ in
           enable = true;
           defaultApplications = lib.mkMerge [
             {
-              "application/pdf" = "org.gnome.Evince.desktop";
+              "application/pdf" = "org.gnome.Papers.desktop";
               "application/epub+zip" = "com.github.johnfactotum.Foliate.desktop";
               "inode/directory" = "org.gnome.Nautilus";
               "x-scheme-handler/http" = browser;
