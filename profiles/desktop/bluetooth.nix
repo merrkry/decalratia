@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  user,
   ...
 }:
 let
@@ -14,6 +13,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      bluetuith
+      bluez
+    ];
 
     hardware.bluetooth = {
       enable = true;
@@ -26,12 +29,5 @@ in
         };
       };
     };
-
-    home-manager.users.${user} = {
-
-      home.packages = with pkgs; [ bluetuith ];
-
-    };
-
   };
 }
