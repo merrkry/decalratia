@@ -78,12 +78,10 @@ in
             pkg:
             builtins.elem (lib.getName pkg) [
               "code"
-              "idea-ultimate"
               "nvidia-persistenced"
               "nvidia-x11"
               "obsidian"
               "p7zip"
-              "starsector"
               "steam"
               "steam-unwrapped"
               "chromium"

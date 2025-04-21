@@ -6,7 +6,14 @@ Configs barely documented or frequently edited by software are now managed by ch
 
 ## jetbrains IDEs
 
-`nix-ld` is also required in addition to installing `jetbrains.idea-ultimate`
+I gave up manage jetbrains software with Nix by any means. As they
+
+- are extremely slow to download, drastically slow down builds and waste binary cache's resource
+- create another layer of complexity on already magical proprietary software
+
+With their official toolbox, I can do incremental updates, or lock to whatever version I want.
+
+Note that `nix-ld` is also required in addition to installing these packages.
 
 ```
 -Xmx4G
