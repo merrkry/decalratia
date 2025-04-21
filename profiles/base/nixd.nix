@@ -47,10 +47,19 @@ in
                 # "@wheel"
                 "remote-deployer"
               ];
-              substituters = lib.optionals (config.profiles.base.network.tailscale != null) [
-                "https://nix-cache.merrkry.com/local"
+              substituters =
+                (lib.optionals (config.profiles.base.network.tailscale != null) [
+                  "https://nix-cache.merrkry.com/local"
+                ])
+                ++ [
+                  "https://nix-community.cachix.org"
+                  "https://cache.garnix.io"
+                ];
+              trusted-public-keys = [
+                "local:/LodgQCkIp8Acygs/V5XSqhxchExvXnzf1BXDwuAqNk="
+                "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+                "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
               ];
-              trusted-public-keys = [ "local:/LodgQCkIp8Acygs/V5XSqhxchExvXnzf1BXDwuAqNk=" ];
               flake-registry = "";
               nix-path = config.nix.nixPath;
             };
