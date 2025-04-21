@@ -16,6 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     profiles.gui = {
       eog.enable = true;
+      gnome-text-editor.enable = true;
     };
 
     services.gvfs.enable = true;
@@ -41,6 +42,7 @@ in
               "application/pdf" = "org.gnome.Papers.desktop";
               "application/epub+zip" = "com.github.johnfactotum.Foliate.desktop";
               "inode/directory" = "org.gnome.Nautilus";
+              "text/plain" = "org.gnome.TextEditor.desktop";
               "x-scheme-handler/http" = browser;
               "x-scheme-handler/https" = browser;
 
