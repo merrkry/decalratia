@@ -4,4 +4,5 @@ pkgs: {
   bookerly = pkgs.callPackage ./bookerly.nix { };
   deeplx = pkgs.callPackage ./deeplx.nix { };
   kvlibadwaita-kvantum = pkgs.callPackage ./kvlibadwaita-kvantum.nix { };
+  xremap = pkgs.callPackage ./xremap.nix { };
 }

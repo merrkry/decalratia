@@ -80,16 +80,6 @@
       };
     };
 
-    xremap = {
-      url = "github:xremap/nix-flake";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-        flake-parts.follows = "flake-parts";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-
     nix-flatpak.url = "github:gmodena/nix-flatpak/v0.6.0";
 
     nixos-mailserver = {
