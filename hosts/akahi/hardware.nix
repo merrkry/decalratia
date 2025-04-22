@@ -115,9 +115,6 @@
     ];
   };
 
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/60005c5c-54dc-4ead-b28f-021d2f84c177"; }
-    { device = "/dev/disk/by-uuid/6b2a6972-1f3c-45f3-a28a-ad2f215f9881"; }
-  ];
+  swapDevices = [ { device = "/dev/disk/by-uuid/60005c5c-54dc-4ead-b28f-021d2f84c177"; } ];
 
 }
