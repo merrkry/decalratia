@@ -123,6 +123,11 @@
           stateVersion = "24.05";
         };
 
+        "ilmenite" = {
+          hostPlatform = "x86_64-linux";
+          stateVersion = "25.05";
+        };
+
         "karanohako" = {
           hostPlatform = "x86_64-linux";
           stateVersion = "24.05";
