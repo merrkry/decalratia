@@ -16,7 +16,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     environment.systemPackages = with pkgs; [
       age
       fastfetch
@@ -42,7 +41,9 @@ in
         git.enable = true;
         trash-cli.enable = true;
       };
+
       tui = {
+        atuin.enable = true;
         btop.enable = true;
         fzf.enable = true;
         tmux.enable = true;
@@ -56,14 +57,10 @@ in
     };
 
     home-manager.users.${user} = {
-
       programs = {
-        atuin.enable = true;
         tmux-sessionizer.enable = true;
         zoxide.enable = true;
       };
-
     };
-
   };
 }

@@ -62,4 +62,9 @@
     "noatime"
     "compress-force=zstd:1"
   ];
+
+  servicePorts = {
+    atuin = 20001;
+    atticd = 20002;
+  };
 }

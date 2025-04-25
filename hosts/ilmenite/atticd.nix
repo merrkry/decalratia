@@ -1,34 +1,22 @@
 { config, lib, ... }:
 let
   serviceName = "atticd";
-  domainName = "nix-cache.merrkry.com";
-  port = 8080;
+  domainName = "cache.tsubasa.moe";
+  port = lib.servicePorts.atticd;
 in
 {
-  security = {
-    # Required for atticd-atticadm to work
-    polkit.enable = true;
-
-    acme.certs = {
-      ${domainName} = {
-        domain = domainName;
-        dnsProvider = "cloudflare";
-        environmentFile = config.sops.secrets."acme/cloudflare-token".path;
-        group = "nginx";
-        webroot = lib.mkForce null;
-      };
-    };
-  };
+  # required by atticd-atticadm
+  security.polkit.enable = true;
 
   services = {
     atticd = {
-      enable = false;
+      enable = true;
 
       environmentFile = config.sops.secrets."atticd/envFile".path;
 
       settings = {
         listen = "[::]:${toString port}";
-        api-endpoint = "https://nix-cache.merrkry.com/";
+        api-endpoint = "https://${domainName}";
         database.url = "postgres:///${serviceName}?host=/run/postgresql";
         chunking = {
           nar-size-threshold = 64 * 1024; # 64 KiB
@@ -47,10 +35,10 @@ in
     nginx = {
       enable = true;
       virtualHosts.${domainName} = {
-        enableACME = true;
         forceSSL = true;
+        useACMEHost = "ilmenite.tsubasa.moe";
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString port}";
+          proxyPass = "http://localhost:${toString port}";
           extraConfig = ''
             client_max_body_size 16G;
           '';
@@ -71,6 +59,5 @@ in
 
   sops.secrets = {
     "atticd/envFile" = { };
-    "acme/cloudflare-token" = { };
   };
 }

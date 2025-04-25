@@ -11,8 +11,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: connect to attic
         run: |
-          attic login --set-default atticd http://localhost:8080/ ${{ secrets.ATTIC_TOKEN }}
-          attic use local
+          attic login --set-default atticd http://localhost:20002/ ${{ secrets.ATTIC_TOKEN }}
       - name: build
         run: |
           nix-fast-build \
@@ -22,5 +21,5 @@ jobs:
           --systems "x86_64-linux" \
           --skip-cached \
           --attic-cache local \
-          --eval-max-memory-size 4096 \
-          --eval-workers 3
+          --eval-max-memory-size 8192 \
+          --eval-workers 4
