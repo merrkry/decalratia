@@ -133,11 +133,6 @@
           stateVersion = "24.05";
         };
 
-        "perimadeia" = {
-          hostPlatform = "x86_64-linux";
-          stateVersion = "24.11";
-        };
-
         "sapphire" = {
           hostPlatform = "x86_64-linux";
           stateVersion = "24.11";
