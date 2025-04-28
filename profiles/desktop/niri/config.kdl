@@ -12,12 +12,10 @@ output "Beihai Century Joint Innovation Technology Co.,Ltd P2710V 0000000000000"
     scale 1.5
     position x=0 y=0
     mode "3840x2160@143.998000"
-    variable-refresh-rate on-demand=true
 }
 output "Chimei Innolux Corporation 0x1540 Unknown" {
     scale 1.6
     position x=2560 y=540
-    variable-refresh-rate on-demand=true
 }
 
 binds {
@@ -291,7 +289,7 @@ layout {
 cursor {
     xcursor-theme "default"
     xcursor-size 24
-    hide-when-typing
+    // hide-when-typing // may be buggy on first-person games
     hide-after-inactive-ms 10000
 }
 hotkey-overlay { skip-at-startup; }

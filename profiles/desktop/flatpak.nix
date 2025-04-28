@@ -27,8 +27,13 @@ in
     services.flatpak.enable = true;
 
     home-manager.users.${user} = {
-      home.shellAliases = {
-        "flatpak" = "flatpak --user";
+      home = {
+        file.".var/app/com.discordapp.Discord/config/discord-flags.conf".text =
+          lib.concatLines lib.chromiumArgs;
+
+        shellAliases = {
+          "flatpak" = "flatpak --user";
+        };
       };
 
       services.flatpak = {
@@ -54,6 +59,12 @@ in
           "com.baidu.NetDisk" = {
             Context = {
               filesystems = untrustedFilesystemsOverride;
+            };
+          };
+
+          "com.discordapp.Discord" = {
+            Context = {
+              sockets = [ "wayland" ];
             };
           };
 

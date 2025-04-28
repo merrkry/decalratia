@@ -29,6 +29,7 @@
   services = {
     flatpak.packages = [
       "com.baidu.NetDisk"
+      "com.discordapp.Discord"
       "com.qq.QQ"
       "com.usebottles.bottles"
       "com.valvesoftware.Steam"
