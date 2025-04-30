@@ -40,8 +40,8 @@
             src = pkgs.fetchFromGitHub {
               owner = "Supreeeme";
               repo = "xwayland-satellite";
-              rev = "0cd5059c42f410986056f6f892cfa5ef4d35d3c3";
-              hash = "sha256-XghA6JtaEOSVMpD5n+E6u+qCbdEbFgesnBBGz596hGc=";
+              rev = "56a681bfecc5831f41f8eb0ec8c7e96c6b277153";
+              hash = "sha256-Tdsw5lD/XM8i1GnQr7ombqnEaCpt/voPs2AbjuYBbjI=";
             };
             cargoLock = null;
             useFetchCargoVendor = true;
