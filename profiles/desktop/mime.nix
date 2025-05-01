@@ -19,6 +19,8 @@ in
       gnome-text-editor.enable = true;
     };
 
+    programs.file-roller.enable = true;
+
     services.gvfs.enable = true;
 
     home-manager.users.${user} = {
@@ -98,8 +100,15 @@ in
                   "vnd.wap.wbmp"
                   "x-icns"
                 ];
+
+                compressedTypeList = [
+                  "vnd.rar"
+                  "x-compressed-tar"
+                  "zip"
+                ];
               in
               (genMimeList "image" imageTypeList "org.gnome.eog.desktop")
+              // (genMimeList "application" compressedTypeList "org.gnome.FileRoller.desktop")
             )
           ];
         };
