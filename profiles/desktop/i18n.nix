@@ -51,7 +51,7 @@ in
           XMODIFIERS = "@im=fcitx";
         }
         (lib.optionalAttrs (!config.services.desktopManager.plasma6.enable) {
-          # GTK_IM_MODULE = "fcitx"; # unset this to use tiv3 directly
+          GTK_IM_MODULE = "wayland"; # `wayland` to use tiv3, `fcitx` to use fcitx im module
           QT_IM_MODULE = "fcitx";
           QT_IM_MODULES = "wayland;fcitx;ibus";
         })

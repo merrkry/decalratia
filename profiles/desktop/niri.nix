@@ -18,6 +18,8 @@ in
 
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
+      dconf.settings."org/gnome/desktop/wm/preferences".button-layout = "";
+
       home = {
         packages = with pkgs; [
           brightnessctl
@@ -36,8 +38,6 @@ in
           "d ${hmConfig.xdg.userDirs.pictures}/Steam - - - 14d -"
         ];
       };
-
-      xdg.configFile."niri/config.kdl".source = ./config.kdl;
     };
   };
 }

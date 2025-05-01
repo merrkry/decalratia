@@ -4,7 +4,7 @@ input {
         dwt
         dwtp
     }
-    warp-mouse-to-focus
+    // warp-mouse-to-focus
     workspace-auto-back-and-forth
 }
 
@@ -286,11 +286,12 @@ layout {
     center-focused-column "on-overflow"
     always-center-single-column
 }
+
 cursor {
     xcursor-theme "default"
     xcursor-size 24
     // hide-when-typing // may be buggy on first-person games
-    hide-after-inactive-ms 10000
+    hide-after-inactive-ms 3000
 }
 hotkey-overlay { skip-at-startup; }
 screenshot-path "/home/merrkry/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -298,11 +299,8 @@ prefer-no-csd
 environment {
     DISPLAY ":42"
 }
-workspace "terminal"
-workspace "browser"
-workspace "notes"
-workspace "communication"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
@@ -315,12 +313,12 @@ window-rule {
     match app-id="^chromium-browser$"
     match app-id="^firefox$"
     default-column-width { proportion 1.0; }
-    open-on-workspace "browser"
+    // open-on-workspace "browser"
 }
 window-rule {
     match app-id="^obsidian$"
     default-column-width { proportion 1.0; }
-    open-on-workspace "notes"
+    // open-on-workspace "notes"
 }
 window-rule {
     match title="^Cinny$"
@@ -329,8 +327,9 @@ window-rule {
     match app-id="^QQ$"
     match app-id="^thunderbird$"
     match title="^Mail - Nextcloud$"
+    match app-id=r#"^com.discordapp.Discord$"#
     default-column-width { proportion 0.5; }
-    open-on-workspace "communication"
+    // open-on-workspace "communication"
 }
 window-rule {
     match app-id="^firefox$" title="^画中画$"
@@ -346,12 +345,16 @@ window-rule {
     open-floating true
 }
 window-rule {
+    // wrkaround drag-and-drop in jetbrains IDEs
+    // side effect: main window opened floating
     match app-id="^jetbrains" title="^$"
     match app-id="^jetbrains" title="^ $"
     open-floating true
     open-focused false
 }
 window-rule {
+    // workaround steam notification
+    // https://github.com/YaLTeR/niri/wiki/Application-Issues#steam
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=8 y=8 relative-to="bottom-right"
 }
@@ -367,4 +370,11 @@ window-rule {
     match app-id=r#"^gamescope$"#
     match app-id=r#"^steam_app_\d+$"#
     variable-refresh-rate true
+}
+
+animations {
+    workspace-switch {
+        off
+    }
+    slowdown 0.8
 }
