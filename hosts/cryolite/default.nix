@@ -16,6 +16,9 @@
       enable = true;
       waybar.backlightDevice = "amdgpu_bl1";
     };
+    cli = {
+      devTools.enable = true;
+    };
     tui = {
       helix.enable = true;
     };

@@ -16,6 +16,9 @@
       enable = true;
       waybar.backlightDevice = "intel_backlight";
     };
+    cli = {
+      devTools.enable = true;
+    };
     tui = {
       helix.enable = true;
     };

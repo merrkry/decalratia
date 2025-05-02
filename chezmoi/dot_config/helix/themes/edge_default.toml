@@ -1,0 +1,213 @@
+attribute = "cyan"
+comment = "grey"
+constant = "purple"
+"constant.character.escape" = "cyan"
+"constant.numeric" = "green"
+constructor = "yellow"
+"diff.delta" = "orange"
+"diff.minus" = "red"
+"diff.plus" = "green"
+error = "red"
+function = "blue"
+"function.builtin" = "blue"
+"function.macro" = "cyan"
+hint = "blue"
+info = "green"
+keyword = "purple"
+"keyword.directive" = "cyan"
+label = "orange"
+"markup.heading.marker" = "grey"
+"markup.link.text" = "purple"
+"markup.list" = "red"
+"markup.quote" = "grey"
+"markup.raw" = "green"
+module = "red"
+namespace = "red"
+operator = "red"
+punctuation = "grey"
+"punctuation.bracket" = "fg"
+"punctuation.delimiter" = "grey"
+special = "orange"
+string = "green"
+"string.regexp" = "orange"
+tag = "yellow"
+type = "yellow"
+"ui.background.separator" = "grey"
+"ui.linenr" = "grey"
+"ui.linenr.selected" = "fg"
+"ui.text" = "fg"
+"ui.text.focus" = "green"
+variable = "fg"
+"variable.builtin" = "orange"
+"variable.other.member" = "fg"
+"variable.parameter" = "fg"
+warning = "yellow"
+
+[diagnostic.underline]
+style = "line"
+
+["diagnostic.error".underline]
+color = "red"
+style = "curl"
+
+["diagnostic.hint".underline]
+color = "blue"
+style = "dotted"
+
+["diagnostic.info".underline]
+color = "green"
+style = "dotted"
+
+["diagnostic.warning".underline]
+color = "yellow"
+style = "curl"
+
+["markup.bold"]
+modifiers = ["bold"]
+
+["markup.heading.1"]
+fg = "purple"
+modifiers = ["bold"]
+
+["markup.heading.2"]
+fg = "red"
+modifiers = ["bold"]
+
+["markup.heading.3"]
+fg = "blue"
+modifiers = ["bold"]
+
+["markup.heading.4"]
+fg = "yellow"
+modifiers = ["bold"]
+
+["markup.heading.5"]
+fg = "green"
+modifiers = ["bold"]
+
+["markup.heading.6"]
+fg = "fg"
+modifiers = ["bold"]
+
+["markup.italic"]
+modifiers = ["italic"]
+
+["markup.link.url"]
+fg = "green"
+modifiers = ["underlined"]
+
+[palette]
+bg0 = "#303030"
+bg1 = "#33353f"
+bg2 = "#363944"
+bg3 = "#3b3e48"
+bg4 = "#414550"
+bg_blue = "#6cb6eb"
+bg_green = "#a0c980"
+bg_grey = "#828a98"
+bg_purple = "#d38aea"
+bg_red = "#ec7279"
+black = "#202023"
+blue = "#6cb6eb"
+cyan = "#5dbbc1"
+diff_blue = "#354157"
+diff_green = "#394634"
+diff_red = "#55393d"
+diff_yellow = "#4e432f"
+fg = "#c5cdd9"
+green = "#a0c980"
+grey = "#7f8490"
+grey_dim = "#5b616e"
+orange = "#e59b77"
+purple = "#d38aea"
+red = "#ec7279"
+yellow = "#deb974"
+
+["ui.background"]
+bg = "bg0"
+
+["ui.bufferline"]
+bg = "bg1"
+fg = "grey"
+
+["ui.bufferline.active"]
+bg = "bg4"
+fg = "fg"
+modifiers = ["bold"]
+
+["ui.cursor"]
+bg = "fg"
+fg = "bg0"
+
+["ui.cursor.insert"]
+bg = "grey"
+fg = "black"
+
+["ui.cursor.match"]
+bg = "diff_yellow"
+fg = "orange"
+
+["ui.cursor.select"]
+bg = "blue"
+fg = "bg0"
+
+["ui.cursorline.primary"]
+bg = "bg1"
+
+["ui.cursorline.secondary"]
+bg = "bg1"
+
+["ui.help"]
+bg = "bg2"
+fg = "fg"
+
+["ui.menu"]
+bg = "bg3"
+fg = "fg"
+
+["ui.menu.selected"]
+bg = "blue"
+fg = "bg0"
+
+["ui.popup"]
+bg = "bg2"
+fg = "grey"
+
+["ui.selection"]
+bg = "bg4"
+
+["ui.statusline"]
+bg = "bg3"
+fg = "fg"
+
+["ui.statusline.inactive"]
+bg = "bg1"
+fg = "grey"
+
+["ui.statusline.insert"]
+bg = "purple"
+fg = "bg0"
+modifiers = ["bold"]
+
+["ui.statusline.normal"]
+bg = "fg"
+fg = "bg0"
+modifiers = ["bold"]
+
+["ui.statusline.select"]
+bg = "blue"
+fg = "bg0"
+modifiers = ["bold"]
+
+["ui.virtual.indent-guide"]
+fg = "bg4"
+
+["ui.virtual.ruler"]
+bg = "bg2"
+
+["ui.virtual.whitespace"]
+fg = "bg4"
+
+["ui.window"]
+bg = "bg0"
+fg = "grey"

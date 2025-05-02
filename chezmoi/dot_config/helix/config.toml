@@ -1,0 +1,57 @@
+theme = "edge_default"
+
+[editor]
+line-number = "relative"
+cursorline = true
+auto-format = false
+idle-timeout = 10
+completion-timeout = 5
+completion-replace = true
+color-modes = true
+end-of-line-diagnostics = "hint"
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.auto-save]
+focus-lost = true
+after-delay = { enable = true }
+
+[editor.indent-guides]
+render = true
+skip-levels = 1
+
+[editor.soft-wrap]
+enable = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+[keys.normal]
+pagedown = "half_page_down"
+pageup = "half_page_up"
+"C-f" = ":format"
+"C-s" = ":write"
+"C-h" = "jump_view_left"
+"C-left" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-down" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-up" = "jump_view_up"
+"C-l" = "jump_view_right"
+"C-right" = "jump_view_right"
+H = "goto_first_nonwhitespace"
+J = "half_page_down"
+K = "half_page_up"
+L = "goto_line_end"
+
+[keys.insert]
+pagedown = "half_page_down"
+pageup = "half_page_up"
+
+[keys.select]
+pagedown = "half_page_down"
+pageup = "half_page_up"
