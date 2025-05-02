@@ -287,27 +287,38 @@ layout {
     always-center-single-column
 }
 
+// workspace "browser"
+// workspace "notes"
+// workspace "communication"
+
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+
+prefer-no-csd
+
+screenshot-path "/home/merrkry/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+environment {
+    DISPLAY ":42"
+}
+
 cursor {
     xcursor-theme "default"
     xcursor-size 24
     // hide-when-typing // may be buggy on first-person games
     hide-after-inactive-ms 3000
 }
+
 hotkey-overlay { skip-at-startup; }
-screenshot-path "/home/merrkry/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-prefer-no-csd
-environment {
-    DISPLAY ":42"
-}
-spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
 window-rule {
+    // bitwarden chromium extension
     match title="^_crx_nngceckbapebfimnlniiiahkandclblb$"
     open-floating true
+    block-out-from "screencast"
 }
 window-rule {
     match app-id="^chromium-browser$"
@@ -357,6 +368,7 @@ window-rule {
     // https://github.com/YaLTeR/niri/wiki/Application-Issues#steam
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=8 y=8 relative-to="bottom-right"
+    block-out-from "screencast"
 }
 window-rule {
     match app-id=r#"^QQ$"# title=r#"^图片查看器$"#
@@ -370,6 +382,12 @@ window-rule {
     match app-id=r#"^gamescope$"#
     match app-id=r#"^steam_app_\d+$"#
     variable-refresh-rate true
+}
+
+layer-rule {
+    match namespace=r#"^swaync-control-center$"#
+    match namespace=r#"^swaync-notification-window$"#
+    block-out-from "screencast"
 }
 
 animations {
