@@ -27,8 +27,8 @@ in
       };
       image = lib.mkDefault (
         pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/wallpapers/nix-wallpaper-nineish-dark-gray.png";
-          sha256 = "sha256-nhIUtCy/Hb8UbuxXeL3l3FMausjQrnjTVi1B3GkL9B8=";
+          url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/wallpapers/nix-wallpaper-nineish-dark-gray.svg";
+          sha256 = "sha256-r+2MyWWfr7f3kzmsPI24hReScVaJtdmGO0drISs1NGM=";
         }
       );
       polarity = "dark";
