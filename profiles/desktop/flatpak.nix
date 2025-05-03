@@ -17,6 +17,7 @@ let
     "!xdg-templates"
     "!xdg-videos"
   ];
+  chromiumArgsText = lib.concatLines lib.chromiumArgs;
 in
 {
   options.profiles.desktop.flatpak = {
@@ -28,8 +29,8 @@ in
 
     home-manager.users.${user} = {
       home = {
-        file.".var/app/com.discordapp.Discord/config/discord-flags.conf".text =
-          lib.concatLines lib.chromiumArgs;
+        file.".var/app/com.discordapp.Discord/config/discord-flags.conf".text = chromiumArgsText;
+        file.".var/app/md.obsidian.Obsidian/config/obsidian/user-flags.conf".text = chromiumArgsText;
 
         shellAliases = {
           "flatpak" = "flatpak --user";
@@ -94,6 +95,12 @@ in
               GTK_IM_MODULE = "xim";
               PATH = "/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/gamescope/bin"; # might be unnecessary
               XMODIFIERS = "@im=fcitx";
+            };
+          };
+
+          "md.obsidian.Obsidian" = {
+            Context = {
+              sockets = [ "wayland" ];
             };
           };
         };

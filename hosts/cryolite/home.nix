@@ -1,9 +1,10 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     distrobox
     materialgram
-    (obsidian.override { commandLineArgs = lib.chromiumArgs; })
     xournalpp
   ];
+
+  services.flatpak.packages = [ "md.obsidian.Obsidian" ];
 }
