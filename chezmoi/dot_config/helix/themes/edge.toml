@@ -1,5 +1,5 @@
 "type" = "yellow"
-"constant" = "purple" # TODO
+"constant" = "purple"                # TODO
 "constant.numeric" = "green"
 "constant.character.escape" = "cyan"
 "string" = "green"
@@ -73,6 +73,7 @@
 "ui.virtual.whitespace" = { fg = "bg4" }
 "ui.virtual.indent-guide" = { fg = "bg4" }
 "ui.virtual.ruler" = { bg = "bg2" }
+"ui.virtual.inlay-hint" = { fg = "grey", bg = "bg1", modifiers = ["italic"] }
 
 "hint" = "blue"
 "info" = "green"
@@ -85,7 +86,6 @@
 "diagnostic.error" = { underline = { color = "red", style = "curl" } }
 
 [palette]
-
 black = "#202023"
 bg0 = "#2c2e34"
 bg1 = "#33353f"
@@ -103,7 +103,7 @@ bg_purple = "#d38aea"
 diff_yellow = "#4e432f"
 fg = "#c5cdd9"
 red = "#ec7279"
-orange = "#e59b77" # added for compatibility with `sonokai` scheme
+orange = "#e59b77"      # added for compatibility with `sonokai` scheme
 yellow = "#deb974"
 green = "#a0c980"
 cyan = "#5dbbc1"
@@ -111,4 +111,3 @@ blue = "#6cb6eb"
 purple = "#d38aea"
 grey = "#7f8490"
 grey_dim = "#5b616e"
-

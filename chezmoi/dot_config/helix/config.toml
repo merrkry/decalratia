@@ -1,4 +1,5 @@
-theme = "edge_default"
+# https://github.com/CptPotato/helix-themes/pull/11/files
+theme = "edge"
 
 [editor]
 line-number = "relative"
@@ -44,8 +45,20 @@ pageup = "half_page_up"
 "C-l" = "jump_view_right"
 "C-right" = "jump_view_right"
 H = "goto_first_nonwhitespace"
-J = "half_page_down"
-K = "half_page_up"
+J = [
+  "move_line_down",
+  "move_line_down",
+  "move_line_down",
+  "move_line_down",
+  "move_line_down",
+]
+K = [
+  "move_line_up",
+  "move_line_up",
+  "move_line_up",
+  "move_line_up",
+  "move_line_up",
+]
 L = "goto_line_end"
 
 [keys.insert]
