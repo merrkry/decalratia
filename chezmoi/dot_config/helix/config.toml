@@ -4,6 +4,7 @@ theme = "edge"
 [editor]
 line-number = "relative"
 cursorline = true
+continue-comments = false
 auto-format = false
 idle-timeout = 10
 completion-timeout = 5

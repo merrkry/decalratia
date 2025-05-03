@@ -16,6 +16,10 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
       home.packages = with pkgs; [
+        # universal
+        gnumake
+        meson
+        ninja
         # bash
         bash-language-server
         shfmt # used by bash-language-server automatically
