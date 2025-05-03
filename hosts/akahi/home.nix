@@ -25,6 +25,7 @@
       "com.baidu.NetDisk"
       "com.discordapp.Discord"
       "com.qq.QQ"
+      "com.spotify.Client"
       "com.usebottles.bottles"
       "com.valvesoftware.Steam"
       "md.obsidian.Obsidian"

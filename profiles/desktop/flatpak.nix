@@ -30,6 +30,7 @@ in
     home-manager.users.${user} = {
       home = {
         file.".var/app/com.discordapp.Discord/config/discord-flags.conf".text = chromiumArgsText;
+        file.".var/app/com.spotify.Client/config/spotify-flags.conf".text = chromiumArgsText;
         file.".var/app/md.obsidian.Obsidian/config/obsidian/user-flags.conf".text = chromiumArgsText;
 
         shellAliases = {
@@ -76,6 +77,12 @@ in
             };
             Environment = {
               GTK_IM_MODULE = "fcitx";
+            };
+          };
+
+          "com.spotify.Client" = {
+            Context = {
+              sockets = [ "wayland" ];
             };
           };
 
