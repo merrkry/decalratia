@@ -1,16 +1,5 @@
 { pkgs, ... }:
 {
-  mautrix-telegram = pkgs.mautrix-telegram.overrideAttrs (
-    finalAttrs: oldAttrs: {
-      src = pkgs.fetchFromGitHub {
-        owner = "mautrix";
-        repo = "telegram";
-        rev = "6480e7925e3353200b894ddc86e2880409b01ba3";
-        hash = "sha256-P9/rgq7cHZXQ6doP4aiWAQYwoNxkg5VyAC5kFnZbNPM=";
-      };
-    }
-  );
-
   # Allow to keep the same name between updates
   # https://github.com/chaotic-cx/nyx/blob/main/pkgs/proton-ge-custom/default.nix
   # https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/pr/proton-ge-bin/package.nix

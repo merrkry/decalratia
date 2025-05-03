@@ -32,12 +32,8 @@ in
     open-webui = {
       enable = true;
       package = pkgs.open-webui;
-      environment = rec {
+      environment = {
         DATABASE_URL = "postgres:///${serviceName}?host=/run/postgresql";
-        ENABLE_WEBSOCKET_SUPPORT = "True";
-        WEBSOCKET_MANAGER = "redis";
-        WEBSOCKET_REDIS_URL = "unix://${config.services.redis.servers.${serviceName}.unixSocket}";
-        REDIS_URL = WEBSOCKET_REDIS_URL;
         WEBUI_AUTH = "False";
       };
       # port = ; TODO: unify port management
@@ -52,25 +48,10 @@ in
       ];
       ensureDatabases = [ serviceName ];
     };
-    redis.servers.${serviceName} = {
-      enable = true;
-      user = "open-webui";
-    };
   };
 
-  systemd.services = {
-    # In case open-webui user not created by systemd yet
-    "redis-${serviceName}" = {
-      after = [ "${serviceName}.service" ];
-      requires = [ "${serviceName}.service" ];
-      serviceConfig = {
-        Restart = "on-failure";
-        RestartSec = "60s";
-      };
-    };
-    ${serviceName} = {
-      after = [ "postgresql.service" ];
-      requires = [ "postgresql.service" ];
-    };
+  systemd.services.${serviceName} = {
+    after = [ "postgresql.service" ];
+    requires = [ "postgresql.service" ];
   };
 }
