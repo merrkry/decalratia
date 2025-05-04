@@ -66,5 +66,6 @@
   servicePorts = {
     atuin = 20001;
     atticd = 20002;
+    kanidm = 20003;
   };
 }

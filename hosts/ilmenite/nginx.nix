@@ -13,10 +13,11 @@
     extraDomainNames = [
       "atuin.tsubasa.moe"
       "cache.tsubasa.moe"
+      "id.tsubasa.moe"
     ];
     dnsProvider = "cloudflare";
     environmentFile = config.sops.secrets."acme/cloudflare".path;
-    postRun = "systemctl --no-block reload nginx.service";
+    reloadServices = [ "nginx.service" ];
   };
 
   services.nginx = {
