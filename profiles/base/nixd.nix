@@ -15,11 +15,6 @@ in
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       {
-
-        documentation.nixos.enable = false;
-        # will be enabled by fish, making rebuild extremely slow
-        documentation.man.generateCaches = lib.mkForce false;
-
         nix =
           let
             flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
