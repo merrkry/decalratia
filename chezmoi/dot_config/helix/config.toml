@@ -35,17 +35,11 @@ cursor-line = "warning"
 [keys.normal]
 pagedown = "half_page_down"
 pageup = "half_page_up"
-"C-f" = ":format"
+"C-l" = ":format"
 "C-s" = ":write"
-"C-h" = "jump_view_left"
-"C-left" = "jump_view_left"
-"C-j" = "jump_view_down"
-"C-down" = "jump_view_down"
-"C-k" = "jump_view_up"
-"C-up" = "jump_view_up"
-"C-l" = "jump_view_right"
-"C-right" = "jump_view_right"
-H = "goto_first_nonwhitespace"
+"C-S-s" = ":write-all"
+"C-r" = ":reload"
+"C-S-r" = ":reload-all"
 J = [
   "move_line_down",
   "move_line_down",
@@ -60,7 +54,7 @@ K = [
   "move_line_up",
   "move_line_up",
 ]
-L = "goto_line_end"
+ret = "goto_word"
 
 [keys.insert]
 pagedown = "half_page_down"

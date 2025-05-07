@@ -14,16 +14,24 @@ in
 
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
+      # imported by stylix
+      # https://github.com/tinted-theming/tinted-tmux
+      home.sessionVariables = {
+        TINTED_TMUX_OPTION_STATUSBAR = 1;
+      };
+
       programs.tmux = {
         enable = true;
         baseIndex = 1;
+        clock24 = true;
+        escapeTime = 10;
+        keyMode = "vi";
+        mouse = true;
+        terminal = "tmux-256color";
         # about -g/-s, see https://github.com/tmux/tmux/wiki/Getting-Started#changing-options
         extraConfig = ''
-          set -g escape-time 10
-          set -g mouse on
           set -g renumber-windows on
           set -g set-clipboard on
-          set -g default-terminal "tmux-256color"
           set -ga terminal-overrides ",xterm-256color:Tc,foot:Tc"
         '';
       };
