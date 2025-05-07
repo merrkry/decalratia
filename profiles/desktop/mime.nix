@@ -17,6 +17,7 @@ in
     profiles.gui = {
       eog.enable = true;
       gnome-text-editor.enable = true;
+      nautilus.enable = true;
     };
 
     programs.file-roller.enable = true;
@@ -27,7 +28,6 @@ in
       home.packages = with pkgs; [
         papers # pdf
         foliate # epub
-        nautilus # file
       ];
 
       xdg.mimeApps =
