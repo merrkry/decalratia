@@ -26,6 +26,9 @@
       vscode.enable = true;
       zed.enable = true;
     };
+    services = {
+      syncthing.enable = true;
+    };
   };
 
   users.users = {

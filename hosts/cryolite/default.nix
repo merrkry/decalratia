@@ -25,6 +25,9 @@
     gui = {
       zed.enable = true;
     };
+    services = {
+      syncthing.enable = true;
+    };
   };
 
   users.users = {

@@ -13,3 +13,9 @@ User level:
 mkdir -p ~/.config/sops/age/
 age-keygen -o ~/.config/sops/age/keys.txt
 ```
+
+## Syncthing
+
+```
+nix run nixpkgs#syncthing -- generate --config ~/.local/state/syncthing/
+```

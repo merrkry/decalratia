@@ -8,6 +8,9 @@
       network.tailscale = "server";
     };
     base-devel.enable = true;
+    services = {
+      syncthing.enable = true;
+    };
   };
 
   users.users = {

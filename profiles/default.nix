@@ -23,6 +23,7 @@
     ./desktop
     ./gui
     ./tui
+    ./services
   ];
 
   config = {
