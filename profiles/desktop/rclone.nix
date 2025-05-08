@@ -11,7 +11,7 @@ let
 in
 {
   options.profiles.desktop.rclone = {
-    enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
+    enable = lib.mkEnableOption' { };
   };
 
   config = lib.mkIf cfg.enable {
