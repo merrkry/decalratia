@@ -37,6 +37,7 @@ in
             Service = {
               ExecStart = "${lib.getExe pkgs.xwayland-satellite} :42";
               Restart = "on-failure";
+              StandardOutput = "null";
             };
           };
         };
