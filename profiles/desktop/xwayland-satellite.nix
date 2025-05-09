@@ -17,7 +17,8 @@ in
     home-manager.users.${user} = {
       home = {
         packages = with pkgs; [ xorg.xrandr ]; # some apps will crash without this
-        # For some reason doesn't work, might be reset by niri
+        # Will be reset by niri. Set this in niri's config instead.
+        # https://github.com/YaLTeR/niri/blob/7a10f71ee564a7c1054683929f6a0110b0fa3b56/src/main.rs#L75-L78
         # sessionVariables = {
         #   DISPLAY = ":42";
         # };
