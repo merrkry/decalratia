@@ -34,7 +34,7 @@ in
         file.".var/app/md.obsidian.Obsidian/config/obsidian/user-flags.conf".text = chromiumArgsText;
 
         shellAliases = {
-          "flatpak" = "flatpak --user";
+          "flatuser" = "flatpak --user";
         };
       };
 
