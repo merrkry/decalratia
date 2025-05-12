@@ -70,11 +70,11 @@ in
           allowUnfreePredicate =
             pkg:
             builtins.elem (lib.getName pkg) [
+              "7zz"
               "code"
               "nvidia-persistenced"
               "nvidia-x11"
               "obsidian"
-              "p7zip"
               "steam"
               "steam-unwrapped"
               "chromium"

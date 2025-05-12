@@ -22,7 +22,7 @@ in
         with pkgs;
         (
           [
-            p7zip-rar
+            _7zz-rar
             jq
             fd
             ripgrep
