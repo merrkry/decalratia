@@ -73,7 +73,6 @@ in
           "com.qq.QQ" = {
             Context = {
               filesystems = untrustedFilesystemsOverride;
-              sockets = [ "!wayland" ];
             };
             Environment = {
               GTK_IM_MODULE = "fcitx";
