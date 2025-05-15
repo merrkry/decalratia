@@ -356,14 +356,6 @@ window-rule {
     open-floating true
 }
 window-rule {
-    // wrkaround drag-and-drop in jetbrains IDEs
-    // side effect: main window opened floating
-    match app-id="^jetbrains" title="^$"
-    match app-id="^jetbrains" title="^ $"
-    open-floating true
-    open-focused false
-}
-window-rule {
     // workaround steam notification
     // https://github.com/YaLTeR/niri/wiki/Application-Issues#steam
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
