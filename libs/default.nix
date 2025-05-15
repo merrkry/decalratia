@@ -67,5 +67,6 @@
     atuin = 20001;
     atticd = 20002;
     kanidm = 20003;
+    open-webui = 20004;
   };
 }
