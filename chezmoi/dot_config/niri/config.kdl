@@ -1,4 +1,7 @@
 input {
+    keyboard {
+        numlock
+    }
     touchpad {
         tap
         dwt
@@ -37,6 +40,8 @@ binds {
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
     XF86MonBrightnessUp { spawn "brightnessctl" "set" "+5%"; }
+
+    Mod+O repeat=false { toggle-overview; }
 
     Mod+Q { close-window; }
 
@@ -201,6 +206,7 @@ binds {
     Mod+Ctrl+F { expand-column-to-available-width; }
 
     Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
     
     Mod+Shift+C { spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
     Mod+Shift+Ctrl+C { spawn "sh" "-c" "rm /home/merrkry/.cache/cliphist/db"; }
@@ -269,6 +275,7 @@ layout {
         width 2
         inactive-color "#665c54"
         active-gradient from="#E5989B" to="#FFB4A2" angle=45 relative-to="workspace-view" in="oklch longer hue"
+        urgent-gradient from="#800" to="#a33" angle=45
     }
     tab-indicator {
         width 2
@@ -304,8 +311,8 @@ environment {
 cursor {
     xcursor-theme "default"
     xcursor-size 24
-    // hide-when-typing // may be buggy on first-person games
-    hide-after-inactive-ms 3000
+    hide-when-typing
+    hide-after-inactive-ms 2500
 }
 
 hotkey-overlay { skip-at-startup; }
