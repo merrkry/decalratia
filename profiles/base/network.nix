@@ -65,6 +65,7 @@ in
             recommendedOptimisation = lib.mkDefault true;
             recommendedProxySettings = lib.mkDefault true;
             recommendedTlsSettings = lib.mkDefault true;
+            recommendedUwsgiSettings = lib.mkDefault true;
             recommendedZstdSettings = lib.mkDefault true;
             commonHttpConfig = "access_log syslog:server=unix:/dev/log;"; # send log to journald
             virtualHosts = {
