@@ -29,6 +29,9 @@ in
         # go
         go
         gopls
+        # javascript / typescript
+        nodejs
+        pnpm
         # nix
         nixd
         nixfmt-rfc-style

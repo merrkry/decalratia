@@ -10,7 +10,6 @@
       kdePackages.kdenlive
       materialgram
       nali
-      nodejs
       numbat
       podman-compose
       (prismlauncher.override { jdks = [ jdk17 ]; })

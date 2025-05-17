@@ -11,6 +11,12 @@
     services = {
       syncthing.enable = true;
     };
+    cli = {
+      devTools.enable = true;
+    };
+    tui = {
+      helix.enable = true;
+    };
   };
 
   users.users = {
