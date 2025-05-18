@@ -54,6 +54,7 @@ in
     ${serviceName} = {
       after = [ "postgresql.service" ];
       requires = [ "postgresql.service" ];
+      path = [ pkgs.ffmpeg ];
     };
 
     postgresql.serviceConfig.ExecStartPost =
