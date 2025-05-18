@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   user,
   ...
 }:
@@ -13,15 +14,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     home-manager.users.${user} = {
-
       programs.thunderbird = {
         enable = true;
+        package = pkgs.thunderbird-latest;
         profiles = { };
       };
-
     };
-
   };
 }

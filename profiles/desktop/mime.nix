@@ -36,6 +36,7 @@ in
             "chromium-browser.desktop"
             "firefox.desktop"
           ];
+          emailClient = "thunderbird.desktop";
         in
         {
           enable = true;
@@ -44,10 +45,11 @@ in
               "application/pdf" = "org.gnome.Papers.desktop";
               "application/epub+zip" = "com.github.johnfactotum.Foliate.desktop";
               "inode/directory" = "org.gnome.Nautilus";
+              "message/rfc822" = emailClient;
               "text/plain" = "org.gnome.TextEditor.desktop";
               "x-scheme-handler/http" = browser;
               "x-scheme-handler/https" = browser;
-
+              "x-scheme-handler/mailto" = emailClient;
               "x-scheme-handler/obsidian" = "md.obsidian.Obsidian.desktop";
               "x-scheme-handler/steam" = "steam.desktop";
               "x-scheme-handler/steamlink" = "steam.desktop";

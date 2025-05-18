@@ -23,6 +23,7 @@
       helix.enable = true;
     };
     gui = {
+      thunderbird.enable = true;
       vscode.enable = true;
       zed.enable = true;
     };
