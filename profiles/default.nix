@@ -54,6 +54,9 @@
     services.fwupd.enable = lib.mkDefault (
       config.hardware.cpu.intel.updateMicrocode || config.hardware.cpu.amd.updateMicrocode
     );
+
+    stylix.enableReleaseChecks = false;
+
     # useless and fails on some network conditions
     systemd.services."fwupd-refresh".enable = false;
     systemd.timers."fwupd-refresh".enable = false;
@@ -73,7 +76,11 @@
             home = {
               username = user;
               homeDirectory = config.users.users.${user}.home;
+
+              enableNixpkgsReleaseCheck = false;
             };
+
+            stylix.enableReleaseChecks = false;
           }
         ];
       };

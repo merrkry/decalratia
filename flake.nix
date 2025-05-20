@@ -22,8 +22,7 @@
     };
 
     lix = {
-      # 2.92 regression https://github.com/NixOS/nixpkgs/pull/375030
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.91.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.93.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
@@ -57,7 +56,7 @@
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
         flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
+        flake-parts.follows = "flake-parts";
         nur.follows = "nur";
       };
     };
