@@ -14,7 +14,7 @@
     base-devel.enable = true;
     desktop = {
       enable = true;
-      waybar.backlightDevice = "intel_backlight";
+      gaming.enable = true;
     };
     cli = {
       devTools.enable = true;

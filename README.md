@@ -6,12 +6,12 @@ All configuration in one place, powered by Nix.
 
 ## Hosts
 
-- `akahi`: Asus TUF Gaming F15 FX507ZR
+- `akahi`: Desktop workstation powered by 9700X + 9070XT
 - `cryolite`: ThinkPad E14 Gen 3 (AMD)
-- `hoshinouta`: public services VPS
+- `hoshinouta`: Old services VPS
+- `ilmenite`: New services VPS
 - `karanohako`: Beelink EQ12 Mini PC, NAS
-- `perimadeia`: compile VPS
-- `sapphire`: storage VPS
+- `sapphire`: Storage VPS
 
 ## Updates
 

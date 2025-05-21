@@ -6,7 +6,6 @@
       distrobox
       gparted
       imagemagick
-      joystickwake
       kdePackages.kdenlive
       materialgram
       nali
