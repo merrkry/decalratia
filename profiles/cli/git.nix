@@ -24,14 +24,36 @@ in
         userEmail = "merrkry@tsubasa.moe";
         ignores = [ ".direnv" ];
 
+        # https://blog.gitbutler.com/how-git-core-devs-configure-git/
         extraConfig = {
+          branch.sort = "-committerdate";
+          column.ui = "auto";
           commit.gpgsign = true;
           credential.helper = "cache";
+          diff = {
+            algorithm = "histogram";
+            colorMoved = "plain";
+            mnemonicPrefix = true;
+            renames = true;
+          };
+          fetch = {
+            prune = true;
+            pruneTags = true;
+            all = true;
+          };
           gpg.format = "ssh";
+          help.autocorrect = "prompt";
           init.defaultBranch = "master";
           pull.rebase = true;
-          safe.directory = "*";
-          tag.gpgSign = true;
+          push = {
+            default = "simple";
+            autoSetupRemote = true;
+            followTags = true;
+          };
+          tag = {
+            gpgSign = true;
+            sort = "version:refname";
+          };
           user.signingkey = "${hmConfig.home.homeDirectory}/.ssh/id_ed25519.pub";
         };
       };
