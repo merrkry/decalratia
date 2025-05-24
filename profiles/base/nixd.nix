@@ -75,6 +75,7 @@ in
               "nvidia-persistenced"
               "nvidia-x11"
               "obsidian"
+              "open-webui"
               "steam"
               "steam-unwrapped"
               "chromium"

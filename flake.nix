@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:merrkry/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -85,7 +85,7 @@
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        nixpkgs-24_11.follows = "nixpkgs-stable";
+        nixpkgs-25_05.follows = "nixpkgs-stable";
         flake-compat.follows = "flake-compat";
       };
     };
