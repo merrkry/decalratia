@@ -363,6 +363,10 @@ window-rule {
     open-floating true
 }
 window-rule {
+    match app-id=r#"^steam$"# title=r#"^Steam$"#
+    default-column-width { proportion 1.0; }
+}
+window-rule {
     // workaround steam notification
     // https://github.com/YaLTeR/niri/wiki/Application-Issues#steam
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
