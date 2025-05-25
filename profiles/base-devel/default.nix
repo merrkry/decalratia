@@ -47,6 +47,7 @@ in
         btop.enable = true;
         fzf.enable = true;
         tmux.enable = true;
+        tmux-sessionizer.enable = true;
         yazi.enable = true;
       };
     };
@@ -58,7 +59,6 @@ in
 
     home-manager.users.${user} = {
       programs = {
-        tmux-sessionizer.enable = true;
         zoxide.enable = true;
       };
     };
