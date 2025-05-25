@@ -23,8 +23,6 @@ in
         commandLineArgs = lib.chromiumArgs ++ [
           "--password-store=gnome-libsecret"
           "--enable-features=AcceleratedVideoDecodeLinuxGL"
-          "--ignore-gpu-blocklist"
-          "--enable-zero-copy"
         ];
         # doesn't work for ungoogled-chromium, https://github.com/nix-community/home-manager/pull/4174
         # extensions = [
