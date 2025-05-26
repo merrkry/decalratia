@@ -43,11 +43,10 @@ in
                 "remote-deployer"
               ];
               substituters = [
-                "https://cache.tsubasa.moe/local"
-                "https://nix-community.cachix.org"
-                "https://cache.garnix.io"
+                "https://cache.tsubasa.moe/local/"
+                "https://nix-community.cachix.org/"
+                "https://cache.garnix.io/"
               ];
-              fallback = true; # fallback to build in case self-hosted binary cache offline
               trusted-public-keys = [
                 "local:/LodgQCkIp8Acygs/V5XSqhxchExvXnzf1BXDwuAqNk="
                 "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="

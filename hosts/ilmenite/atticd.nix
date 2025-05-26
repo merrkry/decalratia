@@ -16,7 +16,7 @@ in
 
       settings = {
         listen = "[::]:${toString port}";
-        api-endpoint = "https://${domainName}";
+        api-endpoint = "https://${domainName}/";
         database.url = "postgres:///${serviceName}?host=/run/postgresql";
         chunking = {
           nar-size-threshold = 64 * 1024; # 64 KiB

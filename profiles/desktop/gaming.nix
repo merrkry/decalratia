@@ -40,7 +40,7 @@ in
           package = pkgs.steam.override {
             # https://github.com/YaLTeR/niri/wiki/Application-Issues#steam
             extraArgs = "-system-composer";
-            # Utilize brap to prevent steam dump garbage everywhere in HOME.
+            # Utilize bwrap to prevent steam dump garbage everywhere in HOME.
             # https://github.com/ValveSoftware/steam-for-linux/issues/1890#issuecomment-2367103614
             extraBwrapArgs = [
               "--bind ${cfg.steam.bwrapHome} $HOME"
