@@ -23,6 +23,7 @@ in
             # nix.conf is required during build time, add ! to let it fail silently
             extraOptions = ''
               !include ${config.sops.secrets."nix".path}
+              netrc-file = ${config.sops.secrets."attic-netrc".path};
             '';
             settings = {
               # download-buffer-size = 268435456; # not available in lix
@@ -43,12 +44,13 @@ in
                 "remote-deployer"
               ];
               substituters = [
-                "https://cache.tsubasa.moe/local/"
-                "https://nix-community.cachix.org/"
-                "https://cache.garnix.io/"
+                # cache.nixos.org priority: 40
+                "https://cache.tsubasa.moe/selfhosted/" # priority 30
+                "https://nix-community.cachix.org/" # priority: 41
+                "https://cache.garnix.io/" # priority: 50
               ];
               trusted-public-keys = [
-                "local:/LodgQCkIp8Acygs/V5XSqhxchExvXnzf1BXDwuAqNk="
+                "selfhosted:cwEa3KuTCeG4BFjq7q3XgSIbt9F6m1gCywCmAP+VuR8="
                 "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
                 "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
               ];
@@ -86,11 +88,17 @@ in
             ];
         };
 
-        sops.secrets = {
-          "nix" = {
-            sopsFile = "${inputs.secrets}/secrets.yaml";
+        sops.secrets =
+          let
+            sopsArgs = {
+              restartUnits = [ "nix-daemon.service" ];
+              sopsFile = "${inputs.secrets}/secrets.yaml";
+            };
+          in
+          {
+            "attic-netrc" = sopsArgs;
+            "nix" = sopsArgs;
           };
-        };
 
         # keep flakes inputs not garbage collected
         # https://github.com/oxalica/nixos-config/blob/706adc07354eb4a1a50408739c0f24a709c9fe20/nixos/modules/nix-keep-flake-inputs.nix#L3-L7
