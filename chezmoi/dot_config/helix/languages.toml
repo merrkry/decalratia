@@ -9,9 +9,17 @@ formatter = { command = "nixfmt", args = ["--strict", "-"] }
 
 [[language]]
 name = "python"
-language-servers = ["pyright"]
-formatter = { command = "ruff", args = ["format", "-"] }
+language-servers = ["basedpyright", "ruff"]
 
 [[language]]
 name = "toml"
 formatter = { command = "taplo", args = ["format", "-"] }
+
+[[language]]
+name = "yaml"
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
+
+[language-server.basedpyright]
+command = "basedpyright-langserver"
+args = ["--stdio"]
+config = { basedpyright = { analysis = { typeCheckingMode = "standard" } } }

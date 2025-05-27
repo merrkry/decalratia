@@ -17,9 +17,11 @@ in
     home-manager.users.${user} = {
       home.packages = with pkgs; [
         # universal
+        cmake
         gnumake
         meson
         ninja
+        xmake
         # bash
         bash-language-server
         shfmt # used by bash-language-server automatically
@@ -37,8 +39,18 @@ in
         nixfmt-rfc-style
         # python
         python3
-        pyright
+        (pkgs.writeShellScriptBin "basedpyright-langserver" ''
+          export LANG='en_US.UTF-8'
+          exec ${lib.getExe' pkgs.basedpyright "basedpyright-langserver"} "$@"
+        '')
         ruff
+        uv # install original package for completions
+        (pkgs.hiPrio (
+          pkgs.writeShellScriptBin "uv" ''
+            export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
+            exec ${lib.getExe' pkgs.uv "uv"} "$@"
+          ''
+        ))
         # toml
         taplo
         # yaml
@@ -47,6 +59,13 @@ in
         nodePackages.prettier
         vscode-langservers-extracted
       ];
+
+      xdg.configFile = {
+        "clangd/config.yaml".text = ''
+          CompileFlags:
+            Add: [-std=c++26, -Wall, -Wextra]
+        '';
+      };
     };
   };
 }

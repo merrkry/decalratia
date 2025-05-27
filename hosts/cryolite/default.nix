@@ -23,6 +23,7 @@
       helix.enable = true;
     };
     gui = {
+      vscode.enable = true;
       zed.enable = true;
     };
     services = {
