@@ -1,2 +1,12 @@
-sourceDir: "/home/merrkry/Projects/declaratia/chezmoi"
+sourceDir: '/home/merrkry/Projects/declaratia/chezmoi'
 interactive: true
+encryption: 'age'
+age:
+  identity: '~/.config/sops/age/keys.txt'
+  recipients:
+    - 'age1cf0mhnj6t0975pev2ektd62jwn4dlmvmjeamnu0qg9gkdwj7rfxsy5mve5' # merrkry@akahi
+    - 'age18tamdxdkk3fsk60j60txcjd5tl7n6838l2a5wldslh9hwd4tzetswgxuxx' # merrkry@cryolite
+merge:
+  command: nvim
+  args:
+    - "-d"
