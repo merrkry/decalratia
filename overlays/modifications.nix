@@ -10,12 +10,12 @@
             src = pkgs.fetchFromGitHub {
               owner = "Supreeeme";
               repo = "xwayland-satellite";
-              rev = "572fa4a2bfe920daacdefc7e564b49115413306a";
-              hash = "sha256-t9XPqehcZYDh4YVDq6w/c/L+MhoE/9MIQSYTQOwMwp8=";
+              rev = "76ace3c656c6680e58e53f95baac0ae0fa1178b5";
+              hash = "sha256-NPSbIK8dsayXj4RbEwm+fMbnAKrTRRB/qFoWxfkRLDo=";
             };
             cargoLock = null;
             useFetchCargoVendor = true;
-            cargoHash = "sha256-QsU960aRU+ErU7vwoNyuOf2YmKjEWW3yCnQoikLaYeA";
+            cargoHash = "sha256-tzRafL9vTiMfpGmcUwnEUHtcE54RXLXUgosdkiZzNiE=";
           }
         );
     };
