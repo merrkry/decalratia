@@ -1,0 +1,43 @@
+{
+  "auto_install_extension": {
+    "git-firefly": true,
+    "nix": true
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "restore_on_startup": "none",
+  "auto_update": false,
+  "buffer_font_family": "monospace",
+  "buffer_font_size": 13,
+  "tab_bar": {
+    "show": false
+  },
+  "format_on_save": "off",
+  "languages": {
+    "Nix": {
+      "language_servers": ["nixd", "!nil"]
+    }
+  },
+  "soft_wrap": "bounded",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "vim": {
+    "default_mode": "helix_normal"
+  },
+  "agent": {
+    "enabled": true,
+    "version": "2",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    }
+  },
+  "ui_font_family": "sans-serif",
+  "ui_font_size": 14
+}
