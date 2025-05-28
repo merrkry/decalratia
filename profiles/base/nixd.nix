@@ -23,7 +23,6 @@ in
             # nix.conf is required during build time, add ! to let it fail silently
             extraOptions = ''
               !include ${config.sops.secrets."nix".path}
-              netrc-file = ${config.sops.secrets."attic-netrc".path};
             '';
             settings = {
               # download-buffer-size = 268435456; # not available in lix
@@ -56,6 +55,7 @@ in
               ];
               flake-registry = "";
               nix-path = config.nix.nixPath;
+              netrc-file = config.sops.secrets."attic-netrc".path;
             };
             channel.enable = false;
             registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
