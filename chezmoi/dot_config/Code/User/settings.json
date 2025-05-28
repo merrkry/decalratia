@@ -1,0 +1,9 @@
+{
+  "telemetry.telemetryLevel": "off",
+  "editor.fontFamily": "monospace",
+  "update.showReleaseNotes": false,
+  "update.mode": "none",
+  "window.autoDetectColorScheme": true,
+  "window.controlsStyle": "hidden",
+  "explorer.confirmDelete": false
+}
