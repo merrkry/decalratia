@@ -55,7 +55,10 @@ in
               ];
               flake-registry = "";
               nix-path = config.nix.nixPath;
+              # FIXME: curl often reports `curl: Couldn't find host cache.tsubasa.moe in the /run/secrets/attic-netrc; file; using defaults`
+              # and then Nix fails to fetch nix-cache-info. Set substituter to public for now.
               netrc-file = config.sops.secrets."attic-netrc".path;
+              narinfo-cache-negative-ttl = 0;
             };
             channel.enable = false;
             registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
