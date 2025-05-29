@@ -370,7 +370,7 @@ window-rule {
     // workaround steam notification
     // https://github.com/YaLTeR/niri/wiki/Application-Issues#steam
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
-    default-floating-position x=8 y=8 relative-to="bottom-right"
+    default-floating-position x=0 y=0 relative-to="bottom-right"
     block-out-from "screencast"
 }
 window-rule {
