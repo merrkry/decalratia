@@ -12,16 +12,24 @@
   "auto_update": false,
   "buffer_font_family": "monospace",
   "buffer_font_size": 13,
+  "scrollbar": {
+    "axes": {
+      "horizontal": false
+    }
+  },
   "tab_bar": {
     "show": false
   },
   "format_on_save": "off",
   "languages": {
     "Nix": {
-      "language_servers": ["nixd", "!nil"]
+      "language_servers": [
+        "nixd",
+        "!nil"
+      ]
     }
   },
-  "soft_wrap": "bounded",
+  "soft_wrap": "editor_width",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
