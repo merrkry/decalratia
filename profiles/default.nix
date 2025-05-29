@@ -30,6 +30,7 @@
 
     nixpkgs.overlays = [
       inputs.nur.overlays.default
+      inputs.nix-quick-build.overlays.default
       outputs.overlays.extraPackages
       outputs.overlays.modifications
     ];

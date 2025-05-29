@@ -94,6 +94,12 @@
       url = "github:merrkry/declaratia-secrets";
       flake = false;
     };
+
+    # personal projects
+    nix-quick-build = {
+      url = "github:merrkry/nix-quick-build";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

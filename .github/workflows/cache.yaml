@@ -26,9 +26,10 @@ jobs:
       #       --eval-workers 4
       - name: build configurations and push to attic
         run: |
-          arch="$(nix eval --raw --impure --expr 'builtins.currentSystem')"
-          hosts="$(nix eval --raw .#build.${arch} --apply 'x: builtins.concatStringsSep " " (builtins.attrNames x)')"
-          for host in ${hosts}; do
-            nix build .#build.${arch}.${host} --out-link "${host}"
-            attic push selfhosted ./${host}
-          done
+          nix-quick-build \
+            --flake ".#build" \
+            --attic-cache "selfhosted" \
+            --log-level "DEBUG" \
+            --force-substitute \
+            --args "--workers" \
+            --args "4"

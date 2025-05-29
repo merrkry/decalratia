@@ -4,9 +4,7 @@
     packages = with pkgs; [
       anki
       distrobox
-      gparted
       imagemagick
-      kdePackages.kdenlive
       materialgram
       nali
       numbat
