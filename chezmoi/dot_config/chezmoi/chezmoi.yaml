@@ -6,6 +6,7 @@ age:
   recipients:
     - "age1cf0mhnj6t0975pev2ektd62jwn4dlmvmjeamnu0qg9gkdwj7rfxsy5mve5" # merrkry@akahi
     - "age18tamdxdkk3fsk60j60txcjd5tl7n6838l2a5wldslh9hwd4tzetswgxuxx" # merrkry@cryolite
+    - "age19mf7qcms6usqca34p7sxa7903s5dc60cuuj9akqq65vqa0aet9psjfpkap" # merrkry@karanohako
 merge:
   command: nvim
   args: ["-d"]
