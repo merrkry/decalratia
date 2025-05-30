@@ -6,16 +6,17 @@
         args:
         pkgs.rustPlatform.buildRustPackage (
           args
-          // {
+          // rec {
+            version = "0.6";
             src = pkgs.fetchFromGitHub {
               owner = "Supreeeme";
               repo = "xwayland-satellite";
-              rev = "76ace3c656c6680e58e53f95baac0ae0fa1178b5";
-              hash = "sha256-NPSbIK8dsayXj4RbEwm+fMbnAKrTRRB/qFoWxfkRLDo=";
+              tag = "v${version}";
+              hash = "sha256-IiLr1alzKFIy5tGGpDlabQbe6LV1c9ABvkH6T5WmyRI=";
             };
             cargoLock = null;
             useFetchCargoVendor = true;
-            cargoHash = "sha256-tzRafL9vTiMfpGmcUwnEUHtcE54RXLXUgosdkiZzNiE=";
+            cargoHash = "sha256-R3xXyXpHQw/Vh5Y4vFUl7n7jwBEEqwUCIZGAf9+SY1M=";
           }
         );
     };
