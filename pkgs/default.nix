@@ -4,5 +4,7 @@ pkgs: {
   bookerly = pkgs.callPackage ./bookerly.nix { };
   deeplx = pkgs.callPackage ./deeplx.nix { };
   kvlibadwaita-kvantum = pkgs.callPackage ./kvlibadwaita-kvantum.nix { };
+  dream-han-cjk-sans = pkgs.callPackage ./dream-han-cjk-sans.nix { };
+  dream-han-cjk-serif = pkgs.callPackage ./dream-han-cjk-serif.nix { };
   xremap = pkgs.callPackage ./xremap.nix { };
 }

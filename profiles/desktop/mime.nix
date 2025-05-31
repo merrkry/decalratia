@@ -47,6 +47,7 @@ in
               "inode/directory" = "org.gnome.Nautilus";
               "message/rfc822" = emailClient;
               "text/plain" = "org.gnome.TextEditor.desktop";
+              "x-scheme-handler/discord" = "com.discordapp.Discord.desktop";
               "x-scheme-handler/http" = browser;
               "x-scheme-handler/https" = browser;
               "x-scheme-handler/mailto" = emailClient;

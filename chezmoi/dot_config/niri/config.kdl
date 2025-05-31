@@ -209,7 +209,7 @@ binds {
     Mod+Ctrl+C { center-visible-columns; }
     
     Mod+Shift+C { spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
-    Mod+Shift+Ctrl+C { spawn "sh" "-c" "rm /home/merrkry/.cache/cliphist/db"; }
+    Mod+Shift+Ctrl+C { spawn "cliphist" "wipe"; }
 
     // Finer width adjustments.
     // This command can also:
@@ -372,6 +372,7 @@ window-rule {
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=0 y=0 relative-to="bottom-right"
     block-out-from "screencast"
+    open-focused false
 }
 window-rule {
     match app-id=r#"^QQ$"# title=r#"^图片查看器$"#

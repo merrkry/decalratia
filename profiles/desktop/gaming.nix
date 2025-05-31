@@ -48,6 +48,8 @@ in
               "--unsetenv XDG_CONFIG_HOME"
               "--unsetenv XDG_DATA_HOME"
               "--unsetenv XDG_STATE_HOME"
+              # IME still broken anyway
+              "--setenv GTK_IM_MODULE xim"
             ];
           };
 
