@@ -294,9 +294,9 @@ layout {
     always-center-single-column
 }
 
-// workspace "browser"
-// workspace "notes"
-// workspace "communication"
+workspace "1"
+workspace "2"
+workspace "3"
 
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 

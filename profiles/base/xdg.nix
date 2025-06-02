@@ -72,6 +72,9 @@ in
       xdg = {
         enable = true;
 
+        # messy behavior
+        autostart.enable = lib.mkForce false;
+
         configFile = {
           "go/env".text = ''
             GOPATH=${hmConfig.xdg.cacheHome}/go
