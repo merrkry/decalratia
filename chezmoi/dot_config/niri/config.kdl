@@ -294,9 +294,9 @@ layout {
     always-center-single-column
 }
 
-workspace "1"
-workspace "2"
-workspace "3"
+workspace "browser"
+workspace "notes"
+workspace "communication"
 
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
@@ -323,31 +323,38 @@ window-rule {
 }
 window-rule {
     // bitwarden chromium extension
-    match title="^_crx_nngceckbapebfimnlniiiahkandclblb$"
+    match title=r#"^_crx_nngceckbapebfimnlniiiahkandclblb$"#
     open-floating true
     block-out-from "screencast"
 }
 window-rule {
-    match app-id="^chromium-browser$"
-    match app-id="^firefox$"
-    default-column-width { proportion 1.0; }
-    // open-on-workspace "browser"
+    match app-id=r#"^chromium-browser$"# at-startup=true
+    match app-id=r#"^firefox$"# at-startup=true
+    open-maximized true
 }
 window-rule {
-    match app-id="^obsidian$"
-    default-column-width { proportion 1.0; }
-    // open-on-workspace "notes"
+    match app-id=r#"^chromium-browser$"# at-startup=true
+    match app-id=r#"^firefox$"# at-startup=true
+    open-on-workspace "browser"
 }
 window-rule {
-    match title="^Cinny$"
-    match title="^Element$"
-    match app-id="^io.github.kukuruzka165.materialgram$"
-    match app-id="^QQ$"
-    match app-id="^thunderbird$"
-    match title="^Mail - Nextcloud$"
+    match app-id=r#"^obsidian$"#
+    open-maximized true
+}
+window-rule {
+    match app-id=r#"^obsidian$"# at-startup=true
+    open-on-workspace "notes"
+}
+window-rule {
+    match title=r#"^Cinny$"#
+    match title=r#"^Element$"#
+    match app-id=r#"^io.github.kukuruzka165.materialgram$"#
+    match app-id=r#"^QQ$"#
+    match app-id=r#"^thunderbird$"#
+    match title=r#"^Mail - Nextcloud$"#
     match app-id=r#"^com.discordapp.Discord$"#
     default-column-width { proportion 0.5; }
-    // open-on-workspace "communication"
+    open-on-workspace "communication"
 }
 window-rule {
     match app-id="^firefox$" title="^画中画$"
@@ -386,6 +393,14 @@ window-rule {
     match app-id=r#"^gamescope$"#
     match app-id=r#"^steam_app_\d+$"#
     variable-refresh-rate true
+}
+window-rule {
+    match app-id=r#"^spotify$"#
+    default-column-width { proportion 0.5; }
+}
+window-rule {
+    match app-id=r#"^spotify$"# at-startup=true
+    open-on-workspace "browser"
 }
 
 layer-rule {
