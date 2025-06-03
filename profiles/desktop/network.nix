@@ -27,7 +27,7 @@ in
     };
     services.resolved = {
       enable = true;
-      dnsovertls = "opportunistic";
+      dnsovertls = "false";
       dnssec = "false"; # buggy
     };
 

@@ -14,6 +14,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    programs.chromium = {
+      extraOpts = {
+        DnsOverHttpsMode = "automatic";
+        DnsOverHttpsTemplates = "https://1.1.1.1/dns-query{?dns}";
+      };
+    };
+
     stylix.targets.chromium.enable = true;
 
     home-manager.users.${user} = {
