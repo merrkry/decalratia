@@ -40,7 +40,7 @@ in
       programs.yazi = {
         enable = true;
         settings = {
-          manager = {
+          mgr = {
             ratio = [
               0
               4
@@ -61,6 +61,18 @@ in
               run = "noop";
             }
           ];
+        };
+        theme = {
+          tabs = {
+            sep_inner = {
+              open = "";
+              close = "";
+            };
+            sep_outer = {
+              open = "";
+              close = "";
+            };
+          };
         };
       };
 
