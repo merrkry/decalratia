@@ -23,6 +23,7 @@
       helix.enable = true;
     };
     gui = {
+      librewolf.enable = true;
       thunderbird.enable = true;
       vscode.enable = true;
       zed.enable = true;

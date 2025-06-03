@@ -15,7 +15,14 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.chromium = {
+      # https://chromeenterprise.google/intl/en_us/policies/
       extraOpts = {
+        DefaultSearchProviderEnabled = true;
+        DefaultSearchProviderKeyword = "google.com";
+        DefaultSearchProviderName = "Google";
+        DefaultSearchProviderSearchURL = "https://www.google.com/search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}ie={inputEncoding}";
+        DefaultSearchProviderSuggestURL = "https://www.google.com/complete/search?output=chrome&q={searchTerms}";
+
         DnsOverHttpsMode = "automatic";
         DnsOverHttpsTemplates = "https://1.1.1.1/dns-query{?dns}";
       };
