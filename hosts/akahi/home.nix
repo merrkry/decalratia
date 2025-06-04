@@ -18,6 +18,7 @@
 
   services = {
     flatpak.packages = [
+      "app.zen_browser.zen"
       "com.discordapp.Discord"
       "com.qq.QQ"
       "com.spotify.Client"
