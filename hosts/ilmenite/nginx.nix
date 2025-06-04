@@ -14,6 +14,7 @@
       "atuin.tsubasa.moe"
       "cache.tsubasa.moe"
       "id.tsubasa.moe"
+      "vault.tsubasa.moe"
     ];
     dnsProvider = "cloudflare";
     environmentFile = config.sops.secrets."acme/cloudflare".path;

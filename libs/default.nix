@@ -68,5 +68,6 @@
     atticd = 20002;
     kanidm = 20003;
     open-webui = 20004;
+    vaultwarden = 20005;
   };
 }
