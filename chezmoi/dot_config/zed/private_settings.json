@@ -20,13 +20,14 @@
       "horizontal": false
     }
   },
-  "tab_bar": {
-    "show": false
-  },
   "format_on_save": "off",
   "languages": {
+    "Go": {
+      "format_on_save": "on"
+    },
     "Nix": {
-      "language_servers": ["nixd", "!nil"]
+      "language_servers": ["nixd", "!nil"],
+      "format_on_save": "on"
     }
   },
   "soft_wrap": "editor_width",
