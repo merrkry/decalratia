@@ -27,7 +27,10 @@ in
     home-manager.users.${user} = {
 
       home = {
-        packages = [ pkgs.foot.terminfo ];
+        packages = with pkgs; [
+          foot.terminfo
+          kitty.terminfo
+        ];
         shellAliases = {
           "cdf" = "cd \"$(fd --max-depth 3 --type directory --hidden --exclude '.git' | fzf)\" 2> /dev/null";
           "gpp" = "g++ -x c++ -std=gnu++2b -Wall -Wextra";

@@ -19,7 +19,7 @@ in
 
     programs.nautilus-open-any-terminal = {
       enable = true;
-      terminal = "foot";
+      terminal = config.profiles.desktop.defaultTerminal;
     };
 
     services.gnome.sushi.enable = true;

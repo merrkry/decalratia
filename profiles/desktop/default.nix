@@ -17,6 +17,13 @@ in
     enable32Bit = lib.mkEnableOption "enable 32-bit support" // {
       default = config.programs.steam.enable;
     };
+    defaultTerminal = lib.mkOption {
+      type = lib.types.enum [
+        "foot"
+        "kitty"
+      ];
+      default = "kitty";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -41,9 +48,10 @@ in
     nix.daemonCPUSchedPolicy = "idle";
 
     profiles.gui = {
+      ${cfg.defaultTerminal}.enable = true;
+
       chromium.enable = true;
       firefox.enable = true;
-      foot.enable = true;
       localsend.enable = true;
       mpv.enable = true;
       rofi.enable = true;

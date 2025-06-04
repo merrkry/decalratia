@@ -28,7 +28,8 @@ binds {
 
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T { spawn "foot"; }
+    Mod+T { spawn "kitty"; }
+    Mod+Shift+T { spawn "kitten" "quick-access-terminal"; }
     Mod+D { spawn "rofi" "-show" "drun" "-show-icons"; }
     Super+Alt+L { spawn "swaylock"; }
 

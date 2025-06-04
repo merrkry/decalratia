@@ -19,7 +19,7 @@ in
       programs.rofi = {
         enable = true;
         package = pkgs.rofi-wayland;
-        terminal = "${lib.getExe hmConfig.programs.foot.package}";
+        terminal = config.profiles.desktop.defaultTerminal;
       };
 
       stylix.targets.rofi.enable = true;

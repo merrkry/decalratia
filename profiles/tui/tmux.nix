@@ -32,7 +32,7 @@ in
         extraConfig = ''
           set -g renumber-windows on
           set -g set-clipboard on
-          set -ga terminal-overrides ",xterm-256color:Tc,foot:Tc"
+          set -ga terminal-overrides ",xterm-256color:Tc,foot:Tc,xterm-kitty:Tc"
         '';
       };
 
