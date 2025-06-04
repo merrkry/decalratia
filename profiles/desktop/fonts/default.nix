@@ -59,7 +59,7 @@ in
             "Noto Sans CJK TC"
             "Noto Sans CJK JP"
             "Noto Sans CJK KR"
-            "Apple Color Emoji"
+            # "Apple Color Emoji"
             "Symbols Nerd Font"
           ];
 
@@ -70,7 +70,7 @@ in
             "Noto Serif CJK TC"
             "Noto Serif CJK JP"
             "Noto Serif CJK KR"
-            "Apple Color Emoji"
+            # "Apple Color Emoji"
             "Symbols Nerd Font"
           ];
 
@@ -80,7 +80,7 @@ in
             "Noto Sans Mono CJK TC"
             "Noto Sans Mono CJK JP"
             "Noto Sans Mono CJK KR"
-            "Apple Color Emoji"
+            # "Apple Color Emoji"
             "Symbols Nerd Font Mono"
           ];
 
