@@ -123,11 +123,6 @@
           stateVersion = "24.11";
         };
 
-        "hoshinouta" = {
-          hostPlatform = "x86_64-linux";
-          stateVersion = "24.05";
-        };
-
         "ilmenite" = {
           hostPlatform = "x86_64-linux";
           stateVersion = "25.05";
