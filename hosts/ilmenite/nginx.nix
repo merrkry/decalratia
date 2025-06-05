@@ -15,6 +15,7 @@
       "cache.tsubasa.moe" # atticd
       "id.tsubasa.moe" # kanidm
       "m.tsubasa.moe" # mastodon
+      "mail.tsubasa.moe"
       "memos.tsubasa.moe"
       "miniflux.tsubasa.moe"
       "vault.tsubasa.moe" # vaultwarden

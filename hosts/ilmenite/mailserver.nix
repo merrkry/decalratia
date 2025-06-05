@@ -1,8 +1,8 @@
 { config, ... }:
 {
   sops.secrets = {
-    "mailserver/users/merrkry/hashed" = { };
-    "mailserver/users/mastodon/hashed" = { };
+    "mailserver/hashedPasswd/merrkry" = { };
+    "mailserver/hashedPasswd/mastodon" = { };
   };
 
   mailserver = {
@@ -10,10 +10,9 @@
     fqdn = "mail.tsubasa.moe";
     domains = [ "tsubasa.moe" ];
 
-    # mkpasswd -sm bcrypt
     loginAccounts = {
       "merrkry@tsubasa.moe" = {
-        hashedPasswordFile = config.sops.secrets."mailserver/users/merrkry/hashed".path;
+        hashedPasswordFile = config.sops.secrets."mailserver/hashedPasswd/merrkry".path;
         aliases = [
           "abuse@tsubasa.moe"
           "admin@tsubasa.moe"
@@ -22,11 +21,12 @@
         ];
       };
       "mastodon@tsubasa.moe" = {
-        hashedPasswordFile = config.sops.secrets."mailserver/users/mastodon/hashed".path;
+        hashedPasswordFile = config.sops.secrets."mailserver/hashedPasswd/mastodon".path;
       };
     };
 
-    certificateScheme = "acme-nginx";
+    certificateScheme = "acme";
+    acmeCertificateName = "ilmenite.tsubasa.moe";
 
     stateVersion = 1;
   };
