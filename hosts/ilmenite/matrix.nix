@@ -1,4 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  synapsePort = lib.servicePorts.matrix-synapse;
+  mautrixTelegramPort = lib.servicePorts.mautrix-telegram;
+in
 {
   nixpkgs = {
     config.permittedInsecurePackages = [ "olm-3.2.16" ];
@@ -34,7 +43,7 @@
       listeners = [
         {
           bind_addresses = [ "127.0.0.1" ];
-          port = config.lib.ports.matrix-synapse;
+          port = synapsePort;
           tls = false;
           type = "http";
           x_forwarded = true;
@@ -84,50 +93,69 @@
     configureRedisLocally = true;
   };
 
-  services.nginx.virtualHosts."matrix.tsubasa.moe" = {
-    listen = [
-      {
-        addr = "127.0.0.1";
-        port = 443;
-      }
-    ];
-    locations."~ ^(/_matrix|/_synapse/client)" = {
-      recommendedProxySettings = false; # handle manually
-      proxyPass = "http://127.0.0.1:${toString config.lib.ports.matrix-synapse}";
-      extraConfig = ''
-        # pass the headers from cloudflared directly
-        # proxy_set_header X-Forwarded-For $remote_addr;
-        # proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Host $host;
-
-        client_max_body_size 50M;
-
-        proxy_http_version 1.1;
-      '';
-    };
-    locations."/" = {
-      root = pkgs.cinny;
-      # https://github.com/cinnyapp/cinny/blob/dev/contrib/nginx/cinny.domain.tld.conf
-      extraConfig =
-        ''
-          add_header X-Frame-Options "SAMEORIGIN" always;
-          add_header X-Content-Type-Options "nosniff" always;
-          add_header X-XSS-Protection "1; mode=block" always;
-          add_header Content-Security-Policy "frame-ancestors 'self'" always;
-        ''
-        + ''
-          rewrite ^/config.json$ /config.json break;
-          rewrite ^/manifest.json$ /manifest.json break;
-
-          rewrite ^.*/olm.wasm$ /olm.wasm break;
-          rewrite ^/sw.js$ /sw.js break;
-          rewrite ^/pdf.worker.min.js$ /pdf.worker.min.js break;
-
-          rewrite ^/public/(.*)$ /public/$1 break;
-          rewrite ^/assets/(.*)$ /assets/$1 break;
-
-          rewrite ^(.+)$ /index.html break;
+  services.nginx.virtualHosts = {
+    # delegation
+    "tsubasa.moe" =
+      let
+        extraConfig = ''
+          add_header 'Content-Type' 'application/json';
+          add_header 'Access-Control-Allow-Origin' '*';
         '';
+      in
+      {
+        forceSSL = true;
+        useACMEHost = "ilmenite.tsubasa.moe";
+        locations."= /.well-known/matrix/client" = {
+          alias = pkgs.writers.writeJSON "matrix-client.json" { "m.server" = "matrix.tsubasa.moe:443"; };
+          inherit extraConfig;
+        };
+        locations."= /.well-known/matrix/server" = {
+          alias = pkgs.writers.writeJSON "matrix-server.json" {
+            "m.homeserver" = {
+              "base_url" = "https://matrix.tsubasa.moe:443";
+            };
+          };
+          inherit extraConfig;
+        };
+      };
+
+    "matrix.tsubasa.moe" = {
+      forceSSL = true;
+      useACMEHost = "ilmenite.tsubasa.moe";
+      # Synapse
+      # https://element-hq.github.io/synapse/latest/reverse_proxy.html#nginx
+      locations."~ ^(/_matrix|/_synapse/client)" = {
+        proxyPass = "http://127.0.0.1:${toString synapsePort}";
+        recommendedProxySettings = true;
+        extraConfig = ''
+          client_max_body_size 50M;
+          proxy_http_version 1.1;
+        '';
+      };
+      # Cinny web
+      locations."/" = {
+        root = pkgs.cinny;
+        # https://github.com/cinnyapp/cinny/blob/dev/contrib/nginx/cinny.domain.tld.conf
+        extraConfig =
+          ''
+            add_header X-Frame-Options "SAMEORIGIN" always;
+            add_header X-Content-Type-Options "nosniff" always;
+            add_header X-XSS-Protection "1; mode=block" always;
+            add_header Content-Security-Policy "frame-ancestors 'self'" always;
+          ''
+          + ''
+            rewrite ^/config.json$ /config.json break;
+            rewrite ^/manifest.json$ /manifest.json break;
+
+            rewrite ^/sw.js$ /sw.js break;
+            rewrite ^/pdf.worker.min.js$ /pdf.worker.min.js break;
+
+            rewrite ^/public/(.*)$ /public/$1 break;
+            rewrite ^/assets/(.*)$ /assets/$1 break;
+
+            rewrite ^(.+)$ /index.html break;
+          '';
+      };
     };
   };
 
@@ -136,14 +164,14 @@
     environmentFile = config.sops.secrets."mautrix-telegram".path;
     settings = {
       homeserver = {
-        address = "http://127.0.0.1:${toString config.lib.ports.matrix-synapse}";
+        address = "http://127.0.0.1:${toString synapsePort}";
         domain = config.services.matrix-synapse.settings.server_name;
       };
       appservice = {
-        address = "http://127.0.0.1:${toString config.lib.ports.mautrix-telegram}";
+        address = "http://127.0.0.1:${toString mautrixTelegramPort}";
         database = "postgres:///mautrix-telegram?host=/run/postgresql";
         hostname = "127.0.0.1";
-        port = config.lib.ports.mautrix-telegram;
+        port = mautrixTelegramPort;
       };
       bridge = {
         displayname_template = "{displayname}";

@@ -71,5 +71,8 @@
     vaultwarden = 20005;
     memos = 20006;
     miniflux = 20007;
+    matrix-synapse = 20008;
+
+    mautrix-telegram = 29317; # This should match the app service registration file, which is in secrets
   };
 }

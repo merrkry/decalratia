@@ -11,11 +11,13 @@
   security.acme.certs."ilmenite.tsubasa.moe" = {
     domain = "ilmenite.tsubasa.moe";
     extraDomainNames = [
+      "tsubasa.moe"
       "atuin.tsubasa.moe"
       "cache.tsubasa.moe" # atticd
       "id.tsubasa.moe" # kanidm
       "m.tsubasa.moe" # mastodon
-      "mail.tsubasa.moe"
+      "mail.tsubasa.moe" # nixos-mailserver
+      "matrix.tsubasa.moe" # synapse
       "memos.tsubasa.moe"
       "miniflux.tsubasa.moe"
       "vault.tsubasa.moe" # vaultwarden
