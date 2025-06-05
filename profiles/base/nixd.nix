@@ -45,7 +45,7 @@ in
               substituters = [
                 # cache.nixos.org priority: 40
                 "https://cache.tsubasa.moe/selfhosted/" # priority 30
-                "https://nix-community.cachix.org/" # priority: 41
+                # "https://nix-community.cachix.org/" # priority: 41
                 "https://cache.garnix.io/" # priority: 50
               ];
               trusted-public-keys = [
