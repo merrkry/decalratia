@@ -12,10 +12,11 @@
     domain = "ilmenite.tsubasa.moe";
     extraDomainNames = [
       "atuin.tsubasa.moe"
-      "cache.tsubasa.moe"
-      "id.tsubasa.moe"
+      "cache.tsubasa.moe" # atticd
+      "id.tsubasa.moe" # kanidm
+      "m.tsubasa.moe" # mastodon
       "memos.tsubasa.moe"
-      "vault.tsubasa.moe"
+      "vault.tsubasa.moe" # vaultwarden
     ];
     dnsProvider = "cloudflare";
     environmentFile = config.sops.secrets."acme/cloudflare".path;
