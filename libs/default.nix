@@ -70,5 +70,6 @@
     open-webui = 20004;
     vaultwarden = 20005;
     memos = 20006;
+    miniflux = 20007;
   };
 }

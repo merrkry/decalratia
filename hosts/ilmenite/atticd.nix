@@ -15,7 +15,7 @@ in
       environmentFile = config.sops.secrets."atticd/envFile".path;
 
       settings = {
-        listen = "[::]:${toString port}";
+        listen = "[::1]:${toString port}";
         api-endpoint = "https://${domainName}/";
         database.url = "postgres:///${serviceName}?host=/run/postgresql";
         chunking = {

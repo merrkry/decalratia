@@ -16,6 +16,7 @@
       "id.tsubasa.moe" # kanidm
       "m.tsubasa.moe" # mastodon
       "memos.tsubasa.moe"
+      "miniflux.tsubasa.moe"
       "vault.tsubasa.moe" # vaultwarden
     ];
     dnsProvider = "cloudflare";
