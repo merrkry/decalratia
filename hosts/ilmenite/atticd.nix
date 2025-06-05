@@ -5,6 +5,8 @@ let
   port = lib.servicePorts.atticd;
 in
 {
+  nix.settings.fallback = true;
+
   # required by atticd-atticadm
   security.polkit.enable = true;
 
