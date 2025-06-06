@@ -106,15 +106,15 @@ in
         forceSSL = true;
         useACMEHost = "ilmenite.tsubasa.moe";
         locations."= /.well-known/matrix/client" = {
-          alias = pkgs.writers.writeJSON "matrix-client.json" { "m.server" = "matrix.tsubasa.moe:443"; };
-          inherit extraConfig;
-        };
-        locations."= /.well-known/matrix/server" = {
-          alias = pkgs.writers.writeJSON "matrix-server.json" {
+          alias = pkgs.writers.writeJSON "matrix-client.json" {
             "m.homeserver" = {
               "base_url" = "https://matrix.tsubasa.moe:443";
             };
           };
+          inherit extraConfig;
+        };
+        locations."= /.well-known/matrix/server" = {
+          alias = pkgs.writers.writeJSON "matrix-server.json" { "m.server" = "matrix.tsubasa.moe:443"; };
           inherit extraConfig;
         };
       };
