@@ -75,6 +75,7 @@ in
     };
 
     services = {
+      speechd.enable = false; # never used, introduces huge dependencies
       xserver.excludePackages = with pkgs; [ xterm ];
     };
 
