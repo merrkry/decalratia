@@ -44,13 +44,7 @@ in
           exec ${lib.getExe' pkgs.basedpyright "basedpyright-langserver"} "$@"
         '')
         ruff
-        uv # install original package for completions
-        (pkgs.hiPrio (
-          pkgs.writeShellScriptBin "uv" ''
-            export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
-            exec ${lib.getExe' pkgs.uv "uv"} "$@"
-          ''
-        ))
+        uv
         # toml
         taplo
         # yaml
