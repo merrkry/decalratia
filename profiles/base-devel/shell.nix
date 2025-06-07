@@ -14,7 +14,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     programs.fish = {
       enable = true;
       interactiveShellInit = ''
@@ -25,12 +24,7 @@ in
     stylix.targets.fish.enable = true;
 
     home-manager.users.${user} = {
-
       home = {
-        packages = with pkgs; [
-          foot.terminfo
-          kitty.terminfo
-        ];
         shellAliases = {
           "cdf" = "cd \"$(fd --max-depth 3 --type directory --hidden --exclude '.git' | fzf)\" 2> /dev/null";
           "gpp" = "g++ -x c++ -std=gnu++2b -Wall -Wextra";
@@ -45,6 +39,7 @@ in
             exec ${lib.getExe' pkgs.fish "fish"} $LOGIN_OPTION
           fi
         '';
+
         direnv = {
           enable = true;
           config = {
@@ -54,8 +49,6 @@ in
         };
         fish.enable = true;
       };
-
     };
-
   };
 }
