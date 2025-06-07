@@ -45,8 +45,8 @@
 "diff.delta" = "orange"
 "diff.minus" = "red"
 
-"ui.background" = { bg = "bg0" }
-"ui.background.separator" = "grey"
+"ui.background" = { fg = "background", bg = "transparent" }
+"ui.end.separator" = "grey"
 "ui.cursor" = { fg = "bg0", bg = "fg" }
 "ui.cursor.match" = { fg = "orange", bg = "diff_yellow" }
 "ui.cursor.insert" = { fg = "black", bg = "grey" }

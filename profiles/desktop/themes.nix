@@ -34,6 +34,7 @@ in
       polarity = "dark";
       # extremely invasive and destructing settings
       autoEnable = false;
+      opacity.terminal = 0.85;
       targets = {
         gnome.enable = true;
         gtk.enable = true;

@@ -3,7 +3,7 @@ theme = "edge"
 
 [editor]
 line-number = "relative"
-cursorline = true
+cursorline = false
 continue-comments = false
 auto-format = false
 idle-timeout = 10
@@ -17,6 +17,7 @@ display-inlay-hints = false
 
 [editor.cursor-shape]
 insert = "bar"
+normal = "underline" # https://github.com/helix-editor/helix/issues/12642
 
 [editor.auto-save]
 focus-lost = true
