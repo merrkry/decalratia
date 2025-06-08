@@ -44,6 +44,7 @@
   "vim": {
     "default_mode": "helix_normal"
   },
+  "relative_line_numbers": true,
   "agent": {
     "enabled": true,
     "version": "2",
@@ -55,6 +56,6 @@
   "ui_font_family": "sans-serif",
   "ui_font_size": 14,
   "experimental.theme_overrides": {
-    "background.appearance": "blurred" // more tweaks needed to make this work
+    // "background.appearance": "blurred" // more tweaks needed to make this work
   }
 }

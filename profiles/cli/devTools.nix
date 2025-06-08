@@ -34,6 +34,9 @@ in
         # javascript / typescript
         nodejs
         pnpm
+        # lua
+        lua
+        lua-language-server
         # nix
         nixd
         nixfmt-rfc-style
@@ -45,6 +48,12 @@ in
         '')
         ruff
         uv
+        # rust
+        cargo
+        rustc
+        clippy
+        rustfmt
+        rust-analyzer
         # toml
         taplo
         # yaml

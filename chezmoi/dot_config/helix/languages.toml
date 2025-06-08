@@ -23,3 +23,6 @@ formatter = { command = "prettier", args = ["--parser", "yaml"] }
 command = "basedpyright-langserver"
 args = ["--stdio"]
 config = { basedpyright = { analysis = { typeCheckingMode = "standard" } } }
+
+[language-server.rust-analyzer.config]
+check = { command = "clippy" }
