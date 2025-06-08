@@ -28,17 +28,6 @@ in
       };
       configureRedis = true;
       database.createLocally = true;
-      extraApps = {
-        # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-        inherit (config.services.nextcloud.package.packages.apps)
-          calendar
-          contacts
-          deck
-          mail
-          notes
-          tasks
-          ;
-      };
       hostName = domainName;
       https = true;
       maxUploadSize = "16G";
