@@ -1,12 +1,23 @@
 { config, ... }:
 {
-  security.acme.certs."karanohako.tsubasa.moe" = {
-    domain = "karanohako.tsubasa.moe";
-    extraDomainNames = [ "llm.tsubasa.moe" ];
-    dnsProvider = "cloudflare";
-    environmentFile = config.sops.secrets."acme/cloudflare-token".path;
-    reloadServices = [ "nginx.service" ];
-  };
+  security.acme.certs =
+    let
+      dnsProvider = "cloudflare";
+      environmentFile = config.sops.secrets."acme/cloudflare-token".path;
+      reloadServices = [ "nginx.service" ];
+    in
+    {
+      "karanohako.tsubasa.moe" = {
+        domain = "karanohako.tsubasa.moe";
+        extraDomainNames = [ "llm.tsubasa.moe" ];
+        inherit dnsProvider environmentFile reloadServices;
+      };
+      "karanohako.tsubasa.one" = {
+        domain = "karanohako.tsubasa.one";
+        extraDomainNames = [ "dufs.tsubasa.one" ];
+        inherit dnsProvider environmentFile reloadServices;
+      };
+    };
 
   services.nginx = {
     enable = true;
