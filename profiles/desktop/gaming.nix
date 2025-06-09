@@ -64,6 +64,9 @@ in
         };
 
         home-manager.users.${user} = {
+          # We need a version without hidden home directory to run non-steam games
+          home.packages = [ pkgs.steam-run ];
+
           systemd.user.tmpfiles.rules = [ "d ${cfg.steam.bwrapHome} - - - - -" ];
         };
       })
