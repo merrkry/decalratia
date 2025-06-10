@@ -29,6 +29,7 @@ in
       ripgrep
       rclone
       sops
+      squashfsTools
       tlrc
       tree
       yq
