@@ -29,6 +29,7 @@
       zed.enable = true;
     };
     services = {
+      rclone.enable = true;
       syncthing.enable = true;
     };
   };
