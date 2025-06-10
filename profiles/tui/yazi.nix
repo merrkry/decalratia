@@ -51,11 +51,19 @@ in
           # How to scale this?
           plugin.prepend_preloaders = [
             {
+              name = "${hmConfig.home.homeDirectory}/Documents/DUFS/**";
+              run = "noop";
+            }
+            {
               name = "${hmConfig.home.homeDirectory}/Documents/Nextcloud/**";
               run = "noop";
             }
           ];
           plugin.prepend_previewers = [
+            {
+              name = "${hmConfig.home.homeDirectory}/Documents/DUFS/**";
+              run = "noop";
+            }
             {
               name = "${hmConfig.home.homeDirectory}/Documents/Nextcloud/**";
               run = "noop";

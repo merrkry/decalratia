@@ -7,6 +7,11 @@
 let
   inherit (lib) types;
   cfg = config.services.dufs;
+  bindAddr =
+    if !(builtins.isNull cfg.socket) then
+      cfg.socket
+    else
+      (if !(builtins.isNull cfg.host) then cfg.host else null);
 in
 {
   options.services.dufs = {
@@ -19,13 +24,18 @@ in
     };
 
     host = lib.mkOption {
-      type = types.str;
+      type = types.nullOr types.str;
       default = "127.0.0.1";
     };
 
     port = lib.mkOption {
       type = types.port;
       default = 5000;
+    };
+
+    socket = lib.mkOption {
+      type = types.nullOr types.path;
+      default = "/run/dufs/dufs.sock";
     };
 
     environment = lib.mkOption {
@@ -52,9 +62,31 @@ in
       ];
       default = "low";
     };
+
+    extraConfigFile = lib.mkOption {
+      type = types.nullOr types.path;
+      default = null;
+    };
+
+    user = lib.mkOption {
+      type = types.str;
+      default = "dufs";
+    };
+
+    group = lib.mkOption {
+      type = types.str;
+      default = "dufs";
+    };
   };
 
   config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = !(builtins.isNull bindAddr);
+        message = "DUFS must listen to at least one of http port or unix socket.";
+      }
+    ];
+
     networking.firewall = lib.mkIf cfg.openFirewall { allowedTCPPorts = [ cfg.port ]; };
 
     systemd.services.dufs = {
@@ -64,7 +96,7 @@ in
 
       environment = {
         DUFS_SERVE_PATH = cfg.stateDir;
-        DUFS_BIND = cfg.host;
+        DUFS_BIND = bindAddr;
         DUFS_PORT = toString cfg.port;
         DUFS_COMPRESS = cfg.compressionLevel;
 
@@ -73,13 +105,39 @@ in
       } // cfg.environment;
 
       serviceConfig = {
-        DynamicUser = true;
+        User = cfg.user;
+        Group = cfg.group;
         EnvironmentFile = lib.optional (cfg.environmentFile != null) cfg.environmentFile;
-        ExecStart = "${lib.getExe cfg.package} ${cfg.stateDir}";
+        ExecStart = lib.concatStringsSep " " (
+          [
+            "${lib.getExe cfg.package}"
+            "${cfg.stateDir}"
+          ]
+          ++ (lib.optionals (!builtins.isNull cfg.extraConfigFile) [
+            "--config"
+            "${cfg.extraConfigFile}"
+          ])
+        );
+        # https://github.com/sigoden/dufs/issues/506
+        ExecStartPost = lib.optionals (!builtins.isNull cfg.socket) [
+          "${lib.getExe' pkgs.coreutils "sleep"} 1"
+          "${lib.getExe' pkgs.coreutils "chmod"} 0777 ${cfg.socket}"
+        ];
         PrivateTmp = true;
         StateDirectory = "dufs";
-        WorkingDirectory = cfg.stateDir; # Must be set. Strange, this in theory should be implied by DynamicUser=.
+        RuntimeDirectory = "dufs";
+        RuntimeDirectoryMode = "0777";
+        WorkingDirectory = cfg.stateDir;
       };
     };
+
+    users = {
+      users.${cfg.user} = {
+        inherit (cfg) group;
+        isSystemUser = true;
+      };
+      groups.${cfg.group} = { };
+    };
+
   };
 }
