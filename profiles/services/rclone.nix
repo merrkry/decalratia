@@ -50,14 +50,12 @@ in
       in
       {
         "rclone/dufs" = { inherit owner sopsFile; };
-        "rclone/nextcloud" = { inherit owner sopsFile; };
       };
 
     home-manager.users.${user} = {
       # TODO: consider migrate to home-manager/programs.rclone
       systemd.user.services = {
         "rclone-dufs" = mkMountService "dufs" "/" "%h/Documents/DUFS";
-        "rclone-nextcloud" = mkMountService "nextcloud" "/" "%h/Documents/Nextcloud";
       };
     };
   };
