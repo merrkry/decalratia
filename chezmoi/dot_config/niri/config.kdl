@@ -8,7 +8,7 @@ input {
         dwtp
     }
     // warp-mouse-to-focus
-    workspace-auto-back-and-forth
+    // workspace-auto-back-and-forth
 }
 
 output "Beihai Century Joint Innovation Technology Co.,Ltd P2710V 0000000000000" {
