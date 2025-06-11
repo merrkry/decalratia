@@ -22,6 +22,14 @@ in
     open-webui = {
       enable = true;
       environment = {
+        # We need this to let environment variable overwrite persisted config in db.
+        # According to code, if this is set to false while related env var is not set,
+        # open-webui will use default value instead of read from db.
+        # Not so sure if there's any thing we want to keep, so better keep this unset unless necessary.
+        # https://github.com/open-webui/open-webui/blob/63256136ef8322210c01c2bb322097d1ccfb8c6f/backend/open_webui/config.py#L163-L174
+        # ENABLE_PERSISTENT_CONFIG = "False";
+
+        WEBUI_URL = "https://${domainName}";
         ENABLE_LOGIN_FORM = "False";
         VECTOR_DB = "pgvector";
         ENABLE_OAUTH_SIGNUP = "True";
