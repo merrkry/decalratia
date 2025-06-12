@@ -37,6 +37,7 @@ in
                 nur.repos.xddxdd.rime-moegirl
               ];
             })
+            fcitx5-chinese-addons
           ];
           plasma6Support = true;
           waylandFrontend = true;
@@ -87,43 +88,6 @@ in
           Name=Fcitx 5
           Hidden=true
         '';
-
-        dataFile = {
-          "fcitx5/rime/default.custom.yaml".text = ''
-            patch:
-              __include: rime_ice_suggestion:/
-              schema_list:
-                - schema: rime_ice
-          '';
-
-          "fcitx5/rime/rime_ice.custom.yaml".text = ''
-            patch:
-              "translator/dictionary": custom_dict
-          '';
-
-          "fcitx5/rime/custom_dict.dict.yaml".text = ''
-            # Rime dictionary
-            # encoding: utf-8
-
-            ---
-            name: custom_dict
-            version: "1.0"
-            sort: by_weight
-            use_preset_vocabulary: false
-            import_tables:
-              # https://github.com/iDvel/rime-ice/blob/main/rime_ice.dict.yaml
-              - cn_dicts/8105     # 字表
-              - cn_dicts/41448    # 大字表（按需启用）（启用时和 8105 同时启用并放在 8105 下面）
-              - cn_dicts/base     # 基础词库
-              - cn_dicts/ext      # 扩展词库
-              - cn_dicts/tencent  # 腾讯词向量（大词库，部署时间较长）
-              - cn_dicts/others   # 一些杂项
-
-              - zhwiki
-              - moegirl
-            ...
-          '';
-        };
       };
     };
   };
