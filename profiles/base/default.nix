@@ -53,6 +53,11 @@ in
           passwordFilesLocation = "/var/lib/nixos";
         };
 
+        system.etc.overlay = {
+          enable = true;
+          mutable = true;
+        };
+
         systemd = {
           extraConfig = ''
             DefaultLimitNOFILE=2048:2097152
