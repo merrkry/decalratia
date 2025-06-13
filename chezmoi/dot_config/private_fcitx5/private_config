@@ -3,12 +3,6 @@
 TriggerKeys=
 # 反复按切换键时进行轮换
 EnumerateWithTriggerKeys=False
-# 临时在当前和第一个输入法之间切换
-AltTriggerKeys=
-# 向前切换输入法
-EnumerateForwardKeys=
-# 向后切换输入法
-EnumerateBackwardKeys=
 # 轮换输入法时跳过第一个输入法
 EnumerateSkipFirst=False
 # 向前切换输入分组
@@ -17,11 +11,19 @@ EnumerateGroupForwardKeys=
 EnumerateGroupBackwardKeys=
 # 激活输入法
 ActivateKeys=
+# 取消激活输入法
+DeactivateKeys=
 # 触发修饰键快捷键的时限 (毫秒)
 ModifierOnlyKeyTimeout=250
 
-[Hotkey/DeactivateKeys]
-0=Shift_L
+[Hotkey/AltTriggerKeys]
+0=Shift+Shift_L
+
+[Hotkey/EnumerateForwardKeys]
+0=Shift+Super+Shift_R
+
+[Hotkey/EnumerateBackwardKeys]
+0=Shift+Super+Shift_L
 
 [Hotkey/PrevPage]
 0=Up
@@ -46,7 +48,7 @@ resetStateWhenFocusIn=No
 # 共享输入状态
 ShareInputState=No
 # 在程序中显示预编辑文本
-PreeditEnabledByDefault=True
+PreeditEnabledByDefault=False
 # 切换输入法时显示输入法信息
 ShowInputMethodInformation=True
 # 在焦点更改时显示输入法信息
