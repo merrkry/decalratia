@@ -97,10 +97,10 @@
 		"format": "{player_icon}",
 		"format-paused": "{status_icon}",
 		"player-icons": {
-			"default": ""
+			"default": ""
 		},
 		"status-icons": {
-			"paused": ""
+			"paused": ""
 		}
 	},
 	"niri/workspaces": {
