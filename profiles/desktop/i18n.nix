@@ -32,9 +32,9 @@ in
             (fcitx5-rime.override {
               rimeDataPkgs = [
                 rime-data
-                nur.repos.xddxdd.rime-ice
-                nur.repos.xddxdd.rime-zhwiki
-                nur.repos.xddxdd.rime-moegirl
+                rime-ice
+                rime-zhwiki
+                rime-moegirl
               ];
             })
             fcitx5-chinese-addons

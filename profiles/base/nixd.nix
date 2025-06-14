@@ -80,6 +80,7 @@ in
               "nvidia-x11"
               "obsidian"
               "open-webui"
+              "rime-moegirl"
               "steam"
               "steam-unwrapped"
               "chromium"
