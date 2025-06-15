@@ -16,7 +16,8 @@ in
   config = lib.mkIf cfg.enable {
     xdg.portal = {
       enable = true;
-      xdgOpenUsePortal = true;
+      # Breaks xdg-open on many applications. But disabling it introduces other problems...
+      xdgOpenUsePortal = false;
       configPackages = [ pkgs.niri ];
       extraPortals = with pkgs; [
         gnome-keyring
