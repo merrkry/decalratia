@@ -66,7 +66,16 @@ in
       xdg.configFile = {
         "clangd/config.yaml".text = ''
           CompileFlags:
-            Add: [-std=c++26, -Wall, -Wextra]
+            Add:
+              - "-Wall"
+              - "-Wextra"
+          ---
+          If:
+            PathMatch:
+              - ".*\.cpp"
+              - ".*\.hpp"
+            Add:
+              - "-std=c++26"
         '';
       };
     };
