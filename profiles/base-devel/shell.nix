@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.profiles.base-devel.shell;
+  hmConfig = config.home-manager.users.${user};
 in
 {
   options.profiles.base-devel.shell = {
@@ -32,11 +33,11 @@ in
       };
 
       programs = {
-        bash.initExtra = ''
+        bash.initExtra = lib.mkOrder 10000 ''
           if [[ $(${lib.getExe' pkgs.procps "ps"} --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
           then
             shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-            exec ${lib.getExe' pkgs.fish "fish"} $LOGIN_OPTION
+            exec ${lib.getExe' hmConfig.programs.fish.package "fish"} $LOGIN_OPTION
           fi
         '';
 
@@ -47,7 +48,10 @@ in
           };
           nix-direnv.enable = true;
         };
+
         fish.enable = true;
+
+        nix-your-shell.enable = true;
       };
     };
   };
