@@ -1,6 +1,6 @@
 {
   "telemetry.telemetryLevel": "off",
-  "editor.fontFamily": "monospace",
+  "editor.fontFamily": "monospace, \"Symbols Nerd Font Mono\"",
   "update.showReleaseNotes": false,
   "update.mode": "none",
   "window.autoDetectColorScheme": true,
