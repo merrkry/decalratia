@@ -27,6 +27,7 @@ in
         dejavu_fonts
 
         apple-color-emoji
+
         apple-system-fonts
 
         noto-fonts-cjk-sans
@@ -38,7 +39,8 @@ in
         bookerly
         lxgw-wenkai
 
-        jetbrains-mono
+        fira-code
+        maple-mono.CN
         nerd-fonts.symbols-only
 
         ibm-plex
@@ -75,7 +77,8 @@ in
           ];
 
           monospace = [
-            "JetBrains Mono"
+            "Fira Code"
+            "Maple Mono CN"
             "Noto Sans Mono CJK SC"
             "Noto Sans Mono CJK TC"
             "Noto Sans Mono CJK JP"
