@@ -8,7 +8,7 @@ continue-comments = false
 auto-format = false
 idle-timeout = 10
 completion-timeout = 5
-completion-replace = true
+completion-replace = false
 color-modes = true
 end-of-line-diagnostics = "hint"
 

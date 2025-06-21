@@ -46,12 +46,7 @@
   },
   "relative_line_numbers": true,
   "agent": {
-    "enabled": true,
-    "version": "2",
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "gemini-2.5-pro"
-    }
+    "enabled": false,
   },
   "ui_font_family": "sans-serif",
   "ui_font_size": 14,

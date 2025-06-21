@@ -401,6 +401,10 @@ window-rule {
     match app-id=r#"^spotify$"# at-startup=true
     open-on-workspace "browser"
 }
+window-rule {
+    match app-id=r#"^QQ$"# title=r#"^QQ$"#
+    open-floating false
+}
 
 layer-rule {
     match namespace=r#"^swaync-control-center$"#
