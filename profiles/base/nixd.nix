@@ -61,8 +61,14 @@ in
               narinfo-cache-negative-ttl = 0;
             };
             channel.enable = false;
-            registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-            nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+            registry = (lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs) // {
+              p.flake = inputs.nixpkgs;
+              pkgs.flake = inputs.nixpkgs;
+            };
+            nixPath = (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs) ++ [
+              "p=flake:nixpkgs"
+              "pkgs=flake:nixpkgs"
+            ];
             gc = {
               automatic = true;
               dates = "weekly";
