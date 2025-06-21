@@ -23,11 +23,12 @@ in
       enableDefaultPackages = true;
 
       packages = with pkgs; [
+        ibm-plex
         noto-fonts
-        dejavu_fonts
 
+        # Many poorly written CSS code don't expect that there exits apple emoji but not apple system font.
+        # Include both can avoid some weired behavior.
         apple-color-emoji
-
         apple-system-fonts
 
         noto-fonts-cjk-sans
@@ -42,8 +43,6 @@ in
         fira-code
         maple-mono.CN
         nerd-fonts.symbols-only
-
-        ibm-plex
 
         stix-two
       ];
@@ -61,66 +60,50 @@ in
             "Noto Sans CJK TC"
             "Noto Sans CJK JP"
             "Noto Sans CJK KR"
-            # "Apple Color Emoji"
             "Symbols Nerd Font"
           ];
 
           serif = [
             "Bookerly"
             "LXGW WenKai"
-            "Noto Serif CJK SC"
-            "Noto Serif CJK TC"
-            "Noto Serif CJK JP"
-            "Noto Serif CJK KR"
-            # "Apple Color Emoji"
             "Symbols Nerd Font"
           ];
 
           monospace = [
             "Fira Code"
             "Maple Mono CN"
-            "Noto Sans Mono CJK SC"
-            "Noto Sans Mono CJK TC"
-            "Noto Sans Mono CJK JP"
-            "Noto Sans Mono CJK KR"
-            # "Apple Color Emoji"
             "Symbols Nerd Font Mono"
           ];
 
           emoji = [ "Apple Color Emoji" ];
-
         };
 
         subpixel.rgba = "rgb";
       };
     };
 
-    stylix.fonts =
-      let
-        fontPlaceholder = pkgs.noto-fonts;
-      in
-      {
-        serif = {
-          package = fontPlaceholder;
-          name = "serif";
-        };
-        sansSerif = {
-          package = fontPlaceholder;
-          name = "sans-serif";
-        };
-        monospace = {
-          package = fontPlaceholder;
-          name = "monospace";
-        };
-        emoji = {
-          package = fontPlaceholder;
-          name = "emoji";
-        };
-
-        sizes = {
-          applications = 10;
-          terminal = 10;
-        };
+    stylix.fonts = {
+      serif = {
+        package = pkgs.emptyDirectory;
+        name = "serif";
       };
+      sansSerif = {
+        package = pkgs.emptyDirectory;
+        name = "sans-serif";
+      };
+      monospace = {
+        package = pkgs.emptyDirectory;
+        name = "monospace";
+      };
+      emoji = {
+        package = pkgs.emptyDirectory;
+        name = "emoji";
+      };
+
+      sizes = {
+        applications = 10;
+        terminal = 10;
+      };
+    };
   };
 }
