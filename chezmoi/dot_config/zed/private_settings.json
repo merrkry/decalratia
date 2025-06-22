@@ -46,7 +46,8 @@
   },
   "relative_line_numbers": true,
   "agent": {
-    "enabled": false,
+    "version": "2",
+    "enabled": false
   },
   "ui_font_family": "sans-serif",
   "ui_font_size": 14,
