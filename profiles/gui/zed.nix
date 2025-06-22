@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   user,
   ...
 }:
@@ -15,7 +16,10 @@ in
 
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
-      programs.zed-editor.enable = true;
+      programs.zed-editor = {
+        enable = true;
+        package = pkgs.zed-editor-fhs;
+      };
 
       # stylix.targets.zed.enable = true;
     };
