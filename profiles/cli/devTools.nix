@@ -72,8 +72,9 @@ in
           ---
           If:
             PathMatch:
-              - ".*\.cpp"
-              - ".*\.hpp"
+              - ".*\\.cpp"
+              - ".*\\.hpp"
+          CompileFlags:
             Add:
               - "-std=c++26"
         '';
