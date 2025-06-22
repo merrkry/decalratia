@@ -38,7 +38,7 @@ in
           events = [
             {
               event = "lock";
-              command = lib.getExe pkgs.swaylock;
+              command = "${lib.getExe pkgs.swaylock} --daemonize";
             }
             {
               event = "before-sleep";
@@ -50,10 +50,14 @@ in
               timeout = 300;
               command = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
             }
-            # {
-            #   timeout = 1800;
-            #   command = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
-            # }
+            {
+              timeout = 600;
+              command = "${lib.getExe' pkgs.niri "niri"} msg action power-off-monitors";
+            }
+            {
+              timeout = 1800;
+              command = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
+            }
           ];
         };
       };
