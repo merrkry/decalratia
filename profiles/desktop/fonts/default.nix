@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  user,
   ...
 }:
 let
@@ -103,6 +104,14 @@ in
       sizes = {
         applications = 10;
         terminal = 10;
+      };
+    };
+
+    # Generate the same config at user level, this can fix some (but not all of them) flatpak apps, e.g. firefox
+    home-manager.users.${user} = {
+      fonts.fontconfig = {
+        enable = true;
+        defaultFonts = config.fonts.fontconfig.defaultFonts;
       };
     };
   };
