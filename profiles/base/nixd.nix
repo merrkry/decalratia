@@ -29,7 +29,6 @@ in
               experimental-features = [
                 "nix-command"
                 "flakes"
-                "ca-derivations"
                 "auto-allocate-uids"
                 "cgroups"
               ];

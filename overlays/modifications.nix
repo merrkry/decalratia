@@ -1,13 +1,10 @@
 { pkgs, ... }:
 {
-  # TODO: remove this when waybar 0.12.0+ releases
-  # https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/issues/4037
-  waybar = pkgs.waybar.overrideAttrs (oldAttrs: {
-    patches = (oldAttrs.patches or [ ]) ++ [
-      (pkgs.fetchpatch {
-        url = "https://patch-diff.githubusercontent.com/raw/Alexays/Waybar/pull/4102.patch";
-        hash = "sha256-toW3TonaQJWJhCkt4vHi0QUXVo87eLfmOZ8FUDMtMhE=";
-      })
-    ];
+  linux-firmware = pkgs.linux-firmware.overrideAttrs (oldAttrs: rec {
+    version = "20250509";
+    src = pkgs.fetchzip {
+      url = "https://cdn.kernel.org/pub/linux/kernel/firmware/linux-firmware-${version}.tar.xz";
+      hash = "sha256-0FrhgJQyCeRCa3s0vu8UOoN0ZgVCahTQsSH0o6G6hhY=";
+    };
   });
 }
