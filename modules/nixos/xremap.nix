@@ -22,8 +22,9 @@ in
       # or consider migrate to user service
       serviceConfig = {
         Type = "exec";
-        ExecStart = "${lib.getExe pkgs.xremap} ${cfg.configFile} --watch";
+        ExecStart = "${lib.getExe pkgs.xremap} ${cfg.configFile} --watch=device";
         Nice = -20;
+        Restart = "on-failure";
       };
       wantedBy = [ "multi-user.target" ];
     };
