@@ -28,6 +28,6 @@
     certificateScheme = "acme";
     acmeCertificateName = "ilmenite.tsubasa.moe";
 
-    stateVersion = 1;
+    stateVersion = 3;
   };
 }

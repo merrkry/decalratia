@@ -192,6 +192,7 @@
             with pkgs;
             mkShell {
               nativeBuildInputs = [
+                attic-client
                 chezmoi
                 deploy-rs
                 nixd

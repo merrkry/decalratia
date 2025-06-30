@@ -16,7 +16,7 @@ in
       enableClient = true;
       enablePam = false;
 
-      package = pkgs.kanidm_1_5;
+      package = pkgs.kanidm_1_6;
 
       serverSettings = {
         tls_chain = "${config.security.acme.certs.${certDomain}.directory}/fullchain.pem";
