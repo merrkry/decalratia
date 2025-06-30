@@ -14,6 +14,7 @@ input {
 output "Beihai Century Joint Innovation Technology Co.,Ltd P2710V 0000000000000" {
     scale 1.5
     mode "3840x2160@143.998000"
+    variable-refresh-rate
 }
 
 binds {
@@ -389,6 +390,7 @@ window-rule {
     variable-refresh-rate true
 }
 window-rule {
+    match app-id=r#"^org.prismlauncher.PrismLauncher$"#
     match app-id=r#"^spotify$"#
     default-column-width { proportion 0.5; }
 }
