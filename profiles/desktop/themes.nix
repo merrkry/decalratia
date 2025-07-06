@@ -15,11 +15,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     stylix = {
       enable = true;
-      # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/espresso.yaml";
       cursor = {
         package = pkgs.adwaita-icon-theme;
         name = "Adwaita";
@@ -32,8 +29,6 @@ in
         }
       );
       polarity = "dark";
-      # extremely invasive and destructing settings
-      autoEnable = false;
       opacity.terminal = 0.85;
       targets = {
         gnome.enable = true;
@@ -120,6 +115,5 @@ in
       #     "Kvantum/${themeName}".source = "${pkgs.kvlibadwaita-kvantum}/share/Kvantum/${themeName}";
       #   };
     };
-
   };
 }
