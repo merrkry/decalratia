@@ -40,7 +40,7 @@ in
         };
         "org/gnome/nautilus/preferences" = {
           default-folder-viewer = "list-view";
-          click-policy = "single";
+          click-policy = "double";
 
           show-create-link = true;
           show-delete-permanently = true;

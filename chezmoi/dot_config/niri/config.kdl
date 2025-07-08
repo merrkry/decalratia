@@ -299,7 +299,7 @@ spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 prefer-no-csd
 
-screenshot-path "/home/merrkry/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "/home/merrkry/Pictures/Screenshots/Screenshot %Y-%m-%d %H-%M-%S.png"
 
 environment {
     DISPLAY ":42"
