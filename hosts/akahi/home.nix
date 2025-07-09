@@ -5,6 +5,7 @@
       anki
       distrobox
       imagemagick
+      libreoffice-fresh
       materialgram
       nali
       numbat
