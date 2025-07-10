@@ -251,14 +251,14 @@
         system: deployLib: deployLib.deployChecks self.deploy
       ) inputs.deploy-rs.lib;
 
-      build = lib.pipe machines [
-        (lib.mapAttrsToList (
+      build =
+        machines
+        |> (lib.mapAttrsToList (
           hostName: properties: {
             ${properties.hostPlatform}.${hostName} =
               self.nixosConfigurations.${hostName}.config.system.build.toplevel;
           }
         ))
-        (lib.foldAttrs (lib.recursiveUpdate) { })
-      ];
+        |> (lib.foldAttrs (lib.recursiveUpdate) { });
     };
 }

@@ -2,9 +2,10 @@
 {
   mkModulesList =
     path:
-    (lib.pipe path [
-      builtins.readDir
-      (lib.mapAttrsToList (
+    (
+      path
+      |> builtins.readDir
+      |> (lib.mapAttrsToList (
         name: value:
         (
           if
@@ -23,9 +24,9 @@
             null
         )
       ))
-      (lib.filter (x: x != null))
-      (lib.map (fileName: path + "/${fileName}"))
-    ]);
+      |> (lib.filter (x: x != null))
+      |> (lib.map (fileName: path + "/${fileName}"))
+    );
 
   mkEnableOption' =
     {

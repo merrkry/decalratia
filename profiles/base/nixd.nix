@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.profiles.base.nixd;
+  isLix = "lix" == config.nix.package.pname;
 in
 {
   options.profiles.base.nixd = {
@@ -24,13 +25,14 @@ in
             extraOptions = ''
               !include ${config.sops.secrets."nix".path}
             '';
+
             settings = {
-              # download-buffer-size = 268435456; # not available in lix
               experimental-features = [
                 "nix-command"
                 "flakes"
                 "auto-allocate-uids"
                 "cgroups"
+                (if isLix then "pipe-operator" else "pipe-operators")
               ];
               auto-allocate-uids = true;
               use-cgroups = true;
@@ -58,7 +60,8 @@ in
               # and then Nix fails to fetch nix-cache-info. Set substituter to public for now.
               netrc-file = config.sops.secrets."attic-netrc".path;
               narinfo-cache-negative-ttl = 0;
-            };
+            } // (lib.optionalAttrs (!isLix) { download-buffer-size = 268435456; });
+
             channel.enable = false;
             registry = (lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs) // {
               p.flake = inputs.nixpkgs;
