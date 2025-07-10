@@ -111,6 +111,55 @@
         "x86_64-linux"
       ];
       forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
+      nixpkgsFor = forAllSystems (
+        system:
+        (import inputs.nixpkgs {
+          inherit system;
+          overlays = [
+            inputs.nur.overlays.default
+            inputs.nix-quick-build.overlays.default
+
+            self.overlays.stablePackages
+            self.overlays.extraPackages
+            self.overlays.modifications
+
+            inputs.deploy-rs.overlays.default
+            (final: prev: {
+              deploy-rs =
+                let
+                  pkgs = import inputs.nixpkgs { inherit system; };
+                in
+                {
+                  inherit (pkgs) deploy-rs; # use prev instead of pkgs will cause error
+                  lib = prev.deploy-rs.lib;
+                };
+            })
+          ];
+
+          config = {
+            allowUnfreePredicate =
+              pkg:
+              builtins.elem (lib.getName pkg) [
+                "7zz"
+                "code"
+                "nvidia-persistenced"
+                "nvidia-x11"
+                "obsidian"
+                "open-webui"
+                "rime-moegirl"
+                "steam"
+                "steam-unwrapped"
+                "chromium"
+                "chromium-unwrapped"
+                "ungoogled-chromium"
+                "ungoogled-chromium-unwrapped"
+                "vscode"
+                "widevine-cdm"
+              ];
+            permittedInsecurePackages = [ "olm-3.2.16" ];
+          };
+        })
+      );
       machines = {
         "akahi" = {
           hostPlatform = "x86_64-linux";
@@ -169,10 +218,7 @@
             ./hosts/${hostName}
             {
               networking = { inherit hostName; };
-              nixpkgs = {
-                overlays = [ self.overlays.stablePackages ];
-                inherit hostPlatform;
-              };
+              nixpkgs.pkgs = nixpkgsFor.${hostPlatform};
               system = { inherit stateVersion; };
             }
             inputs.home-manager.nixosModules.home-manager
@@ -204,48 +250,25 @@
         }
       );
 
-      deploy =
-        # Overlay to use deploy-rs from nixpkgs for deployment
-        # Seems too heavy to import nixpkgs twice. Looking for a fix.
-        let
-          deployPkgs =
-            system:
-            (import inputs.nixpkgs {
-              inherit system;
-              overlays = [
-                inputs.deploy-rs.overlays.default
-                (final: prev: {
-                  deploy-rs =
-                    let
-                      pkgs = import inputs.nixpkgs { inherit system; };
-                    in
-                    {
-                      inherit (pkgs) deploy-rs; # use prev instead of pkgs will cause error
-                      lib = prev.deploy-rs.lib;
-                    };
-                })
-              ];
-            });
-        in
-        {
-          sshUser = "remote-deployer";
-          nodes = builtins.mapAttrs (
-            hostName:
-            {
-              hostPlatform,
-              remoteBuild ? true,
-              ...
-            }:
-            {
-              hostname = hostName;
-              profiles.system = {
-                user = "root";
-                path = (deployPkgs hostPlatform).deploy-rs.lib.activate.nixos self.nixosConfigurations.${hostName};
-              };
-              inherit remoteBuild;
-            }
-          ) machines;
-        };
+      deploy = {
+        sshUser = "remote-deployer";
+        nodes = builtins.mapAttrs (
+          hostName:
+          {
+            hostPlatform,
+            remoteBuild ? true,
+            ...
+          }:
+          {
+            hostname = hostName;
+            profiles.system = {
+              user = "root";
+              path = nixpkgsFor.${hostPlatform}.deploy-rs.lib.activate.nixos self.nixosConfigurations.${hostName};
+            };
+            inherit remoteBuild;
+          }
+        ) machines;
+      };
 
       checks = builtins.mapAttrs (
         system: deployLib: deployLib.deployChecks self.deploy

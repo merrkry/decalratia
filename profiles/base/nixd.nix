@@ -78,28 +78,6 @@ in
             };
           };
 
-        nixpkgs.config = {
-          allowUnfreePredicate =
-            pkg:
-            builtins.elem (lib.getName pkg) [
-              "7zz"
-              "code"
-              "nvidia-persistenced"
-              "nvidia-x11"
-              "obsidian"
-              "open-webui"
-              "rime-moegirl"
-              "steam"
-              "steam-unwrapped"
-              "chromium"
-              "chromium-unwrapped"
-              "ungoogled-chromium"
-              "ungoogled-chromium-unwrapped"
-              "vscode"
-              "widevine-cdm"
-            ];
-        };
-
         sops.secrets =
           let
             sopsArgs = {

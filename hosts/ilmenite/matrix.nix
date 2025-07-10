@@ -9,10 +9,6 @@ let
   mautrixTelegramPort = lib.servicePorts.mautrix-telegram;
 in
 {
-  nixpkgs = {
-    config.permittedInsecurePackages = [ "olm-3.2.16" ];
-  };
-
   sops.secrets = {
     "matrix-synapse/extra-config".owner = config.systemd.services.matrix-synapse.serviceConfig.User;
     "matrix-synapse/signing-key".owner = config.systemd.services.matrix-synapse.serviceConfig.User;

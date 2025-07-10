@@ -29,14 +29,6 @@
   ];
 
   config = {
-
-    nixpkgs.overlays = [
-      inputs.nur.overlays.default
-      inputs.nix-quick-build.overlays.default
-      outputs.overlays.extraPackages
-      outputs.overlays.modifications
-    ];
-
     users = {
       # https://github.com/NixOS/nixpkgs/pull/199705
       groups = {
