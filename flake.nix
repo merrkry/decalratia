@@ -10,7 +10,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-compat.url = "github:edolstra/flake-compat";
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -41,12 +44,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
+    colmena = {
+      url = "github:zhaofengli/colmena";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        stable.follows = "nixpkgs-stable";
+        flake-utils.follows = "flake-utils";
         flake-compat.follows = "flake-compat";
-        utils.follows = "flake-utils";
       };
     };
 
@@ -116,24 +120,13 @@
         (import inputs.nixpkgs {
           inherit system;
           overlays = [
+            inputs.colmena.overlays.default
             inputs.nur.overlays.default
             inputs.nix-quick-build.overlays.default
 
-            self.overlays.stablePackages
             self.overlays.extraPackages
             self.overlays.modifications
-
-            inputs.deploy-rs.overlays.default
-            (final: prev: {
-              deploy-rs =
-                let
-                  pkgs = import inputs.nixpkgs { inherit system; };
-                in
-                {
-                  inherit (pkgs) deploy-rs; # use prev instead of pkgs will cause error
-                  lib = prev.deploy-rs.lib;
-                };
-            })
+            self.overlays.stablePackages
           ];
 
           config = {
@@ -164,115 +157,110 @@
         "akahi" = {
           hostPlatform = "x86_64-linux";
           stateVersion = "24.05";
+          tags = [
+            "build"
+            "desktop"
+            "home"
+          ];
         };
 
         "cryolite" = {
           hostPlatform = "x86_64-linux";
           stateVersion = "24.11";
+          tags = [
+            "desktop"
+            "home"
+          ];
         };
 
         "ilmenite" = {
           hostPlatform = "x86_64-linux";
           stateVersion = "25.05";
+          tags = [
+            "build"
+            "cloud"
+          ];
         };
 
         "karanohako" = {
           hostPlatform = "x86_64-linux";
           stateVersion = "24.05";
+          tags = [ "home" ];
         };
 
         "sapphire" = {
           hostPlatform = "x86_64-linux";
           stateVersion = "24.11";
-          remoteBuild = false;
+          tags = [ "cloud" ];
         };
       };
     in
     {
-      packages = forAllSystems (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
+      packages = forAllSystems (system: import ./pkgs nixpkgsFor.${system});
       overlays = import ./overlays { inherit inputs; };
 
-      nixosConfigurations = builtins.mapAttrs (
-        hostName:
-        {
-          hostPlatform,
-          stateVersion,
-          mainUser ? "merrkry",
-          ...
-        }:
-        inputs.nixpkgs.lib.nixosSystem {
-          specialArgs =
-            let
-              lib = inputs.nixpkgs.lib.extend self.overlays.extraLibs;
-              user = mainUser;
-            in
-            {
-              inherit
-                inputs
-                lib
-                outputs
-                user
-                ;
-            };
-          modules = [
-            ./hosts/${hostName}
-            {
-              networking = { inherit hostName; };
-              nixpkgs.pkgs = nixpkgsFor.${hostPlatform};
-              system = { inherit stateVersion; };
-            }
-            inputs.home-manager.nixosModules.home-manager
-            ./profiles
-          ];
-        }
-      ) machines;
+      devShells = forAllSystems (system: {
+        default =
+          with nixpkgsFor.${system};
+          mkShell {
+            nativeBuildInputs = [
+              attic-client
+              chezmoi
+              colmena
+              nixd
+              nixfmt-rfc-style
+              nix-tree
+              nh
+              nvfetcher
+            ];
+          };
+      });
 
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = import inputs.nixpkgs { inherit system; };
-        in
+      nixosConfigurations = self.outputs.colmenaHive.nodes;
+
+      colmenaHive = inputs.colmena.lib.makeHive (
         {
-          default =
-            with pkgs;
-            mkShell {
-              nativeBuildInputs = [
-                attic-client
-                chezmoi
-                deploy-rs
-                nixd
-                nixfmt-rfc-style
-                nix-tree
-                nh
-                nvfetcher
+          meta = {
+            nixpkgs = nixpkgsFor."x86_64-linux";
+            nodeNixpkgs = builtins.mapAttrs (hostName: hostAttr: nixpkgsFor.${hostAttr.hostPlatform}) machines;
+            specialArgs =
+              let
+                lib = inputs.nixpkgs.lib.extend self.overlays.extraLibs; # TODO: deprecate this
+                user = "merrkry";
+              in
+              {
+                inherit
+                  inputs
+                  lib
+                  outputs
+                  user
+                  ;
+              };
+          };
+
+          defaults =
+            { ... }:
+            {
+              imports = [
+                inputs.home-manager.nixosModules.home-manager
+                ./profiles
               ];
             };
         }
+        // (builtins.mapAttrs (hostName: hostAttr: {
+          deployment = rec {
+            inherit (hostAttr) tags;
+            allowLocalDeployment = builtins.elem "build" tags || builtins.elem "desktop" tags;
+            buildOnTarget = builtins.elem "build" tags;
+            targetUser = "remote-deployer";
+          };
+
+          networking = { inherit hostName; };
+          system = { inherit (hostAttr) stateVersion; };
+
+          imports = [ ./hosts/${hostName} ];
+        }) machines)
       );
-
-      deploy = {
-        sshUser = "remote-deployer";
-        nodes = builtins.mapAttrs (
-          hostName:
-          {
-            hostPlatform,
-            remoteBuild ? true,
-            ...
-          }:
-          {
-            hostname = hostName;
-            profiles.system = {
-              user = "root";
-              path = nixpkgsFor.${hostPlatform}.deploy-rs.lib.activate.nixos self.nixosConfigurations.${hostName};
-            };
-            inherit remoteBuild;
-          }
-        ) machines;
-      };
-
-      checks = builtins.mapAttrs (
-        system: deployLib: deployLib.deployChecks self.deploy
-      ) inputs.deploy-rs.lib;
 
       build =
         machines
