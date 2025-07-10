@@ -5,17 +5,7 @@
 
   modifications = final: prev: import ./modifications.nix { pkgs = prev; };
 
-  # unstablePackages = final: prev: {
-  #   unstable = import inputs.nixpkgs-unstable {
-  #     system = final.system;
-  #     inherit (final) config;
-  #   };
-  # };
-
   stablePackages = final: prev: {
-    stable = import inputs.nixpkgs-stable {
-      system = final.system;
-      inherit (final) config;
-    };
+    stable = import inputs.nixpkgs-stable { inherit (final) config system; };
   };
 }

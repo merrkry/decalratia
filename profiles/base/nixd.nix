@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  self,
   ...
 }:
 let
@@ -54,6 +55,7 @@ in
                 "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
                 "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
               ];
+              # Global registry
               flake-registry = "";
               nix-path = config.nix.nixPath;
               # FIXME: curl often reports `curl: Couldn't find host cache.tsubasa.moe in the /run/secrets/attic-netrc; file; using defaults`
@@ -63,14 +65,15 @@ in
             } // (lib.optionalAttrs (!isLix) { download-buffer-size = 268435456; });
 
             channel.enable = false;
+            # System registry
             registry = (lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs) // {
-              p.flake = inputs.nixpkgs;
-              pkgs.flake = inputs.nixpkgs;
+              p.flake = self;
+              pkgs.flake = self;
             };
-            nixPath = (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs) ++ [
-              "p=flake:nixpkgs"
-              "pkgs=flake:nixpkgs"
-            ];
+            # nixPath = (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs) ++ [
+            #   "p=flake:nixpkgs"
+            #   "pkgs=flake:nixpkgs"
+            # ];
             gc = {
               automatic = true;
               dates = "weekly";

@@ -196,6 +196,7 @@
     in
     {
       packages = forAllSystems (system: import ./pkgs nixpkgsFor.${system});
+      legacyPackages = nixpkgsFor;
       overlays = import ./overlays { inherit inputs; };
 
       devShells = forAllSystems (system: {
@@ -233,6 +234,7 @@
                   inputs
                   lib
                   outputs
+                  self
                   user
                   ;
               };
