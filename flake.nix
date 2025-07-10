@@ -108,7 +108,6 @@
   outputs =
     { self, ... }@inputs:
     let
-      inherit (self) outputs;
       lib = inputs.nixpkgs.lib;
       systems = [
         "aarch64-linux"
@@ -225,6 +224,7 @@
             nodeNixpkgs = builtins.mapAttrs (hostName: hostAttr: nixpkgsFor.${hostAttr.hostPlatform}) machines;
             specialArgs =
               let
+                inherit (self) outputs;
                 lib = inputs.nixpkgs.lib.extend self.overlays.extraLibs; # TODO: deprecate this
                 user = "merrkry";
               in
@@ -262,14 +262,15 @@
         }) machines)
       );
 
-      build =
-        machines
-        |> (lib.mapAttrsToList (
-          hostName: properties: {
-            ${properties.hostPlatform}.${hostName} =
-              self.nixosConfigurations.${hostName}.config.system.build.toplevel;
-          }
-        ))
-        |> (lib.foldAttrs (lib.recursiveUpdate) { });
+      build = (lib.foldAttrs (lib.recursiveUpdate) { }) (
+        (lib.mapAttrsToList (hostName: properties: {
+          ${properties.hostPlatform}.${hostName} =
+            self.outputs.nixosConfigurations.${hostName}.config.system.build.toplevel;
+        }) machines)
+        ++ [
+          self.outputs.packages
+          self.outputs.devShells
+        ]
+      );
     };
 }
