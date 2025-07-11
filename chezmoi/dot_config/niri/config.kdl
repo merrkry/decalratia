@@ -355,6 +355,7 @@ window-rule {
     match app-id="^firefox$" title="^画中画$"
     match app-id="^firefox$" title="^Picture-in-Picture$"
     match app-id=r#"^XEyes$"# title=r#"^xeyes$"#
+    match title=r#"^画中画$"# // chromium
     default-column-width { proportion 0.125; }
     default-window-height { proportion 0.125; }
     open-floating true
