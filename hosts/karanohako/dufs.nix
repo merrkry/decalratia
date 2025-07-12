@@ -1,9 +1,9 @@
-{ config, lib, ... }:
+{ config, helpers, ... }:
 {
   services = {
     dufs = {
       enable = true;
-      port = lib.servicePorts.dufs;
+      port = helpers.servicePorts.dufs;
       extraConfigFile = config.sops.secrets."dufs".path;
     };
 

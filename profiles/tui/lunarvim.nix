@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.tui.lunarvim = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "lunarvim";
   };
 
   config = lib.mkIf cfg.enable {

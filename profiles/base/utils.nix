@@ -9,7 +9,9 @@ let
 in
 {
   options.profiles.base.utils = {
-    enable = lib.mkEnableOption' { default = config.profiles.base.enable; };
+    enable = lib.mkEnableOption "utils" // {
+      default = config.profiles.base.enable;
+    };
   };
 
   config = lib.mkIf cfg.enable {

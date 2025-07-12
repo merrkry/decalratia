@@ -3,6 +3,7 @@
   lib,
   pkgs,
   user,
+  helpers,
   ...
 }:
 let
@@ -10,7 +11,7 @@ let
   hmConfig = config.home-manager.users.${user};
 in
 {
-  imports = lib.mkModulesList ./.;
+  imports = helpers.mkModulesList ./.;
 
   options.profiles.desktop = {
     enable = lib.mkEnableOption "desktop profile";

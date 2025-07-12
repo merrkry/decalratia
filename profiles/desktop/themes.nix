@@ -11,7 +11,9 @@ let
 in
 {
   options.profiles.desktop.themes = {
-    enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
+    enable = lib.mkEnableOption "themes" // {
+      default = config.profiles.desktop.enable;
+    };
   };
 
   config = lib.mkIf cfg.enable {

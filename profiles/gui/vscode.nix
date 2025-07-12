@@ -1,5 +1,6 @@
 {
   config,
+  helpers,
   lib,
   pkgs,
   user,
@@ -10,14 +11,11 @@ let
 in
 {
   options.profiles.gui.vscode = {
-    enable = lib.mkEnableOption' { };
-    enableAI = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "vscode";
   };
 
   config = lib.mkIf cfg.enable {
-
     home-manager.users.${user} = {
-
       programs.vscode = {
         enable = true;
         # this will let home-manager manage ~/.config/Code/User/settings.json
@@ -25,7 +23,7 @@ in
         package =
           (pkgs.vscode.override {
             commandLineArgs =
-              lib.chromiumArgs
+              helpers.chromiumArgs
               # https://code.visualstudio.com/docs/editor/settings-sync#_troubleshooting-keychain-issues
               # gnome or gnome-keyring doesn't work
               ++ [ "--password-store=gnome-libsecret" ];
@@ -33,8 +31,6 @@ in
       };
 
       stylix.targets.vscode.enable = false;
-
     };
-
   };
 }

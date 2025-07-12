@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.cli.trash-cli = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "trash-cli";
   };
 
   config = lib.mkIf cfg.enable {

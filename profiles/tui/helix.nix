@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.tui.helix = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "helix";
   };
 
   config = lib.mkIf cfg.enable {

@@ -9,7 +9,9 @@ let
 in
 {
   options.profiles.desktop.security = {
-    enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
+    enable = lib.mkEnableOption "security" // {
+      default = config.profiles.desktop.enable;
+    };
   };
 
   config = lib.mkIf cfg.enable {

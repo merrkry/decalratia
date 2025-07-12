@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.cli.git = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "git";
   };
 
   config = lib.mkIf cfg.enable {

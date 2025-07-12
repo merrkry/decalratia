@@ -3,13 +3,14 @@
   lib,
   pkgs,
   user,
+  helpers,
   ...
 }:
 let
   cfg = config.profiles.base-devel;
 in
 {
-  imports = lib.mkModulesList ./.;
+  imports = helpers.mkModulesList ./.;
 
   options.profiles.base-devel = {
     enable = lib.mkEnableOption "base-devel profile";

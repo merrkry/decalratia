@@ -1,8 +1,8 @@
-{ config, lib, ... }:
+{ config, helpers, ... }:
 let
   domainName = "miniflux.tsubasa.moe";
   certDomain = "ilmenite.tsubasa.moe";
-  port = lib.servicePorts.miniflux;
+  port = helpers.servicePorts.miniflux;
 in
 {
   services = {

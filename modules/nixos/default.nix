@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ helpers, ... }:
 {
-  imports = lib.mkModulesList ./.;
+  imports = helpers.mkModulesList ./.;
 }

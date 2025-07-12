@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.tui.atuin = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "atuin";
   };
 
   config = lib.mkIf cfg.enable {

@@ -9,8 +9,12 @@ let
 in
 {
   options.profiles.desktop.tweaks = {
-    enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
-    powersave = lib.mkEnableOption' { default = config.services.tlp.enable; };
+    enable = lib.mkEnableOption "tweaks" // {
+      default = config.profiles.desktop.enable;
+    };
+    powersave = lib.mkEnableOption "powersave" // {
+      default = config.services.tlp.enable;
+    };
     scheduler = lib.mkOption {
       type = lib.types.enum [
         "eevdf"

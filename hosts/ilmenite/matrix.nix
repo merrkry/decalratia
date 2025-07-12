@@ -1,12 +1,12 @@
 {
   config,
-  lib,
+  helpers,
   pkgs,
   ...
 }:
 let
-  synapsePort = lib.servicePorts.matrix-synapse;
-  mautrixTelegramPort = lib.servicePorts.mautrix-telegram;
+  synapsePort = helpers.servicePorts.matrix-synapse;
+  mautrixTelegramPort = helpers.servicePorts.mautrix-telegram;
 in
 {
   sops.secrets = {

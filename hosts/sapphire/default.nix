@@ -1,11 +1,11 @@
 {
-  inputs,
   lib,
   user,
+  helpers,
   ...
 }:
 {
-  imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/sapphire" ];
+  imports = helpers.mkModulesList ./.;
 
   profiles = {
     base = {
@@ -14,13 +14,7 @@
     };
   };
 
-  users.users = {
-    ${user} = {
-      extraGroups = [ "qbittorrent" ];
-      hashedPassword = "$y$j9T$xLHLqiVYRqwaJ7NjWcKgE0$.TGv4WGPvGguZ62GN7coV0xo8l6l4Rm7XDwkyFdoKX6";
-      openssh.authorizedKeys.keys = lib.sshKeys.trusted;
-    };
-  };
+  users.users.${user}.extraGroups = [ "qbittorrent" ];
 
   time.timeZone = "Europe/Luxembourg";
 }

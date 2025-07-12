@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.gui.foot = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "foot";
   };
 
   config = lib.mkIf cfg.enable {

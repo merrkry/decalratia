@@ -9,13 +9,11 @@ let
 in
 {
   options.profiles.gui.firefox = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "firefox";
   };
 
   config = lib.mkIf cfg.enable {
-
     home-manager.users.${user} = {
-
       programs.firefox = {
         enable = true;
         languagePacks = [
@@ -26,8 +24,6 @@ in
 
       # gtk styling will however still be applied to firefox
       stylix.targets.firefox.enable = false;
-
     };
-
   };
 }

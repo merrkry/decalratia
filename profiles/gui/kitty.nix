@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.gui.kitty = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "kitty";
   };
 
   config = lib.mkIf cfg.enable {

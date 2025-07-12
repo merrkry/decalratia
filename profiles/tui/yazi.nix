@@ -11,8 +11,10 @@ let
 in
 {
   options.profiles.tui.yazi = {
-    enable = lib.mkEnableOption' { };
-    enableDesktopUtils = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
+    enable = lib.mkEnableOption "yazi";
+    enableDesktopUtils = lib.mkEnableOption "yazi" // {
+      default = config.profiles.desktop.enable;
+    };
   };
 
   config = lib.mkIf cfg.enable {

@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.gui.eog = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "eog";
   };
 
   config = lib.mkIf cfg.enable {

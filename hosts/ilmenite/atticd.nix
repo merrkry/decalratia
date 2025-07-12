@@ -1,8 +1,8 @@
-{ config, lib, ... }:
+{ config, helpers, ... }:
 let
   serviceName = "atticd";
   domainName = "cache.tsubasa.moe";
-  port = lib.servicePorts.atticd;
+  port = helpers.servicePorts.atticd;
 in
 {
   nix.settings.fallback = true;

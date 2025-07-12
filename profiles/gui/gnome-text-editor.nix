@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.gui.gnome-text-editor = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "gnome-text-editor";
   };
 
   config = lib.mkIf cfg.enable {

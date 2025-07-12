@@ -10,7 +10,9 @@ let
 in
 {
   options.profiles.desktop.mime = {
-    enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
+    enable = lib.mkEnableOption "mime" // {
+      default = config.profiles.desktop.enable;
+    };
   };
 
   config = lib.mkIf cfg.enable {

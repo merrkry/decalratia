@@ -1,5 +1,6 @@
 {
   config,
+  helpers,
   lib,
   pkgs,
   ...
@@ -39,7 +40,7 @@ in
         DATABASE_URL = "postgres:///${serviceName}?host=/run/postgresql";
       };
       environmentFile = config.sops.secrets."open-webui".path;
-      port = lib.servicePorts.open-webui;
+      port = helpers.servicePorts.open-webui;
     };
     postgresql = {
       enable = true;

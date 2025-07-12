@@ -1,11 +1,6 @@
+{ helpers, ... }:
 {
-  inputs,
-  lib,
-  user,
-  ...
-}:
-{
-  imports = (lib.mkModulesList ./.) ++ [ "${inputs.secrets}/ilmenite" ];
+  imports = helpers.mkModulesList ./.;
 
   profiles = {
     base = {
@@ -13,12 +8,6 @@
       network.tailscale = "server";
     };
     base-devel.enable = true;
-  };
-
-  users.users = {
-    ${user} = {
-      openssh.authorizedKeys.keys = lib.sshKeys.trusted;
-    };
   };
 
   time.timeZone = "Europe/Berlin";

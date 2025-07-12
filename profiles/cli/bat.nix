@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.cli.bat = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "bat";
   };
 
   config = lib.mkIf cfg.enable {

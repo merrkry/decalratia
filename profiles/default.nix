@@ -1,5 +1,6 @@
 {
   config,
+  helpers,
   inputs,
   lib,
   outputs,
@@ -38,6 +39,7 @@
       };
       users = {
         ${user} = {
+          openssh.authorizedKeys.keys = helpers.sshKeys.trusted;
           isNormalUser = true;
           extraGroups = [ "wheel" ];
           group = user;

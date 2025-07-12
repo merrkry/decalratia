@@ -9,7 +9,9 @@ let
 in
 {
   options.profiles.base-devel.containers = {
-    enable = lib.mkEnableOption' { default = config.profiles.base-devel.enable; };
+    enable = lib.mkEnableOption "containers" // {
+      default = config.profiles.base-devel.enable;
+    };
   };
 
   config = lib.mkIf cfg.enable {

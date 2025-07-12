@@ -9,7 +9,9 @@ let
 in
 {
   options.profiles.desktop.waybar = {
-    enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
+    enable = lib.mkEnableOption "waybar" // {
+      default = config.profiles.desktop.enable;
+    };
     backlightDevice = lib.mkOption {
       type = lib.types.str;
       default = null;

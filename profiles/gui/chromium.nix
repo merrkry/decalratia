@@ -1,5 +1,6 @@
 {
   config,
+  helpers,
   lib,
   pkgs,
   user,
@@ -10,7 +11,7 @@ let
 in
 {
   options.profiles.gui.chromium = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "chromium";
   };
 
   config = lib.mkIf cfg.enable {
@@ -34,7 +35,7 @@ in
       programs.chromium = {
         enable = true;
         package = pkgs.ungoogled-chromium.override { enableWideVine = true; };
-        commandLineArgs = lib.chromiumArgs ++ [
+        commandLineArgs = helpers.chromiumArgs ++ [
           "--password-store=gnome-libsecret"
           "--enable-features=AcceleratedVideoDecodeLinuxGL"
         ];

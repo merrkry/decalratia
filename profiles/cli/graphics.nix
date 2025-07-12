@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.cli.graphics = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "graphics";
   };
 
   config = lib.mkIf cfg.enable {

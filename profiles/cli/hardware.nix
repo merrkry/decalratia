@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.cli.hardware = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "hardware";
   };
 
   config = lib.mkIf cfg.enable {

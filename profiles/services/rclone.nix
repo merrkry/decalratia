@@ -39,7 +39,7 @@ let
 in
 {
   options.profiles.services.rclone = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "rclone";
   };
 
   config = lib.mkIf cfg.enable {

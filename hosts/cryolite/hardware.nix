@@ -1,5 +1,6 @@
 {
   inputs,
+  helpers,
   lib,
   modulesPath,
   ...
@@ -66,15 +67,15 @@
                   subvolumes = {
                     "/@rootfs" = {
                       mountpoint = "/";
-                      mountOptions = lib.recommendedBtrfsArgs;
+                      mountOptions = helpers.recommendedBtrfsArgs;
                     };
                     "/@home" = {
                       mountpoint = "/home";
-                      mountOptions = lib.recommendedBtrfsArgs;
+                      mountOptions = helpers.recommendedBtrfsArgs;
                     };
                     "/@nix" = {
                       mountpoint = "/nix";
-                      mountOptions = lib.recommendedBtrfsArgs;
+                      mountOptions = helpers.recommendedBtrfsArgs;
                     };
                     "/@swap" = {
                       mountpoint = "/.swapvol";

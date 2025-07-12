@@ -1,6 +1,11 @@
-{ lib, user, ... }:
 {
-  imports = lib.mkModulesList ./.;
+  lib,
+  user,
+  helpers,
+  ...
+}:
+{
+  imports = helpers.mkModulesList ./.;
   home-manager.users.${user}.imports = [ ./home.nix ];
 
   profiles = {
@@ -35,10 +40,8 @@
   };
 
   users.users = {
-    "merrkry" = {
-      hashedPassword = "$y$j9T$0RaEe1vqgRkZZPv9t9p6b0$RgZyFgbLwUkFwT7TmLcvn5aTfix7.K3x/hz/FPQP71D";
+    ${user} = {
       isNormalUser = true;
-      openssh.authorizedKeys.keys = lib.sshKeys.trusted;
       extraGroups = [
         "wheel"
         "libvirtd"

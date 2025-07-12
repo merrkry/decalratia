@@ -1,9 +1,14 @@
-{ lib, config, ... }:
+{
+  config,
+  helpers,
+  lib,
+  ...
+}:
 let
   cfg = config.profiles.cli;
 in
 {
-  imports = lib.mkModulesList ./.;
+  imports = helpers.mkModulesList ./.;
 
   options.profiles.cli = {
 

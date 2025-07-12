@@ -9,7 +9,9 @@ let
 in
 {
   options.profiles.base.network = {
-    enable = lib.mkEnableOption' { default = config.profiles.base.enable; };
+    enable = lib.mkEnableOption "network" // {
+      default = config.profiles.base.enable;
+    };
     tailscale = lib.mkOption {
       default = null;
       type = lib.types.nullOr (

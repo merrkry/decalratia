@@ -1,5 +1,6 @@
 {
   config,
+  helpers,
   lib,
   user,
   ...
@@ -17,11 +18,13 @@ let
     "!xdg-templates"
     "!xdg-videos"
   ];
-  chromiumArgsText = lib.concatLines lib.chromiumArgs;
+  chromiumArgsText = lib.concatLines helpers.chromiumArgs;
 in
 {
   options.profiles.desktop.flatpak = {
-    enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
+    enable = lib.mkEnableOption "flatpak" // {
+      default = config.profiles.desktop.enable;
+    };
   };
 
   config = lib.mkIf cfg.enable {

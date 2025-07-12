@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.gui.nautilus = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "nautilus";
     useUpstreamPackage = lib.mkEnableOption { };
   };
 

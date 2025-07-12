@@ -1,6 +1,6 @@
-{ lib, user, ... }:
+{ helpers, ... }:
 {
-  imports = lib.mkModulesList ./.;
+  imports = helpers.mkModulesList ./.;
 
   profiles = {
     base = {
@@ -17,14 +17,6 @@
     };
     tui = {
       helix.enable = true;
-    };
-  };
-
-  users.users = {
-    ${user} = {
-      hashedPassword = "$2b$05$V7CpckgiacL3nM/FZ5Fa0OIAZlw469dZswx32kg7lWXRTL8Zme4fa";
-      linger = true;
-      openssh.authorizedKeys.keys = lib.sshKeys.trusted;
     };
   };
 

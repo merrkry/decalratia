@@ -15,7 +15,9 @@ let
 in
 {
   options.profiles.base.ssh = {
-    enable = lib.mkEnableOption' { default = config.profiles.base.enable; };
+    enable = lib.mkEnableOption "ssh" // {
+      default = config.profiles.base.enable;
+    };
     hostKeysDirectory = lib.mkOption {
       type = lib.types.str;
       default = "/var/lib/ssh";

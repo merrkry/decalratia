@@ -10,13 +10,11 @@ let
 in
 {
   options.profiles.gui.mpv = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "mpv";
   };
 
   config = lib.mkIf cfg.enable {
-
     home-manager.users.${user} = {
-
       programs.mpv = {
         enable = true;
 
@@ -52,8 +50,6 @@ in
           # border = "no";
         };
       };
-
     };
-
   };
 }

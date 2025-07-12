@@ -9,11 +9,10 @@ let
 in
 {
   options.profiles.gui.localsend = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "localsend";
   };
 
   config = lib.mkIf cfg.enable {
-
     programs.localsend = {
       enable = true;
       openFirewall = true;
@@ -22,6 +21,5 @@ in
     home-manager.users.${user} = {
 
     };
-
   };
 }

@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.gui.swaync = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "swaync";
   };
 
   config = lib.mkIf cfg.enable {

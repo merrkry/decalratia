@@ -10,8 +10,8 @@ let
 in
 {
   options.profiles.gui.zed = {
-    enable = lib.mkEnableOption' { };
-    enableAI = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "zed";
+    enableAI = lib.mkEnableOption "AI";
   };
 
   config = lib.mkIf cfg.enable {

@@ -152,6 +152,13 @@
           };
         })
       );
+      helpersFor = forAllSystems (
+        system:
+        (import ./helpers {
+          inherit inputs;
+          inherit (nixpkgsFor.${system}) lib pkgs;
+        })
+      );
       machines = {
         "akahi" = {
           hostPlatform = "x86_64-linux";
@@ -199,6 +206,8 @@
       legacyPackages = nixpkgsFor;
       overlays = import ./overlays { inherit inputs; };
 
+      helpers = helpersFor;
+
       devShells = forAllSystems (system: {
         default =
           with nixpkgsFor.${system};
@@ -226,18 +235,19 @@
             specialArgs =
               let
                 inherit (self) outputs;
-                lib = inputs.nixpkgs.lib.extend self.overlays.extraLibs; # TODO: deprecate this
                 user = "merrkry";
               in
               {
                 inherit
                   inputs
-                  lib
                   outputs
                   self
                   user
                   ;
               };
+            nodeSpecialArgs = builtins.mapAttrs (hostName: hostAttr: {
+              helpers = helpersFor.${hostAttr.hostPlatform};
+            }) machines;
           };
 
           defaults =
@@ -261,7 +271,9 @@
           networking = { inherit hostName; };
           system = { inherit (hostAttr) stateVersion; };
 
-          imports = [ ./hosts/${hostName} ];
+          imports = [
+            ./hosts/${hostName}
+          ] ++ ("${inputs.secrets}/${hostName}" |> (p: if builtins.pathExists p then [ p ] else [ ]));
         }) machines)
       );
 

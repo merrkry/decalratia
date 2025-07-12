@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.tui.lazygit = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "lazygit";
   };
 
   config = lib.mkIf cfg.enable {

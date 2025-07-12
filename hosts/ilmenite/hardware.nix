@@ -1,6 +1,6 @@
-{ lib, modulesPath, ... }:
+{ helpers, modulesPath, ... }:
 let
-  mountOptions = lib.recommendedBtrfsArgs;
+  mountOptions = helpers.recommendedBtrfsArgs;
 in
 {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];

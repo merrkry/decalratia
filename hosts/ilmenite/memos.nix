@@ -1,5 +1,6 @@
 {
   config,
+  helpers,
   lib,
   pkgs,
   ...
@@ -7,7 +8,7 @@
 let
   domainName = "memos.tsubasa.moe";
   certDomain = "ilmenite.tsubasa.moe";
-  port = lib.servicePorts.memos;
+  port = helpers.servicePorts.memos;
   dataDir = "/var/lib/memos";
 in
 {

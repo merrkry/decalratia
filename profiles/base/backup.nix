@@ -4,7 +4,9 @@ let
 in
 {
   options.profiles.base.backup = {
-    enable = lib.mkEnableOption' { default = config.profiles.base.enable; };
+    enable = lib.mkEnableOption "backup" // {
+      default = config.profiles.base.enable;
+    };
     snapperConfigs = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
       default = lib.mergeAttrsList [

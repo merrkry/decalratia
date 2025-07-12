@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.cli.starship = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "starship";
   };
 
   config = lib.mkIf cfg.enable {

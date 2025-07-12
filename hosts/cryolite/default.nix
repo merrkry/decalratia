@@ -1,6 +1,10 @@
-{ lib, user, ... }:
 {
-  imports = lib.mkModulesList ./.;
+  user,
+  helpers,
+  ...
+}:
+{
+  imports = helpers.mkModulesList ./.;
 
   home-manager.users.${user} = {
     imports = [ ./home.nix ];
@@ -29,13 +33,6 @@
     services = {
       rclone.enable = true;
       syncthing.enable = true;
-    };
-  };
-
-  users.users = {
-    ${user} = {
-      hashedPassword = "$2b$05$P8CHQ/cUUelxgi4pSM9Wpeff2SOLBm55oX/81vFq7PyE/PLHpvYfC";
-      openssh.authorizedKeys.keys = lib.sshKeys.trusted;
     };
   };
 

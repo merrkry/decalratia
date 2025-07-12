@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.cli.tide = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "tide";
   };
 
   config = lib.mkIf cfg.enable {

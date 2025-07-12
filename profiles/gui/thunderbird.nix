@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.gui.thunderbird = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "thunderbird";
   };
 
   config = lib.mkIf cfg.enable {

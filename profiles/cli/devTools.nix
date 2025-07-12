@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.cli.devTools = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "devTools";
   };
 
   config = lib.mkIf cfg.enable {

@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.gui.librewolf = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "librewolf";
   };
 
   config = lib.mkIf cfg.enable {

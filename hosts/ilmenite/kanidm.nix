@@ -1,13 +1,13 @@
 {
   config,
-  lib,
+  helpers,
   pkgs,
   ...
 }:
 let
   domainName = "id.tsubasa.moe";
   certDomain = "ilmenite.tsubasa.moe";
-  port = lib.servicePorts.kanidm;
+  port = helpers.servicePorts.kanidm;
 in
 {
   services = {

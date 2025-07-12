@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.tui.fzf = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "fzf";
   };
 
   config = lib.mkIf cfg.enable {

@@ -12,7 +12,9 @@ let
 in
 {
   options.profiles.desktop.niri = {
-    enable = lib.mkEnableOption' { default = config.profiles.desktop.enable; };
+    enable = lib.mkEnableOption "niri" // {
+      default = config.profiles.desktop.enable;
+    };
     useUpstreamPackage = lib.mkEnableOption { };
   };
 

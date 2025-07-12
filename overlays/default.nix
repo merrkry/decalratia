@@ -1,6 +1,5 @@
 { inputs, ... }:
 {
-  extraLibs = final: prev: import ../libs { lib = final; };
   extraPackages = final: prev: import ../pkgs final.pkgs;
 
   modifications = final: prev: import ./modifications.nix { pkgs = prev; };

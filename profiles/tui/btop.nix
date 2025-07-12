@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.tui.btop = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "btop";
   };
 
   config = lib.mkIf cfg.enable {

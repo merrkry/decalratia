@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.tui.micro = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "micro";
   };
 
   config = lib.mkIf cfg.enable {

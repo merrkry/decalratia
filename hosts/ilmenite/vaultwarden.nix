@@ -1,8 +1,8 @@
-{ lib, ... }:
+{ helpers, ... }:
 let
   domainName = "vault.tsubasa.moe";
   certDomain = "ilmenite.tsubasa.moe";
-  port = lib.servicePorts.vaultwarden;
+  port = helpers.servicePorts.vaultwarden;
 in
 {
   services = {

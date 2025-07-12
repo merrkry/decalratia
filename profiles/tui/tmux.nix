@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.tui.tmux = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "tmux";
   };
 
   config = lib.mkIf cfg.enable {

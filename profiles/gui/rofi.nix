@@ -11,7 +11,7 @@ let
 in
 {
   options.profiles.gui.rofi = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "rofi";
   };
 
   config = lib.mkIf cfg.enable {

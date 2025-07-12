@@ -13,7 +13,9 @@ let
 in
 {
   options.profiles.base.xdg = {
-    enable = lib.mkEnableOption' { default = config.profiles.base.enable; };
+    enable = lib.mkEnableOption "xdg" // {
+      default = config.profiles.base.enable;
+    };
   };
 
   config = lib.mkIf cfg.enable {

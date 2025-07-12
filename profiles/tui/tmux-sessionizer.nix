@@ -11,7 +11,7 @@ let
 in
 {
   options.profiles.tui.tmux-sessionizer = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "tmux-sessionizer";
     enableFishIntegration = lib.mkEnableOption "Fish integration" // {
       default = true;
     };

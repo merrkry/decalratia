@@ -1,9 +1,9 @@
-{ config, lib, ... }:
+{ config, helpers, ... }:
 {
   services.atuin = {
     enable = true;
     openRegistration = true;
-    port = lib.servicePorts.atuin;
+    port = helpers.servicePorts.atuin;
   };
 
   services.nginx.virtualHosts."atuin.tsubasa.moe" = {

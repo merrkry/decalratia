@@ -10,7 +10,7 @@ let
 in
 {
   options.profiles.desktop.gaming = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "gaming";
     steam = {
       enable = lib.mkEnableOption "Steam" // {
         default = true;

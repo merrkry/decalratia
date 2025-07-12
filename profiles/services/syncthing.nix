@@ -18,7 +18,7 @@ let
 in
 {
   options.profiles.services.syncthing = {
-    enable = lib.mkEnableOption' { };
+    enable = lib.mkEnableOption "syncthing";
     hostname = lib.mkOption {
       default = config.networking.hostName;
       type = lib.types.str;

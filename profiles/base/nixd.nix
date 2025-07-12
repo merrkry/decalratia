@@ -1,5 +1,6 @@
 {
   config,
+  helpers,
   inputs,
   lib,
   self,
@@ -11,7 +12,9 @@ let
 in
 {
   options.profiles.base.nixd = {
-    enable = lib.mkEnableOption' { default = config.profiles.base.enable; };
+    enable = lib.mkEnableOption "nixd" // {
+      default = config.profiles.base.enable;
+    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -117,7 +120,7 @@ in
           createHome = false;
           group = "remote-deployer";
           extraGroups = [ "wheel" ];
-          openssh.authorizedKeys.keys = lib.sshKeys.trusted;
+          openssh.authorizedKeys.keys = helpers.sshKeys.trusted;
         };
 
         users.groups.remotebuild = { };

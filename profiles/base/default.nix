@@ -2,13 +2,14 @@
   config,
   lib,
   user,
+  helpers,
   ...
 }:
 let
   cfg = config.profiles.base;
 in
 {
-  imports = lib.mkModulesList ./.;
+  imports = helpers.mkModulesList ./.;
 
   options.profiles.base = {
     enable = lib.mkEnableOption "base profile";
