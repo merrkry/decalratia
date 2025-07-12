@@ -49,6 +49,7 @@ in
         atuin.enable = true;
         btop.enable = true;
         fzf.enable = true;
+        htop.enable = true;
         tmux.enable = true;
         tmux-sessionizer.enable = true;
         yazi.enable = true;
