@@ -39,6 +39,7 @@ in
     profiles = {
       cli = {
         bat.enable = true;
+        eza.enable = true;
         tide.enable = true;
         git.enable = true;
         trash-cli.enable = true;
