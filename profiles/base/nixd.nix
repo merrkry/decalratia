@@ -74,10 +74,10 @@ in
               p.flake = self;
               pkgs.flake = self;
             };
-            # nixPath = (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs) ++ [
-            #   "p=flake:nixpkgs"
-            #   "pkgs=flake:nixpkgs"
-            # ];
+            nixPath = (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs) ++ [
+              "p=flake:self"
+              "pkgs=flake:self"
+            ];
             gc = {
               automatic = true;
               dates = "weekly";
