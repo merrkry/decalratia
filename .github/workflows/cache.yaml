@@ -32,4 +32,7 @@ jobs:
             --log-level "DEBUG" \
             --force-substitute \
             --args "--workers" \
-            --args "4"
+            --args "4" \
+            --args "--option" \
+            --args "access-tokens" \
+            --args "github.com=${{ secrets.PAT }}"
