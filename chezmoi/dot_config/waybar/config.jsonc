@@ -124,6 +124,8 @@
 	},
 	"systemd-failed-units": {
 		"format": "✗",
+		// https://github.com/Alexays/Waybar/issues/4241
+		"format-ok": "",
 		"hide-on-ok": true,
 		"system": true,
 		"user": true
