@@ -36,7 +36,6 @@ in
                 "flakes"
                 "auto-allocate-uids"
                 "cgroups"
-                (if isLix then "pipe-operator" else "pipe-operators")
               ];
               auto-allocate-uids = true;
               use-cgroups = true;

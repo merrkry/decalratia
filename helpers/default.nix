@@ -7,10 +7,9 @@ in
 
   mkModulesList =
     path:
-    (
-      path
-      |> builtins.readDir
-      |> (lib.mapAttrsToList (
+    (lib.pipe path [
+      builtins.readDir
+      (lib.mapAttrsToList (
         name: value:
         (
           if
@@ -29,9 +28,9 @@ in
             null
         )
       ))
-      |> (lib.filter (x: x != null))
-      |> (lib.map (fileName: path + "/${fileName}"))
-    );
+      (lib.filter (x: x != null))
+      (lib.map (fileName: path + "/${fileName}"))
+    ]);
 
   chromiumArgs = [
     "--ozone-platform-hint=auto"

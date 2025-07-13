@@ -273,7 +273,7 @@
 
           imports = [
             ./hosts/${hostName}
-          ] ++ ("${inputs.secrets}/${hostName}" |> (p: if builtins.pathExists p then [ p ] else [ ]));
+          ] ++ ((p: if builtins.pathExists p then [ p ] else [ ]) "${inputs.secrets}/${hostName}");
         }) machines)
       );
 
