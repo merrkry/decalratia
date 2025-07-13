@@ -14,7 +14,6 @@ input {
 output "Beihai Century Joint Innovation Technology Co.,Ltd P2710V 0000000000000" {
     scale 1.5
     mode "3840x2160@143.998000"
-    variable-refresh-rate
 }
 
 binds {
@@ -402,6 +401,12 @@ window-rule {
 window-rule {
     match app-id=r#"^QQ$"# title=r#"^QQ$"#
     open-floating false
+}
+window-rule {
+    match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
+    default-column-width { proportion 0.6; }
+    default-window-height { proportion 0.6; }
+    open-floating true
 }
 
 layer-rule {
