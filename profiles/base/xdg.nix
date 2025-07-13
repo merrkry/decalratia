@@ -53,11 +53,14 @@ in
           NPM_CONFIG_TMP = "${runtimeDir}/npm";
 
           # disable
+          # up to 3.12
           PYTHONSTARTUP =
             (pkgs.writeText "start.py" ''
               import readline
               readline.write_history_file = lambda *args: None
             '').outPath;
+          # 3.13+
+          PYTHON_HISTORY = "/dev/null";
         };
 
         shellAliases = {
