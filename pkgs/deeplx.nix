@@ -1,14 +1,14 @@
 { buildGoModule, fetchFromGitHub }:
 buildGoModule rec {
   pname = "deeplx";
-  version = "1.0.6";
+  version = "1.0.8";
 
   src = fetchFromGitHub {
     owner = "OwO-Network";
     repo = "DeepLX";
     tag = "v${version}";
-    hash = "sha256-r8kQzYc4kn5HDJtx7a7xrXUJXuFcxDzCcChtLnVqXmg=";
+    hash = "sha256-MutYqV4K9UNfoLBw7zRQvzIy1mBnPuLE9tP6NzzXVZg=";
   };
 
-  vendorHash = "sha256-vAA9G66IMpxiGX3kC7lCxqgwsL/qM8AbXQ1e6tzN1xM=";
+  vendorHash = "sha256-KDprS2vcEzgL7wtfJ75mzhTQEFhYuLcLlHFCcNobNvw=";
 }
