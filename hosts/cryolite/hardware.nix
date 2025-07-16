@@ -3,6 +3,7 @@
   helpers,
   lib,
   modulesPath,
+  pkgs,
   ...
 }:
 {
@@ -31,6 +32,7 @@
       efi.canTouchEfiVariables = true;
     };
     kernelModules = [ "kvm-amd" ];
+    kernelPackages = pkgs.linuxPackages;
     kernelParams = [ ];
   };
 
