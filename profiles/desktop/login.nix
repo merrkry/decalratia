@@ -58,7 +58,7 @@ in
             }
             {
               timeout = 1800;
-              command = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
+              command = "${lib.getExe' pkgs.systemd "systemctl"} sleep";
             }
           ];
         };

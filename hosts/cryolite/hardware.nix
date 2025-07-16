@@ -93,12 +93,18 @@
     };
   };
 
-  services.tlp = {
-    enable = true;
-    settings = {
-      PLATFORM_PROFILE_ON_AC = "balanced";
-      PLATFORM_PROFILE_ON_BAT = "low-power";
-      PCIE_ASPM_ON_BAT = "powersupersave";
+  services = {
+    logind = {
+      lidSwitch = "sleep";
+      # powerKey = "sleep"; # BUG: always suspends regardless of config
+    };
+    tlp = {
+      enable = true;
+      settings = {
+        PLATFORM_PROFILE_ON_AC = "balanced";
+        PLATFORM_PROFILE_ON_BAT = "low-power";
+        PCIE_ASPM_ON_BAT = "powersupersave";
+      };
     };
   };
 }
