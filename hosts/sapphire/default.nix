@@ -1,5 +1,4 @@
 {
-  lib,
   user,
   helpers,
   ...
@@ -8,13 +7,13 @@
   imports = helpers.mkModulesList ./.;
 
   profiles = {
+    meta = {
+      type = "base";
+    };
     base = {
-      enable = true;
       network.tailscale = "server";
     };
   };
 
   users.users.${user}.extraGroups = [ "qbittorrent" ];
-
-  time.timeZone = "Europe/Luxembourg";
 }

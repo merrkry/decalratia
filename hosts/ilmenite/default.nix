@@ -3,12 +3,11 @@
   imports = helpers.mkModulesList ./.;
 
   profiles = {
+    meta = {
+      type = "base-devel";
+    };
     base = {
-      enable = true;
       network.tailscale = "server";
     };
-    base-devel.enable = true;
   };
-
-  time.timeZone = "Europe/Berlin";
 }

@@ -58,7 +58,9 @@ in
             }
             {
               timeout = 1800;
-              command = "${lib.getExe' pkgs.systemd "systemctl"} sleep";
+              command = "${lib.getExe' pkgs.systemd "systemctl"} ${
+                if config.profiles.desktop.tweaks.powersave then "sleep" else "suspend"
+              }";
             }
           ];
         };

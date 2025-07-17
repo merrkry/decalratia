@@ -3,11 +3,12 @@
   imports = helpers.mkModulesList ./.;
 
   profiles = {
+    meta = {
+      type = "base-devel";
+    };
     base = {
-      enable = true;
       network.tailscale = "server";
     };
-    base-devel.enable = true;
     services = {
       rclone.enable = true;
       syncthing.enable = true;
@@ -19,6 +20,4 @@
       helix.enable = true;
     };
   };
-
-  time.timeZone = "Europe/Berlin";
 }
