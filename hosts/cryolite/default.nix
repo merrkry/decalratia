@@ -1,23 +1,20 @@
 {
-  user,
   helpers,
+  pkgs,
+  user,
   ...
 }:
 {
   imports = helpers.mkModulesList ./.;
 
-  home-manager.users.${user} = {
-    imports = [ ./home.nix ];
-  };
-
   profiles = {
+    meta = {
+      type = "desktop";
+    };
     base = {
-      enable = true;
       network.tailscale = "client";
     };
-    base-devel.enable = true;
     desktop = {
-      enable = true;
       waybar.backlightDevice = "amdgpu_bl1";
     };
     cli = {
@@ -36,5 +33,13 @@
     };
   };
 
-  time.timeZone = "Europe/Berlin";
+  home-manager.users.${user} = {
+    home.packages = with pkgs; [
+      distrobox
+      materialgram
+      xournalpp
+    ];
+
+    services.flatpak.packages = [ "md.obsidian.Obsidian" ];
+  };
 }

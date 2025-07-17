@@ -1,24 +1,23 @@
 {
-  lib,
-  user,
   helpers,
+  pkgs,
+  user,
   ...
 }:
 {
   imports = helpers.mkModulesList ./.;
-  home-manager.users.${user}.imports = [ ./home.nix ];
 
   profiles = {
+    meta = {
+      type = "desktop";
+    };
     base = {
-      enable = true;
       backup.snapperConfigs = {
         "persist" = "/";
       };
       network.tailscale = "client";
     };
-    base-devel.enable = true;
     desktop = {
-      enable = true;
       gaming.enable = true;
     };
     cli = {
@@ -40,18 +39,33 @@
     };
   };
 
-  users.users = {
-    ${user} = {
-      isNormalUser = true;
-      extraGroups = [
-        "wheel"
-        "libvirtd"
-        "kvm"
+  home-manager.users.${user} = {
+    home = {
+      packages = with pkgs; [
+        anki
+        distrobox
+        imagemagick
+        libreoffice-fresh
+        materialgram
+        nali
+        numbat
+        podman-compose
+        (prismlauncher.override { jdks = [ jdk17 ]; })
+        q
+        tsukimi
+        xournalpp
+      ];
+    };
+
+    services = {
+      flatpak.packages = [
+        "app.zen_browser.zen"
+        "com.discordapp.Discord"
+        "com.qq.QQ"
+        "com.spotify.Client"
+        "com.usebottles.bottles"
+        "md.obsidian.Obsidian"
       ];
     };
   };
-
-  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
-
-  time.timeZone = "Europe/Berlin";
 }

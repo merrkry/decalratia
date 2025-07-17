@@ -26,6 +26,7 @@
     ./tui
     ./services
 
+    ./meta.nix
     ./stylix.nix
   ];
 

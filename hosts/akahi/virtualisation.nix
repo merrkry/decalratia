@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 {
   # specialisation = {
   #   "vfio".configuration =
@@ -59,4 +59,9 @@
   };
 
   programs.virt-manager.enable = true;
+
+  users.users.${user}.extraGroups = [
+    "libvirtd"
+    "kvm"
+  ];
 }
