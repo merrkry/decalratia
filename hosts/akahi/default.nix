@@ -26,6 +26,7 @@
     tui = {
       helix.enable = true;
       neovim.enable = true;
+      zellij.enable = true;
     };
     gui = {
       librewolf.enable = true;
