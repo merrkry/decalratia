@@ -42,7 +42,7 @@
       };
     in
     {
-      "/btrfs-root" = mkBtrfsMount "/";
+      "/.btrfs-root" = mkBtrfsMount "/";
       "/" = mkBtrfsMount "@nixos/@persist";
       "/nix" = mkBtrfsMount "@nixos/@nix";
       "/var/lib/libvirt/images" = mkBtrfsMount "@nixos/@images";
@@ -53,6 +53,12 @@
           "fmask=0022"
           "dmask=0022"
         ];
+      };
+
+      "/data" = {
+        device = "/dev/disk/by-uuid/b519b0be-61bc-4ac1-b34e-e123bd63d33d";
+        fsType = "btrfs";
+        options = helpers.recommendedBtrfsArgs ++ [ "nofail" ];
       };
     };
 
