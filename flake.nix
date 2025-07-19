@@ -152,13 +152,9 @@
           };
         })
       );
-      helpersFor = forAllSystems (
-        system:
-        (import ./helpers {
-          inherit inputs;
-          inherit (nixpkgsFor.${system}) lib pkgs;
-        })
-      );
+      helpers = import ./helpers {
+        inherit inputs lib;
+      };
       machines = {
         "akahi" = {
           hostPlatform = "x86_64-linux";
@@ -204,9 +200,9 @@
     {
       packages = forAllSystems (system: import ./pkgs nixpkgsFor.${system});
       legacyPackages = nixpkgsFor;
-      overlays = import ./overlays { inherit inputs; };
-
-      helpers = helpersFor;
+      overlays = import ./overlays {
+        inherit helpers inputs;
+      };
 
       devShells = forAllSystems (system: {
         default =
@@ -239,15 +235,13 @@
               in
               {
                 inherit
+                  helpers
                   inputs
                   outputs
                   self
                   user
                   ;
               };
-            nodeSpecialArgs = builtins.mapAttrs (hostName: hostAttr: {
-              helpers = helpersFor.${hostAttr.hostPlatform};
-            }) machines;
           };
 
           defaults =
