@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ helpers, pkgs, ... }:
 {
   # Use system file chooser provided by xdg portal instead of bundled ugly qt file chooser
   materialgram = pkgs.materialgram.overrideAttrs (
@@ -11,4 +11,8 @@
       ];
     }
   );
+
+  obsidian = pkgs.obsidian.override {
+    commandLineArgs = helpers.chromiumArgs;
+  };
 }

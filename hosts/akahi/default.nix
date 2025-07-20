@@ -50,6 +50,7 @@
         materialgram
         nali
         numbat
+        obsidian
         podman-compose
         (prismlauncher.override { jdks = [ jdk17 ]; })
         q
@@ -65,7 +66,6 @@
         "com.qq.QQ"
         "com.spotify.Client"
         "com.usebottles.bottles"
-        "md.obsidian.Obsidian"
       ];
     };
   };

@@ -37,9 +37,10 @@
     home.packages = with pkgs; [
       distrobox
       materialgram
+      obsidian
       xournalpp
     ];
 
-    services.flatpak.packages = [ "md.obsidian.Obsidian" ];
+    services.flatpak.packages = [ ];
   };
 }
