@@ -16,10 +16,13 @@ in
     home-manager.users.${user} = {
       programs.kitty = {
         enable = true;
-        settings = {
+        settings = rec {
           cursor_trail = 1;
           enable_audio_bell = "no";
           clear_all_shortcuts = "yes";
+
+          italic_font = "family=\"Maple Mono CN\"";
+          bold_italic_font = italic_font;
         };
         # https://sw.kovidgoyal.net/kitty/conf/#keyboard-shortcuts
         keybindings = {
