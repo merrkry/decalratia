@@ -16,7 +16,7 @@ in
     home-manager.users.${user} = {
       programs.helix = {
         enable = true;
-        defaultEditor = true;
+        defaultEditor = false;
       };
     };
   };

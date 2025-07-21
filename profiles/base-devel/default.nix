@@ -62,6 +62,9 @@ in
     };
 
     home-manager.users.${user} = {
+      home.sessionVariables = {
+        EDITOR = "nvim";
+      };
       programs = {
         zoxide.enable = true;
       };
