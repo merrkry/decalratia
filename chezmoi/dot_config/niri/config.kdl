@@ -295,6 +295,7 @@ workspace "notes"
 workspace "communication"
 
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "systemctl" "--user" "restart" "fcitx5.service"
 
 prefer-no-csd
 
