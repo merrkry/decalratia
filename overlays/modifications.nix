@@ -12,7 +12,5 @@
     }
   );
 
-  obsidian = pkgs.obsidian.override {
-    commandLineArgs = helpers.chromiumArgs;
-  };
+  obsidian = pkgs.obsidian.override { commandLineArgs = helpers.chromiumArgs; };
 }

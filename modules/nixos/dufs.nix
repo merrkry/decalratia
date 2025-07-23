@@ -102,7 +102,8 @@ in
 
         # WIP
         DUFS_ALLOW_ALL = "true";
-      } // cfg.environment;
+      }
+      // cfg.environment;
 
       serviceConfig = {
         User = cfg.user;

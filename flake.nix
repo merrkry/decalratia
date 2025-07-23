@@ -150,9 +150,7 @@
           };
         })
       );
-      helpers = import ./helpers {
-        inherit inputs lib;
-      };
+      helpers = import ./helpers { inherit inputs lib; };
       machines = {
         "akahi" = {
           hostPlatform = "x86_64-linux";
@@ -198,9 +196,7 @@
     {
       packages = forAllSystems (system: import ./pkgs nixpkgsFor.${system});
       legacyPackages = nixpkgsFor;
-      overlays = import ./overlays {
-        inherit helpers inputs;
-      };
+      overlays = import ./overlays { inherit helpers inputs; };
 
       devShells = forAllSystems (system: {
         default =
@@ -266,7 +262,8 @@
 
           imports = [
             ./hosts/${hostName}
-          ] ++ ((p: if builtins.pathExists p then [ p ] else [ ]) "${inputs.secrets}/${hostName}");
+          ]
+          ++ ((p: if builtins.pathExists p then [ p ] else [ ]) "${inputs.secrets}/${hostName}");
         }) machines)
       );
 

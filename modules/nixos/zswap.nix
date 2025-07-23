@@ -65,16 +65,15 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    systemd.tmpfiles.rules =
-      [
-        "w- /sys/module/zswap/parameters/enabled - - - - 1"
-        "w- /sys/module/zswap/parameters/max_pool_percent - - - - ${toString cfg.max-pool-percent}"
-        "w- /sys/module/zswap/parameters/compressor - - - - ${cfg.compressor}"
-        "w- /sys/module/zswap/parameters/zpool - - - - ${cfg.zpool}"
-        "w- /sys/module/zswap/parameters/accept_threshold_percent - - - - ${toString cfg.accept-threshold-percent}"
-      ]
-      ++ (lib.optional (lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.8") "w- /sys/module/zswap/parameters/shrinker_enabled - - - - ${
-        if cfg.shrinker then "Y" else "N"
-      }");
+    systemd.tmpfiles.rules = [
+      "w- /sys/module/zswap/parameters/enabled - - - - 1"
+      "w- /sys/module/zswap/parameters/max_pool_percent - - - - ${toString cfg.max-pool-percent}"
+      "w- /sys/module/zswap/parameters/compressor - - - - ${cfg.compressor}"
+      "w- /sys/module/zswap/parameters/zpool - - - - ${cfg.zpool}"
+      "w- /sys/module/zswap/parameters/accept_threshold_percent - - - - ${toString cfg.accept-threshold-percent}"
+    ]
+    ++ (lib.optional (lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.8") "w- /sys/module/zswap/parameters/shrinker_enabled - - - - ${
+      if cfg.shrinker then "Y" else "N"
+    }");
   };
 }

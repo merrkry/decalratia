@@ -65,7 +65,8 @@ in
               netrc-file = config.sops.secrets."attic-netrc".path;
               narinfo-cache-negative-ttl = 0;
               warn-dirty = false;
-            } // (lib.optionalAttrs (!isLix) { download-buffer-size = 268435456; });
+            }
+            // (lib.optionalAttrs (!isLix) { download-buffer-size = 268435456; });
 
             channel.enable = false;
             # System registry

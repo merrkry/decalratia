@@ -27,14 +27,15 @@ in
 
   config = lib.mkIf cfg.enable {
     # https://github.com/nix-community/srvos/blob/main/nixos/mixins/terminfo.nix
-    environment.systemPackages =
-      [ pkgs.wezterm.terminfo ]
-      ++ lib.optionals (pkgs.stdenv.hostPlatform == pkgs.stdenv.buildPlatform) [
-        pkgs.termite.terminfo
-        pkgs.kitty.terminfo
-        pkgs.foot.terminfo
-        pkgs.ghostty.terminfo
-      ];
+    environment.systemPackages = [
+      pkgs.wezterm.terminfo
+    ]
+    ++ lib.optionals (pkgs.stdenv.hostPlatform == pkgs.stdenv.buildPlatform) [
+      pkgs.termite.terminfo
+      pkgs.kitty.terminfo
+      pkgs.foot.terminfo
+      pkgs.ghostty.terminfo
+    ];
 
     security.pam = {
       services.sudo.sshAgentAuth = true;

@@ -1,8 +1,4 @@
-{
-  user,
-  helpers,
-  ...
-}:
+{ user, helpers, ... }:
 {
   imports = helpers.mkModulesList ./.;
 

@@ -29,44 +29,44 @@ in
     lib.mkMerge [
       {
         boot = {
-          kernel.sysctl =
-            {
-              "kernel.panic" = 10;
-              "kernel.sched_cfs_bandwidth_slice_us" = 3000;
-              "kernel.split_lock_mitigate" = 0;
-              "kernel.sysrq" = 1;
-              "vm.max_map_count" = 2147483642;
-              "vm.vfs_cache_pressure" = 50;
-              "vm.dirty_bytes" = 268435456;
-              "vm.dirty_background_bytes" = 67108864;
-              "vm.dirty_writeback_centisecs" = 1500;
-              "vm.watermark_boost_factor" = 0;
-              "vm.watermark_scale_factor" = 125;
-            }
-            // (
-              if config.zramSwap.enable then
-                {
-                  "vm.swappiness" = 180;
-                  "vm.page-cluster" = 0;
-                }
-              else
-                {
-                  "vm.swappiness" = 10;
-                  "vm.page-cluster" = 1;
-                }
-            );
+          kernel.sysctl = {
+            "kernel.panic" = 10;
+            "kernel.sched_cfs_bandwidth_slice_us" = 3000;
+            "kernel.split_lock_mitigate" = 0;
+            "kernel.sysrq" = 1;
+            "vm.max_map_count" = 2147483642;
+            "vm.vfs_cache_pressure" = 50;
+            "vm.dirty_bytes" = 268435456;
+            "vm.dirty_background_bytes" = 67108864;
+            "vm.dirty_writeback_centisecs" = 1500;
+            "vm.watermark_boost_factor" = 0;
+            "vm.watermark_scale_factor" = 125;
+          }
+          // (
+            if config.zramSwap.enable then
+              {
+                "vm.swappiness" = 180;
+                "vm.page-cluster" = 0;
+              }
+            else
+              {
+                "vm.swappiness" = 10;
+                "vm.page-cluster" = 1;
+              }
+          );
 
           kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
-          kernelParams =
-            [ "split_lock_detect=off" ]
-            ++ (
-              if (lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.13") then
-                [ "preempt=lazy" ]
-              else
-                [ "preempt=full" ]
-            )
-            ++ (lib.optionals cfg.powersave [ "rcutree.enable_rcu_lazy=1" ]); # https://wiki.cachyos.org/configuration/general_system_tweaks
+          kernelParams = [
+            "split_lock_detect=off"
+          ]
+          ++ (
+            if (lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.13") then
+              [ "preempt=lazy" ]
+            else
+              [ "preempt=full" ]
+          )
+          ++ (lib.optionals cfg.powersave [ "rcutree.enable_rcu_lazy=1" ]); # https://wiki.cachyos.org/configuration/general_system_tweaks
         };
 
         services.udev.extraRules = ''

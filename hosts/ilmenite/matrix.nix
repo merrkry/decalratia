@@ -132,25 +132,24 @@ in
       locations."/" = {
         root = pkgs.cinny;
         # https://github.com/cinnyapp/cinny/blob/dev/contrib/nginx/cinny.domain.tld.conf
-        extraConfig =
-          ''
-            add_header X-Frame-Options "SAMEORIGIN" always;
-            add_header X-Content-Type-Options "nosniff" always;
-            add_header X-XSS-Protection "1; mode=block" always;
-            add_header Content-Security-Policy "frame-ancestors 'self'" always;
-          ''
-          + ''
-            rewrite ^/config.json$ /config.json break;
-            rewrite ^/manifest.json$ /manifest.json break;
+        extraConfig = ''
+          add_header X-Frame-Options "SAMEORIGIN" always;
+          add_header X-Content-Type-Options "nosniff" always;
+          add_header X-XSS-Protection "1; mode=block" always;
+          add_header Content-Security-Policy "frame-ancestors 'self'" always;
+        ''
+        + ''
+          rewrite ^/config.json$ /config.json break;
+          rewrite ^/manifest.json$ /manifest.json break;
 
-            rewrite ^/sw.js$ /sw.js break;
-            rewrite ^/pdf.worker.min.js$ /pdf.worker.min.js break;
+          rewrite ^/sw.js$ /sw.js break;
+          rewrite ^/pdf.worker.min.js$ /pdf.worker.min.js break;
 
-            rewrite ^/public/(.*)$ /public/$1 break;
-            rewrite ^/assets/(.*)$ /assets/$1 break;
+          rewrite ^/public/(.*)$ /public/$1 break;
+          rewrite ^/assets/(.*)$ /assets/$1 break;
 
-            rewrite ^(.+)$ /index.html break;
-          '';
+          rewrite ^(.+)$ /index.html break;
+        '';
       };
     };
   };
