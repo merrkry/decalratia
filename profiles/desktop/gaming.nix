@@ -11,6 +11,7 @@ in
 {
   options.profiles.desktop.gaming = {
     enable = lib.mkEnableOption "gaming";
+    enableNTSync = lib.mkEnableOption "NTSync";
     steam = {
       enable = lib.mkEnableOption "Steam" // {
         default = true;
@@ -33,6 +34,24 @@ in
           ];
         };
       }
+      (lib.mkIf cfg.enableNTSync {
+        assertions = [
+          {
+            assertion = lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.14";
+            message = "Kernel 6.14+ is required for NTSync";
+          }
+        ];
+
+        boot.kernelModules = [ "ntsync" ];
+
+        services.udev.packages = [
+          (pkgs.writeTextFile {
+            name = "ntsync-udev-rules";
+            text = ''KERNEL=="ntsync", MODE="0660", TAG+="uaccess"'';
+            destination = "/etc/udev/rules.d/70-ntsync.rules";
+          })
+        ];
+      })
       (lib.mkIf cfg.steam.enable {
         programs.steam = {
           enable = true;

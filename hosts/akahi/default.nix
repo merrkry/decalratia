@@ -18,7 +18,10 @@
       network.tailscale = "client";
     };
     desktop = {
-      gaming.enable = true;
+      gaming = {
+        enable = true;
+        enableNTSync = true;
+      };
     };
     cli = {
       devTools.enable = true;
