@@ -58,8 +58,6 @@
       url = "github:nix-community/stylix/master";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-        flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
         nur.follows = "nur";
       };
@@ -212,8 +210,9 @@
               attic-client
               chezmoi
               colmena
+              nil
               nixd
-              nixfmt-rfc-style
+              nixfmt
               nix-tree
               nh
               nvfetcher

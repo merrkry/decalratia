@@ -41,7 +41,7 @@ in
         # nix
         nil
         nixd
-        nixfmt-rfc-style
+        nixfmt
         # python
         python3
         (pkgs.writeShellScriptBin "basedpyright-langserver" ''
