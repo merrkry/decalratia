@@ -75,7 +75,10 @@ in
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
         '';
 
-        systemd.tmpfiles.rules = [ "d /var/lib/systemd/coredump 0755 root root 7d" ];
+        systemd = {
+          oomd.enable = true; # kills services e.g. xremap even when ram is sufficient during suspension and wakups
+          tmpfiles.rules = [ "d /var/lib/systemd/coredump 0755 root root 7d" ];
+        };
       }
       # use if-then-else here will cause infinite recursion
       (lib.mkIf (cfg.scheduler == "eevdf") {
