@@ -56,16 +56,13 @@ in
               timeout = 600;
               command = "${lib.getExe' pkgs.niri "niri"} msg action power-off-monitors";
             }
-            {
-              timeout = 1800;
-              command = "${lib.getExe' pkgs.systemd "systemctl"} ${
-                if config.profiles.desktop.tweaks.powersave then "sleep" else "suspend"
-              }";
-            }
-          ];
+          ]
+          ++ (lib.optional config.profiles.desktop.tweaks.powersave {
+            timeout = 1800;
+            command = "${lib.getExe' pkgs.systemd "systemctl"} sleep";
+          });
         };
       };
-
       stylix.targets.swaylock.enable = true;
     };
   };
