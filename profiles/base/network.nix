@@ -83,6 +83,8 @@ in
             };
           };
 
+          redis.package = pkgs.valkey;
+
           timesyncd.enable = false;
         };
       }
