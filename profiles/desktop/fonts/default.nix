@@ -41,7 +41,7 @@ in
         nur.repos.wrvsrx.noto-fonts-cjk-serif-fix-weight
 
         bookerly
-        lxgw-wenkai
+        lxgw-wenkai-screen
 
         fira-code
         maple-mono.CN
@@ -68,7 +68,7 @@ in
 
           serif = [
             "Bookerly"
-            "LXGW WenKai"
+            "LXGW WenKai Screen"
             "Symbols Nerd Font"
           ];
 
