@@ -24,6 +24,8 @@ in
         userEmail = "merrkry@tsubasa.moe";
         ignores = [ ".direnv" ];
 
+        lfs.enable = true;
+
         # https://blog.gitbutler.com/how-git-core-devs-configure-git/
         extraConfig = {
           branch.sort = "-committerdate";
