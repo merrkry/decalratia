@@ -38,6 +38,9 @@ in
           "ctrl+shift+minus" = "change_font_size all -2.0";
           "ctrl+shift+backspace" = "change_font_size all 0";
         };
+        environment = {
+          LANG = "en_US.UTF-8";
+        };
       };
 
       stylix.targets.kitty.enable = true;

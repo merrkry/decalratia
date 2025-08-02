@@ -44,10 +44,7 @@ in
         nixfmt
         # python
         python3
-        (pkgs.writeShellScriptBin "basedpyright-langserver" ''
-          export LANG='en_US.UTF-8'
-          exec ${lib.getExe' pkgs.basedpyright "basedpyright-langserver"} "$@"
-        '')
+        basedpyright
         ruff
         uv
         # rust
