@@ -48,11 +48,7 @@ in
         ruff
         uv
         # rust
-        cargo
-        rustc
-        clippy
-        rustfmt
-        rust-analyzer
+        rustup
         # toml
         taplo
         # yaml
