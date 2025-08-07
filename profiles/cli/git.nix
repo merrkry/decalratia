@@ -30,7 +30,7 @@ in
         extraConfig = {
           branch.sort = "-committerdate";
           column.ui = "auto";
-          commit.gpgsign = true;
+          # commit.gpgsign = true;
           credential.helper = "cache";
           diff = {
             algorithm = "histogram";

@@ -17,7 +17,7 @@ in
       programs.lazygit = {
         enable = true;
         settings = {
-          git.overrideGpg = true;
+          # git.overrideGpg = true;
         };
       };
 
