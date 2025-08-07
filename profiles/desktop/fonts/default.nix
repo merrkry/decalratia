@@ -103,9 +103,9 @@ in
         name = "emoji";
       };
 
-      sizes = {
+      sizes = rec {
         applications = 10;
-        terminal = 10;
+        terminal = applications + 2;
       };
     };
 
