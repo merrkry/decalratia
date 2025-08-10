@@ -98,7 +98,7 @@ in
         };
 
         # https://tailscale.com/kb/1320/performance-best-practices#linux-optimizations-for-subnet-routers-and-exit-nodes
-        systemd.services."tailscale-tuning" = {
+        systemd.services."tailscale-tuning" = lib.mkIf (cfg.tailscale != "client") {
           # NetworkManager will not trigger this. This is ideal, because it's very trick to manage the (re)start of it, and it mainly benefits routing devices.
           wantedBy = [ "network-online.target" ];
           serviceConfig = {
