@@ -17,13 +17,21 @@ in
   config = lib.mkIf cfg.enable {
     services.xremap = {
       enable = true;
-      configFile = pkgs.writeText "config.yaml" ''
-        modmap:
-        - name: Global
-          remap:
-            CapsLock: Esc
-            Esc: CapsLock
-      '';
+      configFile = pkgs.writers.writeYAML "config.yaml" {
+        modmap = [
+          {
+            name = "Useful CapsLock";
+            remap = {
+              "CAPSLOCK" = {
+                held = "LEFTCTRL";
+                alone = "ESC";
+                free_hold = true;
+              };
+              "ESC" = "CAPSLOCK";
+            };
+          }
+        ];
+      };
     };
   };
 }
