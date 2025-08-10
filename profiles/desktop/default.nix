@@ -85,7 +85,11 @@ in
       # executes the same binary as nixos module, might be conflicting
       # services.gnome-keyring.enable = lib.mkDefault config.services.gnome.gnome-keyring.enable;
 
-      systemd.user.tmpfiles.rules = [ "d ${hmConfig.xdg.userDirs.download} - - - 14d -" ];
+      systemd.user.tmpfiles.rules = [
+        "d ${hmConfig.xdg.userDirs.download} - - - 14d -"
+        # home-manager often blocked by backups created by its own
+        "r ${hmConfig.xdg.configHome}/mimeapps.list.backup - - - - -"
+      ];
     };
   };
 }
