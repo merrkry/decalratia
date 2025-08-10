@@ -39,7 +39,6 @@ in
         lua-language-server
         stylua
         # nix
-        nil
         nixd
         nixfmt
         # python

@@ -36,15 +36,12 @@ in
 
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
-        # for compatibility with old app that doesn't support variable fonts
-        nur.repos.wrvsrx.noto-fonts-cjk-sans-fix-weight
-        nur.repos.wrvsrx.noto-fonts-cjk-serif-fix-weight
 
         bookerly
         lxgw-wenkai-screen
 
         fira-code
-        maple-mono.CN
+        maple-mono.CN-unhinted
         nerd-fonts.symbols-only
 
         stix-two
