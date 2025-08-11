@@ -136,6 +136,7 @@
                 "nvidia-x11"
                 "obsidian"
                 "open-webui"
+                "ouch"
                 "rime-moegirl"
                 "steam"
                 "steam-unwrapped"
