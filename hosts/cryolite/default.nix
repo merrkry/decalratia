@@ -22,6 +22,7 @@
     };
     tui = {
       helix.enable = true;
+      neovim.enable = true;
     };
     gui = {
       vscode.enable = true;
