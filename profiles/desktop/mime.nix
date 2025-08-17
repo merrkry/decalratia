@@ -52,6 +52,7 @@ in
               "x-scheme-handler/discord" = "com.discordapp.Discord.desktop";
               "x-scheme-handler/http" = browser;
               "x-scheme-handler/https" = browser;
+              "x-scheme-handler/jetbrains" = "jetbrains-toolbox.desktop";
               "x-scheme-handler/mailto" = emailClient;
               "x-scheme-handler/obsidian" = "md.obsidian.Obsidian.desktop";
               "x-scheme-handler/steam" = "steam.desktop";
