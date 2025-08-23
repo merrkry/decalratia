@@ -28,6 +28,7 @@ in
         sessionPath = lib.lists.reverseList [
           "$HOME/.local/bin"
           "${hmConfig.xdg.stateHome}/go/bin"
+          "${hmConfig.xdg.dataHome}/cargo/bin"
         ];
 
         sessionVariables = {
@@ -39,6 +40,7 @@ in
           # data
           CARGO_HOME = "${hmConfig.xdg.dataHome}/cargo";
           GRADLE_USER_HOME = "${hmConfig.xdg.dataHome}/gradle";
+          RUSTUP_HOME = "${hmConfig.xdg.dataHome}/rustup";
 
           # config
           NPM_CONFIG_INIT_MODULE = "${hmConfig.xdg.configHome}/npm/config/npm-init.js";
