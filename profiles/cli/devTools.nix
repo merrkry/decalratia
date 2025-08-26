@@ -22,6 +22,9 @@ in
         meson
         ninja
         xmake
+
+        jujutsu
+
         # bash
         bash-language-server
         shfmt # used by bash-language-server automatically

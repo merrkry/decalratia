@@ -25,7 +25,7 @@
     };
 
     lix = {
-      url = "https://git.lix.systems/merrkry/nixos-module/archive/release-2.93.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/release-2.93.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";

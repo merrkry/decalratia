@@ -95,8 +95,12 @@
 
   services = {
     logind = {
-      lidSwitch = "sleep";
-      # powerKey = "sleep"; # BUG: always suspends regardless of config
+      settings = {
+        Login = {
+          lidSwitch = "sleep";
+          # HandlePowerKey = "sleep"; # BUG: always suspends regardless of config
+        };
+      };
     };
     tlp = {
       enable = true;

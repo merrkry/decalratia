@@ -42,7 +42,6 @@ in
             fcitx5-chinese-addons
             fcitx5-lua # optionally required by fcitx5-chinese-addons
           ];
-          plasma6Support = true;
           waylandFrontend = true;
         };
       };
