@@ -27,7 +27,7 @@ in
           brightnessctl
           cliphist
           niri
-          xwayland-run
+          xwayland-satellite # started by Niri automatically since 25.08
         ];
         sessionVariables = {
           QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;

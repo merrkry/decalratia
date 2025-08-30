@@ -203,7 +203,7 @@ binds {
 
     Mod+C { center-column; }
     Mod+Ctrl+C { center-visible-columns; }
-    
+
     Mod+Shift+C { spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
     Mod+Shift+Ctrl+C { spawn "cliphist" "wipe"; }
 
@@ -300,10 +300,6 @@ spawn-at-startup "systemctl" "--user" "restart" "fcitx5.service"
 prefer-no-csd
 
 screenshot-path "/home/merrkry/Pictures/Screenshots/Screenshot %Y-%m-%d %H-%M-%S.png"
-
-environment {
-    DISPLAY ":42"
-}
 
 cursor {
     xcursor-theme "default"

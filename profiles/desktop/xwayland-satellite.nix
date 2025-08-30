@@ -10,9 +10,7 @@ let
 in
 {
   options.profiles.desktop.xwayland-satellite = {
-    enable = lib.mkEnableOption "xwayland-satellite" // {
-      default = config.profiles.desktop.niri.enable;
-    };
+    enable = lib.mkEnableOption "xwayland-satellite";
   };
 
   config = lib.mkIf cfg.enable {
