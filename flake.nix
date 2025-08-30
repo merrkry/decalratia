@@ -207,7 +207,6 @@
               attic-client
               chezmoi
               colmena
-              nil
               nixd
               nixfmt
               nix-tree
