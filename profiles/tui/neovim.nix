@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   user,
@@ -16,7 +17,7 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
       home.packages = with pkgs; [
-        neovim
+        inputs.neovim-nightly-overlay.packages.${config.nixpkgs.system}.default
 
         tree-sitter
         unzip # stylua
