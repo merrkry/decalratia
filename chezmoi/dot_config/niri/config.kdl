@@ -308,6 +308,8 @@ cursor {
     hide-after-inactive-ms 2500
 }
 
+clipboard { disable-primary; }
+
 hotkey-overlay { skip-at-startup; }
 
 window-rule {
