@@ -33,7 +33,7 @@ in
             "kernel.panic" = 10;
             "kernel.sched_cfs_bandwidth_slice_us" = 3000;
             "kernel.split_lock_mitigate" = 0;
-            "kernel.sysrq" = 1;
+            "kernel.sysrq" = 244; # REISUB only
             "vm.max_map_count" = 2147483642;
             "vm.vfs_cache_pressure" = 50;
             "vm.dirty_bytes" = 268435456;
