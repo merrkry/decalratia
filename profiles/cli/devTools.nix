@@ -53,6 +53,9 @@ in
         rustup
         # toml
         taplo
+        # typst
+        typst
+        tinymist
         # yaml
         yaml-language-server
         # misc
