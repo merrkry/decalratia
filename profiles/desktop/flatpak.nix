@@ -99,7 +99,6 @@ in
           };
 
           "com.valvesoftware.Steam" = {
-            # FIXME: ime broken
             Environment = {
               GTK_IM_MODULE = "xim";
               PATH = "/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/gamescope/bin"; # might be unnecessary
