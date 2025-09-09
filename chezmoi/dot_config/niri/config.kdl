@@ -376,11 +376,16 @@ window-rule {
     open-focused false
 }
 window-rule {
-    match app-id=r#"^QQ$"# title=r#"^图片查看器$"#
-    // FIXME: cannot match media viewer even only with app-id rule
+    match app-id=r#"^QQ$"# title=r#"^(图片查看)|(视频播放)器$"#
     match app-id=r#"^io.github.kukuruzka165.materialgram$"# title=r#"^Media viewer$"#
     match app-id=r#"^io.github.kukuruzka165.materialgram$"# title=r#"^媒体查看器$"#
+    open-fullscreen false
     open-floating true
+    default-column-width { proportion 1.0; }
+    default-window-height { proportion 1.0; }
+    border {
+        off
+    }
 }
 window-rule {
     match app-id=r#"^mpv$"#
