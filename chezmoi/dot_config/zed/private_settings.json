@@ -19,7 +19,7 @@
   "restore_on_startup": "none",
   "auto_update": false,
   "buffer_font_family": "monospace",
-  "buffer_font_size": 13,
+  "buffer_font_size": 16,
   "scrollbar": {
     "axes": {
       "horizontal": false
@@ -41,12 +41,8 @@
     "metrics": false
   },
   "vim_mode": true,
-  "vim": {
-    "default_mode": "helix_normal"
-  },
   "relative_line_numbers": true,
   "agent": {
-    "version": "2",
     "enabled": false
   },
   "ui_font_family": "sans-serif",
