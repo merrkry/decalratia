@@ -64,7 +64,6 @@ in
             urAccepted = -1; # disable telemetry
           };
         };
-        extraOptions = [ "--no-default-folder" ];
       };
     };
   };
