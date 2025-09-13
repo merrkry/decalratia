@@ -24,6 +24,7 @@ in
         baseIndex = 1;
         clock24 = true;
         focusEvents = true;
+        historyLimit = 16384;
         keyMode = "vi";
         mouse = true;
         terminal = "tmux-256color";
