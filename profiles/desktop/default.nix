@@ -70,7 +70,10 @@ in
         libraries =
           (pkgs.appimageTools.defaultFhsEnvArgs.targetPkgs pkgs)
           ++ (pkgs.appimageTools.defaultFhsEnvArgs.multiPkgs pkgs)
-          ++ (with pkgs; [ webkitgtk_6_0 ]);
+          ++ (with pkgs; [
+            webkitgtk_4_1
+            webkitgtk_6_0
+          ]);
       };
       seahorse.enable = true;
     };
