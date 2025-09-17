@@ -17,8 +17,8 @@ in
         default = true;
       };
       bwrapHome = lib.mkOption {
-        type = lib.types.str;
-        default = "${config.users.users.${user}.home}/.local/share/steam-home";
+        type = lib.types.nullOr lib.types.str;
+        default = null;
       };
     };
   };
@@ -61,14 +61,18 @@ in
             extraArgs = "-system-composer";
             # Utilize bwrap to prevent steam dump garbage everywhere in HOME.
             # https://github.com/ValveSoftware/steam-for-linux/issues/1890#issuecomment-2367103614
-            extraBwrapArgs = [
-              "--bind ${cfg.steam.bwrapHome} $HOME"
-              "--unsetenv XDG_CACHE_HOME"
-              "--unsetenv XDG_CONFIG_HOME"
-              "--unsetenv XDG_DATA_HOME"
-              "--unsetenv XDG_STATE_HOME"
-              "--setenv GTK_IM_MODULE xim"
-            ];
+            extraBwrapArgs =
+              if cfg.steam.bwrapHome != null then
+                [
+                  "--bind ${cfg.steam.bwrapHome} $HOME"
+                  "--unsetenv XDG_CACHE_HOME"
+                  "--unsetenv XDG_CONFIG_HOME"
+                  "--unsetenv XDG_DATA_HOME"
+                  "--unsetenv XDG_STATE_HOME"
+                  "--setenv GTK_IM_MODULE xim"
+                ]
+              else
+                [ ];
           };
 
           extraCompatPackages = [ pkgs.proton-ge-bin ];
@@ -85,7 +89,9 @@ in
           # We need a version without hidden home directory to run non-steam games
           home.packages = [ pkgs.steam-run ];
 
-          systemd.user.tmpfiles.rules = [ "d ${cfg.steam.bwrapHome} - - - - -" ];
+          systemd.user.tmpfiles.rules = lib.mkIf (cfg.steam.bwrapHome != null) [
+            "d ${cfg.steam.bwrapHome} - - - - -"
+          ];
         };
       })
     ]
