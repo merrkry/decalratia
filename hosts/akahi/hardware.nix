@@ -26,6 +26,23 @@
         configurationLimit = 16;
         consoleMode = "auto";
         editor = true;
+
+        edk2-uefi-shell = {
+          enable = true;
+          sortKey = "z_edk2";
+        };
+
+        windows = {
+          "windows" =
+            let
+              boot-drive = "HD1b";
+            in
+            {
+              title = "Windows 11 LTSC";
+              efiDeviceHandle = boot-drive;
+              sortKey = "y_windows";
+            };
+        };
       };
     };
     kernelModules = [ "kvm-amd" ];
