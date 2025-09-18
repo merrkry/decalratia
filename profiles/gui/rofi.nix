@@ -18,7 +18,7 @@ in
     home-manager.users.${user} = {
       programs.rofi = {
         enable = true;
-        package = pkgs.rofi-wayland;
+        package = pkgs.rofi;
         terminal = config.profiles.desktop.defaultTerminal;
       };
 
