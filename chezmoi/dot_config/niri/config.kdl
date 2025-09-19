@@ -342,7 +342,7 @@ window-rule {
     match title=r#"^Cinny$"#
     match title=r#"^Element$"#
     match app-id=r#"^io.github.kukuruzka165.materialgram$"#
-    match app-id=r#"^QQ$"#
+    match app-id=r#"^com.qq.QQ$"#
     match app-id=r#"^thunderbird$"#
     match title=r#"^Mail - Nextcloud$"#
     match app-id=r#"^com.discordapp.Discord$"#
@@ -376,7 +376,7 @@ window-rule {
     open-focused false
 }
 window-rule {
-    match app-id=r#"^QQ$"# title=r#"^(图片查看)|(视频播放)器$"#
+    match app-id=r#"^com.qq.QQ$"# title=r#"^(图片查看)|(视频播放)器$"#
     match app-id=r#"^io.github.kukuruzka165.materialgram$"# title=r#"^Media viewer$"#
     match app-id=r#"^io.github.kukuruzka165.materialgram$"# title=r#"^媒体查看器$"#
     open-fullscreen false
@@ -403,7 +403,7 @@ window-rule {
     open-on-workspace "browser"
 }
 window-rule {
-    match app-id=r#"^QQ$"# title=r#"^QQ$"#
+    match app-id=r#"^com.qq.QQ$"# title=r#"^QQ$"#
     open-floating false
 }
 window-rule {
