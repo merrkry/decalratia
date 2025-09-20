@@ -19,7 +19,7 @@ in
     xdg.portal = {
       enable = true;
       # Breaks xdg-open on many applications. But disabling it introduces other problems...
-      xdgOpenUsePortal = false;
+      xdgOpenUsePortal = true;
       configPackages = [ pkgs.niri ];
       extraPortals = with pkgs; [
         gnome-keyring
