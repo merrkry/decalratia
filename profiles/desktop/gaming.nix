@@ -11,7 +11,9 @@ in
 {
   options.profiles.desktop.gaming = {
     enable = lib.mkEnableOption "gaming";
-    enableNTSync = lib.mkEnableOption "NTSync";
+    enableNTSync = lib.mkEnableOption "NTSync" // {
+      default = lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.14";
+    };
     steam = {
       enable = lib.mkEnableOption "Steam" // {
         default = true;
@@ -35,13 +37,6 @@ in
         };
       }
       (lib.mkIf cfg.enableNTSync {
-        assertions = [
-          {
-            assertion = lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.14";
-            message = "Kernel 6.14+ is required for NTSync";
-          }
-        ];
-
         boot.kernelModules = [ "ntsync" ];
 
         services.udev.packages = [

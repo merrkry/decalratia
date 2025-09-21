@@ -55,8 +55,6 @@ in
               }
           );
 
-          kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
-
           kernelParams = [
             "split_lock_detect=off"
           ]
