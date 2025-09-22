@@ -32,3 +32,13 @@ Note that `nix-ld` is also required in addition to installing these packages.
 --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED
 --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED
 ```
+
+## Rime
+
+In addition to configs managed by Chezmoi, we might need to run
+
+```
+trash-put ~/.local/share/fcitx5/rime/build
+```
+
+before re-deploy rime. Because rime check for update with timestamp, which is constant on NixOS.
