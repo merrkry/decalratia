@@ -20,7 +20,7 @@ in
       useACMEHost = "karanohako.tsubasa.moe";
       locations."/" = {
         proxyPass = "http://127.0.0.1:${toString port}";
-        proxyWebsockets = true;
+        proxyWebsockets = true; # TODO: Do I still need this?
       };
     };
 
@@ -71,8 +71,10 @@ in
     image = "ghcr.io/open-webui/open-webui:main";
     pull = "newer";
 
+    # FIXME: use EITHER volume or /var/lib
     volumes = [ "open-webui:/app/backend/data" ];
     ports = [ "127.0.0.1:${toString port}:8080" ];
+    # TODO: --userns=auto
     extraOptions = [
       "--add-host=host.docker.internal:host-gateway"
     ];

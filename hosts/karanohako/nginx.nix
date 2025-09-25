@@ -7,6 +7,7 @@
       reloadServices = [ "nginx.service" ];
     in
     {
+      # NOTE: Consider wildcards, especially for internal services.
       "karanohako.tsubasa.moe" = {
         domain = "karanohako.tsubasa.moe";
         extraDomainNames = [ "llm.tsubasa.moe" ];
