@@ -14,7 +14,10 @@
       };
       "karanohako.tsubasa.one" = {
         domain = "karanohako.tsubasa.one";
-        extraDomainNames = [ "dufs.tsubasa.one" ];
+        extraDomainNames = [
+          "dufs.tsubasa.one"
+          "tavern.tsubasa.one"
+        ];
         inherit dnsProvider environmentFile reloadServices;
       };
     };
