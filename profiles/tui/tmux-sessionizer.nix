@@ -26,6 +26,10 @@ in
           xdg.configFile."tms/config.toml".source = pkgs.writers.writeTOML "config.toml" {
             display_full_path = true;
             session_sort_order = "LastAttached";
+            vcs_providers = [
+              "git"
+              "jj"
+            ];
 
             picker_colors = {
               highlight_color = "#393939";
