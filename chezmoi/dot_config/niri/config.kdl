@@ -268,18 +268,12 @@ layout {
         off
     }
     border {
-        width 2
-        inactive-color "#665c54"
-        active-gradient from="#E5989B" to="#FFB4A2" angle=45 relative-to="workspace-view" in="oklch longer hue"
-        urgent-gradient from="#800" to="#a33" angle=45
+        off
     }
     tab-indicator {
         width 2
         gap 2
         gaps-between-tabs 2
-    }
-    shadow {
-        on
     }
     insert-hint {
         color "#ffc87f80"
@@ -316,6 +310,21 @@ window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
+window-rule {
+    match is-active=true
+    opacity 1.0
+}
+window-rule {
+    match is-active=false
+    opacity 0.9
+}
+window-rule {
+    match is-floating=true
+    shadow {
+        on
+    }
+}
+
 window-rule {
     // bitwarden chromium extension
     match title=r#"^_crx_nngceckbapebfimnlniiiahkandclblb$"#
