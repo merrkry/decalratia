@@ -20,7 +20,7 @@ in
       programs.git = {
         enable = true;
 
-        userName = "merrkry";
+        userName = "Merrkry";
         userEmail = "merrkry@tsubasa.moe";
         ignores = [ ".direnv" ];
 
