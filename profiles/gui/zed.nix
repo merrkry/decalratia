@@ -18,7 +18,7 @@ in
     home-manager.users.${user} = {
       programs.zed-editor = {
         enable = true;
-        package = pkgs.zed-editor-fhs;
+        package = pkgs.zed-editor.fhsWithPackages (pkgs: (with pkgs; [ openssl ]));
       };
 
       # stylix.targets.zed.enable = true;
