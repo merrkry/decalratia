@@ -1,53 +1,88 @@
 {
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark"
-  },
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
-  "auto_install_extension": {
+  "auto_install_extensions": {
     "git-firefly": true,
-    "nix": true
+    "html": true,
+    "lua": true,
+    "nix": true,
+    "toml": true
   },
   "autosave": {
     "after_delay": {
       "milliseconds": 1000
     }
   },
-  "restore_on_startup": "none",
+  "autoscroll_on_clicks": true,
+  "auto_signature_help": true,
   "auto_update": false,
   "buffer_font_family": "monospace",
-  "buffer_font_size": 16,
+  "edit_predictions_disabled_in": ["comment", "string"],
   "scrollbar": {
     "axes": {
       "horizontal": false
     }
   },
-  "format_on_save": "off",
-  "languages": {
-    "Go": {
-      "format_on_save": "on"
-    },
-    "Nix": {
-      "language_servers": ["nixd", "!nil"],
-      "format_on_save": "on"
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "cargo": {
+          "features": "all"
+        },
+        "check": {
+          "command": "clippy",
+          "extraArgs": [
+            "--",
+            "-W",
+            "clippy:pedantic",
+            "-W",
+            "clippy::nursery",
+            "-W",
+            "clippy::cargo"
+          ]
+        },
+        "diagnostics": {
+          "experimental": {
+            "enable": true
+          }
+        }
+      }
     }
   },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "format_on_save": "on",
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "inlay_hints": {
+    "enabled": true
+  },
+  "journal": {
+    "hour_format": "hour24"
+  },
+  "relative_line_numbers": true,
+  "use_smartcase_search": true,
   "soft_wrap": "editor_width",
+  "wrap_guides": [80, 120],
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
-  "vim_mode": true,
-  "relative_line_numbers": true,
-  "agent": {
-    "enabled": false
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark"
   },
-  "ui_font_family": "sans-serif",
-  "ui_font_size": 14,
-  "experimental.theme_overrides": {
-    // "background.appearance": "blurred" // more tweaks needed to make this work
-  }
+  "vim_mode": true,
+  "agent": {
+    "enabled": true,
+    "default_profile": "ask",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini"
+    }
+  },
+  "ui_font_family": "sans-serif"
 }

@@ -279,7 +279,7 @@ layout {
         color "#ffc87f80"
         gradient from="#f38ba880" to="#f9e2af80" angle=45 relative-to="workspace-view"
     }
-    default-column-width { proportion 0.33333; }
+    default-column-width { proportion 0.5; }
     center-focused-column "on-overflow"
     always-center-single-column
 }
