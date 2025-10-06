@@ -22,7 +22,10 @@ in
 
         userName = "Merrkry";
         userEmail = "merrkry@tsubasa.moe";
-        ignores = [ ".direnv" ];
+        ignores = [
+          ".direnv"
+          ".env"
+        ];
 
         lfs.enable = true;
 
