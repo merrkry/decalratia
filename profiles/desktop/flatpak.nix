@@ -77,9 +77,6 @@ in
             Context = {
               filesystems = untrustedFilesystemsOverride;
             };
-            Environment = {
-              GTK_IM_MODULE = "fcitx";
-            };
           };
 
           "com.spotify.Client" = {
