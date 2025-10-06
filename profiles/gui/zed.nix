@@ -18,7 +18,11 @@ in
     home-manager.users.${user} = {
       programs.zed-editor = {
         enable = true;
-        package = pkgs.zed-editor.fhsWithPackages (pkgs: (with pkgs; [ openssl ]));
+        # Running in fhs might let LSP unable to find system libraries,
+        # e.g. pkg-config, openssl provided by nix shell.
+        # Providing them fhsWithPackages doesn't work either.
+        # Better to use with nix-ld.
+        package = pkgs.zed-editor;
       };
 
       # stylix.targets.zed.enable = true;
