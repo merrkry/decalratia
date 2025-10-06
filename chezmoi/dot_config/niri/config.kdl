@@ -39,7 +39,7 @@ binds {
 
     Mod+O repeat=false { toggle-overview; }
 
-    Mod+Q repeat=false { close-window; }
+    Mod+Shift+Q repeat=false { close-window; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
@@ -335,7 +335,7 @@ window-rule {
     match app-id=r#"^chromium-browser$"# at-startup=true
     match app-id=r#"^firefox$"# at-startup=true
     match app-id=r#"^librewolf$"# at-startup=true
-    match app-id=r#"^zen$"# at-startup=true
+    match app-id=r#"^app.zen_browser.zen$"# at-startup=true
     open-on-workspace "browser"
     open-maximized true
 }

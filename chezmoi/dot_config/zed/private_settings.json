@@ -12,13 +12,19 @@
     }
   },
   "autoscroll_on_clicks": true,
-  "auto_signature_help": true,
+  "buffer_font_family": ".ZedMono",
+  "show_signature_help_after_edits": true,
   "auto_update": false,
-  "buffer_font_family": "monospace",
+  "confirm_quit": true,
   "edit_predictions_disabled_in": ["comment", "string"],
   "scrollbar": {
     "axes": {
       "horizontal": false
+    }
+  },
+  "languages": {
+    "Nix": {
+      "language_servers": ["!nil", "nixd"]
     }
   },
   "lsp": {
@@ -65,10 +71,13 @@
   "relative_line_numbers": true,
   "use_smartcase_search": true,
   "soft_wrap": "editor_width",
-  "wrap_guides": [80, 120],
+  "wrap_guides": [80],
   "telemetry": {
     "diagnostics": false,
     "metrics": false
+  },
+  "terminal": {
+    "font_family": "Fira Code"
   },
   "theme": {
     "mode": "system",
@@ -84,5 +93,5 @@
       "model": "gpt-5-mini"
     }
   },
-  "ui_font_family": "sans-serif"
+  "ui_font_family": ".ZedMono"
 }
