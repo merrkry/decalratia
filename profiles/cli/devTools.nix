@@ -37,6 +37,7 @@ in
         # javascript / typescript
         nodejs
         pnpm
+        vtsls
         # lua
         lua
         lua-language-server
