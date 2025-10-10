@@ -20,6 +20,7 @@ in
         cmake
         gnumake
         meson
+        mesonlsp
         ninja
         xmake
 
@@ -40,7 +41,7 @@ in
         vtsls
         # lua
         lua
-        lua-language-server
+        emmylua-ls
         stylua
         # nix
         nixd
