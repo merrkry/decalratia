@@ -117,6 +117,7 @@ in
 
         users.users."remote-deployer" = {
           isNormalUser = true;
+          home = "/var/empty";
           createHome = false;
           group = "remote-deployer";
           extraGroups = [ "wheel" ];
