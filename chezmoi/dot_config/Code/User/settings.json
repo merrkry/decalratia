@@ -7,5 +7,8 @@
   "window.controlsStyle": "hidden",
   "explorer.confirmDelete": false,
   "github.copilot.nextEditSuggestions.enabled": false,
-  "github.copilot.selectedCompletionModel": ""
+  "github.copilot.selectedCompletionModel": "",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  }
 }
