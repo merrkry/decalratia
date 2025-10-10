@@ -265,7 +265,9 @@ binds {
 layout {
     gaps 8
     focus-ring {
-        off
+        width 2
+        active-color "#505050"
+        inactive-color "#505050"
     }
     border {
         off
@@ -309,14 +311,6 @@ hotkey-overlay { skip-at-startup; }
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
-}
-window-rule {
-    match is-active=true
-    opacity 1.0
-}
-window-rule {
-    match is-active=false
-    opacity 0.9
 }
 window-rule {
     match is-floating=true
