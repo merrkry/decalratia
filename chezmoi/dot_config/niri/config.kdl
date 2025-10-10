@@ -380,6 +380,7 @@ window-rule {
 }
 window-rule {
     match app-id=r#"^com.qq.QQ$"# title=r#"^(图片查看)|(视频播放)器$"#
+    match app-id=r#"^wechat$"# title=r#"^图片和视频$"#
     match app-id=r#"^io.github.kukuruzka165.materialgram$"# title=r#"^Media viewer$"#
     match app-id=r#"^io.github.kukuruzka165.materialgram$"# title=r#"^媒体查看器$"#
     open-fullscreen false

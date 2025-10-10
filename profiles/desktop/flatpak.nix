@@ -88,10 +88,6 @@ in
           "com.tencent.WeChat" = {
             Context = {
               filesystems = untrustedFilesystemsOverride;
-              unset-environment = [ "QT_AUTO_SCREEN_SCALE_FACTOR" ];
-            };
-            Environment = {
-              "QT_SCALE_FACTOR=" = "1.0";
             };
           };
 

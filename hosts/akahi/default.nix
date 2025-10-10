@@ -76,6 +76,7 @@
         "com.discordapp.Discord"
         "com.qq.QQ"
         "com.spotify.Client"
+        "com.tencent.WeChat"
         "com.usebottles.bottles"
       ];
     };
