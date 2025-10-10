@@ -40,7 +40,7 @@ in
         vtsls
         # lua
         lua
-        lua-language-server
+        emmylua-ls
         stylua
         # nix
         nixd
