@@ -26,6 +26,7 @@ binds {
     Mod+T { spawn "kitty"; }
     Mod+Shift+T { spawn "kitten" "quick-access-terminal"; }
     Mod+D { spawn "rofi" "-show" "drun" "-show-icons"; }
+    Mod+Shift+D { spawn-sh "rofi -show window -show-icons"; }
     Super+Alt+L allow-inhibiting=false { spawn "loginctl" "lock-session"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
