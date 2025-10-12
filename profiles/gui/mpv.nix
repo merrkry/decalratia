@@ -20,7 +20,7 @@ in
 
         scripts = with pkgs.mpvScripts; [
           thumbfast
-          modernx
+          modernz
         ];
 
         config = {
