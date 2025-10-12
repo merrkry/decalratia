@@ -23,7 +23,7 @@ in
         "foot"
         "kitty"
       ];
-      default = "kitty";
+      default = "foot";
     };
   };
 
