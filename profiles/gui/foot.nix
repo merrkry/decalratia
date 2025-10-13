@@ -31,6 +31,9 @@ in
             cursor = {
               style = "beam";
             };
+            environment = {
+              LANG = "en_US.UTF-8";
+            };
             key-bindings = {
               primary-paste = "none";
               search-start = "none";
