@@ -42,7 +42,7 @@ in
               pipe-scrollback = "none";
               pipe-selected = "none";
               pipe-command-output = "none";
-              show-urls-launch = "none";
+              # show-urls-launch = "none"; # <C-S-o>
               prompt-prev = "none";
               prompt-next = "none";
               unicode-input = "none";
