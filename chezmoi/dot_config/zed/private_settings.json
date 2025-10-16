@@ -69,6 +69,7 @@
     "hour_format": "hour24"
   },
   "relative_line_numbers": true,
+  "restore_on_startup": "none",
   "use_smartcase_search": true,
   "soft_wrap": "editor_width",
   "wrap_guides": [80],
