@@ -19,6 +19,7 @@ in
       type = lib.types.enum [
         "eevdf"
         "scx_bpfland"
+        "scx_cosmos"
         "scx_lavd"
       ];
       default = "eevdf";

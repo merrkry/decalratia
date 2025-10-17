@@ -16,6 +16,7 @@
     };
     desktop = {
       waybar.backlightDevice = "amdgpu_bl1";
+      tweaks.scheduler = "scx_cosmos";
     };
     cli = {
       devTools.enable = true;
@@ -34,6 +35,14 @@
       syncthing.enable = true;
     };
   };
+
+  services.scx.extraArgs = [
+    "--primary-domain"
+    "powersave"
+    "--no-deferred-wakeup"
+    "--polling-ms"
+    "5000"
+  ];
 
   home-manager.users.${user} = {
     home.packages = with pkgs; [
