@@ -1,149 +1,125 @@
 {
-	"layer": "top",
-	"position": "top",
-	// doesn't apply, but setting this value can let waybar use static height
-	"height": "0",
-	"spacing": 0,
-	"reload_style_on_change": true,
-	"modules-left": [
-		"niri/workspaces"
-	],
-	"modules-center": [
-		"clock"
-	],
-	"modules-right": [
-		"systemd-failed-units",
-		"privacy",
-		"tray",
-		"custom/separator",
-		"mpris",
-		"custom/notification",
-		"idle_inhibitor",
-		"custom/separator",
-		"backlight",
-		"battery",
-		"wireplumber"
-	],
-	"backlight": {
-		"format": "{icon} {percent}%",
-		"format-icons": [
-			"󱩎",
-			"󱩏",
-			"󱩐",
-			"󱩑",
-			"󱩒",
-			"󱩓",
-			"󱩔",
-			"󱩕",
-			"󱩖",
-			"󰛨"
-		],
-		"on-scroll-down": "brightnessctl set 1%-",
-		"on-scroll-up": "brightnessctl set +1%"
-	},
-	"battery": {
-		"format": "{icon} {capacity}%",
-		"format-icons": [
-			"󰁺",
-			"󰁻",
-			"󰁼",
-			"󰁽",
-			"󰁾",
-			"󰁿",
-			"󰂀",
-			"󰂁",
-			"󰂂",
-			"󰁹"
-		]
-	},
-	"clock": {
-		"format": "{:%F, %a, %R}",
-		"tooltip": false
-	},
-	"custom/notification": {
-		"escape": true,
-		"exec": "swaync-client -swb",
-		"exec-if": "which swaync-client",
-		"format": "{icon}",
-		"format-icons": {
-			"dnd-inhibited-none": "󰂛",
-			"dnd-inhibited-notification": "󱅫",
-			"dnd-none": "󱏩",
-			"dnd-notification": "󱅫",
-			"inhibited-none": "󱏧",
-			"inhibited-notification": "󱅫",
-			"none": "󰂚",
-			"notification": "󱅫"
-		},
-		"on-click": "swaync-client -t -sw",
-		"on-click-right": "swaync-client -d -sw",
-		"return-type": "json",
-		"tooltip": false
-	},
-	"custom/separator": {
-		"return-type": "text",
-		"interval": "once",
-		"format": "|",
-		"tooltip": false
-	},
-	"idle_inhibitor": {
-		"format": "{icon}",
-		"format-icons": {
-			"activated": "󰅶",
-			"deactivated": "󰾪"
-		}
-	},
-	"mpris": {
-		"format": "{player_icon}",
-		"format-paused": "{status_icon}",
-		"player-icons": {
-			"default": ""
-		},
-		"status-icons": {
-			"paused": ""
-		}
-	},
-	"niri/workspaces": {
-		"format": "{icon}",
-		"format-icons": {
-			"active": "",
-			"default": "·",
-			"focused": ""
-		}
-	},
-	"privacy": {
-		"icon-size": 14,
-		"modules": [
-			{
-				"type": "screenshare"
-			},
-			{
-				"type": "audio-in"
-			}
-		]
-	},
-	"systemd-failed-units": {
-		"format": "✗",
-		// https://github.com/Alexays/Waybar/issues/4241
-		"format-ok": "",
-		"hide-on-ok": true,
-		"system": true,
-		"user": true
-	},
-	"tray": {
-		"icon-size": 16,
-		"reverse-direction": true,
-		"spacing": 10
-	},
-	"wireplumber": {
-		"format": "{icon} {volume}%",
-		"format-icons": [
-			"󰕿",
-			"󰖀",
-			"󰕾"
-		],
-		"format-muted": "󰖁 {volume}%",
-		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-		"scroll-step": "0.25"
-	}
+  "layer": "top",
+  "position": "top",
+  // doesn't apply, but setting this value can let waybar use static height
+  "height": "0",
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": ["niri/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "systemd-failed-units",
+    "privacy",
+    "tray",
+    "custom/separator",
+    "mpris",
+    "custom/notification",
+    "idle_inhibitor",
+    "custom/separator",
+    "backlight",
+    "battery",
+    "wireplumber",
+  ],
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
+    "on-scroll-down": "brightnessctl set 1%-",
+    "on-scroll-up": "brightnessctl set +1%",
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    },
+    "interval": 1,
+    "tooltip-format-discharging": "Discharging at {power}W",
+    "tooltip-format-charging": "Charging at {power}W",
+  },
+  "clock": {
+    "format": "{:%F, %a, %R}",
+    "tooltip": false,
+  },
+  "custom/notification": {
+    "escape": true,
+    "exec": "swaync-client -swb",
+    "exec-if": "which swaync-client",
+    "format": "{icon}",
+    "format-icons": {
+      "dnd-inhibited-none": "󰂛",
+      "dnd-inhibited-notification": "󱅫",
+      "dnd-none": "󱏩",
+      "dnd-notification": "󱅫",
+      "inhibited-none": "󱏧",
+      "inhibited-notification": "󱅫",
+      "none": "󰂚",
+      "notification": "󱅫",
+    },
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "return-type": "json",
+    "tooltip": false,
+  },
+  "custom/separator": {
+    "return-type": "text",
+    "interval": "once",
+    "format": "|",
+    "tooltip": false,
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰅶",
+      "deactivated": "󰾪",
+    },
+  },
+  "mpris": {
+    "format": "{player_icon}",
+    "format-paused": "{status_icon}",
+    "player-icons": {
+      "default": "",
+    },
+    "status-icons": {
+      "paused": "",
+    },
+  },
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": "·",
+      "focused": "",
+    },
+  },
+  "privacy": {
+    "icon-size": 14,
+    "modules": [
+      {
+        "type": "screenshare",
+      },
+      {
+        "type": "audio-in",
+      },
+    ],
+  },
+  "systemd-failed-units": {
+    "format": "✗",
+    // https://github.com/Alexays/Waybar/issues/4241
+    "format-ok": "",
+    "hide-on-ok": true,
+    "system": true,
+    "user": true,
+  },
+  "tray": {
+    "icon-size": 16,
+    "reverse-direction": true,
+    "spacing": 10,
+  },
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-icons": ["󰕿", "󰖀", "󰕾"],
+    "format-muted": "󰖁 {volume}%",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "scroll-step": "0.25",
+  },
 }
