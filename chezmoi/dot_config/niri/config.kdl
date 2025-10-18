@@ -24,7 +24,6 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+T { spawn "foot"; }
-    Mod+Shift+T { spawn "kitten" "quick-access-terminal"; }
     Mod+D { spawn "rofi" "-show" "drun" "-show-icons"; }
     Mod+Shift+D { spawn-sh "rofi -show window -show-icons"; }
     Super+Alt+L allow-inhibiting=false { spawn "loginctl" "lock-session"; }
