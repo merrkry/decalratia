@@ -79,12 +79,9 @@
       };
     };
 
-  hardware = {
-    logitech.wireless = {
-      enable = true;
-      enableGraphical = true;
-    };
-  };
+  services.udev.packages = with pkgs; [
+    via
+  ];
 
   swapDevices = [ { device = "/dev/disk/by-uuid/60005c5c-54dc-4ead-b28f-021d2f84c177"; } ];
 }

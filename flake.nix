@@ -154,6 +154,7 @@
                 "chromium-unwrapped"
                 "ungoogled-chromium"
                 "ungoogled-chromium-unwrapped"
+                "via"
                 "vscode"
                 "widevine-cdm"
               ];
