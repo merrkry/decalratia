@@ -21,6 +21,7 @@ in
       settings = {
         default_session.command = "${lib.getExe pkgs.tuigreet} --cmd niri-session";
       };
+      useTextGreeter = true;
     };
 
     security.pam = {
