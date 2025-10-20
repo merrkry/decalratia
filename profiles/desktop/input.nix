@@ -21,6 +21,10 @@ in
         modmap = [
           {
             name = "Useful CapsLock";
+            device.only = [
+              "AT Translated Set 2 keyboard" # ThinkPad E14 Gen 3
+              "Milsky 87EC-XRGB"
+            ];
             remap = {
               "CAPSLOCK" = {
                 held = "LEFTCTRL";
