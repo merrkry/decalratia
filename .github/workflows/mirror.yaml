@@ -1,0 +1,60 @@
+name: Mirror from declaratia
+
+permissions: write-all
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - uses: actions/checkout@v3
+        with:
+          repository: newren/git-filter-repo
+          path: git-filter-repo
+
+      - uses: actions/checkout@v3
+        with:
+          repository: merrkry/declaratia
+          fetch-depth: 0
+          path: declaratia
+          ref: master
+          token: ${{ secrets.PAT }}
+
+      - uses: actions/checkout@v3
+        with:
+          repository: merrkry/decalratia
+          path: decalratia
+          ref: master
+
+      - run: |
+          cd declaratia
+          python ../git-filter-repo/git-filter-repo --path flake.lock --invert-paths --force
+
+      - run: |
+          rm -rf declaratia/.github/workflows
+          mkdir -p declaratia/.github/workflows
+          cp -r decalratia/.github/workflows/* declaratia/.github/workflows/
+          cd declaratia
+          git add .github/workflows
+          git commit -m "ci: override workflows"
+
+      - uses: ad-m/github-push-action@master
+        with:
+          branch: master
+          force: true
+          directory: declaratia
+          repository: merrkry/decalratia
+          github_token: ${{ secrets.PAT }}
