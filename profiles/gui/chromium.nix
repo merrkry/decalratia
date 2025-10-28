@@ -8,6 +8,17 @@
 }:
 let
   cfg = config.profiles.gui.chromium;
+  googleSearchOpts = {
+    DefaultSearchProviderKeyword = "google.com";
+    DefaultSearchProviderName = "Google";
+    DefaultSearchProviderSearchURL = "https://www.google.com/search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}ie={inputEncoding}";
+    DefaultSearchProviderSuggestURL = "https://www.google.com/complete/search?output=chrome&q={searchTerms}";
+  };
+  kagiSearchOpts = {
+    DefaultSearchProviderKeyword = "kagi.com";
+    DefaultSearchProviderName = "Kagi";
+    DefaultSearchProviderSearchURL = "https://kagi.com/search?q=%s";
+  };
 in
 {
   options.profiles.gui.chromium = {
@@ -19,14 +30,11 @@ in
       # https://chromeenterprise.google/intl/en_us/policies/
       extraOpts = {
         DefaultSearchProviderEnabled = true;
-        DefaultSearchProviderKeyword = "google.com";
-        DefaultSearchProviderName = "Google";
-        DefaultSearchProviderSearchURL = "https://www.google.com/search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}ie={inputEncoding}";
-        DefaultSearchProviderSuggestURL = "https://www.google.com/complete/search?output=chrome&q={searchTerms}";
 
         DnsOverHttpsMode = "automatic";
         DnsOverHttpsTemplates = "https://1.1.1.1/dns-query{?dns}";
-      };
+      }
+      // kagiSearchOpts;
     };
 
     stylix.targets.chromium.enable = true;
