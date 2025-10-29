@@ -26,6 +26,9 @@ in
 
         jujutsu
 
+        just
+        go-task
+
         # bash
         bash-language-server
         shfmt # used by bash-language-server automatically
@@ -36,8 +39,10 @@ in
         go
         gopls
         # javascript / typescript
+        bun
         nodejs
         pnpm
+        vite
         vtsls
         # lua
         lua
