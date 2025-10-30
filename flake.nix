@@ -77,6 +77,7 @@
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
+        rust-overlay.follows = "rust-overlay";
       };
     };
 
@@ -96,6 +97,13 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
+      };
+    };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay/master";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
       };
     };
 
