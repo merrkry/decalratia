@@ -20,8 +20,6 @@ in
       programs.git = {
         enable = true;
 
-        userName = "Merrkry";
-        userEmail = "merrkry@tsubasa.moe";
         ignores = [
           ".direnv"
           ".env"
@@ -30,7 +28,7 @@ in
         lfs.enable = true;
 
         # https://blog.gitbutler.com/how-git-core-devs-configure-git/
-        extraConfig = {
+        settings = {
           branch.sort = "-committerdate";
           column.ui = "auto";
           # commit.gpgsign = true;
@@ -59,7 +57,11 @@ in
             gpgSign = true;
             sort = "version:refname";
           };
-          user.signingkey = "${hmConfig.home.homeDirectory}/.ssh/id_ed25519.pub";
+          user = {
+            name = "Merrkry";
+            email = "merrkry@tsubasa.moe";
+            signingkey = "${hmConfig.home.homeDirectory}/.ssh/id_ed25519.pub";
+          };
         };
       };
     };

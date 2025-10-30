@@ -39,7 +39,6 @@ in
                 rime-moegirl
               ];
             })
-            fcitx5-chinese-addons
             fcitx5-lua # optionally required by fcitx5-chinese-addons
           ];
           waylandFrontend = true;

@@ -95,9 +95,7 @@
       url = "github:nix-community/neovim-nightly-overlay/master";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
-        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
