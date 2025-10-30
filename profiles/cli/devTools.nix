@@ -42,7 +42,6 @@ in
         bun
         nodejs
         pnpm
-        vite
         vtsls
         # lua
         lua
