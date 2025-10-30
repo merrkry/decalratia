@@ -56,7 +56,12 @@ in
         ruff
         uv
         # rust
-        rustup
+        (rust-bin.selectLatestNightlyWith (
+          toolchain:
+          toolchain.default.override {
+            extensions = [ "rust-analyzer" ];
+          }
+        ))
         # toml
         taplo
         # typst
