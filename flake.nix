@@ -136,7 +136,6 @@
             inputs.colmena.overlays.default
             inputs.nur.overlays.default
             inputs.nix-quick-build.overlays.default
-            inputs.rust-overlay.overlays.default
 
             self.overlays.extraPackages
             self.overlays.modifications
