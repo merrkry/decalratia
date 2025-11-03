@@ -3,6 +3,7 @@
   helpers,
   inputs,
   lib,
+  pkgs,
   self,
   ...
 }:
@@ -44,7 +45,7 @@ in
               trusted-users = [
                 # dangerous, see https://github.com/NixOS/nix/issues/9649#issuecomment-1868001568
                 # "@wheel"
-                "remote-deployer"
+                "deployer"
               ];
               substituters = [
                 # cache.nixos.org priority: 40
@@ -113,14 +114,15 @@ in
           MemorySwapMax = 0;
         };
 
-        users.groups."remote-deployer" = { };
+        users.groups."deployer" = { };
 
-        users.users."remote-deployer" = {
-          isNormalUser = true;
-          home = "/var/empty";
-          createHome = false;
-          group = "remote-deployer";
+        users.users."deployer" = {
+          isSystemUser = true;
+          home = "/var/lib/deployer";
+          createHome = true;
+          group = "deployer";
           extraGroups = [ "wheel" ];
+          shell = pkgs.bashInteractive;
           openssh.authorizedKeys.keys = helpers.sshKeys.trusted;
         };
 

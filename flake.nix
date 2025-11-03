@@ -271,7 +271,7 @@
             allowLocalDeployment = builtins.elem "build" tags || builtins.elem "desktop" tags;
             buildOnTarget = builtins.elem "build" tags;
             sshOptions = [ "-A" ];
-            targetUser = "remote-deployer";
+            targetUser = "deployer";
           };
 
           networking = { inherit hostName; };
