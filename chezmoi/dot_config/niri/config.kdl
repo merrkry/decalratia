@@ -275,7 +275,8 @@ layout {
     tab-indicator {
         width 2
         gap 2
-        gaps-between-tabs 2
+        gaps-between-tabs 4
+        active-gradient from="#f38ba8" to="#f9e2af" angle=45 relative-to="workspace-view"
     }
     insert-hint {
         color "#ffc87f80"
