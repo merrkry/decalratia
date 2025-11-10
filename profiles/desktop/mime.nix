@@ -28,8 +28,11 @@ in
 
     home-manager.users.${user} = {
       home.packages = with pkgs; [
-        papers # pdf
-        foliate # epub
+        # pdf
+        # papers
+        sioyek
+        # epub
+        foliate
       ];
 
       xdg.mimeApps =
@@ -44,7 +47,10 @@ in
           enable = true;
           defaultApplications = lib.mkMerge [
             {
-              "application/pdf" = "org.gnome.Papers.desktop";
+              "application/pdf" = [
+                "sioyek.desktop"
+                "org.gnome.Papers.desktop"
+              ];
               "application/epub+zip" = "com.github.johnfactotum.Foliate.desktop";
               "inode/directory" = "org.gnome.Nautilus";
               "message/rfc822" = emailClient;
