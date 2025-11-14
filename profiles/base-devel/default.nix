@@ -19,7 +19,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       age
-      fastfetch
+      fastfetchMinimal
       fd
       gcc
       gdu
