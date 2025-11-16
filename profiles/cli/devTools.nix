@@ -40,6 +40,7 @@ in
         gopls
         # javascript / typescript
         bun
+        deno
         nodejs
         pnpm
         vtsls
