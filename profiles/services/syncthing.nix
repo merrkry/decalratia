@@ -54,7 +54,13 @@ in
               id = "mkdhn-prnyw";
               path = "~/Documents/Syncthing";
               devices = filteredDeviceList;
-              versioning.type = "simple";
+              versioning = {
+                type = "simple";
+                params = {
+                  cleanoutDays = 7;
+                  keep = 2;
+                };
+              };
               copyOwnershipFromParent = true;
             };
           };
