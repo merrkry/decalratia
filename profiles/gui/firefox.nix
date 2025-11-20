@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   user,
   ...
 }:
@@ -16,6 +17,7 @@ in
     home-manager.users.${user} = {
       programs.firefox = {
         enable = true;
+        package = pkgs.firefox-beta;
         languagePacks = [
           "en-US"
           "zh-CN"
