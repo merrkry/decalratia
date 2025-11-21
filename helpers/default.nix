@@ -55,6 +55,7 @@ in
     matrix-synapse = 20008;
     dufs = 20009;
     sillytavern = 20010;
+    couchdb = 20011;
 
     mautrix-telegram = 29317; # This should match the app service registration file, which is in secrets
   };
