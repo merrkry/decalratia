@@ -46,6 +46,7 @@
     home = {
       packages = with pkgs; [
         anki
+        (cherry-studio.override { commandLineArgs = helpers.chromiumArgs; })
         distrobox
         imagemagick
         libreoffice-fresh
