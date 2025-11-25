@@ -22,8 +22,6 @@ in
       nautilus.enable = true;
     };
 
-    programs.file-roller.enable = true;
-
     services.gvfs.enable = true;
 
     home-manager.users.${user} = {
@@ -33,6 +31,8 @@ in
         sioyek
         # epub
         foliate
+        # archive
+        file-roller
       ];
 
       xdg.mimeApps =

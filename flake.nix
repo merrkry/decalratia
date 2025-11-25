@@ -87,7 +87,6 @@
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        nixpkgs-25_05.follows = "nixpkgs-stable";
         flake-compat.follows = "flake-compat";
       };
     };
