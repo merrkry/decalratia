@@ -59,4 +59,13 @@ in
 
     mautrix-telegram = 29317; # This should match the app service registration file, which is in secrets
   };
+
+  # https://discourse.nixos.org/t/is-it-possible-to-override-cargosha256-in-buildrustpackage/4393/4
+  overrideRustPlatformArgs =
+    pkgs: packageName: newArgs:
+    pkgs.callPackage pkgs.${packageName}.override {
+      rustPlatform = pkgs.rustPlatform // {
+        buildRustPackage = args: pkgs.rustPlatform.buildRustPackage (args // newArgs);
+      };
+    };
 }
