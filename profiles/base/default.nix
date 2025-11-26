@@ -62,9 +62,12 @@ in
           };
         };
 
-        system.etc.overlay = {
-          enable = true;
-          mutable = true;
+        system = {
+          etc.overlay = {
+            enable = true;
+            mutable = true;
+          };
+          nixos-init.enable = true;
         };
 
         systemd = {
