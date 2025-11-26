@@ -26,11 +26,7 @@ in
               "Milsky 87EC-XRGB"
             ];
             remap = {
-              "CAPSLOCK" = {
-                held = "LEFTCTRL";
-                alone = "ESC";
-                free_hold = true;
-              };
+              "CAPSLOCK" = "ESC";
               "ESC" = "CAPSLOCK";
             };
           }
