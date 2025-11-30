@@ -1,0 +1,122 @@
+window-rule {
+    // bitwarden chromium extension
+    match title="^_crx_nngceckbapebfimnlniiiahkandclblb$"
+    open-floating true
+    block-out-from "screencast"
+}
+window-rule {
+    match app-id="^chromium-browser$" at-startup=true
+    match app-id="^firefox$" at-startup=true
+    match app-id="^librewolf$" at-startup=true
+    match app-id="^app.zen_browser.zen$" at-startup=true
+    open-on-workspace "browser"
+    open-maximized true
+}
+window-rule {
+    match app-id="^obsidian$"
+    open-maximized true
+}
+window-rule {
+    match app-id="^obsidian$" at-startup=true
+    open-on-workspace "notes"
+}
+window-rule {
+    match title="^Cinny$"
+    match title="^Element$"
+    match app-id="^io.github.kukuruzka165.materialgram$"
+    match app-id="^com.qq.QQ$"
+    match app-id="^thunderbird$"
+    match title="^Mail - Nextcloud$"
+    match app-id="^com.discordapp.Discord$"
+    default-column-width {
+        proportion 0.5
+    }
+    open-on-workspace "communication"
+}
+window-rule {
+    match app-id="^firefox$" title="^画中画$"
+    match app-id="^firefox$" title="^Picture-in-Picture$"
+    match app-id="^XEyes$" title="^xeyes$"
+    // chromium
+    match app-id="^$" title="^画中画$"
+    default-column-width {
+        proportion 0.125
+    }
+    default-window-height {
+        proportion 0.125
+    }
+    open-floating true
+    default-floating-position relative-to="bottom-right" x=32 y=32
+}
+window-rule {
+    match app-id="^xdg-desktop-portal-gtk$"
+    open-floating true
+}
+window-rule {
+    match app-id="^steam$" title="^Steam$"
+    default-column-width {
+        proportion 1.0
+    }
+}
+window-rule {
+    // workaround steam notification
+    // https://github.com/YaLTeR/niri/wiki/Application-Issues#steam
+    match app-id="steam" title="^notificationtoasts_\\d+_desktop$"
+    default-floating-position x=0 y=0 relative-to="bottom-right"
+    block-out-from "screencast"
+    open-focused false
+}
+window-rule {
+    match app-id="^com.qq.QQ$" title="^(图片查看)|(视频播放)器$"
+    match app-id="^wechat$" title="^图片和视频$"
+    match app-id="^io.github.kukuruzka165.materialgram$" title="^Media viewer$"
+    match app-id="^io.github.kukuruzka165.materialgram$" title="^媒体查看器$"
+    open-fullscreen false
+    open-floating true
+    default-column-width {
+        proportion 1.0
+    }
+    default-window-height {
+        proportion 1.0
+    }
+    border {
+        off
+    }
+}
+window-rule {
+    match app-id="^mpv$"
+    match app-id="^gamescope$"
+    match app-id="^steam_app_\\d+$"
+    variable-refresh-rate true
+}
+window-rule {
+    match app-id="^org.prismlauncher.PrismLauncher$"
+    match app-id="^spotify$"
+    default-column-width {
+        proportion 0.5
+    }
+}
+window-rule {
+    match app-id="^spotify$" at-startup=true
+    open-on-workspace "browser"
+}
+window-rule {
+    match app-id="^com.qq.QQ$" title="^QQ$"
+    open-floating false
+}
+window-rule {
+    match app-id="^org\\.pulseaudio\\.pavucontrol$"
+    default-column-width {
+        proportion 0.6
+    }
+    default-window-height {
+        proportion 0.6
+    }
+    open-floating true
+}
+layer-rule {
+    match namespace="^swaync-control-center$"
+    match namespace="^swaync-notification-window$"
+    block-out-from "screencast"
+}
+

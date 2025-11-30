@@ -44,6 +44,8 @@ in
         nodejs
         pnpm
         vtsls
+        # kdl
+        kdlfmt
         # lua
         lua
         emmylua-ls

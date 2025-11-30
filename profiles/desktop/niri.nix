@@ -15,7 +15,6 @@ in
     enable = lib.mkEnableOption "niri" // {
       default = config.profiles.desktop.enable;
     };
-    useUpstreamPackage = lib.mkEnableOption { };
   };
 
   config = lib.mkIf cfg.enable {
@@ -27,7 +26,7 @@ in
           brightnessctl
           cliphist
           niri
-          xwayland-satellite # started by Niri automatically since 25.08
+          xwayland-satellite # launched by niri automatically since niri 25.08
         ];
         sessionVariables = {
           NIXOS_OZONE_WL = 1;
