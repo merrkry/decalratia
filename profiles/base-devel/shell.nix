@@ -17,11 +17,20 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.fish = {
-      enable = true;
-      interactiveShellInit = ''
-        set -U fish_greeting
-      '';
+    programs = {
+      direnv = {
+        enable = true;
+        angrr = {
+          enable = true;
+          autoUse = true;
+        };
+      };
+      fish = {
+        enable = true;
+        interactiveShellInit = ''
+          set -U fish_greeting
+        '';
+      };
     };
 
     stylix.targets.fish.enable = true;
@@ -48,7 +57,6 @@ in
           config = {
             global.hide_env_diff = true; # only hide unreadable part instead of completely disable logging
           };
-          nix-direnv.enable = true;
         };
 
         fish.enable = true;

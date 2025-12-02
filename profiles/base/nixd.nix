@@ -86,6 +86,14 @@ in
             };
           };
 
+        services = {
+          angrr = {
+            enable = true;
+            timer.enable = true;
+            enableNixGcIntegration = true;
+          };
+        };
+
         sops.secrets =
           let
             sopsArgs = {
