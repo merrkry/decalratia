@@ -93,6 +93,11 @@ in
         # home-manager often blocked by backups created by its own
         "r ${hmConfig.xdg.configHome}/mimeapps.list.backup - - - - -"
       ];
+
+      xdg.terminal-exec = {
+        enable = true;
+        settings.default = [ "${cfg.defaultTerminal}.desktop" ];
+      };
     };
   };
 }
