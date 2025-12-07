@@ -37,6 +37,11 @@ in
 
     home-manager.users.${user} = {
       home = {
+        sessionVariables = {
+          # Overwrite nixos module's value to respect local config
+          # https://github.com/NixOS/nixpkgs/blob/f61125a668a320878494449750330ca58b78c557/nixos/modules/programs/direnv.nix#L159
+          DIRENV_CONFIG = "${hmConfig.xdg.configHome}/direnv";
+        };
         shellAliases = {
           "cdf" = "cd \"$(fd --max-depth 3 --type directory --hidden --exclude '.git' | fzf)\" 2> /dev/null";
           "gpp" = "g++ -x c++ -std=gnu++2b -Wall -Wextra";
