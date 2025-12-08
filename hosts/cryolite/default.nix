@@ -50,6 +50,7 @@
       materialgram
       obsidian
       xournalpp
+      zotero
     ];
 
     services.flatpak.packages = [
