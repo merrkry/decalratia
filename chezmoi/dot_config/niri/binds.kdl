@@ -284,9 +284,6 @@ binds {
     Mod+Ctrl+9 {
         move-column-to-workspace 9
     }
-    Mod+Tab {
-        focus-workspace-previous
-    }
     Mod+BracketLeft {
         consume-or-expel-window-left
     }

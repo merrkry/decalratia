@@ -14,11 +14,12 @@ window-rule {
 }
 window-rule {
     match app-id="^obsidian$"
+    open-on-workspace "notes"
     open-maximized true
 }
 window-rule {
-    match app-id="^obsidian$" at-startup=true
-    open-on-workspace "notes"
+    match app-id="^Zotero$"
+    open-on-workspace "documentation"
 }
 window-rule {
     match title="^Cinny$"
@@ -57,6 +58,7 @@ window-rule {
     default-column-width {
         proportion 1.0
     }
+    open-on-workspace "entertainment"
 }
 window-rule {
     // workaround steam notification
@@ -98,7 +100,7 @@ window-rule {
 }
 window-rule {
     match app-id="^spotify$" at-startup=true
-    open-on-workspace "browser"
+    open-on-workspace "entertainment"
 }
 window-rule {
     match app-id="^com.qq.QQ$" title="^QQ$"

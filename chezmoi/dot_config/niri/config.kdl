@@ -40,9 +40,12 @@ layout {
     center-focused-column "on-overflow"
     always-center-single-column
 }
-workspace "browser"
+workspace "terminal"
 workspace "notes"
+workspace "documentation"
+workspace "browser"
 workspace "communication"
+workspace "entertainment"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "systemctl" "--user" "restart" "fcitx5.service"
 prefer-no-csd
