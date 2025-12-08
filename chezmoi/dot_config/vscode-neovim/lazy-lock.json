@@ -1,0 +1,5 @@
+{
+  "hop.nvim": { "branch": "master", "commit": "707049feaca9ae65abb3696eff9aefc7879e66aa" },
+  "lazy.nvim": { "branch": "main", "commit": "85c7ff3711b730b4030d03144f6db6375044ae82" },
+  "mini.nvim": { "branch": "main", "commit": "6f11e41a137590e4a5f13624a2a9a845686e719f" }
+}

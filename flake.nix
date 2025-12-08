@@ -161,6 +161,8 @@
                 "ungoogled-chromium-unwrapped"
                 "via"
                 "vscode"
+                "vscode-extension-github-copilot"
+                "vscode-with-extensions"
                 "widevine-cdm"
               ];
             permittedInsecurePackages = [ "olm-3.2.16" ];
