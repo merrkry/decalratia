@@ -90,14 +90,18 @@ in
           enable = true;
           package = pkgs.ananicy-cpp;
           rulesProvider = pkgs.ananicy-rules-cachyos;
-          settings = {
-            check_freq = 15;
-            # may introduce issues, for example with polkit, according to https://github.com/CachyOS/ananicy-rules/blob/master/ananicy.conf
-            cgroup_realtime_workaround = lib.mkForce false;
-          }
-          // (lib.mkIf ((builtins.match ".*cachyos.*" config.boot.kernelPackages.kernel.name) != null) {
-            apply_latnice = true;
-          });
+          # https://github.com/CachyOS/ananicy-rules/blob/master/ananicy.conf
+          settings = lib.mkMerge [
+            {
+              cgroup_realtime_workaround = lib.mkForce false;
+              check_freq = 15;
+            }
+            # Requires kernel patch
+            # FIXME: log reported it is still disabled
+            (lib.mkIf ((builtins.match ".*cachyos.*" config.boot.kernelPackages.kernel.name) != null) {
+              apply_latnice = true;
+            })
+          ];
           extraRules = [
             {
               name = "AI-LIMIT.exe";
