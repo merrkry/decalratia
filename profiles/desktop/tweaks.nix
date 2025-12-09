@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -56,6 +57,8 @@ in
               }
           );
 
+          kernelPackages = pkgs.linuxPackages;
+
           kernelParams = [
             "split_lock_detect=off"
           ]
@@ -79,20 +82,19 @@ in
           tmpfiles.rules = [ "d /var/lib/systemd/coredump 0755 root root 7d" ];
         };
       }
-      # use if-then-else here will cause infinite recursion
       (lib.mkIf (cfg.scheduler == "eevdf") {
         services.ananicy = {
           enable = true;
           package = pkgs.ananicy-cpp;
           rulesProvider = pkgs.ananicy-rules-cachyos;
           settings = {
-            # apply_latnice requires a kernel patch that's even not included in cachyos's latest kernel patchset.
-            # Perhaps it's a packaging issue in chaotic-nyx side but it is certain that the rules cannot work as expected as they are on CachyOS.
-            # apply_latnice = true;
             check_freq = 15;
             # may introduce issues, for example with polkit, according to https://github.com/CachyOS/ananicy-rules/blob/master/ananicy.conf
             cgroup_realtime_workaround = lib.mkForce false;
-          };
+          }
+          // (lib.mkIf ((builtins.match ".*cachyos.*" config.boot.kernelPackages.kernel.name) != null) {
+            apply_latnice = true;
+          });
           extraRules = [
             {
               name = "AI-LIMIT.exe";

@@ -32,7 +32,6 @@
       efi.canTouchEfiVariables = true;
     };
     kernelModules = [ "kvm-amd" ];
-    kernelPackages = pkgs.linuxPackages;
     kernelParams = [ ];
   };
 

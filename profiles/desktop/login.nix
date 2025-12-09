@@ -38,16 +38,10 @@ in
         swayidle = {
           enable = true;
           extraArgs = lib.mkForce [ ]; # remove `-w` to avoid double lock bug
-          events = [
-            {
-              event = "lock";
-              command = "${lib.getExe pkgs.swaylock} --daemonize";
-            }
-            {
-              event = "before-sleep";
-              command = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
-            }
-          ];
+          events = {
+            lock = "${lib.getExe pkgs.swaylock} --daemonize";
+            before-sleep = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
+          };
           timeouts = [
             {
               timeout = 300;

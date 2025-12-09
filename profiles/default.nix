@@ -9,7 +9,6 @@
 }:
 {
   imports = [
-    inputs.lix.nixosModules.lixFromNixpkgs
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     inputs.stylix.nixosModules.stylix
