@@ -103,6 +103,15 @@
       flake = false;
     };
 
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        flake-compat.follows = "flake-compat";
+      };
+    };
+
     # personal projects
     nix-quick-build = {
       url = "github:merrkry/nix-quick-build";
