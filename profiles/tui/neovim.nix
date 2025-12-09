@@ -8,6 +8,7 @@
 }:
 let
   cfg = config.profiles.tui.neovim;
+  neovim-nightly = inputs.neovim-nightly-overlay.packages.${config.nixpkgs.system}.default;
 in
 {
   options.profiles.tui.neovim = {
@@ -16,12 +17,19 @@ in
 
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
-      home.packages = with pkgs; [
-        inputs.neovim-nightly-overlay.packages.${config.nixpkgs.system}.default
+      home = {
+        packages = with pkgs; [
+          neovim-nightly
 
-        tree-sitter
-        unzip # stylua
-      ];
+          tree-sitter
+          unzip # stylua
+        ];
+
+        sessionVariables = {
+          # EmmyLua
+          VIMRUNTIME = "${neovim-nightly}/share/nvim/runtime";
+        };
+      };
 
       # clangd etc. installed from non-nixpkgs cannot find standard libraries even in fhsenv
       # home.packages = lib.singleton (

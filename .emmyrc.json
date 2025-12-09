@@ -1,0 +1,14 @@
+{
+  "runtime": {
+    "version": "LuaJIT"
+  },
+  "workspace": {
+    "library": [
+      "$VIMRUNTIME",
+      "$HOME/.local/share/vscode-neovim/lazy"
+    ],
+    "ignoreGlobs": [
+      "**/*_spec.lua"
+    ]
+  }
+}

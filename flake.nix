@@ -112,6 +112,13 @@
       };
     };
 
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     # personal projects
     nix-quick-build = {
       url = "github:merrkry/nix-quick-build";

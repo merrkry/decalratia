@@ -1,13 +1,15 @@
 {
   "editor.fontFamily": "'Fira Code', 'Maple Mono CN', 'Symbols Nerd Font Mono', monospace",
   "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
   "explorer.confirmDelete": false,
   "extensions.autoCheckUpdates": false,
   "extensions.autoUpdate": false,
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
-  "github.copilot.nextEditSuggestions.enabled": true,
+  "extensions.ignoreRecommendations": true,
+  "github.copilot.nextEditSuggestions.enabled": false,
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nixd",
   "nix.serverSettings": {
@@ -49,5 +51,11 @@
   "workbench.secondarySideBar.defaultVisibility": "hidden",
   "workbench.view.showQuietly": {
     "workbench.panel.output": true
-  }
+  },
+  "explorer.confirmDragAndDrop": false,
+  "[lua]": {
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
+  },
+  // "stylua.styluaPath": "stylua",
+  "emmylua.ls.executablePath": "emmylua_ls"
 }
