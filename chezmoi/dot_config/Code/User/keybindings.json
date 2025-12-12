@@ -1,0 +1,40 @@
+[
+  {
+    "command": "vscode-neovim.send-cmdline",
+    "key": "ctrl+right",
+    "when": "neovim.init && neovim.mode == 'cmdline'"
+  },
+  {
+    "command": "-vscode-neovim.send-cmdline",
+    "key": "ctrl+l",
+    "when": "neovim.init && neovim.mode == 'cmdline'"
+  },
+  {
+    "command": "editor.action.inlineSuggest.acceptNextLine",
+    "key": "ctrl+down"
+  },
+  {
+    "args": "<A-h>",
+    "command": "vscode-neovim.send",
+    "key": "alt+h",
+    "when": "editorTextFocus && neovim.mode == insert"
+  },
+  {
+    "args": "<A-j>",
+    "command": "vscode-neovim.send",
+    "key": "alt+j",
+    "when": "editorTextFocus && neovim.mode == insert"
+  },
+  {
+    "args": "<A-k>",
+    "command": "vscode-neovim.send",
+    "key": "alt+k",
+    "when": "editorTextFocus && neovim.mode == insert"
+  },
+  {
+    "args": "<A-l>",
+    "command": "vscode-neovim.send",
+    "key": "alt+l",
+    "when": "editorTextFocus && neovim.mode == insert"
+  }
+]

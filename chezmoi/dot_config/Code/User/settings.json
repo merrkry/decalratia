@@ -1,14 +1,36 @@
 {
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[lua]": {
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "clangd.arguments": [
+    "--clang-tidy",
+    "--fallback-style=Google",
+    "--enable-config",
+    "--header-insertion=iwyu"
+  ],
+  "editor.cursorSurroundingLines": 8,
   "editor.fontFamily": "'Fira Code', 'Maple Mono CN', 'Symbols Nerd Font Mono', monospace",
   "editor.formatOnSave": true,
+  "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
+  "emmylua.ls.executablePath": "emmylua_ls",
+  "evenBetterToml.taplo.bundled": false,
   "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
   "extensions.autoCheckUpdates": false,
   "extensions.autoUpdate": false,
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
   "extensions.ignoreRecommendations": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveWorkspaceFilesOnly": true,
   "github.copilot.nextEditSuggestions.enabled": false,
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nixd",
@@ -24,6 +46,11 @@
       }
     }
   },
+  "python.experiments.enabled": false,
+  "ruff.lint.enable": false,
+  "ruff.path": [
+    "ruff"
+  ],
   "rust-analyzer.check.command": "clippy",
   "rust-analyzer.check.extraArgs": [
     "--",
@@ -32,9 +59,12 @@
     "-W",
     "clippy::nursery",
     "-W",
-    "clippy::cargo",
+    "clippy::cargo"
   ],
   "rust-analyzer.diagnostics.experimental.enable": true,
+  "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "with_block",
+  "rust-analyzer.inlayHints.discriminantHints.enable": "fieldless",
+  "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "skip_trivial",
   "rust-analyzer.rustfmt.extraArgs": [
     "--unstable-features"
   ],
@@ -51,11 +81,5 @@
   "workbench.secondarySideBar.defaultVisibility": "hidden",
   "workbench.view.showQuietly": {
     "workbench.panel.output": true
-  },
-  "explorer.confirmDragAndDrop": false,
-  "[lua]": {
-    "editor.defaultFormatter": "JohnnyMorganz.stylua"
-  },
-  // "stylua.styluaPath": "stylua",
-  "emmylua.ls.executablePath": "emmylua_ls"
+  }
 }

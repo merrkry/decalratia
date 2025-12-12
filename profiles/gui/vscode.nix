@@ -22,13 +22,19 @@ in
           vscodeExtensions =
             (with vscode-extensions; [
               asvetliakov.vscode-neovim
+              charliermarsh.ruff
+              detachhead.basedpyright
               emroussel.atomize-atom-one-dark-theme
+              esbenp.prettier-vscode
               github.copilot
               github.copilot-chat
               golang.go
               jnoortheen.nix-ide
+              llvm-vs-code-extensions.vscode-clangd
+              ms-python.python
               myriad-dreamin.tinymist
               rust-lang.rust-analyzer
+              tamasfe.even-better-toml
             ])
             ++ (with inputs.nix-vscode-extensions.extensions.${config.nixpkgs.system}.vscode-marketplace; [
               johnnymorganz.stylua
