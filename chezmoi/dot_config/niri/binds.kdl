@@ -5,6 +5,9 @@ binds {
     Mod+T {
         spawn "foot"
     }
+    Mod+E {
+        spawn "nautilus" "--new-window"
+    }
     Mod+D {
         spawn "rofi" "-show" "drun" "-show-icons"
     }
