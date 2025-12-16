@@ -38,45 +38,45 @@ in
               !include ${config.sops.secrets."nix".path}
             '';
 
-            settings = {
-              experimental-features = [
-                "nix-command"
-                "flakes"
-                "auto-allocate-uids"
-                "cgroups"
-              ];
-              auto-allocate-uids = true;
-              use-cgroups = true;
-              auto-optimise-store = true;
-              use-xdg-base-directories = true;
-              trusted-users = [
-                # dangerous, see https://github.com/NixOS/nix/issues/9649#issuecomment-1868001568
-                # "@wheel"
-                "deployer"
-              ];
-              substituters = [
-                # cache.nixos.org priority: 40
-                "https://cache.tsubasa.moe/selfhosted/" # priority 30
-                # "https://nix-community.cachix.org/" # priority: 41
-                "https://cache.garnix.io/" # priority: 50
-              ];
-              trusted-public-keys = [
-                "selfhosted:cwEa3KuTCeG4BFjq7q3XgSIbt9F6m1gCywCmAP+VuR8="
-                "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-                "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-              ];
-              # Global registry
-              flake-registry = "";
-              nix-path = config.nix.nixPath;
-              # FIXME: curl often reports `curl: Couldn't find host cache.tsubasa.moe in the /run/secrets/attic-netrc; file; using defaults`
-              # and then Nix fails to fetch nix-cache-info. Set substituter to public for now.
-              netrc-file = config.sops.secrets."attic-netrc".path;
-              narinfo-cache-negative-ttl = 0;
-              warn-dirty = false;
-            }
-            // (lib.mkIf (cfg.nixFlavor != "lix") {
-              download-buffer-size = 268435456;
-            });
+            settings = lib.mkMerge [
+              {
+                experimental-features = [
+                  "nix-command"
+                  "flakes"
+                  "auto-allocate-uids"
+                  "cgroups"
+                ];
+                auto-allocate-uids = true;
+                use-cgroups = true;
+                auto-optimise-store = true;
+                use-xdg-base-directories = true;
+                trusted-users = [
+                  # dangerous, see https://github.com/NixOS/nix/issues/9649#issuecomment-1868001568
+                  # "@wheel"
+                  "deployer"
+                ];
+                substituters = [
+                  # cache.nixos.org priority: 40
+                  "https://cache.tsubasa.moe/selfhosted/" # priority 30
+                  # "https://nix-community.cachix.org/" # priority: 41
+                  "https://cache.garnix.io/" # priority: 50
+                ];
+                trusted-public-keys = [
+                  "selfhosted:cwEa3KuTCeG4BFjq7q3XgSIbt9F6m1gCywCmAP+VuR8="
+                  "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+                  "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+                ];
+                # Global registry
+                flake-registry = "";
+                nix-path = config.nix.nixPath;
+                # FIXME: curl often reports `curl: Couldn't find host cache.tsubasa.moe in the /run/secrets/attic-netrc; file; using defaults`
+                # and then Nix fails to fetch nix-cache-info. Set substituter to public for now.
+                netrc-file = config.sops.secrets."attic-netrc".path;
+                narinfo-cache-negative-ttl = 0;
+                warn-dirty = false;
+              }
+              (lib.mkIf (cfg.nixFlavor != "lix") { download-buffer-size = 268435456; })
+            ];
 
             channel.enable = false;
             # System registry
