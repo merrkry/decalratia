@@ -16,7 +16,6 @@
         "persist" = "/";
       };
       network.tailscale = "client";
-      nixd.nixFlavor = "determinate";
     };
     desktop = {
       gaming = {
