@@ -32,6 +32,8 @@ in
               jnoortheen.nix-ide
               llvm-vs-code-extensions.vscode-clangd
               ms-python.python
+              ms-toolsai.jupyter
+              ms-toolsai.jupyter-renderers
               myriad-dreamin.tinymist
               rust-lang.rust-analyzer
               tamasfe.even-better-toml
