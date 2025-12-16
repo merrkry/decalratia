@@ -9,12 +9,19 @@
 }:
 let
   cfg = config.profiles.base.nixd;
-  isLix = "lix" == config.nix.package.pname;
 in
 {
   options.profiles.base.nixd = {
     enable = lib.mkEnableOption "nixd" // {
       default = config.profiles.base.enable;
+    };
+    nixFlavor = lib.mkOption {
+      type = lib.types.enum [
+        "cppnix"
+        "lix"
+        "determinate"
+      ];
+      default = "lix";
     };
   };
 
@@ -66,8 +73,7 @@ in
               netrc-file = config.sops.secrets."attic-netrc".path;
               narinfo-cache-negative-ttl = 0;
               warn-dirty = false;
-            }
-            // (lib.optionalAttrs (!isLix) { download-buffer-size = 268435456; });
+            };
 
             channel.enable = false;
             # System registry
@@ -136,7 +142,43 @@ in
 
         users.groups.remotebuild = { };
       }
+
       (lib.optionalAttrs (lib.versionAtLeast lib.version "25.05pre") { system.rebuild.enableNg = true; })
+
+      (lib.mkIf (cfg.nixFlavor == "cppnix") {
+        nix.package = pkgs.nixVersions.latest;
+      })
+
+      # https://lix.systems/add-to-config/
+      (lib.mkIf (cfg.nixFlavor == "lix") (
+        let
+          lixBranch = "latest";
+        in
+        {
+          nix = {
+            package = pkgs.lixPackageSets.${lixBranch}.lix;
+            settings = {
+              download-buffer-size = 268435456;
+            };
+          };
+
+          # FIXME: might be some infinite recursion
+          nixpkgs.overlays = [
+            (final: prev: {
+              inherit (final.lixPackageSets.${lixBranch})
+                nixpkgs-review
+                nix-eval-jobs
+                nix-fast-build
+                colmena
+                ;
+            })
+          ];
+        }
+      ))
+
+      (lib.mkIf (cfg.nixFlavor == "determinate") {
+        # TODO
+      })
     ]
   );
 }
