@@ -23,6 +23,13 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
+    };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -78,6 +85,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
+        git-hooks.follows = "git-hooks-nix";
       };
     };
 
@@ -114,6 +122,16 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    determinate = {
+      url = "github:DeterminateSystems/nix-src/v3.14.0";
+      # Also introduces `nixpkgs-regression` `nixpkgs-23-11` in input for some reason.
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        git-hooks-nix.follows = "git-hooks-nix";
       };
     };
 

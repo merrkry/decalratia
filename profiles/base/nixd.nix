@@ -112,15 +112,16 @@ in
             "nix" = sopsArgs;
           };
 
+        # FIXME: infinite recursion when determinate is in flake inputs
         # keep flakes inputs not garbage collected
         # https://github.com/oxalica/nixos-config/blob/706adc07354eb4a1a50408739c0f24a709c9fe20/nixos/modules/nix-keep-flake-inputs.nix#L3-L7
-        system.extraDependencies =
-          let
-            collectFlakeInputs =
-              input:
-              [ input ] ++ builtins.concatMap collectFlakeInputs (builtins.attrValues (input.inputs or { }));
-          in
-          builtins.concatMap collectFlakeInputs (builtins.attrValues inputs);
+        # system.extraDependencies =
+        #   let
+        #     collectFlakeInputs =
+        #       input:
+        #       [ input ] ++ builtins.concatMap collectFlakeInputs (builtins.attrValues (input.inputs or { }));
+        #   in
+        #   builtins.concatMap collectFlakeInputs (builtins.attrValues inputs);
 
         systemd.services.nix-gc.serviceConfig = {
           Nice = 19;
@@ -177,7 +178,12 @@ in
       ))
 
       (lib.mkIf (cfg.nixFlavor == "determinate") {
-        # TODO
+        nix = {
+          package = inputs.determinate.packages.${config.nixpkgs.system}.default;
+          settings = {
+            lazy-trees = true;
+          };
+        };
       })
     ]
   );
