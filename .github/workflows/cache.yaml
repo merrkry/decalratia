@@ -12,27 +12,12 @@ jobs:
       - name: connect to attic
         run: |
           attic login --set-default atticd http://localhost:20002/ ${{ secrets.ATTIC_TOKEN }}
-      # Has weired bug recently, with --skip-cached the whole building process is skipped,
-      # without it an error will occur when trying to upload result.
-      # - name: build
-      #   run: |
-      #     nix-fast-build \
-      #       --flake ".#build.$(nix eval --raw --impure --expr 'builtins.currentSystem')" \
-      #       --option access-tokens github.com=${{ secrets.PAT }} \
-      #       --no-nom \
-      #       --attic-cache selfhosted \
-      #       --debug \
-      #       --eval-max-memory-size 4096 \
-      #       --eval-workers 4
-      - name: build configurations and push to attic
+      - name: build
         run: |
-          nix-quick-build \
-            --flake ".#build" \
-            --attic-cache "selfhosted" \
-            --log-level "DEBUG" \
-            --force-substitute \
-            --args "--workers" \
-            --args "4" \
-            --args "--option" \
-            --args "access-tokens" \
-            --args "github.com=${{ secrets.PAT }}"
+          nix-fast-build \
+            --flake ".#build.$(nix eval --raw --impure --expr 'builtins.currentSystem')" \
+            --option access-tokens github.com=${{ secrets.PAT }} \
+            --no-nom \
+            --attic-cache selfhosted \
+            --eval-max-memory-size 4096 \
+            --eval-workers 4

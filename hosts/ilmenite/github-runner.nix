@@ -4,7 +4,7 @@
     enable = true;
     extraPackages = with pkgs; [
       attic-client
-      nix-quick-build
+      nix-fast-build
     ];
     replace = true;
     tokenFile = config.sops.secrets."github-runner/pat".path;

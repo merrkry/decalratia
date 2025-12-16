@@ -134,12 +134,6 @@
         git-hooks-nix.follows = "git-hooks-nix";
       };
     };
-
-    # personal projects
-    nix-quick-build = {
-      url = "github:merrkry/nix-quick-build";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -158,7 +152,6 @@
           overlays = [
             inputs.colmena.overlays.default
             inputs.nur.overlays.default
-            inputs.nix-quick-build.overlays.default
 
             self.overlays.extraPackages
             self.overlays.modifications
