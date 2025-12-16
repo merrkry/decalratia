@@ -73,7 +73,10 @@ in
               netrc-file = config.sops.secrets."attic-netrc".path;
               narinfo-cache-negative-ttl = 0;
               warn-dirty = false;
-            };
+            }
+            // (lib.mkIf (cfg.nixFlavor != "lix") {
+              download-buffer-size = 268435456;
+            });
 
             channel.enable = false;
             # System registry
@@ -158,9 +161,6 @@ in
         {
           nix = {
             package = pkgs.lixPackageSets.${lixBranch}.lix;
-            settings = {
-              download-buffer-size = 268435456;
-            };
           };
 
           # FIXME: might be some infinite recursion
