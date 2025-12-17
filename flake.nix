@@ -134,6 +134,14 @@
         git-hooks-nix.follows = "git-hooks-nix";
       };
     };
+
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
   };
 
   outputs =
@@ -163,6 +171,7 @@
               pkg:
               builtins.elem (lib.getName pkg) [
                 "7zz"
+                "claude-code"
                 "code"
                 "nvidia-persistenced"
                 "nvidia-x11"

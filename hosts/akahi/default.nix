@@ -1,5 +1,7 @@
 {
+  config,
   helpers,
+  inputs,
   pkgs,
   user,
   ...
@@ -47,6 +49,7 @@
       packages = with pkgs; [
         anki
         cherry-studio
+        inputs.llm-agents.packages.${config.nixpkgs.system}.claude-code
         distrobox
         imagemagick
         libreoffice-fresh
