@@ -1,4 +1,4 @@
+require("config.options")
 require("lazy-bootstrap")
-
-require("keymaps")
-require("options")
+require("config.clipboard")
+require("config.keymaps")

@@ -44,9 +44,6 @@ in
             ]);
         })
       ];
-
-      xdg.configFile."vscode-neovim".source =
-        hmConfig.lib.file.mkOutOfStoreSymlink "${hmConfig.home.homeDirectory}/Projects/declaratia/nvim";
     };
   };
 }

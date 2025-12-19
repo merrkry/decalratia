@@ -74,7 +74,7 @@
   "telemetry.telemetryLevel": "off",
   "update.mode": "none",
   "update.showReleaseNotes": false,
-  "vscode-neovim.NVIM_APPNAME": "vscode-neovim",
+  "vscode-neovim.NVIM_APPNAME": "nvim",
   "window.autoDetectColorScheme": true,
   "window.controlsStyle": "hidden",
   "window.zoomLevel": 1.1,

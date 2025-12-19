@@ -8,6 +8,7 @@
 }:
 let
   cfg = config.profiles.tui.neovim;
+  hmConfig = config.home-manager.users.${user};
   neovim-nightly = inputs.neovim-nightly-overlay.packages.${config.nixpkgs.system}.default;
 in
 {
@@ -31,26 +32,9 @@ in
         };
       };
 
-      # clangd etc. installed from non-nixpkgs cannot find standard libraries even in fhsenv
-      # home.packages = lib.singleton (
-      #   # https://github.com/NixOS/nixpkgs/issues/281219#issuecomment-2284713258
-      #   pkgs.buildFHSEnv {
-      #     name = "nvim";
-      #     targetPkgs =
-      #       pkgs:
-      #       (with pkgs; [
-      #         gcc
-      #         glibc
-      #         neovim
-      #         tree-sitter
-      #         unzip # `stylua: failed to install`
-      #       ]);
-      #
-      #     runScript = pkgs.writeShellScript "nvim" ''
-      #       exec ${lib.getExe' pkgs.neovim "nvim"} "$@"
-      #     '';
-      #   }
-      # );
+      systemd.user.tmpfiles.rules = [
+        "L+ ${hmConfig.xdg.configHome}/nvim - - - - ${hmConfig.home.homeDirectory}/Projects/declaratia/nvim"
+      ];
     };
   };
 }

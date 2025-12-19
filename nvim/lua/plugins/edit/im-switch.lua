@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
 	{
 		"drop-stones/im-switch.nvim",
