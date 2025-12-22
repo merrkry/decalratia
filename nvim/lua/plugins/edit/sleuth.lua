@@ -2,7 +2,7 @@
 return {
 	{
 		"tpope/vim-sleuth",
-		event = "VeryLazy",
+		event = "LazyFile",
 		cond = not vim.g.vscode,
 	},
 }

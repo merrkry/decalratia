@@ -4,11 +4,12 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		branch = "main",
 		build = ":TSUpdate",
-		lazy = false,
+		event = "LazyFile",
 	},
 	{
 		"meanderingprogrammer/treesitter-modules.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		event = "LazyFile",
 		---@module 'treesitter-modules'
 		---@type ts.mod.UserConfig
 		opts = {
@@ -30,6 +31,18 @@ return {
 			highlight = { enable = true },
 			indent = { enable = true },
 			incremental_selection = { enable = false },
+		},
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		event = "LazyFile",
+		opt = {
+			select = {
+				lookahead = true,
+				include_surrounding_whitespace = false,
+			},
 		},
 	},
 }

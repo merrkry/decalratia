@@ -51,25 +51,30 @@ end
 ---@param bufnr integer
 ---@return nil
 local function setup_cursor_highlight(bufnr)
-	local group = vim.api.nvim_create_augroup("LspCursorHighlight", { clear = false })
+	local group_name = "LspCursorHighlight"
+	-- Set `clear = false` to avoid highlights not being cleared up when jumping between buffers through, go to defintition.
+	-- The autocmd will be cleared manually in LspDetach callback below.
+	-- https://github.com/nvim-lua/kickstart.nvim/pull/874
+	local group = vim.api.nvim_create_augroup(group_name, { clear = false })
+	local cursor_events = { "CursorHold", "CursorHoldI" }
 
-	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	vim.api.nvim_create_autocmd(cursor_events, {
 		group = group,
 		buffer = bufnr,
 		callback = vim.lsp.buf.document_highlight,
 	})
 
-	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+	vim.api.nvim_create_autocmd(cursor_events, {
 		group = group,
 		buffer = bufnr,
 		callback = vim.lsp.buf.clear_references,
 	})
 
 	vim.api.nvim_create_autocmd("LspDetach", {
-		group = vim.api.nvim_create_augroup("LspCursorHighlightDetach", { clear = true }),
+		group = vim.api.nvim_create_augroup("LspCursorHighlightDetach", {}),
 		callback = function(args)
 			vim.lsp.buf.clear_references()
-			vim.api.nvim_clear_autocmds({ group = "LspCursorHighlight", buffer = args.buf })
+			vim.api.nvim_clear_autocmds({ group = group_name, buffer = args.buf })
 		end,
 	})
 end
@@ -83,10 +88,10 @@ local function setup_inlay_hints(bufnr)
 
 	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
-	-- Some low LSPs, like rust-analyzer, might not be able to display inlay hints right after launch.
+	-- Some slow LSPs, like rust-analyzer, might not be able to display inlay hints right after launch.
 	-- We call `inlay_hint.enable` to force re-trigger the rendering of inlay hints after all progress ending.
 	vim.api.nvim_create_autocmd("LspProgress", {
-		group = vim.api.nvim_create_augroup("LspInlayHintsOnProgress", { clear = true }),
+		group = vim.api.nvim_create_augroup("LspInlayHintsOnProgress", {}),
 		callback = function(event)
 			local value = event.data.params.value
 			if value.kind == "begin" then
@@ -105,12 +110,13 @@ local function setup_diagnostics()
 		float = { border = vim.o.winborder, source = true },
 		underline = true,
 		signs = {
-			-- read by tiny-inline-diagnostic.nvim
+			-- Read by tiny-inline-diagnostic.nvim,
+			-- Append space to align the padding on both sides.
 			text = {
-				[vim.diagnostic.severity.ERROR] = "󰅚",
-				[vim.diagnostic.severity.WARN] = "󰀪",
-				[vim.diagnostic.severity.INFO] = "󰋽",
-				[vim.diagnostic.severity.HINT] = "󰌶",
+				[vim.diagnostic.severity.ERROR] = "󰅚 ",
+				[vim.diagnostic.severity.WARN] = "󰀪 ",
+				[vim.diagnostic.severity.INFO] = "󰋽 ",
+				[vim.diagnostic.severity.HINT] = "󰌶 ",
 			},
 			severity = {}, -- don't display anything on statuscolumn
 		},
@@ -145,7 +151,7 @@ M.setup_lsp = function()
 	unregister_builtin_lsp_keymaps()
 
 	vim.api.nvim_create_autocmd("LspAttach", {
-		group = vim.api.nvim_create_augroup("OnLspAttach", { clear = true }),
+		group = vim.api.nvim_create_augroup("OnLspAttach", {}),
 		callback = function(args)
 			local client = vim.lsp.get_client_by_id(args.data.client_id)
 			local bufnr = args.buf

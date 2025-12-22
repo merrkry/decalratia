@@ -2,13 +2,7 @@
 return {
 	{
 		"Bekaboo/dropbar.nvim",
-		dependencies = {
-			"nvim-mini/mini.nvim",
-		},
-		event = {
-			"BufRead",
-			"BufNewFile",
-		},
+		event = "VeryLazy",
 		-- optional, but required for fuzzy finder support
 		-- dependencies = {
 		--   'nvim-telescope/telescope-fzf-native.nvim',

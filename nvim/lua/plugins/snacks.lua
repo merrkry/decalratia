@@ -52,9 +52,6 @@ return {
 	{
 		"folke/snacks.nvim",
 		priority = 900,
-		dependencies = {
-			"nvim-mini/mini.nvim",
-		},
 		lazy = false,
 		-- It seems snacks hash complicated initialization, simply call `require("snacks").setup(opts)` won't work
 		opts = opts,

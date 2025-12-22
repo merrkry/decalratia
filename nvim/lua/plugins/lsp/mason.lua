@@ -2,12 +2,14 @@
 return {
 	{
 		"mason-org/mason.nvim",
-		event = "Filetype",
-		opts = {},
+		event = "FileType",
+		opts = {
+			PATH = "append",
+		},
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
-		event = "Filetype",
+		event = "FileType",
 		dependencies = {
 			"mason-org/mason.nvim",
 			"neovim/nvim-lspconfig",

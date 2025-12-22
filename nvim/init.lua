@@ -1,3 +1,4 @@
+require("config.helpers")
 require("config.options")
 require("lazy-bootstrap")
 require("config.clipboard")

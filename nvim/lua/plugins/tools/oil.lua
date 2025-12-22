@@ -2,8 +2,24 @@
 return {
 	{
 		"stevearc/oil.nvim",
-		dependencies = { { "echasnovski/mini.nvim", opts = {} } },
-		lazy = false, -- discrouaged by the author
+		event = "VeryLazy",
+		-- Load oil.nvim when opening a directory
+		-- Reference: https://github.com/Parsifa1/nvim/blob/6d5a8233d8c45ec1e456abe619c1a97c6333630a/lua/plugins/ui/oil.lua
+		init = function()
+			if vim.fn.argc() == 1 then
+				require("lazy").load({ plugins = { "oil.nvim" } })
+			end
+			if not require("lazy.core.config").plugins["oil.nvim"]._.loaded then
+				vim.api.nvim_create_autocmd("BufNew", {
+					callback = function()
+						if vim.fn.isdirectory(vim.fn.expand("<afile>")) == 1 then
+							require("lazy").load({ plugins = { "oil.nvim" } })
+							return true
+						end
+					end,
+				})
+			end
+		end,
 		keys = {
 			{ "<leader>E", "<cmd>Oil<cr>", desc = "Open buffer file explorer" },
 		},

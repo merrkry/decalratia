@@ -4,7 +4,6 @@ return {
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			"echasnovski/mini.nvim",
 			"AndreM222/copilot-lualine",
 		},
 		config = function()

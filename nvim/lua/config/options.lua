@@ -46,4 +46,11 @@ if not vim.g.vscode then
 
 	vim.o.splitright = true
 	vim.o.splitbelow = true
+
+	-- https://xxiaoa.github.io/posts/4ac5e739/
+	vim.api.nvim_create_autocmd("FileType", {
+		callback = function()
+			vim.opt.formatoptions:remove({ "o" })
+		end,
+	})
 end

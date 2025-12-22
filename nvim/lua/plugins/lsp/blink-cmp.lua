@@ -111,8 +111,7 @@ return {
 		build = "cargo +nightly build --release",
 		-- build = 'nix run .#build-plugin',
 
-		dependencies = { "xzbdmw/colorful-menu.nvim" },
-		event = { "InsertEnter", "CmdlineEnter" },
+		event = { "LazyFile" },
 
 		opts = opts,
 		opts_extend = { "sources.default" },
