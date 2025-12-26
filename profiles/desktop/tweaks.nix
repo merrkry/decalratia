@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.profiles.desktop.tweaks;
+  hasCachyPatchset = (builtins.match ".*cachyos.*" config.boot.kernelPackages.kernel.name) != null;
 in
 {
   options.profiles.desktop.tweaks = {
@@ -74,11 +75,18 @@ in
           ++ (lib.optionals cfg.powersave [ "rcutree.enable_rcu_lazy=1" ]); # https://wiki.cachyos.org/configuration/general_system_tweaks
         };
 
-        services.udev.extraRules = ''
-          ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
-          ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
-          ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
-        '';
+        # https://wiki.cachyos.org/configuration/general_system_tweaks/#adios-io-scheduler
+        services.udev.extraRules =
+          let
+            hddSched = "bfq";
+            ssdSched = if hasCachyPatchset then "adios" else "mq-deadline";
+            nvmeSched = if hasCachyPatchset then "adios" else "none";
+          in
+          ''
+            ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="${hddSched}"
+            ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="${ssdSched}"
+            ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="${nvmeSched}"
+          '';
 
         systemd = {
           oomd.enable = true; # kills services e.g. xremap even when ram is sufficient during suspension and wakups
@@ -98,7 +106,7 @@ in
             }
             # Requires kernel patch
             # FIXME: log reported it is still disabled
-            (lib.mkIf ((builtins.match ".*cachyos.*" config.boot.kernelPackages.kernel.name) != null) {
+            (lib.mkIf hasCachyPatchset {
               apply_latnice = true;
             })
           ];
