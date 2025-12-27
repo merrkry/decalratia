@@ -53,6 +53,7 @@
         inputs.llm-agents.packages.${config.nixpkgs.system}.claude-code-router
         distrobox
         imagemagick
+        krita
         libreoffice-fresh
         materialgram
         nali
