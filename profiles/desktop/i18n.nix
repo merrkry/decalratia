@@ -30,7 +30,9 @@ in
         type = "fcitx5";
         fcitx5 = {
           addons = with pkgs; [
+            fcitx5-lua # optionally required by fcitx5-chinese-addons
             fcitx5-mellow-themes
+            fcitx5-mozc-ut
             (fcitx5-rime.override {
               rimeDataPkgs = [
                 rime-data
@@ -39,7 +41,6 @@ in
                 rime-moegirl
               ];
             })
-            fcitx5-lua # optionally required by fcitx5-chinese-addons
           ];
           waylandFrontend = true;
         };
