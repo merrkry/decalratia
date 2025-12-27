@@ -19,7 +19,7 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
-    treefmt-nix = {
+    treefmt = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -33,7 +33,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    sops-nix = {
+    sops = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -78,7 +78,7 @@
       };
     };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.6.0";
+    flatpak.url = "github:gmodena/nix-flatpak/v0.6.0";
 
     nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
@@ -109,7 +109,7 @@
       flake = false;
     };
 
-    nix-cachyos-kernel = {
+    cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel";
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -118,7 +118,7 @@
       };
     };
 
-    nix-vscode-extensions = {
+    vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -139,7 +139,7 @@
       url = "github:numtide/llm-agents.nix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt-nix";
+        treefmt-nix.follows = "treefmt";
       };
     };
   };

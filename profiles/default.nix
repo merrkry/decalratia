@@ -9,7 +9,7 @@
 }:
 {
   imports = [
-    inputs.sops-nix.nixosModules.sops
+    inputs.sops.nixosModules.sops
     inputs.disko.nixosModules.disko
     inputs.stylix.nixosModules.stylix
     inputs.lanzaboote.nixosModules.lanzaboote
@@ -65,7 +65,7 @@
         imports = [
           ../modules/home-manager
 
-          inputs.nix-flatpak.homeManagerModules.nix-flatpak
+          inputs.flatpak.homeManagerModules.nix-flatpak
 
           {
             home = {

@@ -38,7 +38,7 @@ in
               rust-lang.rust-analyzer
               tamasfe.even-better-toml
             ])
-            ++ (with inputs.nix-vscode-extensions.extensions.${config.nixpkgs.system}.vscode-marketplace; [
+            ++ (with inputs.vscode-extensions.extensions.${config.nixpkgs.system}.vscode-marketplace; [
               johnnymorganz.stylua
               tangzx.emmylua
             ]);

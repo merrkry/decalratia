@@ -16,9 +16,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # to use svg themes
-    programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
-
     i18n = {
       defaultLocale = "en_US.UTF-8";
       supportedLocales = [
