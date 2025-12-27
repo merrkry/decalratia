@@ -25,8 +25,8 @@ in
           src = pkgs.fetchFromGitHub {
             owner = "acomagu";
             repo = "fish-async-prompt";
-            rev = "316aa03c875b58e7c7f7d3bc9a78175aa47dbaa8";
-            hash = "sha256-J7y3BjqwuEH4zDQe4cWylLn+Vn2Q5pv0XwOSPwhw/Z0=";
+            rev = "8a7f2b19fffd64667db84b4aca6221b33f044fce";
+            hash = "sha256-99eGL8o4yCE5zDJD5fRDhf6Va1Q6GMhsD+v5Jn3iJoc=";
           };
         }
       ];
