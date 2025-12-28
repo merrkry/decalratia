@@ -59,9 +59,17 @@ in
           );
 
           # TODO: switch to LTS kernel when it defaults to 6.18
-          # kernelPackages = pkgs.linuxPackages;
           kernelPackages =
-            inputs.cachyos-kernel.legacyPackages.${config.nixpkgs.system}.linuxPackages-cachyos-latest;
+            let
+              kernel =
+                inputs.cachyos-kernel.legacyPackages.${config.nixpkgs.system}.linux-cachyos-latest.override
+                  {
+                    preemptType = "lazy";
+                    bbr3 = true;
+                    processorOpt = "x86_64-v3";
+                  };
+            in
+            pkgs.linuxKernel.packagesFor kernel;
 
           kernelParams = [
             "split_lock_detect=off"
