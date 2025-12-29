@@ -16,6 +16,7 @@
       "karanohako.tsubasa.one" = {
         domain = "karanohako.tsubasa.one";
         extraDomainNames = [
+          "baikal.tsubasa.one"
           "couchdb.tsubasa.one"
           "dufs.tsubasa.one"
           "git.tsubasa.one"
