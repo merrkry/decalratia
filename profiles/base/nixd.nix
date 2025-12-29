@@ -100,6 +100,36 @@ in
             enable = true;
             timer.enable = true;
             enableNixGcIntegration = true;
+            # `angrr example-config`
+            settings = {
+              temporary-root-policies = {
+                direnv = {
+                  path-regex = "/\\.direnv/";
+                  period = "14d";
+                };
+                result = {
+                  path-regex = "/result[^/]*$";
+                  period = "7d";
+                };
+              };
+              profile-policies = {
+                system = {
+                  profile-paths = [ "/nix/var/nix/profiles/system" ];
+                  keep-since = "14d";
+                  keep-latest-n = 8;
+                  keep-booted-system = true;
+                  keep-current-system = true;
+                };
+                user = {
+                  profile-paths = [
+                    "~/.local/state/nix/profiles/profile"
+                    "/nix/var/nix/profiles/per-user/root/profile"
+                  ];
+                  keep-since = "0d";
+                  keep-latest-n = 3;
+                };
+              };
+            };
           };
         };
 
@@ -146,8 +176,6 @@ in
 
         users.groups.remotebuild = { };
       }
-
-      (lib.optionalAttrs (lib.versionAtLeast lib.version "25.05pre") { system.rebuild.enableNg = true; })
 
       (lib.mkIf (cfg.nixFlavor == "cppnix") {
         nix.package = pkgs.nixVersions.latest;
