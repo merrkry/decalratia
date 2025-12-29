@@ -15,4 +15,14 @@
       ];
     }
   );
+
+  niri = helpers.overrideRustPlatformArgs pkgs "niri" {
+    src = pkgs.fetchFromGitHub {
+      owner = "YaLTeR";
+      repo = "niri";
+      rev = "b5640d5293ad8dca06cb447692ea7cbb21680eb1";
+      hash = "sha256-83/YSW6c58i/iwGzAFApuMy6MCgoIaROeCcoIGh+ViU=";
+    };
+    cargoHash = "sha256-Fd84E3XK8+ODlY4JUbgnSrNtQReqVAT2aTnCt8vE+oI=";
+  };
 }

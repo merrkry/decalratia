@@ -63,10 +63,17 @@ in
 
   # https://discourse.nixos.org/t/is-it-possible-to-override-cargosha256-in-buildrustpackage/4393/4
   overrideRustPlatformArgs =
+    let
+      withFinalAttrs = builtins.isFunction;
+    in
     pkgs: packageName: newArgs:
     pkgs.callPackage pkgs.${packageName}.override {
       rustPlatform = pkgs.rustPlatform // {
-        buildRustPackage = args: pkgs.rustPlatform.buildRustPackage (args // newArgs);
+        buildRustPackage =
+          args:
+          pkgs.rustPlatform.buildRustPackage (
+            if withFinalAttrs args then (finalAttrs: ((args finalAttrs) // newArgs)) else (args // newArgs)
+          );
       };
     };
 }
