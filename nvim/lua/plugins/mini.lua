@@ -84,21 +84,21 @@ local mini_opts = {
 		cond = not vim.g.vscode,
 		event = "User VeryLazy",
 	},
-	files = {
-		cond = not vim.g.vscode,
-		event = "User VeryLazy",
-		opts = {
-			options = {
-				permanent_delete = true, -- mini doesn't support xdg trash
-				use_as_default_explorer = false,
-			},
-			windows = {
-				max_number = 3,
-				preview = true,
-				width_preview = 80,
-			},
-		},
-	},
+	-- files = {
+	-- 	cond = not vim.g.vscode,
+	-- 	event = "User VeryLazy",
+	-- 	opts = {
+	-- 		options = {
+	-- 			permanent_delete = true, -- mini doesn't support xdg trash
+	-- 			use_as_default_explorer = false,
+	-- 		},
+	-- 		windows = {
+	-- 			max_number = 3,
+	-- 			preview = true,
+	-- 			width_preview = 80,
+	-- 		},
+	-- 	},
+	-- },
 	-- TODO: consider replace with `textDocument/documentColor`
 	hipatterns = {
 		cond = not vim.g.vscode,
@@ -148,13 +148,13 @@ return {
 			lazy_setup(mini_opts)
 		end,
 		keys = {
-			{
-				"<leader>e",
-				function()
-					require("mini.files").open(vim.api.nvim_buf_get_name(0))
-				end,
-				desc = "Open floating file explorer",
-			},
+			-- {
+			-- 	"<leader>e",
+			-- 	function()
+			-- 		require("mini.files").open(vim.api.nvim_buf_get_name(0))
+			-- 	end,
+			-- 	desc = "Open floating file explorer",
+			-- },
 		},
 	},
 }

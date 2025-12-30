@@ -53,7 +53,7 @@ return {
 		"folke/snacks.nvim",
 		priority = 900,
 		lazy = false,
-		-- It seems snacks hash complicated initialization, simply call `require("snacks").setup(opts)` won't work
+		-- It seems snacks has complicated initialization, simply call `require("snacks").setup(opts)` won't work
 		opts = opts,
 		keys = {
 			{
