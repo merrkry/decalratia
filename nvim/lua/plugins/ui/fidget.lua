@@ -2,7 +2,7 @@
 return {
 	{
 		"j-hui/fidget.nvim",
-		event = "FileType",
+		event = "VeryLazy",
 		opts = {},
 	},
 }

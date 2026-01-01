@@ -15,4 +15,17 @@ return {
 			})
 		end,
 	},
+	{
+		"mrcjkb/rustaceanvim",
+		version = "*",
+		ft = { "rust" },
+		config = function()
+			vim.g.rustaceanvim = {
+				server = {
+					---@diagnostic disable-next-line: undefined-field
+					default_settings = vim.lsp.config["rust_analyzer"].settings,
+				},
+			}
+		end,
+	},
 }

@@ -7,7 +7,7 @@ return {
 		event = "LazyFile",
 	},
 	{
-		"meanderingprogrammer/treesitter-modules.nvim",
+		"MeanderingProgrammer/treesitter-modules.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		event = "LazyFile",
 		---@module 'treesitter-modules'
@@ -43,6 +43,16 @@ return {
 				lookahead = true,
 				include_surrounding_whitespace = false,
 			},
+		},
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		event = "LazyFile",
+		opts = {
+			max_lines = 16,
+			min_window_height = 32,
+			multiline_threshold = 16,
 		},
 	},
 }

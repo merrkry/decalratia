@@ -10,14 +10,13 @@ local function unregister_builtin_lsp_keymaps()
 	vim.keymap.del({ "i", "s" }, "<C-S>")
 end
 
----@param bufnr integer
 ---@return nil
-local function register_lsp_keymaps(bufnr)
+local function register_lsp_keymaps()
 	---@param key string
 	---@param func fun()
 	---@param desc string
 	local function register(key, func, desc)
-		vim.keymap.set("n", key, func, { buffer = bufnr, desc = desc })
+		vim.keymap.set("n", key, func, { desc = desc })
 	end
 
 	---@param name string
@@ -108,17 +107,16 @@ local function setup_diagnostics()
 	vim.diagnostic.config({
 		severity_sort = true,
 		float = { border = vim.o.winborder, source = true },
-		underline = true,
+		underline = { severity = { min = vim.diagnostic.severity.ERROR } },
 		signs = {
-			-- Read by tiny-inline-diagnostic.nvim,
-			-- Append space to align the padding on both sides.
+			-- Read by tiny-inline-diagnostic.nvim and statuscolumn
 			text = {
-				[vim.diagnostic.severity.ERROR] = "󰅚 ",
-				[vim.diagnostic.severity.WARN] = "󰀪 ",
-				[vim.diagnostic.severity.INFO] = "󰋽 ",
-				[vim.diagnostic.severity.HINT] = "󰌶 ",
+				[vim.diagnostic.severity.ERROR] = "󰅚",
+				[vim.diagnostic.severity.WARN] = "󰀪",
+				[vim.diagnostic.severity.INFO] = "󰋽",
+				[vim.diagnostic.severity.HINT] = "󰌶",
 			},
-			severity = {}, -- don't display anything on statuscolumn
+			-- severity = {}, -- don't display anything on statuscolumn
 		},
 		virtual_text = false,
 		-- virtual_text = {
@@ -135,7 +133,7 @@ local function setup_diagnostics()
 		-- 	end,
 		-- },
 		update_in_insert = false,
-	})
+	} --[[@as vim.diagnostic.Opts]])
 
 	-- https://github.com/zed-industries/zed/blob/main/assets/themes/one/one.json
 	vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#d07277" })
@@ -150,13 +148,15 @@ local M = {}
 M.setup_lsp = function()
 	unregister_builtin_lsp_keymaps()
 
+	-- Some may prefer register them on a per buf basis, but in some cases,
+	-- e.g. using nvim-lint with no LSP attached, we still want these keymaps to be available.
+	register_lsp_keymaps()
+
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("OnLspAttach", {}),
 		callback = function(args)
 			local client = vim.lsp.get_client_by_id(args.data.client_id)
 			local bufnr = args.buf
-
-			register_lsp_keymaps(bufnr)
 
 			if client and client:supports_method("textDocument/documentHighlight", bufnr) then
 				setup_cursor_highlight(bufnr)
@@ -170,6 +170,7 @@ M.setup_lsp = function()
 
 	setup_diagnostics()
 
+	---@diagnostic disable-next-line: undefined-field
 	local capabilities = require("blink.cmp").get_lsp_capabilities()
 	vim.lsp.config("*", { capabilities = capabilities })
 

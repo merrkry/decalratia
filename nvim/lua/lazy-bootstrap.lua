@@ -23,10 +23,12 @@ if not vim.uv.fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
+---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 register_lazy_file_event()
 
+---@diagnostic disable-next-line: undefined-field
 require("lazy").setup({
 	spec = require("plugins"),
 	rocks = { enabled = false },

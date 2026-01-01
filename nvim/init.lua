@@ -1,5 +1,3 @@
-require("config.helpers")
-require("config.options")
+require("config").pre_lazy()
 require("lazy-bootstrap")
-require("config.clipboard")
-require("config.keymaps")
+require("config").post_lazy()
