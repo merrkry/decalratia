@@ -113,7 +113,7 @@ in
                   "x-icns"
                 ];
 
-                compressedTypeList = [
+                compressedTypeList = map (s: "application/" + s) [
                   "vnd.rar"
                   "x-compressed-tar"
                   "zip"

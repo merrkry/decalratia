@@ -9,6 +9,9 @@ input {
         dwt
         dwtp
     }
+    tablet {
+        left-handed
+    }
 }
 output "Beihai Century Joint Innovation Technology Co.,Ltd P2710V 0000000000000" {
     scale 1.5

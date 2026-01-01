@@ -23,7 +23,7 @@ in
           neovim-nightly
 
           tree-sitter
-          unzip # stylua
+          unzipNLS # stylua
         ];
 
         sessionVariables = {

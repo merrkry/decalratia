@@ -85,6 +85,13 @@ in
     };
 
     home-manager.users.${user} = {
+      home.packages = with pkgs; [
+        _7zz-rar
+        (ouch.override { enableUnfree = true; })
+        unzipNLS
+        wl-clipboard
+      ];
+
       # executes the same binary as nixos module, might be conflicting
       # services.gnome-keyring.enable = lib.mkDefault config.services.gnome.gnome-keyring.enable;
 
