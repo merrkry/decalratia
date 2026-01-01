@@ -9,7 +9,7 @@ M.default_lsp = {
 	"mesonlsp",
 	"nixd",
 	"ruff",
-	"rust_analyzer",
+	-- "rust_analyzer", -- managed by rustaceanvim
 	"taplo",
 	"tinymist",
 	"vtsls",

@@ -53,4 +53,11 @@ if not vim.g.vscode then
 			vim.opt.formatoptions:remove({ "o" })
 		end,
 	})
+
+	vim.filetype.add({
+		pattern = {
+			[".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
+			[".*/.github/workflows/.*%.yaml"] = "yaml.ghaction",
+		},
+	})
 end

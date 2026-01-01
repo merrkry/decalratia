@@ -17,3 +17,19 @@ vim.keymap.set("i", "<M-l>", "<right>")
 
 vim.keymap.set("n", "<S-l>", "gt", { remap = true })
 vim.keymap.set("n", "<S-h>", "gT", { remap = true })
+
+vim.keymap.set("n", "<leader>W", "<cmd>noautocmd w<CR>", { desc = "Write buffer without autocmd" })
+
+if not vim.g.vscode then
+	vim.keymap.set("n", "<leader>l", function()
+		-- Save all buffers to work with linters that don't rely on stdin,
+		-- also triggers format-on-save etc. before linting.
+		vim.cmd.wall()
+
+		if vim.bo.filetype == "rust" then
+			vim.cmd.RustLsp({ "flyCheck", "run" })
+		else
+			require("lint").try_lint()
+		end
+	end, { desc = "Flycheck" })
+end

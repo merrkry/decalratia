@@ -58,7 +58,7 @@ return {
 
 					return msg -- .. " [" .. diagnostic.source .. "]"
 				end,
-
+				overwrite_events = { "DiagnosticChanged" }, -- https://github.com/rachartier/tiny-inline-diagnostic.nvim/issues/40
 			},
 		},
 		keys = {

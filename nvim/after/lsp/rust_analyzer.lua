@@ -3,6 +3,7 @@ return {
 	settings = {
 		-- NOTE: rust-analyzer does expect settings to be under the "rust-analyzer" key.
 		["rust-analyzer"] = {
+			checkOnSave = false,
 			check = {
 				command = "clippy",
 				extraArgs = {
