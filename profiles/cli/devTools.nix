@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   user,
@@ -16,8 +17,12 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
       home.packages = with pkgs; [
-        # universal
-        cmake
+        # AI
+
+        inputs.llm-agents.packages.${config.nixpkgs.system}.claude-code
+
+        # Universal tools
+
         gnumake
         meson
         mesonlsp
@@ -29,12 +34,15 @@ in
         just
         go-task
 
+        # Language toolchains
+
         # bash
         bash-language-server
         shfmt # used by bash-language-server automatically
         # c / cpp
         gcc
         clang-tools
+        cmake
         # go
         go
         gopls
@@ -42,7 +50,6 @@ in
         bun
         deno
         nodejs
-        pnpm
         vtsls
         # kdl
         kdlfmt
@@ -71,23 +78,6 @@ in
         nodePackages.prettier
         vscode-langservers-extracted
       ];
-
-      xdg.configFile = {
-        "clangd/config.yaml".text = ''
-          CompileFlags:
-            Add:
-              - "-Wall"
-              - "-Wextra"
-          ---
-          If:
-            PathMatch:
-              - ".*\\.cpp"
-              - ".*\\.hpp"
-          CompileFlags:
-            Add:
-              - "-std=c++26"
-        '';
-      };
     };
   };
 }

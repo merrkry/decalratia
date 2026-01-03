@@ -1,0 +1,12 @@
+CompileFlags:
+  Add:
+    - "-Wall"
+    - "-Wextra"
+---
+If:
+  PathMatch:
+    - ".*\\.cpp"
+    - ".*\\.hpp"
+CompileFlags:
+  Add:
+    - "-std=c++26"
