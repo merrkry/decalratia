@@ -18,7 +18,7 @@ vim.keymap.set("i", "<M-l>", "<right>")
 vim.keymap.set("n", "<S-l>", "gt", { remap = true })
 vim.keymap.set("n", "<S-h>", "gT", { remap = true })
 
-vim.keymap.set("n", "<leader>W", "<cmd>noautocmd w<CR>", { desc = "Write buffer without autocmd" })
+vim.keymap.set("n", "<leader>w", "<cmd>noautocmd w<CR>", { desc = "Write buffer without autocmd" })
 
 if not vim.g.vscode then
 	vim.keymap.set("n", "<leader>l", function()

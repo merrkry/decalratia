@@ -49,8 +49,6 @@
       packages = with pkgs; [
         anki
         cherry-studio
-        inputs.llm-agents.packages.${config.nixpkgs.system}.claude-code
-        inputs.llm-agents.packages.${config.nixpkgs.system}.claude-code-router
         distrobox
         imagemagick
         krita

@@ -1,16 +1,17 @@
 local M = {}
 
 M.default_lsp = {
-	"basedpyright",
 	"bashls",
 	"clangd",
 	"emmylua_ls",
 	"gopls",
 	"mesonlsp",
 	"nixd",
+	"pyrefly",
 	"ruff",
 	-- "rust_analyzer", -- managed by rustaceanvim
 	"taplo",
+	"texlab",
 	"tinymist",
 	"vtsls",
 }

@@ -82,5 +82,6 @@
   "workbench.secondarySideBar.defaultVisibility": "hidden",
   "workbench.view.showQuietly": {
     "workbench.panel.output": true
-  }
+  },
+  "python.languageServer": "Default"
 }

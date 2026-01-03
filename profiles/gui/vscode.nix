@@ -23,7 +23,6 @@ in
             (with vscode-extensions; [
               asvetliakov.vscode-neovim
               charliermarsh.ruff
-              detachhead.basedpyright
               emroussel.atomize-atom-one-dark-theme
               esbenp.prettier-vscode
               github.copilot
@@ -40,6 +39,7 @@ in
             ])
             ++ (with inputs.vscode-extensions.extensions.${config.nixpkgs.system}.vscode-marketplace; [
               johnnymorganz.stylua
+              meta.pyrefly
               tangzx.emmylua
             ]);
         })
