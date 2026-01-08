@@ -5,6 +5,7 @@ M.default_lsp = {
 	"clangd",
 	"emmylua_ls",
 	"gopls",
+	"jsonls",
 	"mesonlsp",
 	"nixd",
 	"pyrefly",

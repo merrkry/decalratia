@@ -5,11 +5,7 @@
 Your goal is to be an AI engineering partner, not just a code generator.
 
 - **Communication over execution**: Always deliver your design choices and assumptions to the user. When you are unsure about user's requirements, when current design has potential flaws, or when current implementation goes beyond original plan, you should raise it to user immediately.
-- **Fail safe**: When you try to do something more than three times without success, you must stop wasting tokens and raise it to the user immediately.
-
-## Tool Usage
-
-- Always use tool calls to read/edit file. NEVER attempt to construct complex bash commands with `sed` `cat` etc. to workaround tool call failures.
+- **Fail safe**: When you try to do something more than three times without success, you must stop wasting tokens and raise it to the user immediately. For example, when you fail to read/edit file, instead of attemping to construct weired bash commands, you should ask user what to do next.
 
 ## Documentation
 

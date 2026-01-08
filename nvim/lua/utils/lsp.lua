@@ -1,3 +1,5 @@
+local SHOW_DIAGNOSTICS = "<leader>k"
+
 ---@return nil
 local function unregister_builtin_lsp_keymaps()
 	-- :h lsp-defaults
@@ -38,9 +40,14 @@ local function register_lsp_keymaps()
 	register("gao", snacks_picker("lsp_outgoing_calls"), "Open outgoing calls picker")
 
 	register("<leader>r", vim.lsp.buf.rename, "Rename symbol")
-	register("<leader>a", vim.lsp.buf.code_action, "Code actions")
 
-	register("<leader>d", vim.diagnostic.open_float, "Show diagnostics")
+	-- Handled by tiny-code-action.nvim.
+	-- register("<leader>a", vim.lsp.buf.code_action, "Code actions")
+
+	register(SHOW_DIAGNOSTICS, vim.diagnostic.open_float, "Show diagnostics")
+
+	register("<leader>d", snacks_picker("diagnostics_buffer"), "Open diagnostics picker")
+	register("<leader>D", snacks_picker("diagnostics"), "Open workspace diagnostics picker")
 
 	register("<leader>s", snacks_picker("lsp_symbols"), "Open document symbol picker")
 	register("<leader>S", snacks_picker("lsp_workspace_symbols"), "Open workspace symbol picker")
@@ -164,6 +171,12 @@ M.setup_lsp = function()
 
 			if client and client:supports_method("textDocument/inlayHint", bufnr) then
 				setup_inlay_hints(bufnr)
+			end
+
+			if client and client.name == "rust-analyzer" then
+				vim.keymap.set("n", SHOW_DIAGNOSTICS, function()
+					vim.cmd.RustLsp({ "renderDiagnostic", "current" })
+				end, { desc = "Show diagnostics", buffer = bufnr })
 			end
 		end,
 	})

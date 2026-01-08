@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   user,
   ...
 }:
@@ -17,7 +18,13 @@ in
       programs.lazygit = {
         enable = true;
         settings = {
-          # git.overrideGpg = true;
+          git = {
+            pagers = [
+              {
+                externalDiffCommand = "${lib.getExe pkgs.difftastic} --color=always --display=inline";
+              }
+            ];
+          };
         };
       };
 
