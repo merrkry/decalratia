@@ -67,6 +67,7 @@ in
           # nix
           nixd
           nixfmt
+          statix
           # python
           python3
           pyrefly
