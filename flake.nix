@@ -78,7 +78,7 @@
       };
     };
 
-    flatpak.url = "github:gmodena/nix-flatpak/v0.6.0";
+    flatpak.url = "github:gmodena/nix-flatpak/v0.7.0";
 
     nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
@@ -126,7 +126,7 @@
     };
 
     determinate = {
-      url = "github:DeterminateSystems/nix-src/v3.15.1";
+      url = "github:merrkry/nix-src/v3.15.1-fix";
       # Also introduces `nixpkgs-regression` `nixpkgs-23-11` in input for some reason.
       inputs = {
         nixpkgs.follows = "nixpkgs";
