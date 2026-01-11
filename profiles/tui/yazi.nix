@@ -45,8 +45,8 @@ in
 
           # https://yazi-rs.github.io/docs/tips/#folder-previewer
           plugin = {
-            prepend_preloaders = (mkNoPreviewPreloader mountedDirectories);
-            prepend_previewers = (mkNoPreviewPreviewer mountedDirectories);
+            prepend_preloaders = mkNoPreviewPreloader mountedDirectories;
+            prepend_previewers = mkNoPreviewPreviewer mountedDirectories;
           };
         };
 

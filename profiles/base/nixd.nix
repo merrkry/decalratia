@@ -162,19 +162,19 @@ in
           MemorySwapMax = 0;
         };
 
-        users.groups."deployer" = { };
+        users = {
+          groups."deployer" = { };
 
-        users.users."deployer" = {
-          isSystemUser = true;
-          home = "/var/lib/deployer";
-          createHome = true;
-          group = "deployer";
-          extraGroups = [ "wheel" ];
-          shell = pkgs.bashInteractive;
-          openssh.authorizedKeys.keys = helpers.sshKeys.trusted;
+          users."deployer" = {
+            isSystemUser = true;
+            home = "/var/lib/deployer";
+            createHome = true;
+            group = "deployer";
+            extraGroups = [ "wheel" ];
+            shell = pkgs.bashInteractive;
+            openssh.authorizedKeys.keys = helpers.sshKeys.trusted;
+          };
         };
-
-        users.groups.remotebuild = { };
       }
 
       (lib.mkIf (cfg.nixFlavor == "cppnix") {

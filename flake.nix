@@ -147,7 +147,7 @@
   outputs =
     { self, ... }@inputs:
     let
-      lib = inputs.nixpkgs.lib;
+      inherit (inputs.nixpkgs) lib;
       systems = [
         "aarch64-linux"
         "x86_64-linux"
@@ -311,7 +311,7 @@
         }) machines)
       );
 
-      build = (lib.foldAttrs (lib.recursiveUpdate) { }) (
+      build = (lib.foldAttrs lib.recursiveUpdate { }) (
         (lib.mapAttrsToList (hostName: properties: {
           ${properties.hostPlatform}.${hostName} =
             self.outputs.nixosConfigurations.${hostName}.config.system.build.toplevel;

@@ -135,7 +135,7 @@ in
         ];
         services.scx = {
           enable = true;
-          scheduler = cfg.scheduler;
+          inherit (cfg) scheduler;
         };
       })
     ]

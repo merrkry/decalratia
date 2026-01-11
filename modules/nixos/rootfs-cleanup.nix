@@ -35,7 +35,7 @@ in
     }
     // (
       let
-        cleanupBtrfs = (
+        cleanupBtrfs =
           let
             rootfsPath = "${cfg.mountPoint}/${cfg.rootfsSubvol}";
             bakcupPath = "${cfg.mountPoint}/${cfg.backupSubvol}";
@@ -64,8 +64,7 @@ in
 
             btrfs subvolume create ${rootfsPath}
             umount ${cfg.mountPoint}
-          ''
-        );
+          '';
       in
       {
         # https://discourse.nixos.org/t/impermanence-vs-systemd-initrd-w-tpm-unlocking/25167

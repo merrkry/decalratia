@@ -1,6 +1,4 @@
-{
-  ...
-}:
+_:
 let
   domain = "baikal.tsubasa.one";
 in

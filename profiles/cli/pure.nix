@@ -18,7 +18,7 @@ in
       programs.fish.plugins = [
         {
           name = "pure";
-          src = pkgs.fishPlugins.pure.src;
+          inherit (pkgs.fishPlugins.pure) src;
         }
         {
           name = "async-prompt";

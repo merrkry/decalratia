@@ -51,7 +51,7 @@ in
         enable = true;
         useEmbeddedBitmaps = true;
 
-        localConf = (builtins.readFile ./fontconfig.xml);
+        localConf = builtins.readFile ./fontconfig.xml;
 
         defaultFonts = {
           sansSerif = [
@@ -110,7 +110,7 @@ in
     home-manager.users.${user} = {
       fonts.fontconfig = {
         enable = true;
-        defaultFonts = config.fonts.fontconfig.defaultFonts;
+        inherit (config.fonts.fontconfig) defaultFonts;
       };
     };
   };
