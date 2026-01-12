@@ -25,7 +25,7 @@
       };
     };
 
-    acmeCertificateName = "ilmenite.tsubasa.moe";
+    x509.useACMEHost = "ilmenite.tsubasa.moe";
 
     stateVersion = 3;
   };
