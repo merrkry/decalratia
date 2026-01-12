@@ -18,19 +18,12 @@ in
 
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
-      home = {
-        packages = with pkgs; [
-          neovim-nightly
+      home.packages = with pkgs; [
+        neovim-nightly
 
-          tree-sitter
-          unzipNLS # stylua
-        ];
-
-        sessionVariables = {
-          # EmmyLua
-          VIMRUNTIME = "${neovim-nightly}/share/nvim/runtime";
-        };
-      };
+        tree-sitter
+        unzipNLS # stylua
+      ];
 
       systemd.user.tmpfiles.rules = [
         "L+ ${hmConfig.xdg.configHome}/nvim - - - - ${hmConfig.home.homeDirectory}/Projects/declaratia/nvim"

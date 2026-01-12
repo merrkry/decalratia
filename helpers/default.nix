@@ -72,7 +72,10 @@ in
         buildRustPackage =
           args:
           pkgs.rustPlatform.buildRustPackage (
-            if withFinalAttrs args then (finalAttrs: ((args finalAttrs) // newArgs)) else (args // newArgs)
+            if withFinalAttrs args then
+              finalAttrs: (args finalAttrs) // (if withFinalAttrs newArgs then newArgs finalAttrs else newArgs)
+            else
+              args // newArgs
           );
       };
     };

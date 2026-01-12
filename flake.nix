@@ -54,7 +54,7 @@
     };
 
     stylix = {
-      url = "github:nix-community/stylix/master";
+      url = "github:merrkry/stylix/master";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
@@ -90,7 +90,7 @@
     };
 
     neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay/master";
+      url = "github:nix-community/neovim-nightly-overlay/4f1d5c13b233eed1dc607557503740d0cb4d3c27";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";

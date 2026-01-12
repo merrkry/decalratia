@@ -4,7 +4,7 @@ local opts = {}
 if not vim.g.vscode then
 	---@module 'snacks'
 	---@type snacks.Config
-	extra_opts = {
+	local extra_opts = {
 		bigfile = {},
 		dashboard = {
 			sections = {
