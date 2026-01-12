@@ -9,6 +9,7 @@ end
 ---@return nil
 M.post_lazy = function()
 	require("config.clipboard")
+	require("config.commands")
 	require("config.keymaps")
 end
 

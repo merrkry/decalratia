@@ -38,8 +38,6 @@ if not vim.g.vscode then
 	vim.o.swapfile = false
 	vim.o.autoread = true
 
-	vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
 	vim.o.showtabline = 2 -- always
 
 	vim.o.winborder = "rounded"

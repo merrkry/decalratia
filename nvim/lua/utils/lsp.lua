@@ -85,14 +85,39 @@ local function setup_cursor_highlight(bufnr)
 	})
 end
 
+---@return nil
+local function setup_global_inlay_hints()
+	-- Configured globally. Execute this on `LspAttach` per buf might introduce race conditions,
+	-- e.g. codediff.nvim tries to disable inlay hints on diff buffers.
+	vim.lsp.inlay_hint.enable(true)
+
+	-- Disable inlay hints in insert mode.
+	-- https://github.com/neovim/neovim/discussions/29078#discussioncomment-9865397
+	vim.api.nvim_create_autocmd("InsertEnter", {
+		desc = "Disable inlay hints when entering insert mode",
+		callback = function(args)
+			local filter = { bufnr = args.buf }
+			local inlay_hint = vim.lsp.inlay_hint
+			if inlay_hint.is_enabled(filter) then
+				inlay_hint.enable(false, filter)
+				vim.api.nvim_create_autocmd("InsertLeave", {
+					once = true,
+					desc = "Re-enable inlay hints when leaving insert mode",
+					callback = function()
+						inlay_hint.enable(true, filter)
+					end,
+				})
+			end
+		end,
+	})
+end
+
 ---@param bufnr integer
 ---@return nil
-local function setup_inlay_hints(bufnr)
+local function setup_buf_inlay_hints(bufnr)
 	vim.keymap.set("n", "<leader>th", function()
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
 	end, { desc = "Toggle inlay hints" })
-
-	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
 	-- Some slow LSPs, like rust-analyzer, might not be able to display inlay hints right after launch.
 	-- We call `inlay_hint.enable` to force re-trigger the rendering of inlay hints after all progress ending.
@@ -159,6 +184,8 @@ M.setup_lsp = function()
 	-- e.g. using nvim-lint with no LSP attached, we still want these keymaps to be available.
 	register_lsp_keymaps()
 
+	setup_global_inlay_hints()
+
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("OnLspAttach", {}),
 		callback = function(args)
@@ -170,7 +197,7 @@ M.setup_lsp = function()
 			end
 
 			if client and client:supports_method("textDocument/inlayHint", bufnr) then
-				setup_inlay_hints(bufnr)
+				setup_buf_inlay_hints(bufnr)
 			end
 
 			if client and client.name == "rust-analyzer" then

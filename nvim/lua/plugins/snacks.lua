@@ -25,6 +25,7 @@ if not vim.g.vscode then
 		quickfile = {},
 		rename = {},
 		statuscolumn = {},
+		terminal = {},
 	}
 	opts = vim.tbl_deep_extend("error", opts, extra_opts)
 end

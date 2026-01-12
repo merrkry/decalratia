@@ -32,7 +32,7 @@ return {
 				},
 				suggestion = {
 					enabled = true,
-					auto_trigger = true,
+					auto_trigger = false,
 					debounce = 100,
 					keymap = {
 						accept = "<C-y>",

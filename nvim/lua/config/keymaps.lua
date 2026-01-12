@@ -22,6 +22,10 @@ vim.keymap.set("n", "<leader>w", "<cmd>noautocmd w<CR>", { desc = "Write buffer 
 
 if not vim.g.vscode then
 	vim.keymap.set("n", "<leader>l", function()
+		vim.cmd.wall() -- format-on-save by conform.nvim
+	end, { desc = "Flycheck" })
+
+	vim.keymap.set("n", "<leader>L", function()
 		-- Save all buffers to work with linters that don't rely on stdin,
 		-- also triggers format-on-save etc. before linting.
 		vim.cmd.wall()

@@ -15,6 +15,11 @@ return {
 				follow_current_file = { enabled = true },
 				use_libuv_file_watcher = true,
 			},
+			window = {
+				mappings = {
+					["<leader>e"] = "close_window",
+				},
+			},
 		},
 		keys = {
 			{ "<leader>e", "<cmd>Neotree<CR>", desc = "Open file explorer" },

@@ -3,13 +3,16 @@
   "agent": {
     "build": {
       "permission": {
-        "bash": "ask",
+        "bash": {
+          "cargo check*": "allow",
+          "cargo clippy*": "allow",
+          "cargo fmt*": "allow"
+        },
         "edit": "allow"
       }
     }
   },
   "autoupdate": false,
-  "formatter": false,
   "keybinds": {
     "app_exit": "ctrl+d",
     "editor_open": "ctrl+g",
@@ -18,7 +21,15 @@
   },
   "lsp": false,
   "permission": {
-    "bash": "ask",
+    "bash": {
+      "*": "ask",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      "git status*": "allow",
+      "head *": "allow",
+      "ls *": "allow"
+    },
     "edit": "ask",
     "read": {
       "*": "allow",

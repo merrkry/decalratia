@@ -56,6 +56,13 @@ local opts = {
 
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
+		per_filetype = {
+			sql = { "snippets", "dadbod", "buffer" },
+		},
+		providers = {
+			-- https://github.com/kristijanhusak/vim-dadbod-completion
+			dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+		},
 	},
 
 	fuzzy = {

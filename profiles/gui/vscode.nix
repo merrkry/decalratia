@@ -25,7 +25,6 @@ in
               charliermarsh.ruff
               emroussel.atomize-atom-one-dark-theme
               esbenp.prettier-vscode
-              github.copilot
               github.copilot-chat
               golang.go
               jnoortheen.nix-ide

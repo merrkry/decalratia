@@ -32,11 +32,14 @@ in
           xmake
 
           jujutsu
+          jjui
 
           just
           go-task
 
           difftastic
+
+          lsof
 
           # Language toolchains
 
