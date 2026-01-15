@@ -1,13 +1,13 @@
 local M = {}
 
 ---@return nil
-M.pre_lazy = function()
-	require("config.helpers")
+function M.pre_lazy()
 	require("config.options")
 end
 
 ---@return nil
-M.post_lazy = function()
+function M.post_lazy()
+	require("config.autocmd")
 	require("config.clipboard")
 	require("config.commands")
 	require("config.keymaps")

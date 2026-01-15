@@ -2,9 +2,11 @@
 return {
 	{
 		"mrjones2014/codesettings.nvim",
-		event = "LazyFile",
+		ft = { "json", "jsonc", "lua" },
 		opts = {
-			merge_lists = "replace",
+			lua_ls_integration = function()
+				return vim.uv.cwd() == ("%s/.config/nvim"):format(vim.env.HOME)
+			end,
 		},
 	},
 }

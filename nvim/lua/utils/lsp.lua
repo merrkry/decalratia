@@ -1,3 +1,8 @@
+local M = {}
+
+local autocmd = require("utils.autocmd")
+local lsp_progress = require("config.autocmd.lsp_progress")
+
 local SHOW_DIAGNOSTICS = "<leader>k"
 
 ---@return nil
@@ -62,15 +67,14 @@ local function setup_cursor_highlight(bufnr)
 	-- The autocmd will be cleared manually in LspDetach callback below.
 	-- https://github.com/nvim-lua/kickstart.nvim/pull/874
 	local group = vim.api.nvim_create_augroup(group_name, { clear = false })
-	local cursor_events = { "CursorHold", "CursorHoldI" }
 
-	vim.api.nvim_create_autocmd(cursor_events, {
+	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 		group = group,
 		buffer = bufnr,
 		callback = vim.lsp.buf.document_highlight,
 	})
 
-	vim.api.nvim_create_autocmd(cursor_events, {
+	vim.api.nvim_create_autocmd("CursorMoved", {
 		group = group,
 		buffer = bufnr,
 		callback = vim.lsp.buf.clear_references,
@@ -89,6 +93,7 @@ end
 local function setup_global_inlay_hints()
 	-- Configured globally. Execute this on `LspAttach` per buf might introduce race conditions,
 	-- e.g. codediff.nvim tries to disable inlay hints on diff buffers.
+	-- FIXME: still see inlay hints in codediff.nvim sessions.
 	vim.lsp.inlay_hint.enable(true)
 
 	-- Disable inlay hints in insert mode.
@@ -115,23 +120,17 @@ end
 ---@param bufnr integer
 ---@return nil
 local function setup_buf_inlay_hints(bufnr)
+	local filter = { bufnr = bufnr }
+
 	vim.keymap.set("n", "<leader>th", function()
-		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
+		local enabled = vim.lsp.inlay_hint.is_enabled(filter)
+		vim.lsp.inlay_hint.enable(not enabled, filter)
 	end, { desc = "Toggle inlay hints" })
 
 	-- Some slow LSPs, like rust-analyzer, might not be able to display inlay hints right after launch.
 	-- We call `inlay_hint.enable` to force re-trigger the rendering of inlay hints after all progress ending.
-	vim.api.nvim_create_autocmd("LspProgress", {
-		group = vim.api.nvim_create_augroup("LspInlayHintsOnProgress", {}),
-		callback = function(event)
-			local value = event.data.params.value
-			if value.kind == "begin" then
-			elseif value.kind == "end" then
-				vim.lsp.inlay_hint.enable(vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
-			elseif value.kind == "report" then
-			end
-		end,
-	})
+	vim.lsp.inlay_hint.enable(vim.lsp.inlay_hint.is_enabled(filter), filter)
+	-- Seems fixed as of 2026-01-16
 end
 
 ---@return nil
@@ -174,50 +173,79 @@ local function setup_diagnostics()
 	vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#788ca6" })
 end
 
-local M = {}
+---@param bufnr integer
+---@return nil
+local function setup_buf(bufnr)
+	local clients = vim.lsp.get_clients({ bufnr = bufnr })
+	for _, client in ipairs(clients) do
+		if client:supports_method("textDocument/documentHighlight", bufnr) then
+			setup_cursor_highlight(bufnr)
+		end
+
+		if client:supports_method("textDocument/inlayHint", bufnr) then
+			setup_buf_inlay_hints(bufnr)
+		end
+
+		if client.name == "rust-analyzer" then
+			vim.keymap.set("n", SHOW_DIAGNOSTICS, function()
+				vim.cmd.RustLsp({ "renderDiagnostic", "current" })
+			end, { desc = "Show diagnostics", buffer = bufnr })
+		end
+	end
+end
 
 ---@return nil
-M.setup_lsp = function()
-	unregister_builtin_lsp_keymaps()
+local function setup_highlights()
+	-- Highlight `{}` and `{var}` in format strings.
+	-- FIXME: requires redraw to take effect
+	vim.api.nvim_set_hl(0, "@lsp.type.formatSpecifier.rust", { link = "@punctuation.bracket" })
+	vim.api.nvim_set_hl(0, "@lsp.type.variable.rust", { link = "@variable" })
+end
 
+---@return nil
+local function setup_lsp_config()
+	-- blink.cmp
+	---@diagnostic disable-next-line: undefined-field
+	local capabilities = require("blink.cmp").get_lsp_capabilities()
+	vim.lsp.config("*", { capabilities = capabilities })
+
+	-- codesettings.nvim
+	vim.lsp.config("*", {
+		before_init = function(_, config)
+			local codesettings = require("codesettings")
+			codesettings.with_local_settings(config.name, config)
+		end,
+	})
+
+	vim.lsp.log.set_level(vim.log.levels.OFF)
+
+	local servers = require("utils.lang").default_lsp
+	vim.lsp.enable(servers, true)
+end
+
+---@return nil
+function M.setup_lsp()
+	lsp_progress.setup()
+
+	unregister_builtin_lsp_keymaps()
 	-- Some may prefer register them on a per buf basis, but in some cases,
 	-- e.g. using nvim-lint with no LSP attached, we still want these keymaps to be available.
 	register_lsp_keymaps()
 
 	setup_global_inlay_hints()
 
-	vim.api.nvim_create_autocmd("LspAttach", {
-		group = vim.api.nvim_create_augroup("OnLspAttach", {}),
-		callback = function(args)
-			local client = vim.lsp.get_client_by_id(args.data.client_id)
-			local bufnr = args.buf
+	setup_diagnostics()
 
-			if client and client:supports_method("textDocument/documentHighlight", bufnr) then
-				setup_cursor_highlight(bufnr)
-			end
+	setup_highlights()
 
-			if client and client:supports_method("textDocument/inlayHint", bufnr) then
-				setup_buf_inlay_hints(bufnr)
-			end
-
-			if client and client.name == "rust-analyzer" then
-				vim.keymap.set("n", SHOW_DIAGNOSTICS, function()
-					vim.cmd.RustLsp({ "renderDiagnostic", "current" })
-				end, { desc = "Show diagnostics", buffer = bufnr })
-			end
+	autocmd.create_user_autocmd("User LspBufReady", {
+		group = vim.api.nvim_create_augroup("OnLspBufReady", {}),
+		callback = function(event)
+			setup_buf(event.buf)
 		end,
 	})
 
-	setup_diagnostics()
-
-	---@diagnostic disable-next-line: undefined-field
-	local capabilities = require("blink.cmp").get_lsp_capabilities()
-	vim.lsp.config("*", { capabilities = capabilities })
-
-	vim.lsp.log.set_level(vim.log.levels.OFF)
-
-	local servers = require("utils.lang").default_lsp
-	vim.lsp.enable(servers, true)
+	setup_lsp_config()
 end
 
 return M

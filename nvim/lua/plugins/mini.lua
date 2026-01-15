@@ -1,6 +1,8 @@
+local autocmd = require("utils.autocmd")
+
 ---@class MiniPluginCfg
 ---@field cond boolean | nil
----@field event vim.api.keyset.events | vim.api.keyset.events[] | helpers.UserEvent | nil
+---@field event AutocmdEvents | nil
 ---@field opts table | nil
 ---@field setup (fun(plugin: any, opt: table): nil) | nil
 
@@ -24,7 +26,7 @@ local function lazy_setup(configs)
 			end
 
 			if plugin_cfg.event then
-				helpers.create_autocmd(plugin_cfg.event, {
+				autocmd.create_autocmd(plugin_cfg.event, {
 					group = group,
 					once = true,
 					callback = setup_func,
