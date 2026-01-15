@@ -57,11 +57,14 @@ local opts = {
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
 		per_filetype = {
-			sql = { "snippets", "dadbod", "buffer" },
+			lua = { "lsp", "lazydev", "path", "snippets", "buffer" },
+			sql = { "dadbod", "path", "snippets", "buffer" },
 		},
 		providers = {
 			-- https://github.com/kristijanhusak/vim-dadbod-completion
 			dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+			-- https://github.com/folke/lazydev.nvim#-installation
+			lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
 		},
 	},
 
