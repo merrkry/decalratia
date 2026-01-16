@@ -1,0 +1,17 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[user]
+name = "Merrkry"
+email = "merrkry@tsubasa.moe"
+
+[ui]
+conflict-marker-style = "git"
+diff-editor = "nvim"
+diff-formatter = "difft"
+diff-instructions = false
+
+[merge-tools.difft]
+diff-args = ["--color=always", "--display=inline", "$left", "$right"]
+
+[merge-tools.nvim]
+edit-args = ["-c", "DiffEditor $left $right $output"]

@@ -6,6 +6,7 @@ return {
 		config = function()
 			vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+			---@return nil
 			local function clean_buffers()
 				local wins = vim.api.nvim_list_wins()
 				local active_bufs = {}
@@ -24,9 +25,25 @@ return {
 				end
 			end
 
+			---@return boolean
+			local function launch_without_command()
+				local argv = vim.v.argv
+				for i, arg in ipairs(argv) do
+					if arg == "-c" then
+						if argv[i + 1] and argv[i + 1] == "" then
+							return true
+						end
+					end
+				end
+				return false
+			end
+
 			local opts = {
-				auto_restore = true,
-				-- only execute inside git directories
+				-- Avoid conflict with plugins that relies on startup commands like hunk.nvim
+				-- Although can also be done in `pre_restore_cmds` hooks, an annoying notification
+				-- will be shown if rejecting through hooks.
+				auto_restore = launch_without_command(),
+				-- Only execute inside git directories
 				auto_create = function()
 					local cmd = "git rev-parse --is-inside-work-tree"
 					return vim.fn.system(cmd) == "true\n"
@@ -34,6 +51,7 @@ return {
 				purge_after_minutes = 20160, -- two weeks
 				continue_restore_on_error = false,
 				lazy_support = true,
+				legacy_cmds = false,
 				pre_save_cmds = { clean_buffers },
 			}
 
