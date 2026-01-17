@@ -4,9 +4,13 @@
     "build": {
       "permission": {
         "bash": {
+          "cargo build*": "allow",
           "cargo check*": "allow",
           "cargo clippy*": "allow",
-          "cargo fmt*": "allow"
+          "cargo fmt*": "allow",
+          "cargo test*": "allow",
+          "pyrefly check*": "allow",
+          "ruff format*": "allow"
         },
         "edit": "allow"
       }
@@ -23,12 +27,18 @@
   "permission": {
     "bash": {
       "*": "ask",
+      "cat": "allow",
+      "echo": "allow",
+      "find *": "allow",
       "git diff*": "allow",
       "git log*": "allow",
       "git show*": "allow",
       "git status*": "allow",
       "head *": "allow",
-      "ls *": "allow"
+      "ls *": "allow",
+      "sort *": "allow",
+      "tail *": "allow",
+      "wc *": "allow"
     },
     "edit": "ask",
     "read": {
