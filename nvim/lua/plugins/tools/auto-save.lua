@@ -88,7 +88,7 @@ return {
 			})
 		end,
 		keys = {
-			{ "<leader>ts", "<cmd>ASToggle<CR>", desc = "Toggle auto save" },
+			{ "\\S", "<cmd>ASToggle<CR>", desc = "Toggle auto save" },
 		},
 	},
 }

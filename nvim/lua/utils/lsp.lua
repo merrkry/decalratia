@@ -74,7 +74,7 @@ local function setup_cursor_highlight(bufnr)
 		callback = vim.lsp.buf.document_highlight,
 	})
 
-	vim.api.nvim_create_autocmd("CursorMoved", {
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 		group = group,
 		buffer = bufnr,
 		callback = vim.lsp.buf.clear_references,
@@ -122,7 +122,7 @@ end
 local function setup_buf_inlay_hints(bufnr)
 	local filter = { bufnr = bufnr }
 
-	vim.keymap.set("n", "<leader>th", function()
+	vim.keymap.set("n", "\\H", function()
 		local enabled = vim.lsp.inlay_hint.is_enabled(filter)
 		vim.lsp.inlay_hint.enable(not enabled, filter)
 	end, { desc = "Toggle inlay hints" })

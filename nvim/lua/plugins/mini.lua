@@ -75,6 +75,14 @@ local mini_opts = {
 			})
 		end,
 	},
+	basics = {
+		cond = not vim.g.vscode,
+		opts = {
+			mappings = {
+				move_with_alt = true,
+			},
+		},
+	},
 	bracketed = {
 		cond = not vim.g.vscode,
 		event = "User VeryLazy",
@@ -85,6 +93,9 @@ local mini_opts = {
 	cursorword = {
 		cond = not vim.g.vscode,
 		event = "User VeryLazy",
+		opts = {
+			delay = vim.o.updatetime,
+		},
 	},
 	-- files = {
 	-- 	cond = not vim.g.vscode,

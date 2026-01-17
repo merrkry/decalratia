@@ -63,16 +63,9 @@ return {
 		},
 		keys = {
 			{
-				"<leader>td",
+				"\\d",
 				function()
-					local diag = require("tiny-inline-diagnostic.diagnostic")
-					diag.toggle()
-					local state = require("tiny-inline-diagnostic.state")
-					if state.user_toggle_state then
-						vim.notify("diagnostics enabled")
-					else
-						vim.notify("diagnostics disabled")
-					end
+					require("tiny-inline-diagnostic.diagnostic").toggle()
 				end,
 				desc = "Toggle diagnostics",
 			},
