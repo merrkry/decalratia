@@ -102,7 +102,7 @@ return {
 				function()
 					Snacks.picker.jumps()
 				end,
-				"Open jumplist picker",
+				desc = "Open jumplist picker",
 			},
 			{
 				"<leader>'",
