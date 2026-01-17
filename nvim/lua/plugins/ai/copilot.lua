@@ -1,14 +1,16 @@
+local allowed_lang = require("utils.lang").allow_copilot
+
 ---@type LazySpec
 return {
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
-		event = "VeryLazy",
+		ft = allowed_lang,
 		config = function()
 			local filetypes = {
 				["*"] = false,
 			}
-			for _, lang in ipairs(require("utils.lang").allow_copilot) do
+			for _, lang in ipairs(allowed_lang) do
 				filetypes[lang] = true
 			end
 

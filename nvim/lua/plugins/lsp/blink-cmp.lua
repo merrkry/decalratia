@@ -48,7 +48,7 @@ local opts = {
 		menu = {
 			border = vim.o.winborder,
 			draw = {
-				-- This might create lots of empty buffers, causing lag, espcially with rust-analyzer.
+				-- This might create lots of empty buffers, causing lag, especially with rust-analyzer.
 				treesitter = {},
 			},
 		},

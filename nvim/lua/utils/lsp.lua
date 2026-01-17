@@ -63,7 +63,8 @@ end
 ---@return nil
 local function setup_cursor_highlight(bufnr)
 	local group_name = "LspCursorHighlight"
-	-- Set `clear = false` to avoid highlights not being cleared up when jumping between buffers through, go to defintition.
+	-- Set `clear = false` to avoid highlights not being cleared up,
+	-- when jumping between buffers through go to definition etc.
 	-- The autocmd will be cleared manually in LspDetach callback below.
 	-- https://github.com/nvim-lua/kickstart.nvim/pull/874
 	local group = vim.api.nvim_create_augroup(group_name, { clear = false })

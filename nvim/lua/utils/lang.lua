@@ -14,6 +14,7 @@ M.default_lsp = {
 	"taplo",
 	"texlab",
 	"tinymist",
+	"typos_lsp",
 	"vtsls",
 }
 

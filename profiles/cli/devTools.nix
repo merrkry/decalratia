@@ -41,6 +41,8 @@ in
 
           lsof
 
+          typos-lsp
+
           # Language toolchains
 
           # bash

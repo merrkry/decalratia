@@ -22,7 +22,7 @@ return {
 						"copilot",
 						{
 							"lsp_status",
-							ignore_lsp = { "copilot" },
+							ignore_lsp = { "copilot", "typos_lsp" },
 						},
 					},
 				},

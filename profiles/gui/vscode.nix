@@ -35,6 +35,7 @@ in
               myriad-dreamin.tinymist
               rust-lang.rust-analyzer
               tamasfe.even-better-toml
+              tekumara.typos-vscode
             ])
             ++ (with inputs.vscode-extensions.extensions.${config.nixpkgs.system}.vscode-marketplace; [
               johnnymorganz.stylua
