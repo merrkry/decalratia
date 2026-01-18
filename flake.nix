@@ -142,6 +142,11 @@
         treefmt-nix.follows = "treefmt";
       };
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

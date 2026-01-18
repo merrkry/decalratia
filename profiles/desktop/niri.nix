@@ -15,6 +15,7 @@ in
     enable = lib.mkEnableOption "niri" // {
       default = config.profiles.desktop.enable;
     };
+    package = lib.mkPackageOption pkgs "niri" { };
   };
 
   config = lib.mkIf cfg.enable {
@@ -22,11 +23,9 @@ in
       dconf.settings."org/gnome/desktop/wm/preferences".button-layout = "";
 
       home = {
-        packages = with pkgs; [
-          brightnessctl
-          cliphist
-          niri
-          xwayland-satellite # launched by niri automatically since niri 25.08
+        packages = [
+          cfg.package
+          config.profiles.desktop.xwayland-satellite.package # launched by niri automatically since niri 25.08
         ];
         sessionVariables = {
           NIXOS_OZONE_WL = 1;
@@ -34,12 +33,10 @@ in
         };
       };
 
-      systemd.user = {
-        tmpfiles.rules = [
-          "d ${screenshotsPath} - - - 14d -"
-          "d ${hmConfig.xdg.userDirs.pictures}/Steam - - - 14d -"
-        ];
-      };
+      systemd.user.tmpfiles.rules = [
+        "d ${screenshotsPath} - - - 14d -"
+        "d ${hmConfig.xdg.userDirs.pictures}/Steam - - - 14d -"
+      ];
     };
   };
 }

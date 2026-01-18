@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.profiles.desktop.gaming;
+  hmConfig = config.home-manager.users.${user};
 in
 {
   options.profiles.desktop.gaming = {
@@ -84,8 +85,13 @@ in
           # We need a version without hidden home directory to run non-steam games
           home.packages = [ pkgs.steam-run ];
 
-          systemd.user.tmpfiles.rules = lib.mkIf (cfg.steam.bwrapHome != null) [
-            "d ${cfg.steam.bwrapHome} - - - - -"
+          systemd.user.tmpfiles.rules = lib.mkMerge [
+            [
+              "d ${hmConfig.xdg.userDirs.pictures}/Steam - - - 14d -"
+            ]
+            (lib.mkIf (cfg.steam.bwrapHome != null) [
+              "d ${cfg.steam.bwrapHome} - - - - -"
+            ])
           ];
         };
       })

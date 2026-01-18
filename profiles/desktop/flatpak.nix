@@ -22,9 +22,7 @@ let
 in
 {
   options.profiles.desktop.flatpak = {
-    enable = lib.mkEnableOption "flatpak" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "flatpak";
   };
 
   config = lib.mkIf cfg.enable {

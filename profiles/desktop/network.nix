@@ -4,13 +4,10 @@ let
 in
 {
   options.profiles.desktop.network = {
-    enable = lib.mkEnableOption "network" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "network";
   };
 
   config = lib.mkIf cfg.enable {
-
     networking = {
       useDHCP = false;
       dhcpcd.enable = false;
@@ -27,11 +24,11 @@ in
         # wifi.backend = "iwd";
       };
     };
+
     services.resolved = {
       enable = true;
       dnsovertls = "false";
       dnssec = "false"; # buggy
     };
-
   };
 }

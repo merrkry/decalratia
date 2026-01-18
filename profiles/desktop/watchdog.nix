@@ -4,9 +4,7 @@ let
 in
 {
   options.profiles.desktop.watchdog = {
-    enable = lib.mkEnableOption "watchdog" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "watchdog";
   };
 
   config = lib.mkIf cfg.enable {

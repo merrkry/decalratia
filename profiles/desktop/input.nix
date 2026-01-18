@@ -9,9 +9,7 @@ let
 in
 {
   options.profiles.desktop.input = {
-    enable = lib.mkEnableOption "input" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "input";
   };
 
   config = lib.mkIf cfg.enable {

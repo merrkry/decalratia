@@ -11,9 +11,7 @@ let
 in
 {
   options.profiles.desktop.themes = {
-    enable = lib.mkEnableOption "themes" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "themes";
   };
 
   config = lib.mkIf cfg.enable {
@@ -24,12 +22,6 @@ in
         name = "Adwaita";
         size = 24;
       };
-      image = lib.mkDefault (
-        pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/merrkry/wallpapers/refs/heads/master/Ajin.png";
-          sha256 = "sha256-ClN4I3KAykEkw2BJrjPIxfE66xXLBwshr8kELytIoqM=";
-        }
-      );
       polarity = "dark";
       opacity.terminal = 0.85;
       targets = {
@@ -82,13 +74,6 @@ in
         adwaita-icon-theme
         gnome-themes-extra
       ];
-
-      programs = {
-        swaybg = {
-          enable = true;
-          image = lib.mkDefault config.stylix.image;
-        };
-      };
 
       # https://discourse.nixos.org/t/guide-to-installing-qt-theme/35523/3
       qt = {

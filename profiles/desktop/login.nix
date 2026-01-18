@@ -10,16 +10,14 @@ let
 in
 {
   options.profiles.desktop.login = {
-    enable = lib.mkEnableOption "login" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "login";
   };
 
   config = lib.mkIf cfg.enable {
     services.greetd = {
       enable = true;
       settings = {
-        default_session.command = "${lib.getExe pkgs.tuigreet} --cmd niri-session";
+        default_session.command = "${lib.getExe pkgs.tuigreet} --cmd ${config.profiles.desktop.compositorProfile.sessionCmd}";
       };
       useTextGreeter = true;
     };
@@ -27,38 +25,6 @@ in
     security.pam = {
       # greetd cannot be configured by `login` provided by services.gnome.gnome-keyring
       services."greetd".enableGnomeKeyring = true;
-    };
-
-    home-manager.users.${user} = {
-      programs = {
-        swaylock.enable = true;
-      };
-
-      services = {
-        swayidle = {
-          enable = true;
-          extraArgs = lib.mkForce [ ]; # remove `-w` to avoid double lock bug
-          events = {
-            lock = "${lib.getExe pkgs.swaylock} --daemonize";
-            before-sleep = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
-          };
-          timeouts = [
-            {
-              timeout = 300;
-              command = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
-            }
-            {
-              timeout = 600;
-              command = "${lib.getExe' pkgs.niri "niri"} msg action power-off-monitors";
-            }
-          ]
-          ++ (lib.optional config.profiles.desktop.tweaks.powersave {
-            timeout = 1800;
-            command = "${lib.getExe' pkgs.systemd "systemctl"} sleep";
-          });
-        };
-      };
-      stylix.targets.swaylock.enable = true;
     };
   };
 }

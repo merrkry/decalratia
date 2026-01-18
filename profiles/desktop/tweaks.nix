@@ -11,9 +11,7 @@ let
 in
 {
   options.profiles.desktop.tweaks = {
-    enable = lib.mkEnableOption "tweaks" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "tweaks";
     powersave = lib.mkEnableOption "powersave" // {
       default = config.services.tlp.enable;
     };

@@ -9,11 +9,12 @@ binds {
         spawn "nautilus" "--new-window"
     }
     Mod+D {
-        spawn "rofi" "-show" "drun" "-show-icons"
+        // spawn "rofi" "-show" "drun" "-show-icons"
+        spawn-sh "noctalia-shell ipc call launcher toggle"
     }
-    Mod+Shift+D {
-        spawn-sh "rofi -show window -show-icons"
-    }
+    // Mod+Shift+D {
+    //     spawn-sh "rofi -show window -show-icons"
+    // }
     Super+Alt+L allow-inhibiting=false {
         spawn "loginctl" "lock-session"
     }
@@ -324,7 +325,8 @@ binds {
         center-visible-columns
     }
     Mod+Shift+C {
-        spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+        // spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+        spawn-sh "noctalia-shell ipc call launcher clipboard"
     }
     Mod+Shift+Ctrl+C {
         spawn "cliphist" "wipe"

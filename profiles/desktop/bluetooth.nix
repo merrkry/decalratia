@@ -9,9 +9,7 @@ let
 in
 {
   options.profiles.desktop.bluetooth = {
-    enable = lib.mkEnableOption "bluetooth" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "bluetooth";
   };
 
   config = lib.mkIf cfg.enable {

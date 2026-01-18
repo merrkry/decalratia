@@ -7,12 +7,11 @@
 }:
 let
   cfg = config.profiles.desktop.xdg;
+  hmConfig = config.home-manager.users.${user};
 in
 {
   options.profiles.desktop.xdg = {
-    enable = lib.mkEnableOption "xdg" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "xdg";
   };
 
   config = lib.mkIf cfg.enable {
@@ -37,6 +36,10 @@ in
     };
 
     home-manager.users.${user} = {
+      systemd.user.tmpfiles.rules = [
+        "d ${hmConfig.xdg.userDirs.download} - - - 14d -"
+      ];
+
       xdg = {
         userDirs = {
           enable = true;

@@ -4,13 +4,10 @@ let
 in
 {
   options.profiles.desktop.plymouth = {
-    enable = lib.mkEnableOption "plymouth" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "plymouth";
   };
 
   config = lib.mkIf cfg.enable {
-
     boot = {
       plymouth.enable = true;
 
@@ -34,6 +31,5 @@ in
     };
 
     stylix.targets.plymouth.enable = false;
-
   };
 }

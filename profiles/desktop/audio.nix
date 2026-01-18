@@ -10,9 +10,7 @@ let
 in
 {
   options.profiles.desktop.audio = {
-    enable = lib.mkEnableOption "audio" // {
-      default = config.profiles.desktop.enable;
-    };
+    enable = lib.mkEnableOption "audio";
   };
 
   # Archlinux realtime-privileges / CachyOS-Settings
