@@ -36,6 +36,7 @@
       "git status*": "allow",
       "head *": "allow",
       "ls *": "allow",
+      "rg *": "allow",
       "sort *": "allow",
       "tail *": "allow",
       "wc *": "allow"

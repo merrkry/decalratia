@@ -29,4 +29,8 @@ M.allow_copilot = {
 	"typescript",
 }
 
+M.disable_treesitter = {
+	"csv",
+}
+
 return M

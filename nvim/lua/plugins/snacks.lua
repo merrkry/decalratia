@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 ---@type snacks.Config
 local opts = {}
 
@@ -22,7 +24,9 @@ if not vim.g.vscode then
 			limit_live = 1024,
 			ui_select = true,
 		},
-		quickfile = {},
+		quickfile = {
+			exclude = utils.lang.disable_treesitter,
+		},
 		rename = {},
 		statuscolumn = {},
 		terminal = {},

@@ -1,6 +1,7 @@
 local M = {}
 
 local autocmd = require("utils.autocmd")
+local languages = require("utils.lang")
 local lsp_progress = require("config.autocmd.lsp_progress")
 
 local SHOW_DIAGNOSTICS = "<leader>k"
@@ -220,7 +221,7 @@ local function setup_lsp_config()
 
 	vim.lsp.log.set_level(vim.log.levels.OFF)
 
-	local servers = require("utils.lang").default_lsp
+	local servers = languages.default_lsp
 	vim.lsp.enable(servers, true)
 end
 

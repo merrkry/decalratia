@@ -79,6 +79,7 @@ local mini_opts = {
 		cond = not vim.g.vscode,
 		opts = {
 			mappings = {
+				windows = true,
 				move_with_alt = true,
 			},
 		},
