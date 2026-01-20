@@ -126,7 +126,7 @@
     };
 
     determinate = {
-      url = "github:merrkry/nix-src/v3.15.1-fix";
+      url = "github:DeterminateSystems/nix-src/v3.15.2";
       # Also introduces `nixpkgs-regression` `nixpkgs-23-11` in input for some reason.
       inputs = {
         nixpkgs.follows = "nixpkgs";

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  user,
   ...
 }:
 let
@@ -88,6 +89,7 @@ in
           timesyncd.enable = false;
         };
       }
+
       (lib.mkIf (cfg.tailscale != null) {
         networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
@@ -95,6 +97,7 @@ in
           enable = true;
           openFirewall = true;
           useRoutingFeatures = cfg.tailscale;
+          disableUpstreamLogging = true;
         };
 
         # https://tailscale.com/kb/1320/performance-best-practices#linux-optimizations-for-subnet-routers-and-exit-nodes
