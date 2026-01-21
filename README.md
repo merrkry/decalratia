@@ -16,6 +16,6 @@ All configuration in one place, powered by Nix.
 
 To update a package, run:
 
-```
+```shell
 nix run nixpkgs#nix-update -- <package_name> -F
 ```

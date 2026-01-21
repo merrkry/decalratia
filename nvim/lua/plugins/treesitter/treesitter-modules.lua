@@ -8,19 +8,28 @@ return {
 			---@module 'treesitter-modules'
 			---@type ts.mod.UserConfig
 			opts = {
-				ensure_installed = {
-					"bash",
-					"comment",
-					"diff",
-					"lua",
-					"luadoc",
-					"markdown",
-					"markdown_inline",
-					"query",
-					"regex",
-					"vim",
-					"vimdoc",
-				},
+				ensure_installed = vim.iter({
+					{
+						"bash",
+						"comment",
+						"diff",
+						"lua",
+						"luadoc",
+						"query",
+						"regex",
+						"vim",
+						"vimdoc",
+					},
+					-- required by render-markdown.nvim
+					{
+						"markdown",
+						"markdown_inline",
+						"html",
+						"yaml",
+					},
+				})
+					:flatten()
+					:totable(),
 				auto_install = true,
 				fold = { enable = false },
 				highlight = { enable = false },

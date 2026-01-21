@@ -16,6 +16,7 @@ return {
 				kdl = { "kdlfmt" },
 				lua = { "stylua" },
 				markdown = { "prettier" },
+				rust = { "rustfmt" },
 				sty = { "tex-fmt" },
 				tex = { "tex-fmt" },
 				toml = { "taplo" },
@@ -23,7 +24,7 @@ return {
 				["_"] = { "trim_whitespace" },
 			},
 			default_format_opts = {
-				lsp_format = "first",
+				lsp_format = "fallback",
 			},
 			format_on_save = {},
 		},

@@ -3,7 +3,7 @@ return {
 	{
 		"stevearc/quicker.nvim",
 		ft = "qf",
-		---@module "quicker"
+		---@module 'quicker'
 		---@type quicker.SetupOptions
 		opts = {},
 	},

@@ -41,3 +41,4 @@ Your goal is to be an AI engineering partner, not just a code generator.
 - Run `cargo fmt -- --unstable-features` to format code.
 - Run `cargo clippy --fix --allow-dirty -- -W clippy::pedantic -W clippy::nursery` and fix linting before commit.
 - Prefer `Result` and `Option`, never abuse `.unwrap()` or `.expect()` for recoverable errors.
+- When appropriate, Use shadowing and type inference for more elegant code.

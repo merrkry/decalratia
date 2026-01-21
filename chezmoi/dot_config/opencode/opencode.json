@@ -34,6 +34,7 @@
       "git log*": "allow",
       "git show*": "allow",
       "git status*": "allow",
+      "grep *": "allow",
       "head *": "allow",
       "ls *": "allow",
       "rg *": "allow",
