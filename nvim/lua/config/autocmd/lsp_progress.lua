@@ -30,10 +30,9 @@ end
 ---@param client_id integer
 ---@return nil
 local function mark_client_ready(client_id)
-	client_ready_state[client_id] = true
 	vim.schedule(function()
-		vim.api.nvim_exec_autocmds("User", {
-			pattern = EVENT_LSP_CLIENT_READY,
+		client_ready_state[client_id] = true
+		autocmd.exec_user_autocmd("User " .. EVENT_LSP_CLIENT_READY, {
 			data = { client_id = client_id },
 		})
 	end)
@@ -68,9 +67,13 @@ end
 ---@param bufnr integer
 ---@return nil
 local function fire_lsp_buf_ready(bufnr)
-	vim.api.nvim_exec_autocmds("User", {
-		pattern = EVENT_LSP_BUF_READY,
-		data = { bufnr = bufnr },
+	if vim.b[bufnr].lsp_buf_ready then
+		return
+	end
+	vim.b[bufnr].lsp_buf_ready = true
+
+	autocmd.exec_user_autocmd("User " .. EVENT_LSP_BUF_READY, {
+		buffer = bufnr,
 	})
 end
 
@@ -99,7 +102,7 @@ function M.setup()
 			else
 				autocmd.create_user_autocmd("User " .. EVENT_LSP_CLIENT_READY, {
 					buffer = bufnr,
-					group = vim.api.nvim_create_augroup(AUGROUP_LSP_BUF_READY_DELAYED, {}),
+					group = vim.api.nvim_create_augroup(AUGROUP_LSP_BUF_READY_DELAYED .. tostring(bufnr), {}),
 					callback = function(event)
 						if M.all_clients_ready(bufnr) then
 							fire_lsp_buf_ready(bufnr)

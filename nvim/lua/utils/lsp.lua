@@ -93,30 +93,33 @@ end
 
 ---@return nil
 local function setup_global_inlay_hints()
+	-- require("lazy").load({ plugins = { "inlay-hint.nvim" } })
+	require("lazy").load({ plugins = { "nvim-lsp-endhints" } })
+
 	-- Configured globally. Execute this on `LspAttach` per buf might introduce race conditions,
 	-- e.g. codediff.nvim tries to disable inlay hints on diff buffers.
 	-- FIXME: still see inlay hints in codediff.nvim sessions.
-	vim.lsp.inlay_hint.enable(true)
+	vim.lsp.inlay_hint.enable(true, { bufnr = nil })
 
 	-- Disable inlay hints in insert mode.
 	-- https://github.com/neovim/neovim/discussions/29078#discussioncomment-9865397
-	vim.api.nvim_create_autocmd("InsertEnter", {
-		desc = "Disable inlay hints when entering insert mode",
-		callback = function(args)
-			local filter = { bufnr = args.buf }
-			local inlay_hint = vim.lsp.inlay_hint
-			if inlay_hint.is_enabled(filter) then
-				inlay_hint.enable(false, filter)
-				vim.api.nvim_create_autocmd("InsertLeave", {
-					once = true,
-					desc = "Re-enable inlay hints when leaving insert mode",
-					callback = function()
-						inlay_hint.enable(true, filter)
-					end,
-				})
-			end
-		end,
-	})
+	-- vim.api.nvim_create_autocmd("InsertEnter", {
+	-- 	desc = "Disable inlay hints when entering insert mode",
+	-- 	callback = function(args)
+	-- 		local filter = { bufnr = args.buf }
+	-- 		local inlay_hint = vim.lsp.inlay_hint
+	-- 		if inlay_hint.is_enabled(filter) then
+	-- 			inlay_hint.enable(false, filter)
+	-- 			vim.api.nvim_create_autocmd("InsertLeave", {
+	-- 				once = true,
+	-- 				desc = "Re-enable inlay hints when leaving insert mode",
+	-- 				callback = function()
+	-- 					inlay_hint.enable(true, filter)
+	-- 				end,
+	-- 			})
+	-- 		end
+	-- 	end,
+	-- })
 end
 
 ---@param bufnr integer
@@ -131,7 +134,9 @@ local function setup_buf_inlay_hints(bufnr)
 
 	-- Some slow LSPs, like rust-analyzer, might not be able to display inlay hints right after launch.
 	-- We call `inlay_hint.enable` to force re-trigger the rendering of inlay hints after all progress ending.
-	vim.lsp.inlay_hint.enable(vim.lsp.inlay_hint.is_enabled(filter), filter)
+	if vim.lsp.inlay_hint.is_enabled(filter) then
+		vim.lsp.inlay_hint.enable(true, filter)
+	end
 	-- Seems fixed as of 2026-01-16
 end
 
@@ -178,14 +183,17 @@ end
 ---@param bufnr integer
 ---@return nil
 local function setup_buf(bufnr)
+	local supports_document_highlight = false
+	local supports_inlay_hint = false
+
 	local clients = vim.lsp.get_clients({ bufnr = bufnr })
 	for _, client in ipairs(clients) do
 		if client:supports_method("textDocument/documentHighlight", bufnr) then
-			setup_cursor_highlight(bufnr)
+			supports_document_highlight = true
 		end
 
 		if client:supports_method("textDocument/inlayHint", bufnr) then
-			setup_buf_inlay_hints(bufnr)
+			supports_inlay_hint = true
 		end
 
 		if client.name == "rust-analyzer" then
@@ -193,6 +201,13 @@ local function setup_buf(bufnr)
 				vim.cmd.RustLsp({ "renderDiagnostic", "current" })
 			end, { desc = "Show diagnostics", buffer = bufnr })
 		end
+	end
+
+	if supports_document_highlight then
+		setup_cursor_highlight(bufnr)
+	end
+	if supports_inlay_hint then
+		setup_buf_inlay_hints(bufnr)
 	end
 end
 

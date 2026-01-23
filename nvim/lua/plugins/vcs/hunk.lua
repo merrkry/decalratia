@@ -7,9 +7,9 @@ return {
 		opts = {
 			ui = {
 				tree = {
-					width = 50,
+					width = 40,
 				},
-				layout = "horizontal",
+				layout = "vertical",
 			},
 		},
 	},

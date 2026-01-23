@@ -25,8 +25,6 @@ local opts = {
 
 		["<C-b>"] = { "scroll_documentation_up", "fallback" },
 		["<C-f>"] = { "scroll_documentation_down", "fallback" },
-
-		["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
 	},
 
 	appearance = {
