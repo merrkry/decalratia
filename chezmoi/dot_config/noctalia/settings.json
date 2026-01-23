@@ -182,7 +182,7 @@
     },
     "colorSchemes": {
         "darkMode": true,
-        "extractionMethod": "default",
+        "extractionMethod": "material",
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "predefinedScheme": "Catppuccin",
