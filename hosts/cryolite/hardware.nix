@@ -101,13 +101,17 @@
         };
       };
     };
+
     tlp = {
       enable = true;
+      pd.enable = true;
       settings = {
         PLATFORM_PROFILE_ON_AC = "balanced";
         PLATFORM_PROFILE_ON_BAT = "low-power";
         PCIE_ASPM_ON_BAT = "powersupersave";
       };
     };
+
+    upower.enable = true;
   };
 }
