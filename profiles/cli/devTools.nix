@@ -55,6 +55,8 @@ in
           # go
           go
           gopls
+          gofumpt
+          gotools
           # javascript / typescript
           bun
           deno
