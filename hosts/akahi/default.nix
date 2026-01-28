@@ -58,14 +58,7 @@
         numbat
         obsidian
         podman-compose
-        (prismlauncher.override {
-          jdks = [
-            jdk8
-            jdk17
-            jdk21
-            jdk25
-          ];
-        })
+        prismlauncher
         q
         tsukimi
         xournalpp

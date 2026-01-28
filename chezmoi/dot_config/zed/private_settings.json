@@ -1,4 +1,5 @@
 {
+  "window_decorations": "server",
   "auto_install_extensions": {
     "git-firefly": true,
     "html": true,
