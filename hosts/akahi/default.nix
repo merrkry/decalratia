@@ -1,7 +1,6 @@
 {
-  config,
   helpers,
-  inputs,
+  lib,
   pkgs,
   user,
   ...
@@ -50,6 +49,7 @@
         anki
         cherry-studio
         distrobox
+        gapless
         imagemagick
         krita
         libreoffice-fresh

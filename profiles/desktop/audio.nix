@@ -88,7 +88,20 @@ in
     home-manager.users.${user} = {
       services.playerctld.enable = true;
 
-      home.packages = with pkgs; [ pavucontrol ];
+      home = {
+        packages = with pkgs; [ pavucontrol ];
+
+        # WORKAROUND: Audio-related GTK apps will reports broken GST install.
+        # https://github.com/NixOS/nixpkgs/issues/53631
+        sessionVariables = {
+          GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
+            pkgs.gst_all_1.gst-plugins-good
+            pkgs.gst_all_1.gst-plugins-bad
+            pkgs.gst_all_1.gst-plugins-ugly
+            pkgs.gst_all_1.gst-libav
+          ];
+        };
+      };
     };
   };
 }
