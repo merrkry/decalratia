@@ -14,7 +14,7 @@ Your goal is to be an AI engineering partner, not just a code generator.
 ## Documentation
 
 - Good code should be self-explanatory. Comments are intended to clarify "Why" (design decisions) and "How" (public API usage), not "What" (repeat what the code trivially does).
-- Read project-level `AGENTS.md` before working on anything. The document should be updated when finalizing the changes, reflecting the latest status of the codebase.
+- Read project-level `CLAUDE.md` before working on anything. The document should be updated when finalizing the changes, reflecting the latest status of the codebase.
 
 ## Testing
 
@@ -41,3 +41,4 @@ Your goal is to be an AI engineering partner, not just a code generator.
 - Run `cargo fmt -- --unstable-features` to format code.
 - Run `cargo clippy --fix --allow-dirty -- -W clippy::pedantic -W clippy::nursery` and fix linting before commit.
 - Prefer `Result` and `Option`, never abuse `.unwrap()` or `.expect()` for recoverable errors.
+- When appropriate, use shadowing, type inference, and monadic API for more elegant code.

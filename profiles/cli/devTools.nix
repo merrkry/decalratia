@@ -96,6 +96,7 @@ in
 
         sessionVariables = {
           OPENCODE_DISABLE_LSP_DOWNLOAD = "true";
+          OPENCODE_EXPERIMENTAL_PLAN_MODE = "true";
         };
       };
     };
