@@ -15,5 +15,15 @@ return {
 				enabled = false,
 			},
 		},
+		config = function(_, opts)
+			require("utils.treesitter").install_parsers({
+				"markdown",
+				"markdown_inline",
+				"html",
+				"yaml",
+			})
+
+			require("render-markdown").setup(opts)
+		end,
 	},
 }
