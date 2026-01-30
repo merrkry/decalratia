@@ -5,7 +5,7 @@ cleanup:
 sync:
   git pull --autostash
 
-update: sync chezmoi flatpak rime rustup
+update: chezmoi flatpak rime rustup
 
 [group('update')]
 chezmoi:
