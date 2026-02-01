@@ -37,8 +37,6 @@ in
       // kagiSearchOpts;
     };
 
-    stylix.targets.chromium.enable = true;
-
     home-manager.users.${user} = {
       programs.chromium = {
         enable = true;

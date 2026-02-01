@@ -89,14 +89,6 @@
       };
     };
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay/4f1d5c13b233eed1dc607557503740d0cb4d3c27";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
     rust-overlay = {
       url = "github:oxalica/rust-overlay/master";
       inputs = {
@@ -141,11 +133,6 @@
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt";
       };
-    };
-
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

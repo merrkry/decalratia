@@ -10,7 +10,7 @@ let
   cfg = config.profiles.desktop.noctalia;
   hmConfig = config.home-manager.users.${user};
 
-  package = inputs.noctalia.packages.${config.nixpkgs.system}.default;
+  package = pkgs.noctalia-shell; # inputs.noctalia.packages.${config.nixpkgs.system}.default;
 
   avatar = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/merrkry/desktop-resources/refs/heads/master/avatar-red.png";
@@ -32,21 +32,36 @@ in
     profiles.desktop.lock.lockCmd = "${lib.getExe package} ipc call lockScreen lock";
 
     home-manager.users.${user} = {
-      imports = [
-        inputs.noctalia.homeModules.default
-      ];
+      # imports = [ inputs.noctalia.homeModules.default ];
 
-      programs.noctalia-shell = {
-        inherit package;
-        enable = true;
-        systemd.enable = true;
-      };
+      home.packages = [ package ];
+
+      # programs.noctalia-shell = {
+      #   inherit package;
+      #   enable = true;
+      #   systemd.enable = true;
+      # };
 
       systemd.user = {
-        services.noctalia-shell.Service.Environment = lib.mapAttrsToList (key: value: "${key}=${value}") {
-          QT_QPA_PLATFORM = "wayland;xcb";
-          QT_QPA_PLATFORMTHEME = "gtk3";
-          QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+        services.noctalia-shell = {
+          Unit = {
+            Description = "Noctalia Shell - Wayland desktop shell";
+            Documentation = "https://docs.noctalia.dev";
+            PartOf = [ hmConfig.wayland.systemd.target ];
+            After = [ hmConfig.wayland.systemd.target ];
+          };
+
+          Service = {
+            ExecStart = lib.getExe package;
+            Restart = "on-failure";
+            Environment = lib.mapAttrsToList (key: value: "${key}=${value}") {
+              QT_QPA_PLATFORM = "wayland;xcb";
+              QT_QPA_PLATFORMTHEME = "gtk3";
+              QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+            };
+          };
+
+          Install.WantedBy = [ hmConfig.wayland.systemd.target ];
         };
 
         tmpfiles.rules = [

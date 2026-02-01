@@ -43,6 +43,8 @@ in
 
           typos-lsp
 
+          gh
+
           # Language toolchains
 
           # bash

@@ -27,8 +27,12 @@ in
 
     services.resolved = {
       enable = true;
-      dnsovertls = "false";
-      dnssec = "false"; # buggy
+      settings = {
+        Resolve = {
+          DNSOverTLS = "no";
+          DNSSEC = false;
+        };
+      };
     };
   };
 }

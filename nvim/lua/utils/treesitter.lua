@@ -48,6 +48,10 @@ function M.setup()
 			end
 
 			require("nvim-treesitter").install(language):await(function()
+				if not vim.api.nvim_buf_is_valid(bufnr) then
+					return
+				end
+
 				if not vim.treesitter.language.add(language) then
 					return
 				end

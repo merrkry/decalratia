@@ -9,7 +9,7 @@
 let
   cfg = config.profiles.tui.neovim;
   hmConfig = config.home-manager.users.${user};
-  neovim-nightly = inputs.neovim-nightly-overlay.packages.${config.nixpkgs.system}.default;
+  package = pkgs.neovim; # inputs.neovim-nightly-overlay.packages.${config.nixpkgs.system}.default;
 in
 {
   options.profiles.tui.neovim = {
@@ -19,7 +19,7 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
       home.packages = with pkgs; [
-        neovim-nightly
+        package
 
         tree-sitter
         unzipNLS # stylua

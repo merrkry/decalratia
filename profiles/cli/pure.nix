@@ -22,12 +22,7 @@ in
         }
         {
           name = "async-prompt";
-          src = pkgs.fetchFromGitHub {
-            owner = "acomagu";
-            repo = "fish-async-prompt";
-            rev = "8a7f2b19fffd64667db84b4aca6221b33f044fce";
-            hash = "sha256-99eGL8o4yCE5zDJD5fRDhf6Va1Q6GMhsD+v5Jn3iJoc=";
-          };
+          inherit (pkgs.fishPlugins.async-prompt) src;
         }
       ];
 
