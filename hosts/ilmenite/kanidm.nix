@@ -24,7 +24,12 @@ in
         bindaddress = "[::1]:${toString port}";
         domain = domainName;
         origin = "https://${domainName}";
-        trust_x_forward_for = true;
+        http_client_address_info = {
+          x-forward-for = [
+            "127.0.0.1"
+            "::1"
+          ];
+        };
         online_backup = {
           path = "/var/lib/kanidm/backup";
           schedule = "0 0 * * *";
