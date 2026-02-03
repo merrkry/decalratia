@@ -33,4 +33,5 @@ rime:
 rustup:
   rustup update nightly
   rustup component add --toolchain nightly rust-analyzer
+  rustup component add --toolchain nightly rustc-codegen-cranelift-preview
   rustup default nightly

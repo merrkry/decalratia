@@ -1,2 +1,12 @@
 [unstable]
+codegen-backend = true
 gc = true
+
+[build]
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+
+[profile.dev]
+codegen-backend = "cranelift"
+
+[profile.dev.package."*"]
+codegen-backend = "llvm"

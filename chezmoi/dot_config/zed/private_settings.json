@@ -1,4 +1,9 @@
 {
+  "agent_servers": {
+    "opencode": {
+      "type": "registry"
+    }
+  },
   "window_decorations": "server",
   "auto_install_extensions": {
     "git-firefly": true,

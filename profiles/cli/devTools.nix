@@ -84,6 +84,7 @@ in
           uv
           # rust
           rustup
+          mold
           # toml
           taplo
           # typst
