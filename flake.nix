@@ -96,11 +96,6 @@
       };
     };
 
-    secrets = {
-      url = "github:merrkry/declaratia-secrets";
-      flake = false;
-    };
-
     cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel";
       inputs = {
@@ -132,6 +127,20 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         treefmt-nix.follows = "treefmt";
+      };
+    };
+
+    # Personal projects
+
+    secrets = {
+      url = "github:merrkry/declaratia-secrets";
+      flake = false;
+    };
+
+    anipler = {
+      url = "github:merrkry/anipler";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
       };
     };
   };
