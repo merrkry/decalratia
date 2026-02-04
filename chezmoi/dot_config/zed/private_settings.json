@@ -1,8 +1,8 @@
 {
   "agent_servers": {
     "opencode": {
-      "type": "registry"
-    }
+      "type": "registry",
+    },
   },
   "window_decorations": "server",
   "auto_install_extensions": {
@@ -10,12 +10,12 @@
     "html": true,
     "lua": true,
     "nix": true,
-    "toml": true
+    "toml": true,
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 1000
-    }
+      "milliseconds": 1000,
+    },
   },
   "autoscroll_on_clicks": true,
   "buffer_font_family": ".ZedMono",
@@ -25,71 +25,73 @@
   "edit_predictions_disabled_in": ["comment", "string"],
   "scrollbar": {
     "axes": {
-      "horizontal": false
-    }
+      "horizontal": false,
+    },
   },
   "languages": {
     "Nix": {
-      "language_servers": ["!nil", "nixd"]
-    }
+      "language_servers": ["!nil", "nixd"],
+    },
   },
   "lsp": {
     "rust-analyzer": {
       "initialization_options": {
-        "cargo": {
-          "features": "all"
-        },
         "check": {
           "command": "clippy",
           "extraArgs": [
             "--",
             "-W",
-            "clippy:pedantic",
+            "clippy::pedantic",
             "-W",
             "clippy::nursery",
-            "-W",
-            "clippy::cargo"
-          ]
+          ],
         },
-        "diagnostics": {
-          "experimental": {
-            "enable": true
-          }
-        }
-      }
-    }
+        "checkOnSave": false,
+        "diagnostics": { "experimental": { "enable": true } },
+        "inlayHints": {
+          "closingBraceHints": { "minLines": 8 },
+          "closureReturnTypeHints": { "enable": "with_block" },
+          "discriminantHints": { "enable": "fieldless" },
+          "lifetimeElisionHints": { "enable": "skip_trivial" },
+        },
+        "rustfmt": {
+          "extraArgs": ["--unstable-features"],
+          "rangeFormatting": { "enable": true },
+        },
+      },
+    },
   },
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "format_on_save": "on",
   "diagnostics": {
     "inline": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
   },
   "inlay_hints": {
-    "enabled": true
+    "enabled": true,
   },
   "journal": {
-    "hour_format": "hour24"
+    "hour_format": "hour24",
   },
   "relative_line_numbers": "enabled",
-  "restore_on_startup": "none",
+  "restore_on_startup": "empty_tab",
   "use_smartcase_search": true,
   "soft_wrap": "editor_width",
   "wrap_guides": [80],
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "terminal": {
-    "font_family": "Fira Code"
+    "font_family": "Fira Code",
   },
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
+    "dark": "One Dark",
   },
   "vim_mode": true,
   "agent": {
@@ -97,8 +99,8 @@
     "default_profile": "ask",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5-mini"
-    }
+      "model": "gpt-5-mini",
+    },
   },
-  "ui_font_family": ".ZedMono"
+  "ui_font_family": ".ZedMono",
 }

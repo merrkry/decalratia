@@ -115,7 +115,7 @@ return {
 	{
 		"saghen/blink.cmp",
 
-		-- version = "1.*",
+		version = "1.*",
 		build = "cargo +nightly build --release",
 		-- build = 'nix run .#build-plugin',
 

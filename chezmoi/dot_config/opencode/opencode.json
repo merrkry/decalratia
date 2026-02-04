@@ -9,6 +9,7 @@
           "cargo clippy*": "allow",
           "cargo fmt*": "allow",
           "cargo test*": "allow",
+          "mkdir *": "allow",
           "pyrefly check*": "allow",
           "ruff format*": "allow"
         },

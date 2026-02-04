@@ -42,3 +42,4 @@ Your goal is to be an AI engineering partner, not just a code generator.
 - Run `cargo clippy --fix --allow-dirty -- -W clippy::pedantic -W clippy::nursery` and fix linting before commit.
 - Prefer `Result` and `Option`, never abuse `.unwrap()` or `.expect()` for recoverable errors.
 - When appropriate, use shadowing, type inference, and monadic API for more elegant code.
+- Prefer `foo.rs` and `foo/bar.rs` over `foo/mod.rs`.

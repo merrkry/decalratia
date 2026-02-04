@@ -58,9 +58,7 @@
     "-W",
     "clippy::pedantic",
     "-W",
-    "clippy::nursery",
-    "-W",
-    "clippy::cargo"
+    "clippy::nursery"
   ],
   "rust-analyzer.diagnostics.experimental.enable": true,
   "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "with_block",
@@ -83,5 +81,7 @@
   "workbench.view.showQuietly": {
     "workbench.panel.output": true
   },
-  "python.languageServer": "Default"
+  "python.languageServer": "Default",
+  "rust-analyzer.inlayHints.closingBraceHints.minLines": 8,
+  "rust-analyzer.checkOnSave": false
 }

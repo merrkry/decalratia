@@ -21,13 +21,11 @@ vim.keymap.set("n", "<C-s>", "<Cmd>silent! noautocmd update | redraw<CR>", { des
 vim.keymap.set("x", "<C-s>", "<Esc><Cmd>silent! noautocmd update | redraw<CR>", { desc = "Save and go to Normal mode" })
 
 vim.keymap.set("n", "<leader>l", function()
-	vim.cmd.wall() -- format-on-save by conform.nvim
-end, { desc = "Flycheck" })
-
-vim.keymap.set("n", "<leader>L", function()
 	-- Save all buffers to work with linters that don't rely on stdin,
 	-- also triggers format-on-save etc. before linting.
 	vim.cmd.wall()
+
+	require("conform").format()
 
 	if vim.bo.filetype == "rust" then
 		vim.cmd.RustLsp({ "flyCheck", "run" })

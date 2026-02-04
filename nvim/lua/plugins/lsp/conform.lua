@@ -40,6 +40,8 @@ return {
 					nightly = true,
 				},
 			}
+
+			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 		end,
 	},
 }
