@@ -9,7 +9,9 @@
           "cargo clippy*": "allow",
           "cargo fmt*": "allow",
           "cargo test*": "allow",
+          "cargo tree*": "allow",
           "mkdir *": "allow",
+          "move *": "allow",
           "pyrefly check*": "allow",
           "ruff format*": "allow"
         },
@@ -29,6 +31,7 @@
     "bash": {
       "*": "ask",
       "cat": "allow",
+      "cut": "allow",
       "echo": "allow",
       "find *": "allow",
       "git diff*": "allow",
@@ -37,11 +40,14 @@
       "git status*": "allow",
       "grep *": "allow",
       "head *": "allow",
+      "jq *": "allow",
       "ls *": "allow",
       "rg *": "allow",
       "sort *": "allow",
       "tail *": "allow",
-      "wc *": "allow"
+      "uniq *": "allow",
+      "wc *": "allow",
+      "yq *": "allow"
     },
     "edit": "ask",
     "read": {

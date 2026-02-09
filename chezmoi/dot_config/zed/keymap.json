@@ -1,55 +1,64 @@
-// Zed keymap
-//
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
-//
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
 [
   {
-    "context": "Workspace",
+    "context": "vim_mode == insert && !menu",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    }
-  },
-  {
-    "context": "Editor",
-    "bindings": {
-      // "j k": ["workspace::SendKeystrokes", "escape"]
-    }
-  },
-  {
-    "context": "vim_mode == insert",
-    "bindings": {
-      "alt-l": "vim::Right"
-    }
-  },
-  {
-    "context": "vim_mode == insert",
-    "bindings": {
-      "alt-h": "vim::Left"
-    }
-  },
-  {
-    "context": "vim_mode == insert",
-    "bindings": {
-      "alt-k": [
-        "vim::Up",
-        {
-          "display_lines": true
-        }
-      ]
-    }
-  },
-  {
-    "context": "vim_mode == insert",
-    "bindings": {
+      "alt-h": "vim::Left",
       "alt-j": [
         "vim::Down",
         {
-          "display_lines": true
-        }
-      ]
-    }
-  }
+          "display_lines": true,
+        },
+      ],
+      "alt-k": [
+        "vim::Up",
+        {
+          "display_lines": true,
+        },
+      ],
+      "alt-l": "vim::Right",
+    },
+  },
+  {
+    "context": "vim_mode == insert && !menu",
+    "bindings": {
+      "ctrl-y": "editor::ShowEditPrediction",
+    },
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space a": "editor::ToggleCodeActions",
+      "space r": "editor::Rename",
+      "g i": "editor::GoToImplementation",
+      "g r": "editor::FindAllReferences",
+    },
+  },
+  {
+    "context": "vim_mode == visual && !menu",
+    "bindings": {
+      "space y": "editor::Copy",
+    },
+  },
+  {
+    "context": "(vim_mode == normal || vim_mode == visual) && !menu",
+    "bindings": {
+      "space p": "editor::Paste",
+    },
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds",
+    },
+  },
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space space": "command_palette::Toggle",
+      "space f": "file_finder::Toggle",
+      "space l": "editor::RunFlycheck",
+      "space s": "outline::Toggle",
+      "space e": "project_panel::ToggleFocus",
+    },
+  },
 ]

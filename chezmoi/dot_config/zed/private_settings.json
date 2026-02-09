@@ -1,4 +1,37 @@
 {
+  "language_models": {
+    "openai_compatible": {
+      "MiniMax": {
+        "api_url": "https://api.minimaxi.com/v1",
+        "available_models": [
+          {
+            "name": "MiniMax-M2.5",
+            "max_tokens": 200000,
+            "max_output_tokens": 32000,
+            "max_completion_tokens": 200000,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+            },
+          },
+        ],
+      },
+    },
+  },
+  "double_click_in_multibuffer": "select",
+  "vim": {
+    "toggle_relative_line_numbers": true,
+    "use_system_clipboard": "never",
+  },
+  "edit_predictions": {
+    "copilot": {
+      "enable_next_edit_suggestions": false,
+    },
+    "mode": "eager",
+  },
   "agent_servers": {
     "opencode": {
       "type": "registry",
@@ -80,7 +113,7 @@
   "restore_on_startup": "empty_tab",
   "use_smartcase_search": true,
   "soft_wrap": "editor_width",
-  "wrap_guides": [80],
+  "wrap_guides": [80, 120],
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
@@ -95,11 +128,15 @@
   },
   "vim_mode": true,
   "agent": {
+    "inline_assistant_model": {
+      "provider": "MiniMax",
+      "model": "MiniMax-M2.5",
+    },
     "enabled": true,
     "default_profile": "ask",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5-mini",
+      "provider": "MiniMax",
+      "model": "MiniMax-M2.5",
     },
   },
   "ui_font_family": ".ZedMono",
