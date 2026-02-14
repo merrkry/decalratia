@@ -24,11 +24,12 @@ in
         packages = with pkgs; [ xdg-utils ];
 
         # Reverse to make priority more intuitive
-        # Now they are overriden in the sequence here
+        # Now they are overridden in the sequence here
         sessionPath = lib.lists.reverseList [
           "$HOME/.local/bin"
           "${hmConfig.xdg.stateHome}/go/bin"
           "${hmConfig.xdg.dataHome}/cargo/bin"
+          "${hmConfig.xdg.cacheHome}/.bun/bin"
         ];
 
         sessionVariables = {

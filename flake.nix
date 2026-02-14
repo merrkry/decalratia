@@ -122,14 +122,6 @@
       };
     };
 
-    llm-agents = {
-      url = "github:numtide/llm-agents.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt";
-      };
-    };
-
     # Personal projects
 
     secrets = {

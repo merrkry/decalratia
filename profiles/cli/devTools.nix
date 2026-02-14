@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   user,
@@ -19,9 +18,9 @@ in
       home = {
         packages = with pkgs; [
           # AI
-
-          inputs.llm-agents.packages.${config.nixpkgs.system}.claude-code
-          inputs.llm-agents.packages.${config.nixpkgs.system}.opencode
+          # Fast-moving software are managed more conveniently with imperative package managers.
+          # Here we install from nixpkgs as fallback.
+          opencode
 
           # Universal tools
 
@@ -99,7 +98,6 @@ in
 
         sessionVariables = {
           OPENCODE_DISABLE_LSP_DOWNLOAD = "true";
-          OPENCODE_EXPERIMENTAL_PLAN_MODE = "true";
         };
       };
     };
