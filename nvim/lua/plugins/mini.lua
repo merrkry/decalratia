@@ -140,9 +140,9 @@ local mini_opts = {
 	splitjoin = {
 		event = "User VeryLazy",
 	},
-	surround = {
-		event = "User VeryLazy",
-	},
+	-- surround = {
+	-- 	event = "User VeryLazy",
+	-- },
 	trailspace = {
 		cond = not vim.g.vscode,
 		event = "User VeryLazy",
