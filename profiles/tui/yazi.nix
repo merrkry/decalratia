@@ -62,6 +62,8 @@ in
             };
           };
         };
+
+        shellWrapperName = "yy";
       };
 
       stylix.targets.yazi.enable = true;

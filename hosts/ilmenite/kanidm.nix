@@ -12,31 +12,34 @@ in
 {
   services = {
     kanidm = {
-      enableServer = true;
-      enableClient = true;
-      enablePam = false;
+      package = pkgs.kanidm_1_9;
 
-      package = pkgs.kanidm_1_8;
-
-      serverSettings = {
-        tls_chain = "${config.security.acme.certs.${certDomain}.directory}/fullchain.pem";
-        tls_key = "${config.security.acme.certs.${certDomain}.directory}/key.pem";
-        bindaddress = "[::1]:${toString port}";
-        domain = domainName;
-        origin = "https://${domainName}";
-        http_client_address_info = {
-          x-forward-for = [
-            "127.0.0.1"
-            "::1"
-          ];
-        };
-        online_backup = {
-          path = "/var/lib/kanidm/backup";
-          schedule = "0 0 * * *";
+      server = {
+        enable = true;
+        settings = {
+          tls_chain = "${config.security.acme.certs.${certDomain}.directory}/fullchain.pem";
+          tls_key = "${config.security.acme.certs.${certDomain}.directory}/key.pem";
+          bindaddress = "[::1]:${toString port}";
+          domain = domainName;
+          origin = "https://${domainName}";
+          http_client_address_info = {
+            x-forward-for = [
+              "127.0.0.1"
+              "::1"
+            ];
+          };
+          online_backup = {
+            path = "/var/lib/kanidm/backup";
+            schedule = "0 0 * * *";
+          };
         };
       };
-      clientSettings = {
-        uri = "https://${domainName}";
+
+      client = {
+        enable = true;
+        settings = {
+          uri = "https://${domainName}";
+        };
       };
     };
 

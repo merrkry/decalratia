@@ -56,16 +56,13 @@ in
               }
           );
 
-          # TODO: switch to LTS kernel when it defaults to 6.18
           kernelPackages =
             let
-              kernel =
-                inputs.cachyos-kernel.legacyPackages.${config.nixpkgs.system}.linux-cachyos-latest.override
-                  {
-                    preemptType = "lazy";
-                    bbr3 = true;
-                    processorOpt = "x86_64-v3";
-                  };
+              kernel = inputs.cachyos-kernel.legacyPackages.${config.nixpkgs.system}.linux-cachyos-lts.override {
+                preemptType = "lazy";
+                bbr3 = true;
+                processorOpt = "x86_64-v3";
+              };
             in
             pkgs.linuxKernel.packagesFor kernel;
 
