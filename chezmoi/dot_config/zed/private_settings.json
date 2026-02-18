@@ -1,4 +1,5 @@
 {
+  "colorize_brackets": true,
   "language_models": {
     "openai_compatible": {
       "MiniMax": {
