@@ -2,7 +2,7 @@
   description = "Yet another NixOS flake";
 
   inputs = {
-    nixpkgs.url = "github:merrkry/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:merrkry/nixpkgs/prod";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
 
     home-manager = {

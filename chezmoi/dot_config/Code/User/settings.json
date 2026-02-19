@@ -83,5 +83,6 @@
   },
   "python.languageServer": "Default",
   "rust-analyzer.inlayHints.closingBraceHints.minLines": 8,
-  "rust-analyzer.checkOnSave": false
+  "rust-analyzer.checkOnSave": false,
+  "github.copilot.selectedCompletionModel": ""
 }
