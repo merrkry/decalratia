@@ -103,23 +103,23 @@ local function setup_global_inlay_hints()
 
 	-- Disable inlay hints in insert mode.
 	-- https://github.com/neovim/neovim/discussions/29078#discussioncomment-9865397
-	vim.api.nvim_create_autocmd("InsertEnter", {
-		desc = "Disable inlay hints when entering insert mode",
-		callback = function(args)
-			local filter = { bufnr = args.buf }
-			local inlay_hint = vim.lsp.inlay_hint
-			if inlay_hint.is_enabled(filter) then
-				inlay_hint.enable(false, filter)
-				vim.api.nvim_create_autocmd("InsertLeave", {
-					once = true,
-					desc = "Re-enable inlay hints when leaving insert mode",
-					callback = function()
-						inlay_hint.enable(true, filter)
-					end,
-				})
-			end
-		end,
-	})
+	-- vim.api.nvim_create_autocmd("InsertEnter", {
+	-- 	desc = "Disable inlay hints when entering insert mode",
+	-- 	callback = function(args)
+	-- 		local filter = { bufnr = args.buf }
+	-- 		local inlay_hint = vim.lsp.inlay_hint
+	-- 		if inlay_hint.is_enabled(filter) then
+	-- 			inlay_hint.enable(false, filter)
+	-- 			vim.api.nvim_create_autocmd("InsertLeave", {
+	-- 				once = true,
+	-- 				desc = "Re-enable inlay hints when leaving insert mode",
+	-- 				callback = function()
+	-- 					inlay_hint.enable(true, filter)
+	-- 				end,
+	-- 			})
+	-- 		end
+	-- 	end,
+	-- })
 end
 
 ---@param bufnr integer
