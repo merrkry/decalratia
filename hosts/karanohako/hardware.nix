@@ -65,8 +65,11 @@
       dhcpV4Config = {
         UseDNS = true;
       };
-      # make routing on this interface a dependency for network-online.target
-      linkConfig.RequiredForOnline = "routable";
+      linkConfig = {
+        # make routing on this interface a dependency for network-online.target
+        RequiredForOnline = "routable";
+        MTUBytes = 1420;
+      };
     };
   };
 }
