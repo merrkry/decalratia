@@ -30,7 +30,7 @@ in
         DISABLE_STARS = true;
       };
       service = {
-        DISABLE_REGISTRATION = false;
+        DISABLE_REGISTRATION = true;
       };
       server = {
         DOMAIN = "git.tsubasa.one";
