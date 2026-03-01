@@ -49,3 +49,6 @@ vim.filetype.add({
 		[".*/.github/workflows/.*%.yaml"] = "yaml.ghaction",
 	},
 })
+
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99

@@ -21,6 +21,11 @@ return {
 					lua = { "stylua" },
 					markdown = { "prettier" },
 					nix = { "nixfmt" },
+					python = {
+						"ruff_format",
+						"ruff_organize_imports",
+						-- "ruff_fix"
+					},
 					rust = { "rustfmt" },
 					sty = { "tex-fmt" },
 					tex = { "tex-fmt" },
