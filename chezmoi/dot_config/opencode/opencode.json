@@ -54,6 +54,7 @@
       "*.env.*": "deny"
     }
   },
+  "plugin": ["@tarquinen/opencode-dcp@latest"],
   "share": "disabled",
   "theme": "system"
 }
