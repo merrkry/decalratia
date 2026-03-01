@@ -54,7 +54,7 @@
     };
 
     stylix = {
-      url = "github:nix-community/stylix/master";
+      url = "github:merrkry/stylix/prod";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
