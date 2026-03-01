@@ -12,7 +12,7 @@
       type = "desktop";
     };
     base = {
-      network.tailscale = "client";
+      network.tailscale = null;
     };
     desktop = {
       waybar.backlightDevice = "amdgpu_bl1";
@@ -31,18 +31,24 @@
       zed.enable = true;
     };
     services = {
-      rclone.enable = true;
+      rclone.enable= true;
       syncthing.enable = true;
     };
   };
 
-  services.scx.extraArgs = [
-    "--primary-domain"
-    "powersave"
-    "--no-deferred-wakeup"
-    "--polling-ms"
-    "5000"
-  ];
+  networking.firewall.trustedInterfaces = [ "sekai0" ];
+
+  services = {
+    sing-box.enable = true;
+
+    scx.extraArgs = [
+      "--primary-domain"
+      "powersave"
+      "--no-deferred-wakeup"
+      "--polling-ms"
+      "5000"
+    ];
+  };
 
   home-manager.users.${user} = {
     home.packages = with pkgs; [
