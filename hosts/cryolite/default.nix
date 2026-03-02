@@ -1,5 +1,6 @@
 {
   helpers,
+  lib,
   pkgs,
   user,
   ...
@@ -31,12 +32,15 @@
       zed.enable = true;
     };
     services = {
-      rclone.enable= true;
+      rclone.enable = true;
       syncthing.enable = true;
     };
   };
 
-  networking.firewall.trustedInterfaces = [ "sekai0" ];
+  networking.firewall = {
+    checkReversePath = "loose";
+    trustedInterfaces = [ "sekai0" ];
+  };
 
   services = {
     sing-box.enable = true;
@@ -47,6 +51,16 @@
       "--no-deferred-wakeup"
       "--polling-ms"
       "5000"
+    ];
+  };
+
+  # TODO: upstream this.
+  systemd.services.sing-box.serviceConfig = {
+    ConfigurationDirectory = "sing-box";
+    ExecStartPre = lib.mkForce "";
+    ExecStart = lib.mkForce [
+      ""
+      "${lib.getExe pkgs.sing-box} -D \${STATE_DIRECTORY} -C \${CONFIGURATION_DIRECTORY} run"
     ];
   };
 
