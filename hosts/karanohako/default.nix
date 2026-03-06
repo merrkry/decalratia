@@ -20,4 +20,6 @@
       helix.enable = true;
     };
   };
+
+  time.timeZone = "Europe/Berlin";
 }

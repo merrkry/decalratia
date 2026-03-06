@@ -51,8 +51,6 @@ in
         };
 
         services = {
-          automatic-timezoned.enable = true;
-
           # IMPORTANT: this is broken on first-time deployment! Install the system with this disabled, and then enable this via rebuild.
           # currently breaks rootless podman due to lack of subuid and subgid support,
           # see https://github.com/nikstur/userborn/issues/7

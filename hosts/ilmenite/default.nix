@@ -10,4 +10,6 @@
       network.tailscale = "server";
     };
   };
+
+  time.timeZone = "Europe/Berlin";
 }

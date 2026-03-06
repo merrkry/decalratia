@@ -11,5 +11,7 @@
     };
   };
 
+  time.timeZone = "Europe/Zurich";
+
   users.users.${user}.extraGroups = [ "qbittorrent" ];
 }
