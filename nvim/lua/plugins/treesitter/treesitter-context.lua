@@ -5,9 +5,9 @@ return {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		event = "LazyFile",
 		opts = {
-			max_lines = 16,
+			max_lines = 8,
 			min_window_height = 32,
-			multiline_threshold = 16,
+			multiline_threshold = 4,
 		},
 	},
 }
