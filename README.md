@@ -10,6 +10,7 @@ All configuration in one place, powered by Nix.
 - `cryolite`: ThinkPad E14 Gen 3 (AMD)
 - `ilmenite`: Services VPS
 - `karanohako`: Beelink EQ12 Mini PC, NAS
+- `osmium`: ThinkBook 14 G8+ IPH
 - `sapphire`: Storage VPS
 
 ## Updates

@@ -20,7 +20,7 @@ in
           {
             name = "Useful CapsLock";
             device.only = [
-              "AT Translated Set 2 keyboard" # ThinkPad E14 Gen 3
+              "AT Translated Set 2 keyboard" # cryolite, osmium
               "Milsky 87EC-XRGB"
             ];
             remap = {

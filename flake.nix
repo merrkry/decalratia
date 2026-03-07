@@ -225,6 +225,16 @@
           tags = [ "home" ];
         };
 
+        "osmium" = {
+          hostPlatform = "x86_64-linux";
+          stateVersion = "25.11";
+          tags = [
+            "build"
+            "desktop"
+            "home"
+          ];
+        };
+
         "sapphire" = {
           hostPlatform = "x86_64-linux";
           stateVersion = "24.11";

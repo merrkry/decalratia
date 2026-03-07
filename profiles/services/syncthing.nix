@@ -11,6 +11,7 @@ let
     "akahi" = "U3PBZHL-JZWV4UY-X4Q7UZA-RC4PN2Z-6AXDMB5-B5M7WTE-OUABXFB-IOZB7QE";
     "cryolite" = "2MTCCD2-3QGWJVF-7VKRHOF-IXCOPBJ-ERRC2TQ-W2B4254-PKCRO6M-ZTSRLAP";
     "karanohako" = "6SIYA2F-Q7E32NF-ABSRLXB-3D6YXPB-IEV2PZF-3OOH3NT-ZFGFNHL-75R75Q6";
+    "osmium" = "7OFWMKI-EAWHEUT-THHXKGE-4EANTIW-DL5XVUE-F6V6YIP-O2Y7BJQ-R7RRWAA";
   };
   filteredDeviceAttr = lib.filterAttrs (name: id: name != cfg.hostname) fullDevicesAttr;
   fullDevicesList = builtins.attrNames fullDevicesAttr;
@@ -56,7 +57,7 @@ in
               devices = filteredDeviceList;
               versioning = {
                 type = "simple";
-                params = {
+                param = {
                   cleanoutDays = 7;
                   keep = 2;
                 };
@@ -66,7 +67,7 @@ in
           };
           gui.user = "merrkry";
           options = {
-            autoUpgradeIntervalH = "0";
+            autoUpgradeIntervalH = 0;
             urAccepted = -1; # disable telemetry
           };
         };

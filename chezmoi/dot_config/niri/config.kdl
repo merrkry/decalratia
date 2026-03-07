@@ -18,6 +18,10 @@ output "Beihai Century Joint Innovation Technology Co.,Ltd P2710V 0000000000000"
     scale 1.5
     mode "3840x2160@143.998000"
 }
+output "China Star Optoelectronics Technology Co., Ltd MNE507ZA2-4 Unknown" {
+    scale 2.0
+    mode "3072x1920@120.000"
+}
 layout {
     gaps 8
     focus-ring {
