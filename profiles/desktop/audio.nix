@@ -91,15 +91,20 @@ in
       home = {
         packages = with pkgs; [ pavucontrol ];
 
-        # WORKAROUND: Audio-related GTK apps will reports broken GST install.
-        # https://github.com/NixOS/nixpkgs/issues/53631
         sessionVariables = {
-          GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
-            pkgs.gst_all_1.gst-plugins-good
-            pkgs.gst_all_1.gst-plugins-bad
-            pkgs.gst_all_1.gst-plugins-ugly
-            pkgs.gst_all_1.gst-libav
-          ];
+          # WORKAROUND: Audio-related GTK apps will reports broken GST install.
+          # https://github.com/NixOS/nixpkgs/issues/53631
+          # Will spam error messages like this when loading shell:
+          # ```
+          # Failed to load module: /nix/store/...-gst-plugins-ugly-.../lib/gstreamer-1.0/libgstx264.so
+          # 'g_io_module_load': /nix/store/...-gst-libav-.../lib/gstreamer-1.0/libgstlibav.so: undefined symbol: g_io_module_load
+          # ```
+          # GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
+          #   pkgs.gst_all_1.gst-plugins-good
+          #   pkgs.gst_all_1.gst-plugins-bad
+          #   pkgs.gst_all_1.gst-plugins-ugly
+          #   pkgs.gst_all_1.gst-libav
+          # ];
         };
       };
     };
