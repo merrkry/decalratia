@@ -18,12 +18,6 @@
     }
   },
   "autoupdate": false,
-  "keybinds": {
-    "app_exit": "ctrl+d",
-    "editor_open": "ctrl+g",
-    "messages_first": "home",
-    "messages_last": "end"
-  },
   "lsp": false,
   "permission": {
     "bash": {
@@ -55,6 +49,5 @@
     }
   },
   "plugin": ["@tarquinen/opencode-dcp@latest"],
-  "share": "disabled",
-  "theme": "system"
+  "share": "disabled"
 }
