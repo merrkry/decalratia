@@ -77,6 +77,10 @@ in
         historyFile = "${hmConfig.xdg.stateHome}/bash/history";
       };
 
+      systemd.user.tmpfiles.rules = [
+        "d ${hmConfig.home.homeDirectory}/.local/bin - - - - -"
+      ];
+
       xdg = {
         enable = true;
 
