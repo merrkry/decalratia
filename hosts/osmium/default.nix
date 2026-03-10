@@ -27,6 +27,7 @@
     gui = {
       thunderbird.enable = true;
       vscode.enable = true;
+      zed.enable = true;
     };
     services = {
       rclone.enable = true;

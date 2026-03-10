@@ -2,25 +2,7 @@
   "colorize_brackets": true,
   "language_models": {
     "openai_compatible": {
-      "MiniMax": {
-        "api_url": "https://api.minimaxi.com/v1",
-        "available_models": [
-          {
-            "name": "MiniMax-M2.5",
-            "max_tokens": 200000,
-            "max_output_tokens": 32000,
-            "max_completion_tokens": 200000,
-            "capabilities": {
-              "tools": true,
-              "images": false,
-              "parallel_tool_calls": false,
-              "prompt_cache_key": false,
-              "chat_completions": true,
-            },
-          },
-        ],
       },
-    },
   },
   "double_click_in_multibuffer": "select",
   "vim": {
@@ -28,6 +10,7 @@
     "use_system_clipboard": "never",
   },
   "edit_predictions": {
+    "provider": "zed",
     "copilot": {
       "enable_next_edit_suggestions": false,
     },
@@ -95,9 +78,6 @@
       },
     },
   },
-  "features": {
-    "edit_prediction_provider": "copilot",
-  },
   "format_on_save": "on",
   "diagnostics": {
     "inline": {
@@ -136,8 +116,10 @@
     "enabled": true,
     "default_profile": "ask",
     "default_model": {
-      "provider": "MiniMax",
-      "model": "MiniMax-M2.5",
+      "effort": "medium",
+      "enable_thinking": false,
+      "provider": "zed.dev",
+      "model": "gpt-5.4",
     },
   },
   "ui_font_family": ".ZedMono",
