@@ -86,6 +86,12 @@ in
       fsType = "btrfs";
       options = [ "subvol=@nix" ] ++ helpers.recommendedBtrfsArgs;
     };
+
+    "/.swapvol" = {
+      device = "/dev/mapper/${luksDevice}";
+      fsType = "btrfs";
+      options = [ "subvol=@swap" ];
+    };
   };
 
   services = {
@@ -106,7 +112,7 @@ in
     upower.enable = true;
   };
 
-  swapDevices = [ ];
+  swapDevices = [ { device = "/.swapvol/swapfile"; } ];
 
   hardware = {
     cpu.intel.updateMicrocode = true;
