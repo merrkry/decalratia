@@ -27,15 +27,13 @@ return {
 
 			---@return boolean
 			local function launch_without_command()
-				local argv = vim.v.argv
-				for i, arg in ipairs(argv) do
-					if arg == "-c" then
-						if argv[i + 1] and argv[i + 1] == "" then
-							return true
-						end
+				for _, arg in ipairs(vim.v.argv) do
+					-- Nix wrapper etc. adds `--cmd` to set variables, we should only detect `-c <cmd>` and `+<cmd>`.
+					if arg == "-c" or arg:match("^%+") then
+						return false
 					end
 				end
-				return false
+				return true
 			end
 
 			local opts = {
