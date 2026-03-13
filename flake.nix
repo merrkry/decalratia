@@ -165,6 +165,8 @@
               pkg:
               builtins.elem (lib.getName pkg) [
                 "7zz"
+                "chromium"
+                "chromium-unwrapped"
                 "claude-code"
                 "code"
                 "nvidia-persistenced"
@@ -175,8 +177,7 @@
                 "rime-moegirl"
                 "steam"
                 "steam-unwrapped"
-                "chromium"
-                "chromium-unwrapped"
+                "uasm"
                 "ungoogled-chromium"
                 "ungoogled-chromium-unwrapped"
                 "via"
