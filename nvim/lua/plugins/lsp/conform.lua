@@ -13,13 +13,13 @@ return {
 				formatters_by_ft = {
 					bib = { "tex-fmt" },
 					cls = { "tex-fmt" },
-					css = { "prettier" },
+					css = { "oxfmt" },
 					go = { "goimports", "gofumpt" },
-					json = { "prettier" },
-					jsonc = { "prettier" },
+					json = { "oxfmt" },
+					jsonc = { "oxfmt" },
 					kdl = { "kdlfmt" },
 					lua = { "stylua" },
-					markdown = { "prettier" },
+					markdown = { "oxfmt" },
 					nix = { "nixfmt" },
 					python = {
 						"ruff_format",
@@ -30,7 +30,7 @@ return {
 					sty = { "tex-fmt" },
 					tex = { "tex-fmt" },
 					toml = { "taplo" },
-					yaml = { "prettier" },
+					yaml = { "oxfmt" },
 					["_"] = { "trim_whitespace" },
 				},
 				default_format_opts = {

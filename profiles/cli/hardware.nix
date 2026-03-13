@@ -20,6 +20,7 @@ in
       usbutils
       pciutils
       lm_sensors
+      lsof
     ];
 
   };

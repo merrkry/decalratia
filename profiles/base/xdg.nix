@@ -52,9 +52,6 @@ in
           CUDA_CACHE_PATH = "${hmConfig.xdg.cacheHome}/nv";
           NPM_CONFIG_CACHE = "${hmConfig.xdg.cacheHome}/npm";
 
-          # runtime
-          NPM_CONFIG_TMP = "${runtimeDir}/npm";
-
           # disable
           # up to 3.12
           PYTHONSTARTUP =

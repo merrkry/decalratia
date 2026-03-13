@@ -5,7 +5,7 @@ cleanup:
 sync:
   git pull --autostash
 
-update: chezmoi flatpak rime rustup
+update: chezmoi flatpak rime mise rustup
 
 [group('update')]
 chezmoi:
@@ -35,3 +35,8 @@ rustup:
   rustup component add --toolchain nightly rust-analyzer
   rustup component add --toolchain nightly rustc-codegen-cranelift-preview
   rustup default nightly
+
+[group('update')]
+mise:
+  mise install --locked
+  mise prune

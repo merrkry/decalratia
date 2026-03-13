@@ -16,84 +16,40 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
       home = {
+        # Life is much easier when managed by a more imperative package manager, e.g. mise.
+        # We use Nix when:
+        # - No packaging available in aqua or language toolchain.
+        # - No prebuilt binaries available and build can be tricky.
+        # - Only Nixpkgs version works on NixOS. (C++)
+        # - We want it to be available as early as possible.
         packages = with pkgs; [
-          # AI
-          # Fast-moving software are managed more conveniently with imperative package managers.
-          # Here we install from nixpkgs as fallback.
-          opencode
-
           # Universal tools
-
           gnumake
-          meson
           mesonlsp
-          ninja
-          xmake
-
-          jujutsu
-          jjui
-
-          just
-          go-task
-
-          difftastic
-
-          lsof
-
           typos-lsp
-
-          gh
-
           # Language toolchains
-
-          # bash
+          # If one tool of a language must be installed via Nix,
+          # we also install the rest of them via Nix for ease of administration.
+          ## bash
           bash-language-server
           shfmt # used by bash-language-server automatically
-          # c / cpp
+          ## c / cpp
           gcc
           clang-tools
           cmake
-          # go
-          go
-          gopls
-          gofumpt
-          gotools
-          # javascript / typescript
-          bun
-          deno
-          nodejs
-          vtsls
-          # kdl
+          ## kdl
           kdlfmt
-          # latex
+          ## latex
           texlab
           tex-fmt
-          # lua
-          lua
+          ## lua
+          luajit
           emmylua-ls
           stylua
-          # nix
+          ## nix
           nixd
           nixfmt
           statix
-          # python
-          python3
-          pyrefly
-          ruff
-          uv
-          # rust
-          rustup
-          mold
-          # toml
-          taplo
-          # typst
-          typst
-          tinymist
-          # yaml
-          yaml-language-server
-          # misc
-          nodePackages.prettier
-          vscode-langservers-extracted
         ];
 
         sessionVariables = {

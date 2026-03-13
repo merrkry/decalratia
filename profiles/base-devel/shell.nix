@@ -66,6 +66,8 @@ in
 
         fish.enable = true;
 
+        mise.enable = true;
+
         nix-your-shell.enable = true;
       };
     };

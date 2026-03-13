@@ -1,0 +1,63 @@
+[settings]
+lockfile = true
+all_compile = false
+
+[settings.npm]
+package_manager = "bun"
+
+[settings.pipx]
+uvx = true
+
+[settings.rust]
+cargo_home = "/home/merrkry/.local/share/cargo"
+rustup_home = "/home/merrkry/.local/share/rustup"
+
+[tools]
+# Language toolchains
+ninja = "latest"
+meson = "latest"
+## frontend
+node = "latest"
+bun = "latest"
+"npm:@vtsls/language-server" = "latest"
+"npm:oxfmt" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+## go
+go = "latest"
+"go:golang.org/x/tools/cmd/goimports" = "latest"
+"go:golang.org/x/tools/gopls" = "latest"
+"go:mvdan.cc/gofumpt" = "latest"
+# python
+python = "latest"
+uv = "latest"
+"pipx:pyrefly" = "latest"
+"pipx:ruff" = "latest"
+## rust
+## see also `[tools.rust]` below
+mold = "latest"
+cargo-binstall = "latest"
+"cargo:cargo-edit" = "latest"
+"cargo:cargo-sort" = "latest"
+# toml
+taplo = "latest"
+## typst
+typst = "latest"
+tinymist = "latest"
+# yaml
+"npm:yaml-language-server" = "latest"
+
+# Utilities
+## AI
+opencode = "latest"
+## VCS
+difftastic = "latest"
+jujutsu = "latest"
+gh = "latest"
+## Task runners
+just = "latest"
+task = "latest"
+
+[tools.rust]
+version = "nightly"
+profile = "default"
+components = "rust-analyzer,rustc-codegen-cranelift-preview"
