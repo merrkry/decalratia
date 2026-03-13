@@ -8,32 +8,9 @@
     "enabled": true,
     "turns": 8,
   },
-  "tools": {
-    "settings": {
-      "nudgeEnabled": true,
-      "nudgeFrequency": 16,
-      "contextLimit": "60%",
-    },
-    "distill": {
-      "permission": "allow",
-    },
-    "compress": {
-      "permission": "deny",
-    },
-    "prune": {
-      "permission": "allow",
-    },
-  },
-  "strategies": {
-    "deduplication": {
-      "enabled": true,
-    },
-    "supersedeWrites": {
-      "enabled": true,
-    },
-    "purgeErrors": {
-      "enabled": true,
-      "turns": 4,
-    },
+  "compress": {
+    "permission": "allow",
+    "maxContextLimit": "80%",
+    "minContextLimit": "40%",
   },
 }
