@@ -60,7 +60,9 @@
         podman-compose
         prismlauncher
         q
+        qq
         tsukimi
+        wechat
         xournalpp
         zotero
       ];
@@ -70,9 +72,7 @@
       flatpak.packages = [
         "app.zen_browser.zen"
         "com.discordapp.Discord"
-        "com.qq.QQ"
         "com.spotify.Client"
-        "com.tencent.WeChat"
         "com.usebottles.bottles"
       ];
     };

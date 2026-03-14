@@ -174,6 +174,7 @@
                 "obsidian"
                 "open-webui"
                 "ouch"
+                "qq"
                 "rime-moegirl"
                 "steam"
                 "steam-unwrapped"
@@ -184,6 +185,7 @@
                 "vscode"
                 "vscode-extension-github-copilot"
                 "vscode-with-extensions"
+                "wechat"
                 "widevine-cdm"
               ];
             permittedInsecurePackages = [ "olm-3.2.16" ];

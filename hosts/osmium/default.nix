@@ -61,6 +61,8 @@
         anki
         materialgram
         obsidian
+        qq
+        wechat
         zotero
       ];
     };
@@ -68,9 +70,7 @@
     services = {
       flatpak.packages = [
         "com.discordapp.Discord"
-        "com.qq.QQ"
         "com.spotify.Client"
-        "com.tencent.WeChat"
       ];
     };
   };
