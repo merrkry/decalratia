@@ -37,19 +37,19 @@ version = "2.1.1"
 backend = "cargo:cargo-sort"
 
 [[tools.difftastic]]
-version = "0.67.0"
+version = "0.68.0"
 backend = "aqua:Wilfred/difftastic"
-"platforms.linux-arm64" = { checksum = "sha256:e36f746fbf5d37c68c1d760878fdb77778066c6a646253bb8d9ae7d3fe84c81b", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-aarch64-unknown-linux-gnu.tar.gz"}
-"platforms.linux-arm64-musl" = { checksum = "sha256:e36f746fbf5d37c68c1d760878fdb77778066c6a646253bb8d9ae7d3fe84c81b", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-aarch64-unknown-linux-gnu.tar.gz"}
-"platforms.linux-x64" = { checksum = "sha256:328e1ab028a36b81ae990c9fc40a1c8eb618e14559e0d67a0a63f328ad85de09", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64-baseline" = { checksum = "sha256:328e1ab028a36b81ae990c9fc40a1c8eb618e14559e0d67a0a63f328ad85de09", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64-musl" = { checksum = "sha256:328e1ab028a36b81ae990c9fc40a1c8eb618e14559e0d67a0a63f328ad85de09", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64-musl-baseline" = { checksum = "sha256:328e1ab028a36b81ae990c9fc40a1c8eb618e14559e0d67a0a63f328ad85de09", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.macos-arm64" = { checksum = "sha256:cdb1d74f2b0f37df3bce7a9ac09d8ecd0d2d94530627516ff9b12f25d187a555", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-aarch64-apple-darwin.tar.gz"}
-"platforms.macos-x64" = { checksum = "sha256:83cc28d781f11b7fc2723b73ded623cf97a70a0849dff1efa39d1864adfdac54", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-apple-darwin.tar.gz"}
-"platforms.macos-x64-baseline" = { checksum = "sha256:83cc28d781f11b7fc2723b73ded623cf97a70a0849dff1efa39d1864adfdac54", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-apple-darwin.tar.gz"}
-"platforms.windows-x64" = { checksum = "sha256:5fd7aa37ce90f838fb91f6e4b2765ac9cad0a7e9d1dccc5b19529fd6b4cbf8b4", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-pc-windows-msvc.zip"}
-"platforms.windows-x64-baseline" = { checksum = "sha256:5fd7aa37ce90f838fb91f6e4b2765ac9cad0a7e9d1dccc5b19529fd6b4cbf8b4", url = "https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-pc-windows-msvc.zip"}
+"platforms.linux-arm64" = { checksum = "sha256:faadfb3a88c194033449092fad3a86f1179738a0b3bfc44580c83473bdb17451", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-aarch64-unknown-linux-gnu.tar.gz"}
+"platforms.linux-arm64-musl" = { checksum = "sha256:faadfb3a88c194033449092fad3a86f1179738a0b3bfc44580c83473bdb17451", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-aarch64-unknown-linux-gnu.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:c242d19dd36deca88da9792ab81781babc309c4f3e9ccc8ce8b3a175b52e7b16", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64-baseline" = { checksum = "sha256:c242d19dd36deca88da9792ab81781babc309c4f3e9ccc8ce8b3a175b52e7b16", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64-musl" = { checksum = "sha256:c242d19dd36deca88da9792ab81781babc309c4f3e9ccc8ce8b3a175b52e7b16", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64-musl-baseline" = { checksum = "sha256:c242d19dd36deca88da9792ab81781babc309c4f3e9ccc8ce8b3a175b52e7b16", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:35df7904af1c1aec9570f08e1a7825301ee317f3131b6b4edbf3f6d8d209cd8c", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-aarch64-apple-darwin.tar.gz"}
+"platforms.macos-x64" = { checksum = "sha256:9c727343fd0fc0504cb004b6619358e5446324e09562fb8e39d66bc82e680070", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-x86_64-apple-darwin.tar.gz"}
+"platforms.macos-x64-baseline" = { checksum = "sha256:9c727343fd0fc0504cb004b6619358e5446324e09562fb8e39d66bc82e680070", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-x86_64-apple-darwin.tar.gz"}
+"platforms.windows-x64" = { checksum = "sha256:a87429ebc75343c9731debfd083b954bbd1e87011f962078b9ade92e33440348", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-x86_64-pc-windows-msvc.zip"}
+"platforms.windows-x64-baseline" = { checksum = "sha256:a87429ebc75343c9731debfd083b954bbd1e87011f962078b9ade92e33440348", url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-x86_64-pc-windows-msvc.zip"}
 
 [[tools.gh]]
 version = "2.88.1"
@@ -109,22 +109,22 @@ backend = "aqua:jj-vcs/jj"
 "platforms.windows-x64-baseline" = { checksum = "sha256:53be7e277e5f0396621ccdda509904e4f88fe8e517b78ce20176269b7e97d378", url = "https://github.com/jj-vcs/jj/releases/download/v0.39.0/jj-v0.39.0-x86_64-pc-windows-msvc.zip"}
 
 [[tools.just]]
-version = "1.46.0"
+version = "1.47.1"
 backend = "aqua:casey/just"
-"platforms.linux-arm64" = { checksum = "sha256:b81970c8247fa64cfb30d2a3da0e487e4253f9f2d01865ed5e7d53cdc7b02188", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-aarch64-unknown-linux-musl.tar.gz"}
-"platforms.linux-arm64-musl" = { checksum = "sha256:b81970c8247fa64cfb30d2a3da0e487e4253f9f2d01865ed5e7d53cdc7b02188", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-aarch64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64" = { checksum = "sha256:79966e6e353f535ee7d1c6221641bcc8e3381c55b0d0a6dc6e54b34f9db36eaa", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64-baseline" = { checksum = "sha256:79966e6e353f535ee7d1c6221641bcc8e3381c55b0d0a6dc6e54b34f9db36eaa", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64-musl" = { checksum = "sha256:79966e6e353f535ee7d1c6221641bcc8e3381c55b0d0a6dc6e54b34f9db36eaa", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64-musl-baseline" = { checksum = "sha256:79966e6e353f535ee7d1c6221641bcc8e3381c55b0d0a6dc6e54b34f9db36eaa", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.macos-arm64" = { checksum = "sha256:438eaf6468a115aa7db93e501cc7e3272f453f6b7083be3863adfab546b23358", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-aarch64-apple-darwin.tar.gz"}
-"platforms.macos-x64" = { checksum = "sha256:ec54dd60ac876261b7318f1852ef9c0319fede1e5a73c14f56d908a8edf595b8", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-x86_64-apple-darwin.tar.gz"}
-"platforms.macos-x64-baseline" = { checksum = "sha256:ec54dd60ac876261b7318f1852ef9c0319fede1e5a73c14f56d908a8edf595b8", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-x86_64-apple-darwin.tar.gz"}
-"platforms.windows-x64" = { checksum = "sha256:f0acf3f8ccbcf360b481baae9cae4c921774c89d5d932012481d3e0bda78ab39", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-x86_64-pc-windows-msvc.zip"}
-"platforms.windows-x64-baseline" = { checksum = "sha256:f0acf3f8ccbcf360b481baae9cae4c921774c89d5d932012481d3e0bda78ab39", url = "https://github.com/casey/just/releases/download/1.46.0/just-1.46.0-x86_64-pc-windows-msvc.zip"}
+"platforms.linux-arm64" = { checksum = "sha256:e6321ac6d0499bfe849cf28869e34bffbee246b8d450ffbb9a6792aea3084f72", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-aarch64-unknown-linux-musl.tar.gz"}
+"platforms.linux-arm64-musl" = { checksum = "sha256:e6321ac6d0499bfe849cf28869e34bffbee246b8d450ffbb9a6792aea3084f72", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-aarch64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:3cb931ae25860f261ee373f32ede3b772ac91f14f588e4071576d3ffcf1a16fd", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64-baseline" = { checksum = "sha256:3cb931ae25860f261ee373f32ede3b772ac91f14f588e4071576d3ffcf1a16fd", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64-musl" = { checksum = "sha256:3cb931ae25860f261ee373f32ede3b772ac91f14f588e4071576d3ffcf1a16fd", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64-musl-baseline" = { checksum = "sha256:3cb931ae25860f261ee373f32ede3b772ac91f14f588e4071576d3ffcf1a16fd", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:630390f3cfe131f5153c336cb5d5e9714c49ff27bee38d090da0a5901fd660e5", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-aarch64-apple-darwin.tar.gz"}
+"platforms.macos-x64" = { checksum = "sha256:9e0bd11c96f4947d0b8c52240e0a0cdfd6c93728d5912bb903c01b9c24b9a9ed", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-apple-darwin.tar.gz"}
+"platforms.macos-x64-baseline" = { checksum = "sha256:9e0bd11c96f4947d0b8c52240e0a0cdfd6c93728d5912bb903c01b9c24b9a9ed", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-apple-darwin.tar.gz"}
+"platforms.windows-x64" = { checksum = "sha256:0f059a129049e4efaff5ff645182972edb07180248f769c5153a90765643bb7b", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-pc-windows-msvc.zip"}
+"platforms.windows-x64-baseline" = { checksum = "sha256:0f059a129049e4efaff5ff645182972edb07180248f769c5153a90765643bb7b", url = "https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-pc-windows-msvc.zip"}
 
 [[tools.meson]]
-version = "1.10.1"
+version = "1.10.2"
 backend = "pipx:meson"
 
 [[tools.mold]]
@@ -172,7 +172,7 @@ version = "0.3.0"
 backend = "npm:@vtsls/language-server"
 
 [[tools."npm:oxfmt"]]
-version = "0.40.0"
+version = "0.41.0"
 backend = "npm:oxfmt"
 
 [[tools."npm:vscode-langservers-extracted"]]
@@ -184,19 +184,19 @@ version = "1.21.0"
 backend = "npm:yaml-language-server"
 
 [[tools.opencode]]
-version = "1.2.25"
+version = "1.2.27"
 backend = "aqua:anomalyco/opencode"
-"platforms.linux-arm64" = { checksum = "sha256:740865cf472bcab47d2e4d37f0e0abe4b3755731874839128fe788e99395a0a8", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-linux-arm64.tar.gz"}
-"platforms.linux-arm64-musl" = { checksum = "sha256:740865cf472bcab47d2e4d37f0e0abe4b3755731874839128fe788e99395a0a8", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-linux-arm64.tar.gz"}
-"platforms.linux-x64" = { checksum = "sha256:cab27bac5ae5f3706263e573c815cd724eafad54ef964867db36278181e64611", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-linux-x64.tar.gz"}
-"platforms.linux-x64-baseline" = { checksum = "sha256:cab27bac5ae5f3706263e573c815cd724eafad54ef964867db36278181e64611", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-linux-x64.tar.gz"}
-"platforms.linux-x64-musl" = { checksum = "sha256:cab27bac5ae5f3706263e573c815cd724eafad54ef964867db36278181e64611", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-linux-x64.tar.gz"}
-"platforms.linux-x64-musl-baseline" = { checksum = "sha256:cab27bac5ae5f3706263e573c815cd724eafad54ef964867db36278181e64611", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-linux-x64.tar.gz"}
-"platforms.macos-arm64" = { checksum = "sha256:19d2bc2a6d60c42ad7daec8f042ccbc0a3987709e73dc5acb1cfcd8de7c80b86", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-darwin-arm64.zip"}
-"platforms.macos-x64" = { checksum = "sha256:11bc91dd12a4de4fd6162beb9cfa37071d42d0a21007f583bf09dedd72dd57ce", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-darwin-x64.zip"}
-"platforms.macos-x64-baseline" = { checksum = "sha256:11bc91dd12a4de4fd6162beb9cfa37071d42d0a21007f583bf09dedd72dd57ce", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-darwin-x64.zip"}
-"platforms.windows-x64" = { checksum = "sha256:cef63943ccd9791f3cf6457ef1b8ad03d9e7ebb8672418eb7fa59a815008509a", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-windows-x64.zip"}
-"platforms.windows-x64-baseline" = { checksum = "sha256:cef63943ccd9791f3cf6457ef1b8ad03d9e7ebb8672418eb7fa59a815008509a", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.25/opencode-windows-x64.zip"}
+"platforms.linux-arm64" = { checksum = "sha256:bcd91a3ebe9480ffb1702e5c71168d451150421acc99c6d1abf5edc5e2cb39f5", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-linux-arm64.tar.gz"}
+"platforms.linux-arm64-musl" = { checksum = "sha256:bcd91a3ebe9480ffb1702e5c71168d451150421acc99c6d1abf5edc5e2cb39f5", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-linux-arm64.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:6fe3820b145857f7ff507d2826058b7acf1fce8258def1498468dd43809e69e8", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-linux-x64.tar.gz"}
+"platforms.linux-x64-baseline" = { checksum = "sha256:6fe3820b145857f7ff507d2826058b7acf1fce8258def1498468dd43809e69e8", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-linux-x64.tar.gz"}
+"platforms.linux-x64-musl" = { checksum = "sha256:6fe3820b145857f7ff507d2826058b7acf1fce8258def1498468dd43809e69e8", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-linux-x64.tar.gz"}
+"platforms.linux-x64-musl-baseline" = { checksum = "sha256:6fe3820b145857f7ff507d2826058b7acf1fce8258def1498468dd43809e69e8", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-linux-x64.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:fa680fa79086c7509d3a2c21e49c9264b803da7c0f1b7807ed842b8e37325597", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-darwin-arm64.zip"}
+"platforms.macos-x64" = { checksum = "sha256:fc719db27acbc817ff2a4df2bbaa788e02976ddc26a96c84de4fdbe663714b8c", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-darwin-x64.zip"}
+"platforms.macos-x64-baseline" = { checksum = "sha256:fc719db27acbc817ff2a4df2bbaa788e02976ddc26a96c84de4fdbe663714b8c", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-darwin-x64.zip"}
+"platforms.windows-x64" = { checksum = "sha256:9e2e43568e6f952e8c7cb77b934fbff53f454f0213688f24f3c3769b69703e84", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-windows-x64.zip"}
+"platforms.windows-x64-baseline" = { checksum = "sha256:9e2e43568e6f952e8c7cb77b934fbff53f454f0213688f24f3c3769b69703e84", url = "https://github.com/anomalyco/opencode/releases/download/v1.2.27/opencode-windows-x64.zip"}
 
 [[tools."pipx:pyrefly"]]
 version = "0.56.0"
@@ -222,7 +222,7 @@ backend = "core:python"
 "platforms.windows-x64-baseline" = { checksum = "sha256:8458fdf45b9b47685a7dea76d72a4b8cf946091fe48cac43d3564f7f318e8c0f", url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260310/cpython-3.14.3+20260310-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"}
 
 [[tools.rust]]
-version = "nightly"
+version = "1.94.0"
 backend = "core:rust"
 
 [[tools.taplo]]
@@ -286,16 +286,16 @@ backend = "aqua:typst/typst"
 "platforms.windows-x64-baseline" = { checksum = "sha256:51353994ac83218c3497052e89b2c432c53b9d4439cdc1b361e2ea4798ebfc13", url = "https://github.com/typst/typst/releases/download/v0.14.2/typst-x86_64-pc-windows-msvc.zip"}
 
 [[tools.uv]]
-version = "0.10.9"
+version = "0.10.10"
 backend = "aqua:astral-sh/uv"
-"platforms.linux-arm64" = { checksum = "sha256:05b0d3087e913ebe11756365a90dd47c05d6728752fdbe129ad4c3ccd769826d", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-aarch64-unknown-linux-musl.tar.gz"}
-"platforms.linux-arm64-musl" = { checksum = "sha256:05b0d3087e913ebe11756365a90dd47c05d6728752fdbe129ad4c3ccd769826d", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-aarch64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64" = { checksum = "sha256:433e56874739e92c7cfd661ba9e5f287b376ca612c08c8194a41a98a13158aea", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64-baseline" = { checksum = "sha256:433e56874739e92c7cfd661ba9e5f287b376ca612c08c8194a41a98a13158aea", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64-musl" = { checksum = "sha256:433e56874739e92c7cfd661ba9e5f287b376ca612c08c8194a41a98a13158aea", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.linux-x64-musl-baseline" = { checksum = "sha256:433e56874739e92c7cfd661ba9e5f287b376ca612c08c8194a41a98a13158aea", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-unknown-linux-musl.tar.gz"}
-"platforms.macos-arm64" = { checksum = "sha256:a92f61e9ac9b0f29668c15f56152e4a60143fca148ff5bfadb86718472c3f376", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-aarch64-apple-darwin.tar.gz"}
-"platforms.macos-x64" = { checksum = "sha256:9cc2de7d195fa157f98b306a8a1cb151ded93f488939b93363cebc8b9d598c28", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-apple-darwin.tar.gz"}
-"platforms.macos-x64-baseline" = { checksum = "sha256:9cc2de7d195fa157f98b306a8a1cb151ded93f488939b93363cebc8b9d598c28", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-apple-darwin.tar.gz"}
-"platforms.windows-x64" = { checksum = "sha256:f58dc40896000229db7c52b8bdd931394040ef2ad59abd1eda841f6d70b13d7a", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-pc-windows-msvc.zip"}
-"platforms.windows-x64-baseline" = { checksum = "sha256:f58dc40896000229db7c52b8bdd931394040ef2ad59abd1eda841f6d70b13d7a", url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-pc-windows-msvc.zip"}
+"platforms.linux-arm64" = { checksum = "sha256:d08c08b82cdcaf2bd3d928ffe844d3558dda53f90066db6ef9174157cc763252", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-aarch64-unknown-linux-musl.tar.gz"}
+"platforms.linux-arm64-musl" = { checksum = "sha256:d08c08b82cdcaf2bd3d928ffe844d3558dda53f90066db6ef9174157cc763252", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-aarch64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:74544e8755fbc27559e22e29fd561bdc48f91b8bd8323e760a1130f32433bea4", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64-baseline" = { checksum = "sha256:74544e8755fbc27559e22e29fd561bdc48f91b8bd8323e760a1130f32433bea4", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64-musl" = { checksum = "sha256:74544e8755fbc27559e22e29fd561bdc48f91b8bd8323e760a1130f32433bea4", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.linux-x64-musl-baseline" = { checksum = "sha256:74544e8755fbc27559e22e29fd561bdc48f91b8bd8323e760a1130f32433bea4", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-unknown-linux-musl.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:8a09f0ef51ee7f7170731b4cb8bde5bf9ba6da5304f49a7df6cdab42a1f37b5d", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-aarch64-apple-darwin.tar.gz"}
+"platforms.macos-x64" = { checksum = "sha256:dd18420591d625f9b4ca2b57a7a6fe3cce43910f02e02d90e47a4101428de14a", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-apple-darwin.tar.gz"}
+"platforms.macos-x64-baseline" = { checksum = "sha256:dd18420591d625f9b4ca2b57a7a6fe3cce43910f02e02d90e47a4101428de14a", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-apple-darwin.tar.gz"}
+"platforms.windows-x64" = { checksum = "sha256:d31a30f1dfb96e630a08d5a9b3f3f551254b7ed6e9b7e495f46a4232661c7252", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-pc-windows-msvc.zip"}
+"platforms.windows-x64-baseline" = { checksum = "sha256:d31a30f1dfb96e630a08d5a9b3f3f551254b7ed6e9b7e495f46a4232661c7252", url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-pc-windows-msvc.zip"}

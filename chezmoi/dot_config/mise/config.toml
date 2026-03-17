@@ -33,7 +33,6 @@ uv = "latest"
 "pipx:pyrefly" = "latest"
 "pipx:ruff" = "latest"
 ## rust
-## see also `[tools.rust]` below
 mold = "latest"
 cargo-binstall = "latest"
 "cargo:cargo-edit" = "latest"
@@ -56,8 +55,3 @@ gh = "latest"
 ## Task runners
 just = "latest"
 task = "latest"
-
-[tools.rust]
-version = "nightly"
-profile = "default"
-components = "rust-analyzer,rustc-codegen-cranelift-preview"
