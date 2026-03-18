@@ -6,8 +6,8 @@ stdenvNoCC.mkDerivation {
   src = fetchFromGitHub {
     owner = "GabePoel";
     repo = "KvLibadwaita";
-    rev = "3deb8dbe5f6f0826e9934988ab9225951db651e8";
-    sha256 = "sha256-M0XhmZ/2lk+6jIkUxAog1A+/BIz9/mUTeWGV1mtBrxY=";
+    rev = "1f4e0bec44b13dabfa1fe4047aa8eeaccf2f3557";
+    hash = "sha256-jCXME6mpqqWd7gWReT04a//2O83VQcOaqIIXa+Frntc=";
   };
 
   installPhase = ''

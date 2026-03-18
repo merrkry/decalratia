@@ -30,7 +30,7 @@ in
         noto-fonts
 
         # Many poorly written CSS code don't expect that there exits apple emoji but not apple system font.
-        # Include both can avoid some weired behavior.
+        # Including both can avoid some weird behavior.
         apple-color-emoji
         apple-system-fonts
 

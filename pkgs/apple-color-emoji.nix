@@ -1,16 +1,19 @@
-{ stdenvNoCC, fetchurl }:
-stdenvNoCC.mkDerivation rec {
+{
+  fetchurl,
+  stdenvNoCC,
+}:
+stdenvNoCC.mkDerivation {
   pname = "apple-color-emoji";
-  version = "17.4";
+  version = "0-unstable-2026-03-18";
 
   src = fetchurl {
-    url = "https://github.com/samuelngs/apple-emoji-linux/releases/download/v${version}/AppleColorEmoji.ttf";
-    hash = "sha256-SG3JQLybhY/fMX+XqmB/BKhQSBB0N1VRqa+H6laVUPE=";
+    url = "https://github.com/samuelngs/apple-emoji-ttf/releases/download/macos-26-20260219-2aa12422/AppleColorEmoji-Linux.ttf";
+    hash = "sha256-U1oEOvBHBtJEcQWeZHRb/IDWYXraLuo0NdxWINwPUxg=";
   };
 
   dontUnpack = true;
 
   installPhase = ''
-    install -Dm444 $src $out/share/fonts/apple-color-emoji/apple-color-emoji.ttf
+    install -Dm644 $src "$out/share/fonts/apple-color-emoji/apple-color-emoji.ttf"
   '';
 }
