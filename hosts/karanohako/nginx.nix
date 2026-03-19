@@ -21,7 +21,6 @@
           "couchdb.tsubasa.one"
           "dufs.tsubasa.one"
           "git.tsubasa.one"
-          "tavern.tsubasa.one"
         ];
         inherit dnsProvider environmentFile reloadServices;
       };
