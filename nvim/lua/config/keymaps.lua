@@ -36,3 +36,6 @@ end, { desc = "Flycheck" })
 
 vim.keymap.set("n", "<leader>ta", "<cmd>tabnew<CR>", { desc = "Create new tab" })
 vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+
+vim.keymap.set("n", "q", "<Nop>")
+vim.keymap.set("n", "Q", "q")
