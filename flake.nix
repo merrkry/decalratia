@@ -105,13 +105,6 @@
       };
     };
 
-    vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     determinate = {
       # url = "github:DeterminateSystems/nix-src/v3.16.0";
       url = "github:merrkry/determinate-nix/prod";

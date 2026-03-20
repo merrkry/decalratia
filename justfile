@@ -5,7 +5,7 @@ cleanup:
 sync:
   git pull --autostash
 
-update: chezmoi flatpak rime rustup mise
+update: chezmoi flatpak rime rustup mise vscode
 
 [group('update')]
 chezmoi:
@@ -40,3 +40,8 @@ rustup:
 mise:
   mise install --locked
   mise prune
+
+[group('update')]
+vscode:
+  ./scripts/vscode_extensions.sh ./scripts/vscode_extensions.txt
+  code --update-extensions 2>/dev/null
