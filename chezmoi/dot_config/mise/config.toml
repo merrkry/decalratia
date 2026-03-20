@@ -18,10 +18,13 @@ ninja = "latest"
 meson = "latest"
 ## frontend
 node = "latest"
+npm = "latest"
 bun = "latest"
 "npm:@vtsls/language-server" = "latest"
 "npm:oxfmt" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
+# github actions
+actionlint = "latest"
 ## go
 go = "latest"
 "go:golang.org/x/tools/cmd/goimports" = "latest"
@@ -48,6 +51,7 @@ tinymist = "latest"
 # Utilities
 ## AI
 opencode = "latest"
+codex = "latest"
 ## VCS
 difftastic = "latest"
 jujutsu = "latest"
