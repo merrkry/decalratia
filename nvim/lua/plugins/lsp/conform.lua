@@ -14,7 +14,10 @@ return {
 					bib = { "tex-fmt" },
 					cls = { "tex-fmt" },
 					css = { "oxfmt" },
-					go = { "goimports", "gofumpt" },
+					go = {
+						-- "goimports", -- FIXME: sometimes deletes used imports
+						"gofumpt",
+					},
 					json = { "oxfmt" },
 					jsonc = { "oxfmt" },
 					kdl = { "kdlfmt" },

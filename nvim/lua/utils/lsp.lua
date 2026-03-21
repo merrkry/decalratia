@@ -51,6 +51,8 @@ local function register_lsp_keymaps()
 	-- register("<leader>a", vim.lsp.buf.code_action, "Code actions")
 
 	register(SHOW_DIAGNOSTICS, vim.diagnostic.open_float, "Show diagnostics")
+	-- Same keybinding but set manually to avoid accidentally falling back to `keywordprg`.
+	register("K", vim.lsp.buf.hover, "Show hover information")
 
 	register("<leader>d", snacks_picker("diagnostics_buffer"), "Open diagnostics picker")
 	register("<leader>D", snacks_picker("diagnostics"), "Open workspace diagnostics picker")

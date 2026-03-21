@@ -7,6 +7,7 @@ return {
 			open_cmd = "chromium --incognito --new-window %s",
 			dependencies_bin = {
 				["tinymist"] = "tinymist",
+				["websocat"] = "websocat",
 			},
 		},
 	},

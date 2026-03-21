@@ -23,6 +23,13 @@ if not vim.g.vscode then
 		picker = {
 			limit_live = 1024,
 			ui_select = true,
+			win = {
+				input = {
+					keys = {
+						["<Esc>"] = { "close", mode = { "n", "i" } },
+					},
+				},
+			},
 		},
 		quickfile = {
 			exclude = utils.lang.disable_treesitter,
@@ -67,39 +74,6 @@ return {
 					Snacks.notifier.show_history()
 				end,
 				desc = "Show notification history",
-			},
-			{
-				"<leader>f",
-				function()
-					local workspace = vim.lsp.buf.list_workspace_folders()
-					local target
-					if workspace and #workspace > 0 then
-						target = workspace[1]
-					else
-						target = vim.uv.cwd()
-					end
-					Snacks.picker.files({
-						cwd = target,
-						matcher = {
-							frequency = true,
-							history_bonus = true,
-						},
-					})
-				end,
-				desc = "Open file picker at LSP workspace root",
-			},
-			{
-				"<leader>F",
-				function()
-					Snacks.picker.files({
-						cwd = vim.uv.cwd(),
-						matcher = {
-							frequency = true,
-							history_bonus = true,
-						},
-					})
-				end,
-				desc = "Open file picker at current working directory",
 			},
 			{
 				"<leader>j",

@@ -9,10 +9,13 @@ vim.o.infercase = true
 
 vim.o.inccommand = "split"
 
--- mini.basics used as baseline
 if vim.g.vscode then
 	return
 end
+
+-- mini.basics used as baseline.
+-- It will not overwrite values if option already set,
+-- we don't have to worry about conflicts.
 
 vim.o.relativenumber = true
 
@@ -21,6 +24,8 @@ vim.o.timeoutlen = 250
 
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
+
+vim.o.wrap = true
 
 vim.o.scrolloff = 8
 

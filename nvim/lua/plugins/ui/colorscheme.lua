@@ -13,7 +13,6 @@ return {
 					transparent = true,
 					solid = true,
 				},
-				show_end_of_buffer = true,
 				-- no_italic = true,
 				styles = {
 					comments = {},
