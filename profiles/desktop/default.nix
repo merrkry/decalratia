@@ -82,12 +82,12 @@ in
         flatpak.enable = true;
         i18n.enable = true;
         input.enable = true;
-        lock.enable = true;
         login.enable = true;
         mime.enable = true;
         network.enable = true;
         plymouth.enable = true;
         security.enable = true;
+        swaylock.enable = lib.mkDefault true;
         themes.enable = true;
         tweaks.enable = true;
         watchdog.enable = true;

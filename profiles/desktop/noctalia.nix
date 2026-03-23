@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   user,
@@ -10,7 +9,25 @@ let
   cfg = config.profiles.desktop.noctalia;
   hmConfig = config.home-manager.users.${user};
 
-  package = pkgs.noctalia-shell; # inputs.noctalia.packages.${config.nixpkgs.system}.default;
+  basePackage = pkgs.noctalia-shell; # inputs.noctalia.packages.${config.nixpkgs.system}.default;
+
+  # Workaround IME bug:
+  # https://github.com/noctalia-dev/noctalia-shell/issues/2212
+  # Workaround missing icons:
+  # https://docs.noctalia.dev/getting-started/faq/#why-are-some-of-my-app-icons-missing
+  package = pkgs.symlinkJoin {
+    name = "noctalia-shell-extended";
+    paths = [ basePackage ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/noctalia-shell \
+        --unset QT_IM_MODULE \
+        --unset QT_IM_MODULES \
+        --set QT_QPA_PLATFORM "wayland;xcb" \
+        --set QT_QPA_PLATFORMTHEME "gtk3"
+    '';
+    inherit (basePackage) meta;
+  };
 
   avatar = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/merrkry/desktop-resources/refs/heads/master/avatar-red.png";
@@ -29,46 +46,23 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    profiles.desktop.lock.lockCmd = "${lib.getExe package} ipc call lockScreen lock";
+    profiles.desktop.swaylock.enable = false;
 
     home-manager.users.${user} = {
-      # imports = [ inputs.noctalia.homeModules.default ];
-
       home.packages = [ package ];
 
-      # programs.noctalia-shell = {
-      #   inherit package;
-      #   enable = true;
-      #   systemd.enable = true;
-      # };
-
-      systemd.user = {
-        services.noctalia-shell = {
-          Unit = {
-            Description = "Noctalia Shell - Wayland desktop shell";
-            Documentation = "https://docs.noctalia.dev";
-            PartOf = [ hmConfig.wayland.systemd.target ];
-            After = [ hmConfig.wayland.systemd.target ];
-          };
-
-          Service = {
-            ExecStart = lib.getExe package;
-            Restart = "on-failure";
-            Environment = lib.mapAttrsToList (key: value: "${key}=${value}") {
-              QT_QPA_PLATFORM = "wayland;xcb";
-              QT_QPA_PLATFORMTHEME = "gtk3";
-              QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-            };
-          };
-
-          Install.WantedBy = [ hmConfig.wayland.systemd.target ];
+      services.swayidle = {
+        enable = true;
+        events = {
+          # https://github.com/noctalia-dev/noctalia-shell/issues/1066
+          before-sleep = "${lib.getExe package} ipc call lockScreen lock";
         };
-
-        tmpfiles.rules = [
-          "L+ ${hmConfig.xdg.userDirs.pictures}/Desktop/Wallpapers/default.png - - - - ${wallpaper}"
-          "L+ ${hmConfig.xdg.userDirs.pictures}/Desktop/Avatar.png - - - - ${avatar}"
-        ];
       };
+
+      systemd.user.tmpfiles.rules = [
+        "L+ ${hmConfig.xdg.userDirs.pictures}/Desktop/Wallpapers/default.png - - - - ${wallpaper}"
+        "L+ ${hmConfig.xdg.userDirs.pictures}/Desktop/Avatar.png - - - - ${avatar}"
+      ];
     };
   };
 }

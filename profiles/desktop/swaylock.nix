@@ -6,34 +6,30 @@
   ...
 }:
 let
-  cfg = config.profiles.desktop.lock;
+  cfg = config.profiles.desktop.swaylock;
+  lockCmd = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
 in
 {
-  options.profiles.desktop.lock = {
-    enable = lib.mkEnableOption "lock";
-    lockCmd = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-    };
+  options.profiles.desktop.swaylock = {
+    enable = lib.mkEnableOption "swaylock";
   };
 
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
       programs = {
-        swaylock.enable = lib.mkDefault (cfg.lockCmd == "");
+        swaylock.enable = true;
       };
 
       services.swayidle = {
         enable = true;
-        extraArgs = lib.mkForce [ ]; # remove `-w` to avoid double lock bug
         events = {
-          lock = if cfg.lockCmd != "" then cfg.lockCmd else "${lib.getExe pkgs.swaylock} --daemonize";
-          before-sleep = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
+          lock = "${lib.getExe pkgs.swaylock} --daemonize";
+          before-sleep = cfg.lockCmd;
         };
         timeouts = [
           {
             timeout = 300;
-            command = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
+            command = lockCmd;
           }
           {
             timeout = 600;

@@ -16,7 +16,9 @@ binds {
     //     spawn-sh "rofi -show window -show-icons"
     // }
     Super+Alt+L allow-inhibiting=false {
-        spawn "loginctl" "lock-session"
+        // spawn "loginctl" "lock-session"
+        // https://github.com/noctalia-dev/noctalia-shell/issues/2252
+        spawn-sh "noctalia-shell ipc call lockScreen lock"
     }
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"

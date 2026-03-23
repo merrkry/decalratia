@@ -3,3 +3,5 @@ debug {
     honor-xdg-activation-with-invalid-serial
 }
 
+spawn-at-startup "noctalia-shell" // kdlfmt will remove the quotes!
+

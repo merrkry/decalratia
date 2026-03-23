@@ -14,6 +14,8 @@ window-rule {
 }
 window-rule {
     match app-id="^obsidian$"
+    match app-id="^electron$" title="^.+ - Obsidian \\d+\\.\\d+\\.\\d+$"
+    match app-id="^electron$" title="^Obsidian$"
     open-on-workspace "notes"
     open-maximized true
 }

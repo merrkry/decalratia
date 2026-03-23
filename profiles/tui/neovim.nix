@@ -25,6 +25,7 @@ let
         --prefix PATH : ${lib.makeBinPath extraBins} \
         --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath extraLibs}
     '';
+    inherit (basePackage) meta;
   };
 in
 {
