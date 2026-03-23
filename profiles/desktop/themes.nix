@@ -66,7 +66,10 @@ in
             '';
           };
           gtk3.extraConfig = { } // shareConfig;
-          gtk4.extraConfig = { } // shareConfig;
+          gtk4 = {
+            theme = hmConfig.gtk.theme;
+            extraConfig = { } // shareConfig;
+          };
         };
 
       # https://wiki.nixos.org/wiki/GNOME#To_run_GNOME_programs_outside_of_GNOME

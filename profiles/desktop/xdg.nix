@@ -44,6 +44,7 @@ in
         userDirs = {
           enable = true;
           createDirectories = true;
+          setSessionVariables = pkgs.stdenv.hostPlatform.isLinux;
         };
       };
     };

@@ -17,10 +17,6 @@ in
     immich = {
       enable = true;
       machine-learning.enable = false;
-      database = {
-        enableVectors = false;
-        enableVectorChord = true;
-      };
     };
 
     nginx.virtualHosts.${domainName} = {

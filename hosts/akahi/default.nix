@@ -47,7 +47,6 @@
     home = {
       packages = with pkgs; [
         anki
-        cherry-studio
         distrobox
         gapless
         imagemagick

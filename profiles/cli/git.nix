@@ -27,6 +27,8 @@ in
 
         lfs.enable = true;
 
+        signing.format = "ssh";
+
         # https://blog.gitbutler.com/how-git-core-devs-configure-git/
         settings = {
           branch.sort = "-committerdate";
