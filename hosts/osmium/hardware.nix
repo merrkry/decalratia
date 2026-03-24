@@ -1,8 +1,10 @@
 {
+  config,
   inputs,
   helpers,
   lib,
   modulesPath,
+  options,
   pkgs,
   ...
 }:
@@ -28,7 +30,18 @@ in
         "xhci_pci"
       ];
       kernelModules = [ ];
-      luks.devices.${luksDevice}.device = "/dev/disk/by-uuid/285de22c-80b3-48fe-a0ff-3cc384c31aaa";
+      luks = {
+        devices.${luksDevice}.device = "/dev/disk/by-uuid/285de22c-80b3-48fe-a0ff-3cc384c31aaa";
+        # https://github.com/NixOS/nixpkgs/issues/501777
+        cryptoModules =
+          let
+            defaultModules = options.boot.initrd.luks.cryptoModules.default;
+            deprecated = lib.optionals (lib.versionAtLeast config.boot.kernelPackages.kernel.version "7.0") [
+              "aes_generic"
+            ];
+          in
+          lib.subtractLists deprecated defaultModules;
+      };
     };
     # lanzaboote = {
     #   enable = true;
@@ -40,24 +53,26 @@ in
       efi.canTouchEfiVariables = true;
     };
     kernelModules = [ "kvm-intel" ];
+    kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
     kernelParams = [
-      # TODO: try remove with Linux 7.0
+      # Seems fixed in Linux 7.0
       # https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7284
-      "xe.enable_psr=0"
-      "xe.enable_panel_replay=0"
+      # "xe.enable_psr=0"
+      # "xe.enable_panel_replay=0"
     ];
   };
 
   # TODO: remove with libinput 1.31
-  # https://www.bilibili.com/read/cv42222859
-  environment.etc."libinput/local-overrides.quirks".text = lib.generators.toINI { } {
-    "Lenovo ThinkBook 16 G8+ IPH Touchpad" = {
-      MatchName = "*GXTP5100*";
-      MatchDMIModalias = "dmi:bvnLENOVO:bvrSWCN15WW:bd12/17/2025:br1.15:efr1.15:svnLENOVO:pn21VG:pvrThinkBook14G8+IPH:rvnLENOVO:rnLNVNB161216:rvrSDK0T76577WIN:cvnLENOVO:ct10:cvrThinkBook14G8+IPH:skuLENOVO_MT_21VG_BU_idea_FM_ThinkBook14G8+IPH:";
-      MatchUdevType = "touchpad";
-      ModelPressurePad = 1;
-    };
-  };
+  # ref: https://www.bilibili.com/read/cv42222859
+  # upstream: https://gitlab.freedesktop.org/libinput/libinput/-/commit/a525b3032681691b7d86bde2f9dd66525071af95
+  # `lib.generators.toINI` might mess up attribute order, we use string literals instead.
+  environment.etc."libinput/local-overrides.quirks".text = ''
+    [Lenovo ThinkBook G8+ IPH touchpad]
+    MatchName=*GXTP5100*
+    MatchDMIModalias=dmi:*svnLENOVO:*pvrThinkBook*G8+IPH*:*
+    MatchUdevType=touchpad
+    ModelPressurePad=1
+  '';
 
   fileSystems = {
     "/" = {
