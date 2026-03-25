@@ -4,22 +4,27 @@ local opts = {
 	keymap = {
 		preset = "none",
 
-		["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-		["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+		["<CR>"] = { "accept", "fallback" },
 
-		["<C-p>"] = { "select_prev", "fallback_to_mappings" },
-		["<C-n>"] = { "select_next", "fallback_to_mappings" },
+		["<Tab>"] = { "accept", "fallback" },
+		["<S-Tab>"] = { "select_prev", "fallback" },
+
+		-- ["<Esc>"] = { "hide", "fallback" },
+
+		["<C-p>"] = { "snippet_backward", "fallback_to_mappings" },
+		["<C-n>"] = { "snippet_forward", "fallback_to_mappings" },
+
+		["<Left>"] = { "snippet_backward", "fallback" },
+		["<Right>"] = { "snippet_forward", "fallback" },
 
 		["<Up>"] = { "select_prev", "fallback" },
 		["<Down>"] = { "select_next", "fallback" },
 
-		["<C-k>"] = { "select_prev", "fallback" },
-		["<C-j>"] = { "select_next", "fallback" },
+		["<C-k>"] = { "select_prev", "fallback_to_mappings" },
+		["<C-j>"] = { "select_next", "fallback_to_mappings" },
 
-		["<CR>"] = { "accept", "fallback" },
 		["<C-y>"] = { "accept", "fallback" },
-
-		["<C-c>"] = { "hide", "fallback_to_mappings" },
+		["<C-e>"] = { "hide", "fallback_to_mappings" },
 
 		["<C-d>"] = { "show_documentation", "hide_documentation", "fallback" },
 
@@ -116,7 +121,7 @@ return {
 		"saghen/blink.cmp",
 
 		version = "1.*",
-		build = "cargo +nightly build --release",
+		-- build = "cargo +nightly build --release",
 		-- build = 'nix run .#build-plugin',
 
 		event = { "LazyFile" },

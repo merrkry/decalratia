@@ -16,6 +16,7 @@ return {
 				factor = 26 / 255, -- zed uses alpha 1A for background
 			},
 			options = {
+				show_code = false,
 				use_icons_from_diagnostic = true,
 				throttle = 250,
 				multilines = {

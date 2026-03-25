@@ -5,7 +5,7 @@ return {
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
-		ft = allowed_lang,
+		ft = allowed_lang, -- Avoid launch node when e.g. editing config.
 		config = function()
 			local filetypes = {
 				["*"] = false,
@@ -22,13 +22,15 @@ return {
 					enabled = true,
 					auto_trigger = false,
 					debounce = 100,
+					trigger_on_accept = false, -- Next/prev can still trigger completion.
 					keymap = {
-						accept = "<C-y>",
+						accept = "<Tab>",
 						accept_word = "<C-l>",
 						accept_line = "<C-j>",
-						next = "<C-'>",
-						prev = "<C-;>",
-						dismiss = "<C-c>",
+						next = "<A-]>",
+						prev = "<A-[>",
+						dismiss = "<C-e>",
+						-- toggle_auto_trigger = "\\I", -- seems broken
 					},
 				},
 				filetypes = filetypes,
@@ -44,6 +46,7 @@ return {
 			vim.api.nvim_create_autocmd("User", {
 				pattern = "BlinkCmpMenuOpen",
 				callback = function()
+					require("copilot.suggestion").dismiss()
 					vim.b.copilot_suggestion_hidden = true
 				end,
 			})
@@ -54,5 +57,14 @@ return {
 				end,
 			})
 		end,
+		keys = {
+			{
+				"\\I",
+				function()
+					require("copilot.suggestion").toggle_auto_trigger()
+				end,
+				desc = "Toggle automatic inline completion",
+			},
+		},
 	},
 }

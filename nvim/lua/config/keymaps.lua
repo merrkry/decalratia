@@ -9,14 +9,6 @@ end
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- https://github.com/saghen/blink.cmp/discussions/2218
-vim.keymap.set({ "i", "s" }, "<Esc>", function()
-	if vim.snippet.active() then
-		vim.snippet.stop()
-	end
-	return "<ESC>"
-end, { expr = true })
-
 vim.keymap.set("n", "<C-s>", "<Cmd>silent! noautocmd update | redraw<CR>", { desc = "Save" })
 vim.keymap.set("x", "<C-s>", "<Esc><Cmd>silent! noautocmd update | redraw<CR>", { desc = "Save and go to Normal mode" })
 

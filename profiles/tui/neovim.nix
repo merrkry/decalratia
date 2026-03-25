@@ -10,6 +10,7 @@ let
   hmConfig = config.home-manager.users.${user};
   basePackage = pkgs.neovim; # inputs.neovim-nightly-overlay.packages.${config.nixpkgs.system}.default;
   extraBins = with pkgs; [
+    lsof # opencode.nvim
     # tree-sitter # might be outdated, migrated to mason.
     unzipNLS # stylua
   ];
