@@ -1,0 +1,19 @@
+language = en
+
+font-family = "monospace"
+font-family-italic = "Maple Mono CN"
+font-family-bold-italic = "Maple Mono CN"
+
+env = LANG=en_US.UTF-8
+
+keybind = ctrl+shift+a=new_tab
+keybind = ctrl+shift+h=previous_tab
+keybind = ctrl+shift+l=next_tab
+
+background-opacity = 0.85
+
+quit-after-last-window-closed = false
+
+custom-shader = shaders/cursor_warp.glsl
+
+gtk-single-instance = true

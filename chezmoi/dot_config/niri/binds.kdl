@@ -3,7 +3,8 @@ binds {
         show-hotkey-overlay
     }
     Mod+T {
-        spawn "foot"
+        // spawn-sh "ghostty --working-directory=home"
+        spawn "footclient"
     }
     Mod+E {
         spawn "nautilus" "--new-window"

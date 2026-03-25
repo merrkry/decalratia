@@ -18,6 +18,7 @@ in
     home-manager.users.${user} = {
       programs.foot = {
         enable = true;
+        server.enable = true;
         # https://codeberg.org/dnkl/foot/src/branch/master/foot.ini
         settings =
           let
