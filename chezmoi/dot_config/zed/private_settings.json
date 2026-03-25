@@ -117,7 +117,7 @@
     "default_profile": "ask",
     "default_model": {
       "effort": "medium",
-      "enable_thinking": false,
+      "enable_thinking": true,
       "provider": "zed.dev",
       "model": "gpt-5.4",
     },
