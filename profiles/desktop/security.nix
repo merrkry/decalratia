@@ -13,6 +13,20 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # By default polkit returns all users in `security.polkit.adminIdentities`,
+    # which can be annoying because when there are multiple users in wheel group,
+    # polkit GUI will first show a drop down menu to select user instead of prompt for password directly.
+    # Here we prefre local user if in wheel, then fallback to NixOS default.
+    # Tried write a new `9-prefer-current-user.rules`, doesn't work for some reason.
+    environment.etc."polkit-1/rules.d/10-nixos.rules".text = lib.mkBefore ''
+      polkit.addAdminRule(function(action, subject) {
+          if (subject.isInGroup("wheel")) {
+              return ["unix-user:" + subject.user];
+          }
+          return null;
+      });
+    '';
+
     security = {
       pam.services.swaylock = { };
       polkit.enable = true;
