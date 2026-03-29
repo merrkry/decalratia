@@ -14,6 +14,7 @@ local function unregister_builtin_lsp_keymaps()
 	vim.keymap.del("n", "grn")
 	vim.keymap.del("n", "grr")
 	vim.keymap.del("n", "grt")
+	vim.keymap.del("n", "grx")
 	vim.keymap.del("n", "gO")
 	vim.keymap.del({ "i", "s" }, "<C-S>")
 end
@@ -48,7 +49,9 @@ local function register_lsp_keymaps()
 	register("<leader>r", vim.lsp.buf.rename, "Rename symbol")
 
 	-- Handled by tiny-code-action.nvim.
-	-- register("<leader>a", vim.lsp.buf.code_action, "Code actions")
+	-- register("<leader>a", vim.lsp.buf.code_action, "Show code actions")
+
+	register("<leader>A", vim.lsp.codelens.run, "Run codelens command")
 
 	register(SHOW_DIAGNOSTICS, vim.diagnostic.open_float, "Show diagnostics")
 	-- Same keybinding but set manually to avoid accidentally falling back to `keywordprg`.
@@ -99,8 +102,7 @@ local function setup_global_inlay_hints()
 	-- require("lazy").load({ plugins = { "nvim-lsp-endhints" } })
 
 	-- Configured globally. Execute this on `LspAttach` per buf might introduce race conditions,
-	-- e.g. codediff.nvim tries to disable inlay hints on diff buffers.
-	-- FIXME: still see inlay hints in codediff.nvim sessions.
+	-- e.g. codediff.nvim tries to disable inlay hints on temporal buffers.
 	vim.lsp.inlay_hint.enable(true, { bufnr = nil })
 
 	-- Disable inlay hints in insert mode.
@@ -211,12 +213,14 @@ local function setup_buf(bufnr)
 	if supports_inlay_hint then
 		setup_buf_inlay_hints(bufnr)
 	end
+
+	vim.lsp.codelens.enable(true, { bufnr = bufnr })
 end
 
 ---@return nil
 local function setup_highlights()
 	-- Highlight `{}` and `{var}` in format strings.
-	-- FIXME: requires redraw to take effect
+	-- FIXME: requires manual redraw to take effect
 	vim.api.nvim_set_hl(0, "@lsp.type.formatSpecifier.rust", { link = "@punctuation.bracket" })
 	vim.api.nvim_set_hl(0, "@lsp.type.variable.rust", { link = "@variable" })
 end

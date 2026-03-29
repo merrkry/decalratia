@@ -1,3 +1,7 @@
+-- Note that for inline mode, or "current version" buffer in side-by-side mode,
+-- the buffer points directly to the original file. This mean the diff view shares
+-- the same per-buffer settings, e.g. inlay hints, as non-diff views.
+
 ---@type LazySpec
 return {
 	{
@@ -13,7 +17,7 @@ return {
 		keys = {
 			{
 				"<leader>c",
-				"<cmd>CodeDiff<CR>",
+				"<cmd>CodeDiff --inline<CR>",
 				desc = "Show git diff",
 			},
 		},
