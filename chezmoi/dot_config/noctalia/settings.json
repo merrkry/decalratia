@@ -22,7 +22,7 @@
         "showCategories": false,
         "showIconBackground": true,
         "sortByMostUsed": true,
-        "terminalCommand": "foot --",
+        "terminalCommand": "kitty --single-instance --",
         "useApp2Unit": false,
         "viewMode": "list"
     },

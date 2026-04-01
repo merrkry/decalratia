@@ -1,3 +1,4 @@
+# Memory leak as of v1.3.1: closing windows does not return memory.
 {
   config,
   lib,

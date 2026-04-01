@@ -32,7 +32,6 @@
       neovim.enable = true;
     };
     gui = {
-      foot.enable = true;
       thunderbird.enable = true;
       vscode.enable = true;
       zed.enable = true;

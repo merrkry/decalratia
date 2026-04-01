@@ -28,12 +28,15 @@ in
       default = config.programs.steam.enable;
     };
 
+    # TODO: adding argument for e.g. single instance mode.
+    # Maybe through something like `defaultTerminalCommand`.
     defaultTerminal = mkOption {
       type = types.enum [
         "foot"
+        "ghostty"
         "kitty"
       ];
-      default = "foot";
+      default = "kitty";
     };
 
     compositor = mkOption {

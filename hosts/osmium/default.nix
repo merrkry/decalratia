@@ -25,7 +25,7 @@
       neovim.enable = true;
     };
     gui = {
-      # ghostty.enable = true; # Memory leak: closing windows does not return memory.
+      kitty.enable = true;
       thunderbird.enable = true;
       vscode.enable = true;
       zed.enable = true;
