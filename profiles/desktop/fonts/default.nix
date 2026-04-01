@@ -29,10 +29,7 @@ in
         ibm-plex
         noto-fonts
 
-        # Many poorly written CSS code don't expect that there exits apple emoji but not apple system font.
-        # Including both can avoid some weird behavior.
-        apple-color-emoji
-        apple-system-fonts
+        noto-fonts-color-emoji
 
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
@@ -75,7 +72,7 @@ in
             "Symbols Nerd Font Mono"
           ];
 
-          emoji = [ "Apple Color Emoji" ];
+          emoji = [ "Noto Color Emoji" ];
         };
 
         subpixel.rgba = "rgb";

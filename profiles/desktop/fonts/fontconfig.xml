@@ -26,12 +26,4 @@
 			<string>monospace</string>
 		</edit>
 	</match>
-	<match target="pattern">
-		<test name="family">
-			<string>-apple-system</string>
-		</test>
-		<edit name="family" mode="prepend" binding="strong">
-			<string>sans-serif</string>
-		</edit>
-	</match>
 </fontconfig>
