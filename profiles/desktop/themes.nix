@@ -67,7 +67,7 @@ in
           };
           gtk3.extraConfig = { } // shareConfig;
           gtk4 = {
-            theme = hmConfig.gtk.theme;
+            inherit (hmConfig.gtk) theme;
             extraConfig = { } // shareConfig;
           };
         };
