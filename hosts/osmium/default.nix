@@ -60,6 +60,7 @@
     home = {
       packages = with pkgs; [
         anki
+        imagemagick
         materialgram
         obsidian
         qq
