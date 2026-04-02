@@ -8,16 +8,33 @@
 }:
 let
   cfg = config.profiles.gui.chromium;
-  googleSearchOpts = {
-    DefaultSearchProviderKeyword = "google.com";
-    DefaultSearchProviderName = "Google";
-    DefaultSearchProviderSearchURL = "https://www.google.com/search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}ie={inputEncoding}";
-    DefaultSearchProviderSuggestURL = "https://www.google.com/complete/search?output=chrome&q={searchTerms}";
+
+  basePackage = pkgs.ungoogled-chromium.override {
+    commandLineArgs = helpers.chromiumArgs ++ [
+      "--password-store=gnome-libsecret"
+      "--enable-features=AcceleratedVideoDecodeLinuxGL"
+    ];
+    enableWideVine = true;
   };
-  kagiSearchOpts = {
-    DefaultSearchProviderKeyword = "kagi.com";
-    DefaultSearchProviderName = "Kagi";
-    DefaultSearchProviderSearchURL = "https://kagi.com/search?q=%s";
+
+  # Workaround for a bug in timezone handling.
+  # Similar to legacy issue https://issues.chromium.org/issues/40540835,
+  # instead of reading /etc/localtime, Chromium falls back to ICU etc. for timezone information,
+  # which returns `CST` in `Asia/Shanghai`, which can also be parsed as "Central Standard Time",
+  # causing timezone to be set as `America/Chicago` inside chromium sandbox.
+  # We set `TZ` manually on chromium launch to avoid such behavior.
+  package = pkgs.symlinkJoin {
+    name = "chromium";
+    paths = [ basePackage ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/chromium \
+        --run 'export TZ=$(${pkgs.systemd}/bin/timedatectl show --property=Timezone --value)'
+
+      rm $out/bin/chromium-browser
+      ln -s $out/bin/chromium $out/bin/chromium-browser
+    '';
+    inherit (basePackage) meta;
   };
 in
 {
@@ -26,33 +43,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.chromium = {
-      # https://chromeenterprise.google/intl/en_us/policies/
-      extraOpts = {
-        DefaultSearchProviderEnabled = true;
-
-        DnsOverHttpsMode = "automatic";
-        DnsOverHttpsTemplates = "https://1.1.1.1/dns-query{?dns}";
-      }
-      // kagiSearchOpts;
-    };
-
     home-manager.users.${user} = {
-      programs.chromium = {
-        enable = true;
-        package = pkgs.ungoogled-chromium.override { enableWideVine = true; };
-        commandLineArgs = helpers.chromiumArgs ++ [
-          "--password-store=gnome-libsecret"
-          "--enable-features=AcceleratedVideoDecodeLinuxGL"
-        ];
-        # doesn't work for ungoogled-chromium, https://github.com/nix-community/home-manager/pull/4174
-        # extensions = [
-        #   {
-        #     id = "ocaahdebbfolfmndjeplogmgcagdmblk";
-        #     updateUrl = "https://raw.githubusercontent.com/NeverDecaf/chromium-web-store/refs/heads/master/updates.xml";
-        #   }
-        # ];
-      };
+      # Home-manager's module is designed for managing extensions etc.,
+      # but doesn't seem to work for ungoogled-chromium so there is no need to use it.
+      # Also note that the module adds extra overrides, so we should wrap around
+      # `programs.chromium.finalPackage` instead of `programs.chromium.package`.
+      home.packages = [ package ];
     };
   };
 }
