@@ -44,9 +44,10 @@ in
           "ctrl+shift+k" = "scroll_page_up";
           "ctrl+shift+l" = "next_tab";
           "ctrl+shift+t" = "new_tab_with_cwd";
-          "ctrl+shift+0" = "change_font_size all 0";
-          "ctrl+shift+equal" = "change_font_size all +2.0";
-          "ctrl+shift+minus" = "change_font_size all -2.0";
+          "ctrl+shift+q" = "close_tab";
+          "ctrl+shift+0" = "change_font_size current 0";
+          "ctrl+shift+equal" = "change_font_size current +2.0";
+          "ctrl+shift+minus" = "change_font_size current -2.0";
           "ctrl+shift+escape" = "kitty_shell";
           "ctrl+shift+tab" = "select_tab";
         };

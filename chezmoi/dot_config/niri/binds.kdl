@@ -5,7 +5,7 @@ binds {
     Mod+T {
         // spawn-sh "ghostty --working-directory=home"
         // spawn "footclient"
-        spawn "kitty" "--single-instance"
+        spawn "env" "LANG=en_US.UTF-8" "kitty" "--single-instance"
     }
     Mod+E {
         spawn "nautilus" "--new-window"
