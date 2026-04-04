@@ -19,12 +19,20 @@ in
         enable = true;
         settings = {
           git = {
+            autoFetch = false;
+            log = {
+              order = "default";
+            };
             pagers = [
               {
                 externalDiffCommand = "${lib.getExe pkgs.difftastic} --color=always --display=inline";
               }
             ];
           };
+          gui = {
+            nerdFontsVersion = 3;
+          };
+          update.method = "never";
         };
       };
 

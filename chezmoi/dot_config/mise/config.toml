@@ -1,3 +1,6 @@
+[env]
+SCCACHE_CACHE_SIZE = "64G"
+
 [settings]
 lockfile = true
 all_compile = false
@@ -60,3 +63,6 @@ gh = "latest"
 just = "latest"
 task = "latest"
 websocat = "latest"
+"npm:node-gyp" = "latest"
+tree-sitter = "latest"
+sccache = "latest"

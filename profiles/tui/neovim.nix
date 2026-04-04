@@ -11,7 +11,7 @@ let
   basePackage = pkgs.neovim; # inputs.neovim-nightly-overlay.packages.${config.nixpkgs.system}.default;
   extraBins = with pkgs; [
     lsof # opencode.nvim
-    # tree-sitter # might be outdated, migrated to mason.
+    # tree-sitter # might be outdated
     unzipNLS # stylua
   ];
   extraLibs = with pkgs; [

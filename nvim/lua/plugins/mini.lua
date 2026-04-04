@@ -71,7 +71,7 @@ local mini_opts = {
 					s = gen_ts_ai_pair("statement"),
 					-- t: builtin tag
 				},
-				search_method = "cover_or_nearest",
+				search_method = "cover",
 			})
 		end,
 	},

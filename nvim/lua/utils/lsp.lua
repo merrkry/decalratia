@@ -220,7 +220,6 @@ end
 ---@return nil
 local function setup_highlights()
 	-- Highlight `{}` and `{var}` in format strings.
-	-- FIXME: requires manual redraw to take effect
 	vim.api.nvim_set_hl(0, "@lsp.type.formatSpecifier.rust", { link = "@punctuation.bracket" })
 	vim.api.nvim_set_hl(0, "@lsp.type.variable.rust", { link = "@variable" })
 end

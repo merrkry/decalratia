@@ -3,20 +3,20 @@ return {
 	{
 		"mason-org/mason.nvim",
 		event = "FileType",
-		build = ":MasonUpdate",
 		opts = {
 			PATH = "prepend",
 		},
 		config = function(_, opts)
 			require("mason").setup(opts)
 
-			local mason_registry = require("mason-registry")
-
 			-- Non-lsp are not supported by mason-lspconfig's ensure_installed.
-			-- Consider using vim.pack after 0.12 release.
-			local ensure_installed = {
-				"tree-sitter-cli",
-			}
+			local ensure_installed = {}
+
+			if not ensure_installed then
+				return
+			end
+
+			local mason_registry = require("mason-registry")
 
 			for _, pkg in ipairs(ensure_installed) do
 				if not mason_registry.is_installed(pkg) then

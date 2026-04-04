@@ -3,6 +3,7 @@ codegen-backend = true
 gc = true
 
 [build]
+rustc-wrapper = "sccache"
 rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 
 [profile.dev]
