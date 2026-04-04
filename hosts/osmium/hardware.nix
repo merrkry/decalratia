@@ -112,6 +112,9 @@ in
   services = {
     fprintd.enable = true;
 
+    intel-lpmd.enable = true;
+    thermald.enable = true;
+
     tlp = {
       enable = true;
       pd.enable = true;
