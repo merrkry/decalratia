@@ -31,7 +31,7 @@ mise prune
 Sometimes lockfile needs to be updated manually:
 
 ```
-mise lock
+mise lock --global
 ```
 
 ## Rustup
