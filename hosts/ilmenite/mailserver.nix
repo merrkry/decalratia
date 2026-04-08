@@ -10,7 +10,7 @@
     fqdn = "mail.tsubasa.moe";
     domains = [ "tsubasa.moe" ];
 
-    loginAccounts = {
+    accounts = {
       "merrkry@tsubasa.moe" = {
         hashedPasswordFile = config.sops.secrets."mailserver/hashedPasswd/merrkry".path;
         aliases = [
