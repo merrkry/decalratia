@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 ---@type snacks.Config
 local opts = {}
 
@@ -32,7 +30,7 @@ if not vim.g.vscode then
 			},
 		},
 		quickfile = {
-			exclude = utils.lang.disable_treesitter,
+			exclude = require("lang").treesitter_excludes(),
 		},
 		rename = {},
 		statuscolumn = {},

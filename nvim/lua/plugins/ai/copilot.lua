@@ -1,17 +1,17 @@
-local allowed_lang = require("utils.lang").allow_copilot
+local allowed_filetypes = require("lang").edit_prediction_filetypes()
 
 ---@type LazySpec
 return {
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
-		ft = allowed_lang, -- Avoid launch node when e.g. editing config.
+		ft = allowed_filetypes, -- Avoid launch node when e.g. editing config.
 		config = function()
 			local filetypes = {
 				["*"] = false,
 			}
-			for _, lang in ipairs(allowed_lang) do
-				filetypes[lang] = true
+			for _, filetype in ipairs(allowed_filetypes) do
+				filetypes[filetype] = true
 			end
 
 			require("copilot").setup({

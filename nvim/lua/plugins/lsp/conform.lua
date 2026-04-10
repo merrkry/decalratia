@@ -5,37 +5,14 @@ return {
 		event = "VeryLazy",
 		config = function()
 			local conform = require("conform")
+			local formatters_by_ft = require("lang").formatters_by_ft()
+			formatters_by_ft["_"] = { "trim_whitespace" }
 
 			conform.setup({
 				-- Although some of these formatters are also provided via LSP,
 				-- it is useful to format through conform in scenarios where project root
 				-- markers doesn't exist, e.g. when editing config files.
-				formatters_by_ft = {
-					bib = { "tex-fmt" },
-					cls = { "tex-fmt" },
-					css = { "oxfmt" },
-					go = {
-						-- "goimports", -- FIXME: sometimes deletes used imports
-						"gofumpt",
-					},
-					json = { "oxfmt" },
-					jsonc = { "oxfmt" },
-					kdl = { "kdlfmt" },
-					lua = { "stylua" },
-					markdown = { "oxfmt" },
-					nix = { "nixfmt" },
-					python = {
-						"ruff_format",
-						"ruff_organize_imports",
-						-- "ruff_fix"
-					},
-					rust = { "rustfmt" },
-					sty = { "tex-fmt" },
-					tex = { "tex-fmt" },
-					toml = { "taplo" },
-					yaml = { "oxfmt" },
-					["_"] = { "trim_whitespace" },
-				},
+				formatters_by_ft = formatters_by_ft,
 				default_format_opts = {
 					lsp_format = "fallback",
 				},

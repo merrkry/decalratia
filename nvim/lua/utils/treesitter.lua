@@ -8,8 +8,7 @@ local function is_enabled(language)
 		return false
 	end
 
-	local excluded_parsers = require("utils.lang").disable_treesitter
-	if vim.tbl_contains(excluded_parsers, language) then
+	if vim.tbl_contains(require("lang").treesitter_excludes(), language) then
 		return false
 	end
 
