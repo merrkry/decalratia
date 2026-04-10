@@ -247,8 +247,9 @@
         default =
           with nixpkgsFor.${system};
           mkShell {
-            nativeBuildInputs = [
+            packages = [
               attic-client
+              bashInteractive # https://discourse.nixos.org/t/interactive-bash-with-nix-develop-flake/15486
               chezmoi
               colmena
               nixd
