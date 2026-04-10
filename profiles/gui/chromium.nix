@@ -9,32 +9,12 @@
 let
   cfg = config.profiles.gui.chromium;
 
-  basePackage = pkgs.ungoogled-chromium.override {
+  package = pkgs.ungoogled-chromium.override {
     commandLineArgs = helpers.chromiumArgs ++ [
       "--password-store=gnome-libsecret"
       "--enable-features=AcceleratedVideoDecodeLinuxGL"
     ];
     enableWideVine = true;
-  };
-
-  # Workaround for a bug in timezone handling.
-  # Similar to legacy issue https://issues.chromium.org/issues/40540835,
-  # instead of reading /etc/localtime, Chromium falls back to ICU etc. for timezone information,
-  # which returns `CST` in `Asia/Shanghai`, which can also be parsed as "Central Standard Time",
-  # causing timezone to be set as `America/Chicago` inside chromium sandbox.
-  # We set `TZ` manually on chromium launch to avoid such behavior.
-  package = pkgs.symlinkJoin {
-    name = "chromium";
-    paths = [ basePackage ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/chromium \
-        --run 'export TZ=$(${pkgs.systemd}/bin/timedatectl show --property=Timezone --value)'
-
-      rm $out/bin/chromium-browser
-      ln -s $out/bin/chromium $out/bin/chromium-browser
-    '';
-    inherit (basePackage) meta;
   };
 in
 {
