@@ -1,7 +1,11 @@
 return {
 	{
-		ft = { "json", "jsonc", "markdown", "yaml" },
+		ft = { "json", "jsonc" },
 		lsp = { "jsonls" },
+		formatters = { "oxfmt" },
+	},
+	{
+		ft = { "markdown", "yaml" },
 		formatters = { "oxfmt" },
 	},
 	{

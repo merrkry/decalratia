@@ -27,6 +27,7 @@ in
           gnumake
           mesonlsp
           typos-lsp
+          bubblewrap
           # Language toolchains
           # If one tool of a language must be installed via Nix,
           # we also install the rest of them via Nix for ease of administration.
@@ -51,10 +52,6 @@ in
           nixfmt
           statix
         ];
-
-        sessionVariables = {
-          OPENCODE_DISABLE_LSP_DOWNLOAD = "true";
-        };
       };
     };
   };
