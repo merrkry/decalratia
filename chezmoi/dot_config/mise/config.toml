@@ -20,13 +20,15 @@ rustup_home = "/home/merrkry/.local/share/rustup"
 # Language toolchains
 ninja = "latest"
 meson = "latest"
-## frontend
+sccache = "latest"
+## web
 node = "latest"
 npm = "latest"
 bun = "latest"
 "npm:@vtsls/language-server" = "latest"
 "npm:oxfmt" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
+"npm:node-gyp" = "latest"
 # github actions
 actionlint = "latest"
 ## go
@@ -49,6 +51,7 @@ taplo = "latest"
 ## typst
 typst = "latest"
 tinymist = "latest"
+typstyle = "latest"
 # yaml
 "npm:yaml-language-server" = "latest"
 
@@ -63,7 +66,6 @@ gh = "latest"
 ## Task runners
 just = "latest"
 task = "latest"
-websocat = "latest"
-"npm:node-gyp" = "latest"
+## Neovim
 tree-sitter = "latest"
-sccache = "latest"
+websocat = "latest"    # typst-preview.nvim

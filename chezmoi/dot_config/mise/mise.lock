@@ -1317,6 +1317,54 @@ url = "https://github.com/typst/typst/releases/download/v0.14.2/typst-x86_64-pc-
 checksum = "sha256:51353994ac83218c3497052e89b2c432c53b9d4439cdc1b361e2ea4798ebfc13"
 url = "https://github.com/typst/typst/releases/download/v0.14.2/typst-x86_64-pc-windows-msvc.zip"
 
+[[tools.typstyle]]
+version = "0.14.4"
+backend = "aqua:Enter-tainer/typstyle"
+
+[tools.typstyle."platforms.linux-arm64"]
+checksum = "sha256:b8c220c0d940d7690fb15ef10415de35fdc115465a7534d8102459c68aeec74d"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-aarch64-unknown-linux-gnu"
+
+[tools.typstyle."platforms.linux-arm64-musl"]
+checksum = "sha256:b8c220c0d940d7690fb15ef10415de35fdc115465a7534d8102459c68aeec74d"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-aarch64-unknown-linux-gnu"
+
+[tools.typstyle."platforms.linux-x64"]
+checksum = "sha256:48d9a9a3885855f1b4f6c2b8ea9739623bc458b99c015b77c4f50a1f342ea091"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-x86_64-unknown-linux-musl"
+
+[tools.typstyle."platforms.linux-x64-baseline"]
+checksum = "sha256:48d9a9a3885855f1b4f6c2b8ea9739623bc458b99c015b77c4f50a1f342ea091"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-x86_64-unknown-linux-musl"
+
+[tools.typstyle."platforms.linux-x64-musl"]
+checksum = "sha256:48d9a9a3885855f1b4f6c2b8ea9739623bc458b99c015b77c4f50a1f342ea091"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-x86_64-unknown-linux-musl"
+
+[tools.typstyle."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:48d9a9a3885855f1b4f6c2b8ea9739623bc458b99c015b77c4f50a1f342ea091"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-x86_64-unknown-linux-musl"
+
+[tools.typstyle."platforms.macos-arm64"]
+checksum = "sha256:dda3a162f2457a40570c3552cc9c01004138b33f2f921112b117d72f48bd6d56"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-aarch64-apple-darwin"
+
+[tools.typstyle."platforms.macos-x64"]
+checksum = "sha256:2343f7a4801d9bbda5d7441e8fea95f98b590d6aa3083da5c4e4ca3de885350f"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-x86_64-apple-darwin"
+
+[tools.typstyle."platforms.macos-x64-baseline"]
+checksum = "sha256:2343f7a4801d9bbda5d7441e8fea95f98b590d6aa3083da5c4e4ca3de885350f"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-x86_64-apple-darwin"
+
+[tools.typstyle."platforms.windows-x64"]
+checksum = "sha256:b16aebaed0aa296ef3e055d611f1e917f5849d3eb0f953bbcaa6f09f0503fb5b"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-x86_64-pc-windows-msvc.exe"
+
+[tools.typstyle."platforms.windows-x64-baseline"]
+checksum = "sha256:b16aebaed0aa296ef3e055d611f1e917f5849d3eb0f953bbcaa6f09f0503fb5b"
+url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.14.4/typstyle-x86_64-pc-windows-msvc.exe"
+
 [[tools.uv]]
 version = "0.11.3"
 backend = "aqua:astral-sh/uv"

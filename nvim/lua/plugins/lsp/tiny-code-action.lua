@@ -16,6 +16,7 @@ return {
 				function()
 					require("tiny-code-action").code_action()
 				end,
+				mode = { "n", "x" },
 				desc = "Show code actions",
 			},
 		},
