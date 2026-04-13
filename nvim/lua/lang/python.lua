@@ -1,7 +1,7 @@
 return {
 	{
 		ft = { "python" },
-		lsp = { "pyrefly", "ruff" },
+		lsp = { "ruff", "zuban" },
 		formatters = {
 			"ruff_format",
 			"ruff_organize_imports",

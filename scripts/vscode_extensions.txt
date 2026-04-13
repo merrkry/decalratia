@@ -7,7 +7,6 @@ golang.go
 jnoortheen.nix-ide
 johnnymorganz.stylua
 llvm-vs-code-extensions.vscode-clangd
-meta.pyrefly
 ms-python.python
 ms-toolsai.jupyter
 ms-toolsai.jupyter-renderers
@@ -16,3 +15,4 @@ rust-lang.rust-analyzer
 tamasfe.even-better-toml
 tangzx.emmylua
 tekumara.typos-vscode
+zuban.zubanls

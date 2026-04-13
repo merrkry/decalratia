@@ -37,8 +37,8 @@ go = "latest"
 # python
 python = "latest"
 uv = "latest"
-"pipx:pyrefly" = "latest"
 "pipx:ruff" = "latest"
+"pipx:zuban" = "latest"
 ## rust
 mold = "latest"
 cargo-binstall = "latest"

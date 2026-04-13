@@ -192,6 +192,54 @@ url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.9/ca
 checksum = "sha256:d17b413a19592af2cf57f9f742d49bef8837099e1407d73e79de5bc7834c4fd6"
 url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.9/cargo-binstall-x86_64-pc-windows-msvc.zip"
 
+[[tools.cargo-binstall]]
+version = "1.18.0"
+backend = "aqua:cargo-bins/cargo-binstall"
+
+[tools.cargo-binstall."platforms.linux-arm64"]
+checksum = "sha256:a59b465665e3a4ce54d2039f858217b68b2d972cb6bd189995f56a76f43418fd"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-aarch64-unknown-linux-musl.tgz"
+
+[tools.cargo-binstall."platforms.linux-arm64-musl"]
+checksum = "sha256:a59b465665e3a4ce54d2039f858217b68b2d972cb6bd189995f56a76f43418fd"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-aarch64-unknown-linux-musl.tgz"
+
+[tools.cargo-binstall."platforms.linux-x64"]
+checksum = "sha256:7ca2de024161eb95b0207475e931cca7ffa8aae1567811b2dc5e18581f2fe216"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+
+[tools.cargo-binstall."platforms.linux-x64-baseline"]
+checksum = "sha256:7ca2de024161eb95b0207475e931cca7ffa8aae1567811b2dc5e18581f2fe216"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+
+[tools.cargo-binstall."platforms.linux-x64-musl"]
+checksum = "sha256:7ca2de024161eb95b0207475e931cca7ffa8aae1567811b2dc5e18581f2fe216"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+
+[tools.cargo-binstall."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:7ca2de024161eb95b0207475e931cca7ffa8aae1567811b2dc5e18581f2fe216"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+
+[tools.cargo-binstall."platforms.macos-arm64"]
+checksum = "sha256:2e5196f9039089f7df6f20443ce430fd91c3795725911fcc59847ea8cccb6b3d"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-aarch64-apple-darwin.zip"
+
+[tools.cargo-binstall."platforms.macos-x64"]
+checksum = "sha256:f6014ff3c1fd2c2a744005b370ee3e271ef7d2b7d5c68fa49da17d66de3d714d"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-x86_64-apple-darwin.zip"
+
+[tools.cargo-binstall."platforms.macos-x64-baseline"]
+checksum = "sha256:f6014ff3c1fd2c2a744005b370ee3e271ef7d2b7d5c68fa49da17d66de3d714d"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-x86_64-apple-darwin.zip"
+
+[tools.cargo-binstall."platforms.windows-x64"]
+checksum = "sha256:0458444c42221fd6d89785ea438cab9bedebdfe93425f0ea31e6bb53b7b9db9f"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-x86_64-pc-windows-msvc.zip"
+
+[tools.cargo-binstall."platforms.windows-x64-baseline"]
+checksum = "sha256:0458444c42221fd6d89785ea438cab9bedebdfe93425f0ea31e6bb53b7b9db9f"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.18.0/cargo-binstall-x86_64-pc-windows-msvc.zip"
+
 [[tools."cargo:cargo-edit"]]
 version = "0.13.9"
 backend = "cargo:cargo-edit"
@@ -251,6 +299,50 @@ url = "https://github.com/openai/codex/releases/download/rust-v0.118.0/codex-x86
 [[tools.codex]]
 version = "0.120.0"
 backend = "aqua:openai/codex"
+
+[tools.codex."platforms.linux-arm64"]
+checksum = "sha256:9eac8e152adde337fd75edfc9f6a10bbd3437733d6d0079db42fb16473cbb59b"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-aarch64-unknown-linux-musl.zst"
+
+[tools.codex."platforms.linux-arm64-musl"]
+checksum = "sha256:9eac8e152adde337fd75edfc9f6a10bbd3437733d6d0079db42fb16473cbb59b"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-aarch64-unknown-linux-musl.zst"
+
+[tools.codex."platforms.linux-x64"]
+checksum = "sha256:068799e3bab9bedc5c79a145ff1998c258fac52d4f458a912c371e6b1cf44097"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-x86_64-unknown-linux-musl.zst"
+
+[tools.codex."platforms.linux-x64-baseline"]
+checksum = "sha256:068799e3bab9bedc5c79a145ff1998c258fac52d4f458a912c371e6b1cf44097"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-x86_64-unknown-linux-musl.zst"
+
+[tools.codex."platforms.linux-x64-musl"]
+checksum = "sha256:068799e3bab9bedc5c79a145ff1998c258fac52d4f458a912c371e6b1cf44097"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-x86_64-unknown-linux-musl.zst"
+
+[tools.codex."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:068799e3bab9bedc5c79a145ff1998c258fac52d4f458a912c371e6b1cf44097"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-x86_64-unknown-linux-musl.zst"
+
+[tools.codex."platforms.macos-arm64"]
+checksum = "sha256:637cc201e477639c9b601804f077ff82ac092d7f209a26914ce85c3570f4163d"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-aarch64-apple-darwin.zst"
+
+[tools.codex."platforms.macos-x64"]
+checksum = "sha256:038808460aca603664f7d12f6c2c8f2b359cffa69b1ae56cc34ed72d337aed0b"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-x86_64-apple-darwin.zst"
+
+[tools.codex."platforms.macos-x64-baseline"]
+checksum = "sha256:038808460aca603664f7d12f6c2c8f2b359cffa69b1ae56cc34ed72d337aed0b"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-x86_64-apple-darwin.zst"
+
+[tools.codex."platforms.windows-x64"]
+checksum = "sha256:b387acc517dfa3476a6ad700b96f43768182ce2e7a2133ea17891578a75a2072"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-x86_64-pc-windows-msvc.exe.zst"
+
+[tools.codex."platforms.windows-x64-baseline"]
+checksum = "sha256:b387acc517dfa3476a6ad700b96f43768182ce2e7a2133ea17891578a75a2072"
+url = "https://github.com/openai/codex/releases/download/rust-v0.120.0/codex-x86_64-pc-windows-msvc.exe.zst"
 
 [[tools.difftastic]]
 version = "0.68.0"
@@ -512,6 +604,10 @@ url = "https://github.com/casey/just/releases/download/1.49.0/just-1.49.0-x86_64
 version = "1.10.2"
 backend = "pipx:meson"
 
+[[tools.meson]]
+version = "1.11.0"
+backend = "pipx:meson"
+
 [[tools.mold]]
 version = "2.40.4"
 backend = "aqua:rui314/mold"
@@ -539,6 +635,34 @@ url = "https://github.com/rui314/mold/releases/download/v2.40.4/mold-2.40.4-x86_
 [tools.mold."platforms.linux-x64-musl-baseline"]
 checksum = "sha256:4c999e19ffa31afa5aa429c679b665d5e2ca5a6b6832ad4b79668e8dcf3d8ec1"
 url = "https://github.com/rui314/mold/releases/download/v2.40.4/mold-2.40.4-x86_64-linux.tar.gz"
+
+[[tools.mold]]
+version = "2.41.0"
+backend = "aqua:rui314/mold"
+
+[tools.mold."platforms.linux-arm64"]
+checksum = "sha256:946de2774b06a71346bd59b55fddba610b65b8d93c3a4a1559cc84e103472710"
+url = "https://github.com/rui314/mold/releases/download/v2.41.0/mold-2.41.0-aarch64-linux.tar.gz"
+
+[tools.mold."platforms.linux-arm64-musl"]
+checksum = "sha256:946de2774b06a71346bd59b55fddba610b65b8d93c3a4a1559cc84e103472710"
+url = "https://github.com/rui314/mold/releases/download/v2.41.0/mold-2.41.0-aarch64-linux.tar.gz"
+
+[tools.mold."platforms.linux-x64"]
+checksum = "sha256:a3696680d99e692970590a178bc3a33d78d60d1c6dc9db7a11b557b02b751f5d"
+url = "https://github.com/rui314/mold/releases/download/v2.41.0/mold-2.41.0-x86_64-linux.tar.gz"
+
+[tools.mold."platforms.linux-x64-baseline"]
+checksum = "sha256:a3696680d99e692970590a178bc3a33d78d60d1c6dc9db7a11b557b02b751f5d"
+url = "https://github.com/rui314/mold/releases/download/v2.41.0/mold-2.41.0-x86_64-linux.tar.gz"
+
+[tools.mold."platforms.linux-x64-musl"]
+checksum = "sha256:a3696680d99e692970590a178bc3a33d78d60d1c6dc9db7a11b557b02b751f5d"
+url = "https://github.com/rui314/mold/releases/download/v2.41.0/mold-2.41.0-x86_64-linux.tar.gz"
+
+[tools.mold."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:a3696680d99e692970590a178bc3a33d78d60d1c6dc9db7a11b557b02b751f5d"
+url = "https://github.com/rui314/mold/releases/download/v2.41.0/mold-2.41.0-x86_64-linux.tar.gz"
 
 [[tools.ninja]]
 version = "1.13.2"
@@ -650,6 +774,10 @@ backend = "npm:node-gyp"
 
 [[tools."npm:oxfmt"]]
 version = "0.44.0"
+backend = "npm:oxfmt"
+
+[[tools."npm:oxfmt"]]
+version = "0.45.0"
 backend = "npm:oxfmt"
 
 [[tools."npm:vscode-langservers-extracted"]]
@@ -804,14 +932,6 @@ url = "https://github.com/anomalyco/opencode/releases/download/v1.4.3/opencode-w
 checksum = "sha256:a0efc8a0028083104d2e68bb23721395700f20e83e6018c38043a2d7e0e9897a"
 url = "https://github.com/anomalyco/opencode/releases/download/v1.4.3/opencode-windows-x64.zip"
 
-[[tools."pipx:pyrefly"]]
-version = "0.60.0"
-backend = "pipx:pyrefly"
-
-[[tools."pipx:pyrefly"]]
-version = "0.60.2"
-backend = "pipx:pyrefly"
-
 [[tools."pipx:ruff"]]
 version = "0.15.9"
 backend = "pipx:ruff"
@@ -819,6 +939,10 @@ backend = "pipx:ruff"
 [[tools."pipx:ruff"]]
 version = "0.15.10"
 backend = "pipx:ruff"
+
+[[tools."pipx:zuban"]]
+version = "0.7.0"
+backend = "pipx:zuban"
 
 [[tools.python]]
 version = "3.14.3"
