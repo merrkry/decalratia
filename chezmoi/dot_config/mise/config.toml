@@ -69,3 +69,5 @@ task = "latest"
 ## Neovim
 tree-sitter = "latest"
 websocat = "latest"    # typst-preview.nvim
+"cargo:cargo-zigbuild" = "latest"
+zig = "latest"

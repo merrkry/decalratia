@@ -20,6 +20,9 @@ in
         flags = [ "--disable-up-arrow" ];
         settings = {
           sync_address = "https://atuin.tsubasa.moe";
+          sync = {
+            records = true;
+          };
         };
       };
     };

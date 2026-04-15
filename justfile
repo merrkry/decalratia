@@ -32,8 +32,12 @@ rime:
 [group('update')]
 rustup:
   rustup update nightly
-  rustup component add --toolchain nightly rust-analyzer
-  rustup component add --toolchain nightly rustc-codegen-cranelift-preview
+  rustup component add --toolchain nightly \
+    rust-analyzer \
+    rustc-codegen-cranelift-preview
+  rustup target add --toolchain nightly \
+    wasm32-unknown-unknown \
+    x86_64-unknown-linux-musl
   rustup default nightly
 
 [group('update')]
