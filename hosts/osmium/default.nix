@@ -13,7 +13,7 @@
       type = "desktop";
     };
     base = {
-      network.tailscale = null;
+      network.tailscale = "client";
     };
     desktop = {
       gaming.enable = true;
@@ -34,26 +34,6 @@
       rclone.enable = true;
       syncthing.enable = true;
     };
-  };
-
-  networking.firewall = {
-    checkReversePath = "loose";
-    trustedInterfaces = [ "sekai0" ];
-    allowedUDPPorts = [ 41641 ];
-  };
-
-  services = {
-    sing-box.enable = true;
-  };
-
-  # TODO: upstream this.
-  systemd.services.sing-box.serviceConfig = {
-    ConfigurationDirectory = "sing-box";
-    ExecStartPre = lib.mkForce "";
-    ExecStart = lib.mkForce [
-      ""
-      "${lib.getExe pkgs.sing-box} -D \${STATE_DIRECTORY} -C \${CONFIGURATION_DIRECTORY} run"
-    ];
   };
 
   home-manager.users.${user} = {
