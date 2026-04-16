@@ -7,7 +7,6 @@
 }:
 let
   cfg = config.profiles.tui.neovim;
-  hmConfig = config.home-manager.users.${user};
   basePackage = pkgs.neovim; # inputs.neovim-nightly-overlay.packages.${config.nixpkgs.system}.default;
   extraBins = with pkgs; [
     lsof # opencode.nvim
@@ -37,10 +36,6 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
       home.packages = [ wrappedPackage ];
-
-      systemd.user.tmpfiles.rules = [
-        "L+ ${hmConfig.xdg.configHome}/nvim - - - - ${hmConfig.home.homeDirectory}/Projects/declaratia/nvim"
-      ];
     };
   };
 }
