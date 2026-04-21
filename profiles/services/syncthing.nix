@@ -44,7 +44,10 @@ in
         enable = true;
         overrideDevices = true;
         overrideFolders = true;
-        passwordFile = config.sops.secrets."syncthing".path;
+        guiCredentials = {
+          username = "merrkry";
+          passwordFile = config.sops.secrets."syncthing".path;
+        };
         settings = {
           devices = builtins.mapAttrs (name: id: {
             inherit id;
