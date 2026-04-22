@@ -30,6 +30,10 @@ in
       home = {
         packages = with pkgs; [ xdg-utils ];
 
+        sessionPath = [
+          "${dataHome}/cargo/bin" # required by rustup
+        ];
+
         shellAliases = {
           "adb" = "HOME=\"${dataHome}/android\" adb";
           "rm" = "rm -i";
@@ -96,6 +100,8 @@ in
 
       xdg = {
         enable = true;
+
+        localBinInPath = true;
 
         # messy behavior
         autostart.enable = lib.mkForce false;
