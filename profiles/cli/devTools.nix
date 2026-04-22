@@ -53,6 +53,11 @@ in
           statix
         ];
       };
+
+      systemd.user.sessionVariables = {
+        OPENCODE_DISABLE_LSP_DOWNLOAD = "true";
+        SCCACHE_CACHE_SIZE = "64G";
+      };
     };
   };
 }

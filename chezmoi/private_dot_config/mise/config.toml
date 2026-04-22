@@ -1,10 +1,7 @@
-[env]
-OPENCODE_DISABLE_LSP_DOWNLOAD = true
-SCCACHE_CACHE_SIZE = "64G"
-
 [settings]
 lockfile = true
 all_compile = false
+env_shell_expand = true
 
 [settings.npm]
 package_manager = "bun"
@@ -36,6 +33,8 @@ go = "latest"
 "go:golang.org/x/tools/cmd/goimports" = "latest"
 "go:golang.org/x/tools/gopls" = "latest"
 "go:mvdan.cc/gofumpt" = "latest"
+# protobuf
+buf = "latest"
 # python
 python = "latest"
 uv = "latest"
@@ -46,6 +45,7 @@ mold = "latest"
 cargo-binstall = "latest"
 "cargo:cargo-edit" = "latest"
 "cargo:cargo-sort" = "latest"
+"cargo:cargo-zigbuild" = "latest"
 # toml
 taplo = "latest"
 ## typst
@@ -54,6 +54,9 @@ tinymist = "latest"
 typstyle = "latest"
 # yaml
 "npm:yaml-language-server" = "latest"
+# zig
+zig = "latest"
+zls = "latest"
 
 # Utilities
 ## AI
@@ -69,5 +72,3 @@ task = "latest"
 ## Neovim
 tree-sitter = "latest"
 websocat = "latest"    # typst-preview.nvim
-"cargo:cargo-zigbuild" = "latest"
-zig = "latest"
