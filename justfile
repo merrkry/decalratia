@@ -42,7 +42,7 @@ rustup:
 
 [group('update')]
 mise:
-  mise install --locked
+  mise install
   mise prune
 
 [group('update')]

@@ -10,28 +10,28 @@ For language toolchain and day-to-day CLIs, we prefer following upstream over re
 
 ## Mise
 
+Mise's UX for lockfiles is really strange.
+`mise upgrade` doesn't update lockfile, we need to run `mise lock --global` separately, which performs yet another round of download and calculations.
+
+For now we simply use `"latest"` without lockfiles.
+Might lock version with semver in the future.
+
 To upgrade packages:
 
 ```
 mise upgrade
 ```
 
-To install from lockfile:
+To install from config file:
 
 ```
-mise install --locked
+mise install
 ```
 
 To cleanup:
 
 ```
 mise prune
-```
-
-Sometimes lockfile needs to be updated manually:
-
-```
-mise lock --global
 ```
 
 ## Rustup
