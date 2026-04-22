@@ -67,7 +67,7 @@ in
           # npm
           NPM_CONFIG_INIT_MODULE = "${dataHome}/npm/config/npm-init.js";
           NPM_CONFIG_CACHE = "${cacheHome}/npm";
-          NPM_CONFIG_TMP = "${runtimeDir}/npm";
+          # NPM_CONFIG_TMP = "${runtimeDir}/npm"; # no longer supported
 
           # python
           # <= 3.12
