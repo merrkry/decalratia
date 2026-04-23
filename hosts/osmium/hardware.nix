@@ -112,17 +112,23 @@ in
   services = {
     fprintd.enable = true;
 
-    intel-lpmd.enable = true;
+    intel-lpmd = {
+      enable = true;
+      overrideDefaults = {
+        PerformanceDef = -1;
+        BalancedDef = 0;
+        PowersaverDef = 1;
+      };
+    };
+
     thermald.enable = true;
 
     tlp = {
       enable = true;
       pd.enable = true;
       settings = {
-        # PD API reports `performance` on AC, and `balance` on BAT.
-        # But `/sys/firmware/acpi/platform_profile` is actually set as expected.
-        PLATFORM_PROFILE_ON_AC = "balanced";
-        PLATFORM_PROFILE_ON_BAT = "low-power";
+        PLATFORM_PROFILE_ON_AC = "performance";
+        PLATFORM_PROFILE_ON_BAT = "balanced";
         PCIE_ASPM_ON_BAT = "powersupersave";
       };
     };
