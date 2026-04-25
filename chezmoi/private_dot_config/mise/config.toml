@@ -1,5 +1,4 @@
 [settings]
-lockfile = true
 all_compile = false
 env_shell_expand = true
 

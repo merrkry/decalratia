@@ -29,6 +29,8 @@ in
 
           tab_bar_edge = "top";
           tab_bar_align = "center";
+
+          background_blur = 1;
         };
         # https://sw.kovidgoyal.net/kitty/conf/#keyboard-shortcuts
         keybindings = {
