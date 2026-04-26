@@ -1,10 +1,8 @@
 {
-  config,
   inputs,
   helpers,
   lib,
   modulesPath,
-  options,
   pkgs,
   ...
 }:
@@ -30,18 +28,7 @@ in
         "xhci_pci"
       ];
       kernelModules = [ ];
-      luks = {
-        devices.${luksDevice}.device = "/dev/disk/by-uuid/285de22c-80b3-48fe-a0ff-3cc384c31aaa";
-        # https://github.com/NixOS/nixpkgs/issues/501777
-        cryptoModules =
-          let
-            defaultModules = options.boot.initrd.luks.cryptoModules.default;
-            deprecated = lib.optionals (lib.versionAtLeast config.boot.kernelPackages.kernel.version "7.0") [
-              "aes_generic"
-            ];
-          in
-          lib.subtractLists deprecated defaultModules;
-      };
+      luks.devices.${luksDevice}.device = "/dev/disk/by-uuid/285de22c-80b3-48fe-a0ff-3cc384c31aaa";
     };
     # lanzaboote = {
     #   enable = true;
@@ -54,12 +41,6 @@ in
     };
     kernelModules = [ "kvm-intel" ];
     kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
-    kernelParams = [
-      # Seems fixed in Linux 7.0
-      # https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7284
-      # "xe.enable_psr=0"
-      # "xe.enable_panel_replay=0"
-    ];
   };
 
   # TODO: remove with libinput 1.31

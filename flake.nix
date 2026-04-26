@@ -78,7 +78,7 @@
       };
     };
 
-    flatpak.url = "github:gmodena/nix-flatpak/v0.7.0";
+    flatpak.url = "github:gmodena/nix-flatpak/latest";
 
     nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/main";
