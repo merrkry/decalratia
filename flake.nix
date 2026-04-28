@@ -106,10 +106,11 @@
     };
 
     determinate = {
+      # url = "github:DeterminateSystems/nix-src/<tag>";
       url = "github:merrkry/determinate-nix/prod";
       # Also introduces `nixpkgs-regression` `nixpkgs-23-11` in input for some reason.
       inputs = {
-        # nixpkgs.follows = "nixpkgs"; # still on lowdown 2.0
+        nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
         git-hooks-nix.follows = "git-hooks-nix";
       };
