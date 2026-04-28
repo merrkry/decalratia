@@ -110,7 +110,7 @@
       url = "github:merrkry/determinate-nix/prod";
       # Also introduces `nixpkgs-regression` `nixpkgs-23-11` in input for some reason.
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        # nixpkgs.follows = "nixpkgs"; -- Do not override so as to avoid expensive rebuilds and occasional regressions.
         flake-parts.follows = "flake-parts";
         git-hooks-nix.follows = "git-hooks-nix";
       };
