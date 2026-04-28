@@ -106,7 +106,6 @@
     };
 
     determinate = {
-      # url = "github:DeterminateSystems/nix-src/v3.16.0";
       url = "github:merrkry/determinate-nix/prod";
       # Also introduces `nixpkgs-regression` `nixpkgs-23-11` in input for some reason.
       inputs = {
