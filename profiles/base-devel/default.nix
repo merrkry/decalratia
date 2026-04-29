@@ -19,6 +19,8 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       age
+      bat
+      btop
       fastfetchMinimal
       fd
       gcc
@@ -38,7 +40,6 @@ in
 
     profiles = {
       cli = {
-        bat.enable = true;
         eza.enable = true;
         git.enable = true;
         pure.enable = true;
@@ -47,7 +48,6 @@ in
 
       tui = {
         atuin.enable = true;
-        btop.enable = true;
         fzf.enable = true;
         htop.enable = true;
         tmux.enable = true;

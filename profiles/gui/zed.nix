@@ -24,8 +24,6 @@ in
         # Better to use with nix-ld.
         package = pkgs.zed-editor;
       };
-
-      # stylix.targets.zed.enable = true;
     };
   };
 }

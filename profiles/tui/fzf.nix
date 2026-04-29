@@ -20,8 +20,12 @@ in
     };
 
     home-manager.users.${user} = {
-      programs.fzf.enable = true;
-      stylix.targets.fzf.enable = true;
+      programs.fzf = {
+        enable = true;
+        colors = {
+          bg = "-1";
+        };
+      };
     };
   };
 }

@@ -20,8 +20,6 @@ in
         enable = true;
         terminal = config.profiles.desktop.defaultTerminal;
       };
-
-      stylix.targets.rofi.enable = true;
     };
   };
 }

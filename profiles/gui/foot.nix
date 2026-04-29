@@ -19,10 +19,11 @@ in
       programs.foot = {
         enable = true;
         server.enable = true;
+        # TODO: font, opacity, blur
         # https://codeberg.org/dnkl/foot/src/branch/master/foot.ini
         settings =
           let
-            mapleMono = "Maple Mono CN:size=${toString config.stylix.fonts.sizes.terminal}";
+            mapleMono = "Maple Mono CN:size=${toString config.profiles.desktop.fontSizes.terminal}";
           in
           {
             main = {
@@ -50,8 +51,6 @@ in
             };
           };
       };
-
-      stylix.targets.foot.enable = true;
     };
   };
 }

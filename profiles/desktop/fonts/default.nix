@@ -79,30 +79,6 @@ in
       };
     };
 
-    stylix.fonts = {
-      serif = {
-        package = pkgs.emptyDirectory;
-        name = "serif";
-      };
-      sansSerif = {
-        package = pkgs.emptyDirectory;
-        name = "sans-serif";
-      };
-      monospace = {
-        package = pkgs.emptyDirectory;
-        name = "monospace";
-      };
-      emoji = {
-        package = pkgs.emptyDirectory;
-        name = "emoji";
-      };
-
-      sizes = rec {
-        applications = 10;
-        terminal = applications + 2;
-      };
-    };
-
     # Generate the same config at user level, this can fix some (but not all of them) flatpak apps, e.g. firefox
     home-manager.users.${user} = {
       fonts.fontconfig = {

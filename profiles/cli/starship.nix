@@ -27,8 +27,6 @@ in
           };
         };
       };
-
-      stylix.targets.starship.enable = true;
     };
   };
 }

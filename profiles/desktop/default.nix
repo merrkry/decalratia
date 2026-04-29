@@ -55,6 +55,26 @@ in
       };
       default = compositorProfiles.${cfg.compositor};
     };
+
+    fontSizes = mkOption {
+      type = types.submodule {
+        options = {
+          application = mkOption {
+            type = types.int;
+            default = 10;
+          };
+          terminal = mkOption {
+            type = types.int;
+            default = 12;
+          };
+        };
+      };
+    };
+
+    opacity = mkOption {
+      type = types.float;
+      default = 0.85;
+    };
   };
 
   config = lib.mkIf cfg.enable {

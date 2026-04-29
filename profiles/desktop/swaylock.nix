@@ -41,8 +41,6 @@ in
           command = "${lib.getExe' pkgs.systemd "systemctl"} sleep";
         });
       };
-
-      stylix.targets.swaylock.enable = true;
     };
   };
 }

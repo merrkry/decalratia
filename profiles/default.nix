@@ -11,7 +11,6 @@
   imports = [
     inputs.sops.nixosModules.sops
     inputs.disko.nixosModules.disko
-    inputs.stylix.nixosModules.stylix
     inputs.lanzaboote.nixosModules.lanzaboote
     inputs.nixos-mailserver.nixosModules.mailserver
 
@@ -26,7 +25,6 @@
     ./services
 
     ./meta.nix
-    ./stylix.nix
   ];
 
   config = {

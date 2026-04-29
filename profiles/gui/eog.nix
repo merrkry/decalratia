@@ -16,7 +16,6 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users.${user} = {
       home.packages = [ pkgs.eog ];
-      stylix.targets.eog.enable = true;
     };
   };
 }

@@ -8,6 +8,8 @@
 let
   cfg = config.profiles.desktop.themes;
   hmConfig = config.home-manager.users.${user};
+
+  iconThemeName = "Papirus-Dark";
 in
 {
   options.profiles.desktop.themes = {
@@ -15,23 +17,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    stylix = {
-      enable = true;
-      cursor = {
-        package = pkgs.adwaita-icon-theme;
-        name = "Adwaita";
-        size = 24;
-      };
-      polarity = "dark";
-      opacity.terminal = 0.85;
-      targets = {
-        gnome.enable = true;
-        gtk.enable = true;
-        qt.enable = true;
-      };
-    };
-
     home-manager.users.${user} = {
+      dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+
       gtk =
         let
           shareConfig = {
@@ -42,22 +30,20 @@ in
         {
           enable = true;
 
-          # covered by stylix
-          # theme = {
-          #   name = "adw-gtk3";
-          #   package = pkgs.adw-gtk3;
-          # };
+          theme = {
+            name = "Adwaita-dark";
+            package = pkgs.gnome-themes-extra;
+          };
 
           iconTheme = {
-            name = "Papirus-Dark";
+            name = iconThemeName;
             package = pkgs.papirus-icon-theme; # pkgs.adwaita-icon-theme;
           };
 
-          # covered by stylix
-          # cursorTheme = {
-          #   name = "Adwaita";
-          #   package = pkgs.adwaita-icon-theme;
-          # };
+          font = {
+            name = "sans-serif";
+            size = config.profiles.desktop.fontSizes.application;
+          };
 
           gtk2 = {
             configLocation = "${hmConfig.xdg.configHome}/gtk-2.0/gtkrc";
@@ -72,38 +58,62 @@ in
           };
         };
 
-      # https://wiki.nixos.org/wiki/GNOME#To_run_GNOME_programs_outside_of_GNOME
-      home.packages = with pkgs; [
-        adwaita-icon-theme
-        gnome-themes-extra
-      ];
+      home = {
+        # https://wiki.nixos.org/wiki/GNOME#To_run_GNOME_programs_outside_of_GNOME
+        packages = with pkgs; [
+          adwaita-icon-theme
+          gnome-themes-extra
+        ];
+
+        pointerCursor = {
+          enable = true;
+          name = "Adwaita";
+          package = pkgs.adwaita-icon-theme;
+
+          gtk.enable = true;
+          x11.enable = true;
+        };
+      };
 
       # https://discourse.nixos.org/t/guide-to-installing-qt-theme/35523/3
-      qt = {
-        enable = true; # Let stylix handle everything else
-        # platformTheme.name = "qtct";
-        # style.name = "kvantum"; # "adwaita-dark";
-        # style.package = pkgs.adwaita-qt;
-      };
+      qt =
+        let
+          qtctSettings = {
+            Appearance = {
+              icon_theme = iconThemeName;
+            };
 
-      stylix.targets = {
-        gtk.enable = config.stylix.targets.gtk.enable;
-        gnome.enable = config.stylix.targets.gnome.enable;
-        kde.enable = true;
-        qt.enable = config.stylix.targets.qt.enable;
-      };
+            Fonts = {
+              fixed = ''"monospace,${toString config.profiles.desktop.fontSizes.application}"'';
+              general = ''"sans-serif,${toString config.profiles.desktop.fontSizes.terminal}"'';
+            };
+          };
+        in
+        {
+          enable = true;
+          platformTheme.name = "qtct";
+          style = {
+            name = "kvantum";
+            # package = null; # Inferred automatically
+          };
 
-      # xdg.configFile =
-      #   let
-      #     themeName = "KvLibadwaita";
-      #   in
-      #   {
-      #     "Kvantum/kvantum.kvconfig".text = ''
-      #       [General]
-      #       theme=${themeName}Dark
-      #     '';
-      #     "Kvantum/${themeName}".source = "${pkgs.kvlibadwaita-kvantum}/share/Kvantum/${themeName}";
-      #   };
+          qt5ctSettings = qtctSettings;
+          qt6ctSettings = qtctSettings;
+        };
+
+      xdg.configFile =
+        let
+          themeName = "KvLibadwaita";
+          themePath = "${pkgs.kvlibadwaita-kvantum}/share/Kvantum/${themeName}";
+        in
+        {
+          "Kvantum/kvantum.kvconfig".text = ''
+            [General]
+            theme=${themeName}Dark
+          '';
+          "Kvantum/${themeName}".source = themePath;
+          "Kvantum/${themeName}Dark".source = themePath;
+        };
     };
   };
 }

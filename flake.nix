@@ -53,15 +53,6 @@
       };
     };
 
-    stylix = {
-      url = "github:merrkry/stylix/prod";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        nur.follows = "nur";
-      };
-    };
-
     nur = {
       url = "github:nix-community/NUR";
       inputs = {

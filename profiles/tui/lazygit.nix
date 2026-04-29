@@ -35,8 +35,6 @@ in
           update.method = "never";
         };
       };
-
-      stylix.targets.lazygit.enable = true;
     };
   };
 }

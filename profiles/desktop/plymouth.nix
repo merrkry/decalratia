@@ -29,7 +29,5 @@ in
       # It will just not appear on screen unless a key is pressed
       loader.timeout = 0;
     };
-
-    stylix.targets.plymouth.enable = false;
   };
 }

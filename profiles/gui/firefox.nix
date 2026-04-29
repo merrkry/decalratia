@@ -25,9 +25,6 @@ in
           "zh-CN"
         ];
       };
-
-      # gtk styling will however still be applied to firefox
-      stylix.targets.firefox.enable = false;
     };
   };
 }

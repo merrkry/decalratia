@@ -23,8 +23,6 @@ in
           timeout-critical = 5;
         };
       };
-
-      stylix.targets.swaync.enable = true;
     };
   };
 }

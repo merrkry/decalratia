@@ -33,8 +33,6 @@ in
           source-file ${./tmux.conf}
         '';
       };
-
-      stylix.targets.tmux.enable = true;
     };
   };
 }

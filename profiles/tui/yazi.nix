@@ -8,7 +8,7 @@
 let
   cfg = config.profiles.tui.yazi;
   hmConfig = config.home-manager.users.${user};
-  mkNoPreviewPreloader = builtins.map (dir: {
+  mkNoPreviewPreloader = map (dir: {
     name = dir;
     run = "noop";
   });
@@ -36,6 +36,10 @@ in
 
         settings = {
           mgr = {
+            preview_hovered = {
+              underline = false;
+            };
+
             ratio = [
               0
               4
@@ -65,8 +69,6 @@ in
 
         shellWrapperName = "yy";
       };
-
-      stylix.targets.yazi.enable = true;
     };
   };
 }
