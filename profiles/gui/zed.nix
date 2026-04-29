@@ -1,5 +1,6 @@
 {
   config,
+  helpers,
   lib,
   pkgs,
   user,
@@ -22,7 +23,16 @@ in
         # e.g. pkg-config, openssl provided by nix shell.
         # Providing them fhsWithPackages doesn't work either.
         # Better to use with nix-ld.
-        package = pkgs.zed-editor;
+        package = helpers.overrideRustPlatformArgs pkgs "zed-editor" (finalAttrs: {
+          version = "1.1.2-pre";
+          src = pkgs.fetchFromGitHub {
+            owner = "zed-industries";
+            repo = "zed";
+            tag = "v${finalAttrs.version}";
+            hash = "sha256-C6/YS69pAO6qurDOWcEDeuJ4+jVZsUnEQ7+fHUxlurE=";
+          };
+          cargoHash = "sha256-RgSFeCNDg5pD1rYBf2A9iZ5RB78QHHZfE0xTgiA1008=";
+        });
       };
     };
   };
