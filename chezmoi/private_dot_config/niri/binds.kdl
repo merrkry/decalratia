@@ -265,6 +265,15 @@ binds {
     Mod+9 {
         focus-workspace 9
     }
+    Mod+N {
+        focus-workspace "notes"
+    }
+    Mod+C {
+        focus-workspace "communication"
+    }
+    Mod+B {
+        focus-workspace "browser"
+    }
     Mod+Ctrl+1 {
         move-column-to-workspace 1
     }
@@ -322,10 +331,10 @@ binds {
     Mod+Ctrl+F {
         expand-column-to-available-width
     }
-    Mod+C {
+    Mod+M {
         center-column
     }
-    Mod+Ctrl+C {
+    Mod+Ctrl+M {
         center-visible-columns
     }
     Mod+Shift+C {

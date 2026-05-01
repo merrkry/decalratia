@@ -36,10 +36,6 @@ in
 
         settings = {
           mgr = {
-            preview_hovered = {
-              underline = false;
-            };
-
             ratio = [
               0
               4
@@ -55,6 +51,10 @@ in
         };
 
         theme = {
+          indicator = {
+            preview = { };
+          };
+
           tabs = {
             sep_inner = {
               open = "";

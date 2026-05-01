@@ -1,6 +1,6 @@
 [
   {
-    "context": "vim_mode == insert && !menu",
+    "context": "vim_mode == insert && !menu && !edit_prediction",
     "bindings": {
       "alt-h": "vim::Left",
       "alt-j": [
@@ -59,6 +59,12 @@
       "space l": "editor::RunFlycheck",
       "space s": "outline::Toggle",
       "space e": "project_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "g w": "vim::HelixJumpToWord",
     },
   },
 ]

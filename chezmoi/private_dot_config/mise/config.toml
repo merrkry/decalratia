@@ -71,3 +71,4 @@ task = "latest"
 ## Neovim
 tree-sitter = "latest"
 websocat = "latest"    # typst-preview.nvim
+pi = "latest"

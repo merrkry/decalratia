@@ -20,10 +20,6 @@ window-rule {
     open-maximized true
 }
 window-rule {
-    match app-id="^Zotero$"
-    open-on-workspace "documentation"
-}
-window-rule {
     match title="^Cinny$"
     match title="^Element$"
     match app-id="^io.github.kukuruzka165.materialgram$"
@@ -60,7 +56,6 @@ window-rule {
     default-column-width {
         proportion 1.0
     }
-    open-on-workspace "entertainment"
 }
 window-rule {
     // workaround steam notification
@@ -102,7 +97,7 @@ window-rule {
 }
 window-rule {
     match app-id="^spotify$" at-startup=true
-    open-on-workspace "entertainment"
+    open-on-workspace "browser"
 }
 window-rule {
     match app-id="^com.qq.QQ$" title="^QQ$"

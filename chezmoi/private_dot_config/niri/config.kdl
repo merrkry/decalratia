@@ -48,12 +48,9 @@ layout {
     center-focused-column "on-overflow"
     always-center-single-column
 }
-workspace "terminal"
 workspace "notes"
-workspace "documentation"
-workspace "browser"
 workspace "communication"
-workspace "entertainment"
+workspace "browser"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "systemctl" "--user" "restart" "fcitx5.service"
 // Some apps chooses notification methods at startup, wait until our system notification provider is absolutely ready.

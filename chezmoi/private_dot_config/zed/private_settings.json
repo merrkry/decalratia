@@ -1,8 +1,24 @@
 {
+  "cli_default_open_behavior": "new_window",
+  "buffer_line_height": "comfortable",
+  "buffer_font_size": 16.0,
+  "proxy": "",
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "tree_view": true,
+    "dock": "left",
+  },
   "colorize_brackets": true,
   "language_models": {
-    "openai_compatible": {
-      },
+    "openai_compatible": {},
   },
   "double_click_in_multibuffer": "select",
   "vim": {
@@ -14,9 +30,12 @@
     "copilot": {
       "enable_next_edit_suggestions": false,
     },
-    "mode": "eager",
+    "mode": "subtle",
   },
   "agent_servers": {
+    "codex-acp": {
+      "type": "registry",
+    },
     "opencode": {
       "type": "registry",
     },
@@ -94,7 +113,7 @@
   "restore_on_startup": "empty_tab",
   "use_smartcase_search": true,
   "soft_wrap": "editor_width",
-  "wrap_guides": [80, 120],
+  "wrap_guides": [80, 100, 120],
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
@@ -109,6 +128,8 @@
   },
   "vim_mode": true,
   "agent": {
+    "sidebar_side": "right",
+    "dock": "right",
     "inline_assistant_model": {
       "provider": "MiniMax",
       "model": "MiniMax-M2.5",
