@@ -28,7 +28,7 @@ window-rule {
     match title="^Mail - Nextcloud$"
     match app-id="^com.discordapp.Discord$"
     default-column-width {
-        proportion 0.5
+        proportion 1.0
     }
     open-on-workspace "communication"
 }

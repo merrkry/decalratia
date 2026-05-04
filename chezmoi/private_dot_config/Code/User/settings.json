@@ -36,9 +36,7 @@
   "nix.serverSettings": {
     "nixd": {
       "formatting": {
-        "command": [
-          "nixfmt"
-        ]
+        "command": ["nixfmt"]
       },
       "nixpkgs": {
         "expr": "import (builtins.getFlake(toString ./.)).inputs.nixpkgs { }"
@@ -47,24 +45,14 @@
   },
   "python.experiments.enabled": false,
   "ruff.lint.enable": false,
-  "ruff.path": [
-    "ruff"
-  ],
+  "ruff.path": ["ruff"],
   "rust-analyzer.check.command": "clippy",
-  "rust-analyzer.check.extraArgs": [
-    "--",
-    "-W",
-    "clippy::pedantic",
-    "-W",
-    "clippy::nursery"
-  ],
+  "rust-analyzer.check.extraArgs": ["--", "-W", "clippy::pedantic", "-W", "clippy::nursery"],
   "rust-analyzer.diagnostics.experimental.enable": true,
   "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "with_block",
   "rust-analyzer.inlayHints.discriminantHints.enable": "fieldless",
   "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "skip_trivial",
-  "rust-analyzer.rustfmt.extraArgs": [
-    "--unstable-features"
-  ],
+  "rust-analyzer.rustfmt.extraArgs": ["--unstable-features"],
   "rust-analyzer.rustfmt.rangeFormatting.enable": true,
   "rust-analyzer.server.path": "rust-analyzer",
   "telemetry.telemetryLevel": "off",
@@ -82,5 +70,11 @@
   "python.languageServer": "Default",
   "rust-analyzer.inlayHints.closingBraceHints.minLines": 8,
   "rust-analyzer.checkOnSave": false,
-  "github.copilot.selectedCompletionModel": ""
+  "github.copilot.selectedCompletionModel": "",
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false
+  },
+  "chat.disableAIFeatures": true
 }
+
