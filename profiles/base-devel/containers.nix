@@ -29,8 +29,8 @@ in
       };
       podman = {
         enable = true;
-        dockerCompat = false;
-        dockerSocket.enable = false;
+        dockerCompat = true;
+        dockerSocket.enable = true;
         defaultNetwork.settings.dns_enabled = true;
         # Runs `podman system prune -f` periodically
         autoPrune.enable = lib.mkDefault true;
