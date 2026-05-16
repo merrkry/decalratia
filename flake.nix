@@ -87,15 +87,6 @@
       };
     };
 
-    cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        flake-compat.follows = "flake-compat";
-      };
-    };
-
     determinate = {
       # url = "github:DeterminateSystems/nix-src/<tag>";
       url = "github:merrkry/determinate-nix/prod";

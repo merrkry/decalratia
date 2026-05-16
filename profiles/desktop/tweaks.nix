@@ -56,15 +56,15 @@ in
               }
           );
 
-          kernelPackages =
-            let
-              kernel = inputs.cachyos-kernel.legacyPackages.${config.nixpkgs.system}.linux-cachyos-lts.override {
-                preemptType = "lazy";
-                bbr3 = true;
-                processorOpt = "x86_64-v3";
-              };
-            in
-            pkgs.linuxKernel.packagesFor kernel;
+          kernelPackages = pkgs.linuxPackages;
+          # let
+          #   kernel = inputs.cachyos-kernel.legacyPackages.${config.nixpkgs.system}.linux-cachyos-lts.override {
+          #     preemptType = "lazy";
+          #     bbr3 = true;
+          #     processorOpt = "x86_64-v3";
+          #   };
+          # in
+          # pkgs.linuxKernel.packagesFor kernel;
 
           kernelParams = [
             "split_lock_detect=off"
