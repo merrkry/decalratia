@@ -2,11 +2,11 @@ asvetliakov.vscode-neovim
 charliermarsh.ruff
 emroussel.atomize-atom-one-dark-theme
 esbenp.prettier-vscode
-github.copilot-chat
 golang.go
 jnoortheen.nix-ide
 johnnymorganz.stylua
 llvm-vs-code-extensions.vscode-clangd
+mechatroner.rainbow-csv
 meta.pyrefly
 ms-python.python
 ms-toolsai.jupyter

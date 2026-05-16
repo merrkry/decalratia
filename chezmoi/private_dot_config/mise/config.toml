@@ -61,6 +61,7 @@ zls = "latest"
 ## AI
 opencode = "latest"
 codex = "latest"
+pi = "latest"
 ## VCS
 difftastic = "latest"
 jujutsu = "latest"
@@ -71,4 +72,3 @@ task = "latest"
 ## Neovim
 tree-sitter = "latest"
 websocat = "latest"    # typst-preview.nvim
-pi = "latest"

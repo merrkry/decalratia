@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Global guidelines for coding agents.
+Here are the global guidelines for coding agents. Note that project-specific conventions (project `AGENTS.md`) take higher priority.
 
 - For web development, always assume a dev server is already running. Instead, use static analysis tools for feedback.
 - Use `nix shell` for temporary tools that are not yet available in environment.
