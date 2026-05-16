@@ -40,7 +40,7 @@ in
       efi.canTouchEfiVariables = true;
     };
     kernelModules = [ "kvm-intel" ];
-    kernelPackages = lib.mkForce pkgs.linuxPackages_testing;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
   };
 
   # TODO: remove with libinput 1.31
