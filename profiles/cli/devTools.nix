@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   user,
@@ -51,6 +52,9 @@ in
           nixd
           nixfmt
           statix
+
+          # GUI
+          inputs.nur-merrkry.packages.${config.nixpkgs.system}.t3code
         ];
       };
 
