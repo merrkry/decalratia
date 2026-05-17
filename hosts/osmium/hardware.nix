@@ -43,18 +43,6 @@ in
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
   };
 
-  # TODO: remove with libinput 1.31
-  # ref: https://www.bilibili.com/read/cv42222859
-  # upstream: https://gitlab.freedesktop.org/libinput/libinput/-/commit/a525b3032681691b7d86bde2f9dd66525071af95
-  # `lib.generators.toINI` might mess up attribute order, we use string literals instead.
-  environment.etc."libinput/local-overrides.quirks".text = ''
-    [Lenovo ThinkBook G8+ IPH touchpad]
-    MatchName=*GXTP5100*
-    MatchDMIModalias=dmi:*svnLENOVO:*pvrThinkBook*G8+IPH*:*
-    MatchUdevType=touchpad
-    ModelPressurePad=1
-  '';
-
   fileSystems = {
     "/" = {
       device = "/dev/mapper/${luksDevice}";
